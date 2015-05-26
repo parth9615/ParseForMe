@@ -9,3 +9,7 @@ threadsafe: true
 handlers:
 - url: /.*
   script: ParseForMe.app
+
+libraries:
+- name: webapp2
+  version: latest
