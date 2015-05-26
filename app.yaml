@@ -1,0 +1,11 @@
+#update the version whenever we want to roll out another version
+#the google app engine saves versions of the code
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers:
+- url: /.*
+  script: ParseForMe.app
