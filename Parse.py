@@ -18,16 +18,25 @@ def extractDates(rawListOfData):
                                         # get all days and store in relevantDates
   extractDays(relevantDates , rawListOfData, dayList)
 
+
 def extractDays(relevantDates , rawListOfData, dayList):
     for individualLine in rawListOfData:  # iterate through each line
         for days in dayList:              # iterate through each day combination
 
             # this regex tries to retrieve any line that contains a day of the week
-            dayMatch = re.search(('.+')+(days)+('.+'), individualLine, re.IGNORECASE | re.DOTALL  )
-            if dayMatch:                  # if match was found append to list:
-                                          # check if the item is already in the list
-                if dayMatch.group() not in relevantDates:
-                    relevantDates.append(dayMatch.group())
+            dayOfTheWeekMatch = re.search(('.+')+(days)+('.+'), individualLine, re.IGNORECASE | re.DOTALL  )
+            clockTimeMatch    = re.search(('.+\d:\d\d.+'), individualLine,  re.DOTALL  )
+
+            if dayOfTheWeekMatch:                  # if match was found append to list:
+                                                   # check if the item is already in the list
+                if dayOfTheWeekMatch.group() not in relevantDates:
+                    relevantDates.append(dayOfTheWeekMatch.group())
+
+            if clockTimeMatch:
+
+                if clockTimeMatch.group() not in relevantDates:
+                    relevantDates.append(clockTimeMatch.group())
+
     pprint(relevantDates)
 
 
