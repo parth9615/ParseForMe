@@ -18,7 +18,13 @@ def extractDates(rawListOfData):
                                         # get all days and store in relevantDates
   extractDays(relevantDates , rawListOfData, dayList)
 
-
+'''
+This method iterates through the rawListOfData to find patterns in the method
+Current parsing methods included in the pattern
+1: Finding a line that contains a day of the week
+2: Finding a line that contains a time in the format ##:## (for ex 12:10 or 3:20)
+todo : update this numeric list as more patterns are added:
+'''
 def extractDays(relevantDates , rawListOfData, dayList):
     for individualLine in rawListOfData:  # iterate through each line
         for days in dayList:              # iterate through each day combination
