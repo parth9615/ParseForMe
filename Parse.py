@@ -23,24 +23,40 @@ def extractDays(relevantDates , rawListOfData, dayList):
     for individualLine in rawListOfData:  # iterate through each line
         for days in dayList:              # iterate through each day combination
 
-            # this regex tries to retrieve any line that contains a day of the week
-            dayOfTheWeekMatch = re.search(('.+')+(days)+('.+'), individualLine, re.IGNORECASE | re.DOTALL  )
-            clockTimeMatch    = re.search(('.+\d:\d\d.+'), individualLine,  re.DOTALL  )
+            # regex pattern to find the entire line that contains a day in the dayList
+            dayOfTheWeekPattern = ('.+')+(days)+('.+')
+            # regex flag to ingnorecase and make the dot include whitespace
+            dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
+            # call findInString to check if such a pattern exists
+            findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
 
-            if dayOfTheWeekMatch:                  # if match was found append to list:
-                                                   # check if the item is already in the list
-                if dayOfTheWeekMatch.group() not in relevantDates:
-                    relevantDates.append(dayOfTheWeekMatch.group())
-
-            if clockTimeMatch:
-
-                if clockTimeMatch.group() not in relevantDates:
-                    relevantDates.append(clockTimeMatch.group())
+        # pattern to find the pattern ##:## which is commonly used to denote time
+        clockTimePattern = ('.+\d:\d\d.+')
+        # flag to make the dot include whitespace
+        clockTimeFlags   = re.DOTALL
+        findInString(clockTimePattern , individualLine, clockTimeFlags , relevantDates)
 
     pprint(relevantDates)
 
 
+'''
+patternToFind = regexExpression that the regular expression looks for
+textToSearch  = the text to find the pattern in
+flags         = any and all flags required for the paticular search
+relevantDates = the list to store the line if pattern is matched
+This method takes the patternToFind and tries to search for it in the
+textToSearch and if it is found then it stores it in the relevantDates if
+it already doesn't exist
+'''
+def findInString(patternToFind, textToSearch, flags, relevantDates):
+    if flags:                                      # if flags not empty
+        matchResult = re.search((patternToFind) , textToSearch, flags)
+    else:                                          # no flags to include
+        matchResult = re.search((patternToFind) , textToSearch)
 
+    if matchResult:                                  # if there was a match
+        if matchResult.group() not in relevantDates: # if match doesn't exist in datex
+            relevantDates.append(matchResult.group()) # add it to the date list
 
 def main():
 
