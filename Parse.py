@@ -11,26 +11,29 @@ def getRawData(filename):
   extractDates(rawListOfData)
 
 def extractDates(rawListOfData):
-  dayList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
-            'Mondays' , 'Tuesdays' , 'Wednesdays' , 'Thursdays' , 'Fridays' ,'Saturdays' , 'Sundays'
-            'Mon' , 'Tue' , 'Wed' , 'Thur' , 'Fri' , 'Sat' , 'Sun']
+  dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
+'Mondays' , 'Tuesdays' , 'Wednesdays' , 'Thursdays' , 'Fridays' ,'Saturdays' , 'Sundays' 'Mon' , 'Tue',
+ 'Wed' , 'Thur' , 'Fri' , 'Sat' , 'Sun' , 'January', 'February' , 'March' , 'April' , 'May' , 'June',
+'July' , 'August' , 'September' , 'October' , 'November' , 'December' ,'Jan' , 'Feb' , 'Mar',
+   'Apr' , 'May' , 'Jun' , 'Jul' , 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec'  ]
   relevantDates = []                    # make a list to hold all the dates
                                         # get all days and store in relevantDates
-  extractDays(relevantDates , rawListOfData, dayList)
+  extractDays(relevantDates , rawListOfData, dayAndMonthList)
 
 '''
 This method iterates through the rawListOfData to find patterns in the method
 Current parsing methods included in the pattern
 1: Finding a line that contains a day of the week
 2: Finding a line that contains a time in the format ##:## (for ex 12:10 or 3:20)
+3: Finding a line that contains a month of the year
+4: Finding a line that contains a date in the format ##/##
 todo : update this numeric list as more patterns are added:
 '''
-def extractDays(relevantDates , rawListOfData, dayList):
+def extractDays(relevantDates , rawListOfData, dayAndMonthList):
     for individualLine in rawListOfData:  # iterate through each line
-        for days in dayList:              # iterate through each day combination
-
+        for days in dayAndMonthList:              # iterate through each day combination
             # regex pattern to find the entire line that contains a day in the dayList
-            dayOfTheWeekPattern = ('.+')+(days)+('.+')
+            dayOfTheWeekPattern = ('.+')+(days)+('\s.+')
             # regex flag to ingnorecase and make the dot include whitespace
             dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
             # call findInString to check if such a pattern exists
@@ -42,6 +45,10 @@ def extractDays(relevantDates , rawListOfData, dayList):
         clockTimeFlags   = re.DOTALL
         findInString(clockTimePattern , individualLine, clockTimeFlags , relevantDates)
 
+        # pattern to find the pattern ##/## which is commonly used to denote dates
+        dateTimePattern = ('.+\d/\d\d.+')
+        dateTimeFlags   = re.DOTALL
+        findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
     pprint(relevantDates)
 
 
