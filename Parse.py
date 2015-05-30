@@ -39,8 +39,8 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
             # call findInString to check if such a pattern exists
             result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
             if result:
-                getSensibleDates(result)
-                continue
+                getSensibleDatesFromMonth(individualLine)
+
         # pattern to find the pattern ##:## which is commonly used to denote time
         clockTimePattern = ('.+\d:\d\d?.+')
         # flag to make the dot include whitespace
@@ -53,9 +53,10 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
         findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
     pprint(relevantDates)
 
-def getSensibleDates(stringToSearch):
+def getSensibleDatesFromMonth(stringToSearch):
     monthFound = ''
     dateFound = ''
+    informationArroundDate = ''
     monthToNumDict = {'January' :1, 'February':2 , 'March':3 , 'April':4 , 'May':5, 'June' :6,
    'July':7 , 'August':8 , 'September':9 , 'October':10 , 'November':11 , 'December':12 ,'Jan':1 ,
     'Feb':2 , 'Mar':3, 'Apr':4 , 'May':5 , 'Jun':6 , 'Jul':7 , 'Aug':8 , 'Sep':9 , 'Oct':10 ,
@@ -70,7 +71,11 @@ def getSensibleDates(stringToSearch):
             #print 'the month = =====' , month , stringToSearch
             if dateFound:
                 print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group()
+                firstPart = stringToSearch[monthIndex - 25:monthIndex]
+                secondPart = stringToSearch[monthIndex+1: monthIndex+50]
+                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group() + '[ ' ,firstPart , secondPart + ']'
                 break
+
 
 
 '''
