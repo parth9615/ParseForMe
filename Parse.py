@@ -40,6 +40,7 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
             result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
             if result:
                 getSensibleDates(result)
+                continue
         # pattern to find the pattern ##:## which is commonly used to denote time
         clockTimePattern = ('.+\d:\d\d?.+')
         # flag to make the dot include whitespace
@@ -62,11 +63,14 @@ def getSensibleDates(stringToSearch):
     for month in monthToNumDict.keys():
         monthFound = re.search ('\s' + month , stringToSearch, re.IGNORECASE) # try to find a month
         if monthFound:
+
             monthIndex = stringToSearch.lower().find(month.lower()) # find the index of where the month is
             # try to find a date with a range of +- 10 chars from where the monthIndex was
             dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
+            #print 'the month = =====' , month , stringToSearch
             if dateFound:
-                print 'this is the date found' , dateFound.group() , ' = ' , stringToSearch[monthIndex - 10: monthIndex+10]
+                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group()
+                break
 
 
 '''
