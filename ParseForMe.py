@@ -8,6 +8,7 @@ import webapp2
 MAIN_PAGE_TEMPLATE = """\
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/drag_drop_css.css">
 <style>
 body{
     color:#666;
@@ -81,7 +82,6 @@ body{
 }
 
 </style>
-<link rel="stylesheet" type="text/css" href="drag_drop_css.css"/>
 </head>
 <DIV id="drop">
     <div class="msg-drop">

@@ -1,10 +1,11 @@
+<style>
 body{
     color:#666;
 }
 #drop {
     border: 1px dashed #ccc;
     width: 450px;
-    min-height: 400px;
+    min-height: 35px;
     margin: 10px auto;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -68,3 +69,5 @@ body{
 #fileBox{
     display:none;
 }
+
+</style>
