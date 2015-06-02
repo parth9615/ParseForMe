@@ -37,19 +37,47 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
             # regex flag to ingnorecase and make the dot include whitespace
             dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
             # call findInString to check if such a pattern exists
-            findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
+            result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
+            if result:
+                getSensibleDatesFromMonth(individualLine)
 
         # pattern to find the pattern ##:## which is commonly used to denote time
-        clockTimePattern = ('.+\d:\d\d.+')
+        clockTimePattern = ('.+\d:\d\d?.+')
         # flag to make the dot include whitespace
         clockTimeFlags   = re.DOTALL
         findInString(clockTimePattern , individualLine, clockTimeFlags , relevantDates)
 
         # pattern to find the pattern ##/## which is commonly used to denote dates
-        dateTimePattern = ('.+\d/\d\d.+')
+        dateTimePattern = ('.+\d/\d\d?.+')
         dateTimeFlags   = re.DOTALL
         findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
-    pprint(relevantDates)
+    #pprint(relevantDates)
+
+def getSensibleDatesFromMonth(stringToSearch):
+    monthFound = ''
+    dateFound = ''
+    informationArroundDate = ''
+    monthToNumDict = {'January' :1, 'February':2 , 'March':3 , 'April':4 , 'May':5, 'June' :6,
+   'July':7 , 'August':8 , 'September':9 , 'October':10 , 'November':11 , 'December':12 ,'Jan':1 ,
+    'Feb':2 , 'Mar':3, 'Apr':4 , 'May':5 , 'Jun':6 , 'Jul':7 , 'Aug':8 , 'Sep':9 , 'Oct':10 ,
+     'Nov':11 , 'Dec':12}
+    for month in monthToNumDict.keys():
+        monthFound = re.search ('\s' + month , stringToSearch, re.IGNORECASE) # try to find a month
+        if monthFound:
+
+            monthIndex = stringToSearch.lower().find(month.lower()) # find the index of where the month is
+            # try to find a date with a range of +- 10 chars from where the monthIndex was
+            dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
+            #print 'the month = =====' , month , stringToSearch
+            if dateFound:
+                # search for a "." after month name avoid the common "." immediately after month
+                getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
+
+                # gets the index of the period after the date for printing
+                startToPeriodAfterDateIndex = monthIndex + getStringArround+1+len(month)
+                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group() + '[ ' , stringToSearch[:startToPeriodAfterDateIndex] , ']'
+                break
+
 
 
 '''
@@ -70,6 +98,7 @@ def findInString(patternToFind, textToSearch, flags, relevantDates):
     if matchResult:                                  # if there was a match
         if matchResult.group() not in relevantDates: # if match doesn't exist in datex
             relevantDates.append(matchResult.group()) # add it to the date list
+            return matchResult.group()
 
 def main():
 
