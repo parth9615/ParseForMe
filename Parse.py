@@ -51,7 +51,7 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
         dateTimePattern = ('.+\d/\d\d?.+')
         dateTimeFlags   = re.DOTALL
         findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
-    pprint(relevantDates)
+    #pprint(relevantDates)
 
 def getSensibleDatesFromMonth(stringToSearch):
     monthFound = ''
@@ -70,10 +70,12 @@ def getSensibleDatesFromMonth(stringToSearch):
             dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
             #print 'the month = =====' , month , stringToSearch
             if dateFound:
-                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group()
-                firstPart = stringToSearch[monthIndex - 25:monthIndex]
-                secondPart = stringToSearch[monthIndex+1: monthIndex+50]
-                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group() + '[ ' ,firstPart , secondPart + ']'
+                # search for a "." after month name avoid the common "." immediately after month
+                getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
+
+                # gets the index of the period after the date for printing
+                startToPeriodAfterDateIndex = monthIndex + getStringArround+1+len(month)
+                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group() + '[ ' , stringToSearch[:startToPeriodAfterDateIndex] , ']'
                 break
 
 
