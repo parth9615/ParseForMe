@@ -7,7 +7,6 @@ def getRawData(filename):
 
   f = open(filename, 'rU')              # Open and read the file. for read only
   rawListOfData = f.readlines()         # get each line as a list
-
   extractDates(rawListOfData)
 
 def extractDates(rawListOfData):
