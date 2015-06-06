@@ -1,11 +1,12 @@
 import sys
 import re
 from pprint import pprint
-
+import codecs
 
 def getRawData(filename):
 
-  f = open(filename, 'rU')              # Open and read the file. for read only
+ # f = open(filename, 'rU')              # Open and read the file. for read only
+  f = codecs.open(filename, encoding='utf-8')
   rawListOfData = f.readlines()         # get each line as a list
   extractDates(rawListOfData)
 
