@@ -1,13 +1,12 @@
 import sys
 import re
 from pprint import pprint
-
+import codecs
 
 def getRawData(filename):
 
   f = open(filename, 'rU')              # Open and read the file. for read only
   rawListOfData = f.readlines()         # get each line as a list
-
   extractDates(rawListOfData)
 
 def extractDates(rawListOfData):
@@ -30,6 +29,8 @@ Current parsing methods included in the pattern
 todo : update this numeric list as more patterns are added:
 '''
 def extractDays(relevantDates , rawListOfData, dayAndMonthList):
+    dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
+    optimizationBoolean = False
     for individualLine in rawListOfData:  # iterate through each line
         for days in dayAndMonthList:              # iterate through each day combination
             # regex pattern to find the entire line that contains a day in the dayList
@@ -39,21 +40,37 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
             # call findInString to check if such a pattern exists
             result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
             if result:
-                getSensibleDatesFromMonth(individualLine)
+                makeEventFromMonth(individualLine, dictOfDatesAndInfo)
 
-        # pattern to find the pattern ##:## which is commonly used to denote time
-        clockTimePattern = ('.+\d:\d\d?.+')
-        # flag to make the dot include whitespace
-        clockTimeFlags   = re.DOTALL
-        findInString(clockTimePattern , individualLine, clockTimeFlags , relevantDates)
+                break
 
         # pattern to find the pattern ##/## which is commonly used to denote dates
-        dateTimePattern = ('.+\d/\d\d?.+')
+        dateTimePattern = ('\d\d?/\d\d?')
         dateTimeFlags   = re.DOTALL
-        findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
-    #pprint(relevantDates)
+        result = findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
+        if result:
+             makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
+             a  = 5
+    pprint(dictOfDatesAndInfo)
 
-def getSensibleDatesFromMonth(stringToSearch):
+
+def makeEventFromDate(date, stringToSearch, dictionary):
+
+    # search for a "." after month name avoid the common "." immediately after month
+
+    dateIndex = stringToSearch.find(date)
+    # index of first '.' after date was found
+    #DELTEgetStringArroundIndex = stringToSearch[dateIndex+1+len(date):].find('.')
+
+    # if month and date found then try to make a full event and store it
+    #in the dictionary. if any any of the fields is not found then the tuple
+    #value at that paticular index is None
+    eventType = getEventType(stringToSearch)
+    time =      getTime(stringToSearch)
+    dictionary[date] = (eventType) , (time) , (stringToSearch)
+
+
+def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
     monthFound = ''
     dateFound = ''
     informationArroundDate = ''
@@ -70,13 +87,45 @@ def getSensibleDatesFromMonth(stringToSearch):
             dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
             #print 'the month = =====' , month , stringToSearch
             if dateFound:
+                #delete
                 # search for a "." after month name avoid the common "." immediately after month
-                getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
+                # getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
+                #
+                # # gets the index of the period after the date for printing
+                # startToPeriodAfterDate = stringToSearch[:monthIndex + getStringArround+1+len(month)]
+                dateFoundFormatted = str(monthToNumDict[month]) + '/' + dateFound.group()
+                #print 'the date is ' , dateFoundFormatted + '[ ' , startToPeriodAfterDate , ']'
 
-                # gets the index of the period after the date for printing
-                startToPeriodAfterDateIndex = monthIndex + getStringArround+1+len(month)
-                print 'the date is ' , str(monthToNumDict[month]) + '/' + dateFound.group() + '[ ' , stringToSearch[:startToPeriodAfterDateIndex] , ']'
+                # if month and date found then try to make a full event and store it
+                #in the dictionary. if any any of the fields is not found then the tuple
+                #value at that paticular index is None
+                eventType = getEventType(stringToSearch)
+                time =      getTime(stringToSearch)
+
+                dictOfDatesAndInfo[dateFoundFormatted] = (eventType) , (time) , (stringToSearch)
                 break
+
+
+
+def getEventType(stringToSearch):
+    events = ['final exam' , 'test' , 'quiz' , 'office-hours' , 'office hours' , 'assignment'
+    , 'assignments' , 'exam' , 'homework' , 'webassign']
+    for event in events:
+        eventIndex = stringToSearch.lower().find(event) # find index of event
+        if eventIndex > -1:                             # if event exists
+            return event
+
+
+
+def getTime(stringToSearch):
+    # pattern to find the pattern ##:## which is commonly used to denote time
+    clockTimePattern = ('\d\d?:\d\d?')
+    # flag to make the dot include whitespace
+    clockTimeFlags   = re.DOTALL
+    # return a time if found:
+    timeFound = re.search(clockTimePattern , stringToSearch , clockTimeFlags)
+    if timeFound:
+        return timeFound.group()
 
 
 
