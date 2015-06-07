@@ -5,8 +5,7 @@ import codecs
 
 def getRawData(filename):
 
- # f = open(filename, 'rU')              # Open and read the file. for read only
-  f = codecs.open(filename, encoding='utf-8')
+  f = open(filename, 'rU')              # Open and read the file. for read only
   rawListOfData = f.readlines()         # get each line as a list
   extractDates(rawListOfData)
 
@@ -61,14 +60,14 @@ def makeEventFromDate(date, stringToSearch, dictionary):
 
     dateIndex = stringToSearch.find(date)
     # index of first '.' after date was found
-    getStringArroundIndex = stringToSearch[dateIndex+1+len(date):].find('.')
+    #DELTEgetStringArroundIndex = stringToSearch[dateIndex+1+len(date):].find('.')
 
     # if month and date found then try to make a full event and store it
     #in the dictionary. if any any of the fields is not found then the tuple
     #value at that paticular index is None
     eventType = getEventType(stringToSearch)
     time =      getTime(stringToSearch)
-    dictionary[date] = (eventType) , (time) , (stringToSearch[:getStringArroundIndex])
+    dictionary[date] = (eventType) , (time) , (stringToSearch)
 
 
 def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
@@ -88,11 +87,12 @@ def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
             dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
             #print 'the month = =====' , month , stringToSearch
             if dateFound:
+                #delete
                 # search for a "." after month name avoid the common "." immediately after month
-                getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
-
-                # gets the index of the period after the date for printing
-                startToPeriodAfterDate = stringToSearch[:monthIndex + getStringArround+1+len(month)]
+                # getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
+                #
+                # # gets the index of the period after the date for printing
+                # startToPeriodAfterDate = stringToSearch[:monthIndex + getStringArround+1+len(month)]
                 dateFoundFormatted = str(monthToNumDict[month]) + '/' + dateFound.group()
                 #print 'the date is ' , dateFoundFormatted + '[ ' , startToPeriodAfterDate , ']'
 
@@ -102,7 +102,7 @@ def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
                 eventType = getEventType(stringToSearch)
                 time =      getTime(stringToSearch)
 
-                dictOfDatesAndInfo[dateFoundFormatted] = (eventType) , (time) , (startToPeriodAfterDate)
+                dictOfDatesAndInfo[dateFoundFormatted] = (eventType) , (time) , (stringToSearch)
                 break
 
 
