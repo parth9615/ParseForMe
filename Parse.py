@@ -1,23 +1,46 @@
 import sys
 import re
 from pprint import pprint
-import codecs
+from docx import Document
+from docx.shared import Inches
+
 
 def getRawData(filename):
+    dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
+    f = open(filename, 'rU')              # Open and read the file. for read only
 
-  f = open(filename, 'rU')              # Open and read the file. for read only
-  rawListOfData = f.readlines()         # get each line as a list
-  extractDates(rawListOfData)
+    rawListOfData = f.readlines()         # get each line as a list
+    extractDates(dictOfDatesAndInfo, rawListOfData)
 
-def extractDates(rawListOfData):
+    if '.doc' in filename:                # if the file is a word document
+        document = Document(filename)       # open the document
+        try:
+
+            table = document.tables[0]      # check if there s a table
+            for row in table.rows:
+                x = ''
+                for cell in row.cells:
+                    x += cell.text          # get the text for that cell
+                rawListOfData.append(x)              # add it to the list
+
+        except IndexError:
+            print ' '
+    extractDates(dictOfDatesAndInfo, rawListOfData)
+    pprint(dictOfDatesAndInfo)                     # print the result
+
+
+
+def extractDates(dictOfDatesAndInfo, rawListOfData):
   dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
 'Mondays' , 'Tuesdays' , 'Wednesdays' , 'Thursdays' , 'Fridays' ,'Saturdays' , 'Sundays' 'Mon' , 'Tue',
  'Wed' , 'Thur' , 'Fri' , 'Sat' , 'Sun' , 'January', 'February' , 'March' , 'April' , 'May' , 'June',
 'July' , 'August' , 'September' , 'October' , 'November' , 'December' ,'Jan' , 'Feb' , 'Mar',
    'Apr' , 'May' , 'Jun' , 'Jul' , 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec'  ]
   relevantDates = []                    # make a list to hold all the dates
-                                        # get all days and store in relevantDates
-  extractDays(relevantDates , rawListOfData, dayAndMonthList)
+                                       # get all days and store in relevantDates
+
+
+  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList)
 
 '''
 This method iterates through the rawListOfData to find patterns in the method
@@ -28,8 +51,7 @@ Current parsing methods included in the pattern
 4: Finding a line that contains a date in the format ##/##
 todo : update this numeric list as more patterns are added:
 '''
-def extractDays(relevantDates , rawListOfData, dayAndMonthList):
-    dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
+def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList):
     optimizationBoolean = False
     for individualLine in rawListOfData:  # iterate through each line
         for days in dayAndMonthList:              # iterate through each day combination
@@ -51,7 +73,7 @@ def extractDays(relevantDates , rawListOfData, dayAndMonthList):
         if result:
              makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
              a  = 5
-    pprint(dictOfDatesAndInfo)
+    #pprint(dictOfDatesAndInfo)
 
 
 def makeEventFromDate(date, stringToSearch, dictionary):
