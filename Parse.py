@@ -6,14 +6,6 @@ from docx.shared import Inches
 
 
 def getRawData(filename):
-
-<<<<<<< HEAD
-  f = open(filename, 'rU')              # Open and read the file. for read only
-  rawListOfData = f.readlines()         # get each line as a list
-  extractDates(rawListOfData)
-=======
->>>>>>> parthtesting
-
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
     f = open(filename, 'rU')              # Open and read the file. for read only
 
@@ -30,7 +22,7 @@ def getRawData(filename):
                 for cell in row.cells:
                     x += cell.text          # get the text for that cell
                 rawListOfData.append(x)              # add it to the list
-            
+
         except IndexError:
             print ' '
     extractDates(dictOfDatesAndInfo, rawListOfData)
