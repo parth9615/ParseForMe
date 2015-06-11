@@ -6,6 +6,8 @@ from docx.shared import Inches
 
 
 def getRawData(filename):
+
+
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
     f = open(filename, 'rU')              # Open and read the file. for read only
 
@@ -20,7 +22,7 @@ def getRawData(filename):
             for row in table.rows:
                 x = ''
                 for cell in row.cells:
-                    x += cell.text          # get the text for that cell
+                    x += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
                 rawListOfData.append(x)              # add it to the list
 
         except IndexError:
@@ -72,23 +74,14 @@ def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthLi
         result = findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
         if result:
              makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
-             a  = 5
-    #pprint(dictOfDatesAndInfo)
+
 
 
 def makeEventFromDate(date, stringToSearch, dictionary):
 
-    # search for a "." after month name avoid the common "." immediately after month
-
-    dateIndex = stringToSearch.find(date)
-    # index of first '.' after date was found
-    #DELTEgetStringArroundIndex = stringToSearch[dateIndex+1+len(date):].find('.')
-
-    # if month and date found then try to make a full event and store it
-    #in the dictionary. if any any of the fields is not found then the tuple
-    #value at that paticular index is None
+    #get the proper event and time and then add to dictionary
     eventType = getEventType(stringToSearch)
-    time =      getTime(stringToSearch)
+    time =      getValidTime(stringToSearch)
     dictionary[date] = (eventType) , (time) , (stringToSearch)
 
 
@@ -109,22 +102,11 @@ def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
             dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
             #print 'the month = =====' , month , stringToSearch
             if dateFound:
-                #delete
-                # search for a "." after month name avoid the common "." immediately after month
-                # getStringArround = stringToSearch[monthIndex+1+len(month):].find('.')
-                #
-                # # gets the index of the period after the date for printing
-                # startToPeriodAfterDate = stringToSearch[:monthIndex + getStringArround+1+len(month)]
+                # make date in proper format of month/day
                 dateFoundFormatted = str(monthToNumDict[month]) + '/' + dateFound.group()
-                #print 'the date is ' , dateFoundFormatted + '[ ' , startToPeriodAfterDate , ']'
 
-                # if month and date found then try to make a full event and store it
-                #in the dictionary. if any any of the fields is not found then the tuple
-                #value at that paticular index is None
-                eventType = getEventType(stringToSearch)
-                time =      getTime(stringToSearch)
-
-                dictOfDatesAndInfo[dateFoundFormatted] = (eventType) , (time) , (stringToSearch)
+                # now add to the dictionary with date found
+                makeEventFromDate(dateFoundFormatted , stringToSearch , dictOfDatesAndInfo)
                 break
 
 
@@ -139,6 +121,16 @@ def getEventType(stringToSearch):
 
 
 
+def getValidTime(stringToSearch):
+    firstTimeFound = getTime(stringToSearch)
+    if firstTimeFound:
+        firstTimeIndex = stringToSearch.find(firstTimeFound)
+        # try to get a second time to establish valid time frame:
+        secondTimeFound = getTime(stringToSearch[firstTimeIndex + len(firstTimeFound):])
+        if secondTimeFound:
+            return firstTimeFound , 'to' , secondTimeFound
+
+
 def getTime(stringToSearch):
     # pattern to find the pattern ##:## which is commonly used to denote time
     clockTimePattern = ('\d\d?:\d\d?')
@@ -148,8 +140,6 @@ def getTime(stringToSearch):
     timeFound = re.search(clockTimePattern , stringToSearch , clockTimeFlags)
     if timeFound:
         return timeFound.group()
-
-
 
 '''
 patternToFind = regexExpression that the regular expression looks for
