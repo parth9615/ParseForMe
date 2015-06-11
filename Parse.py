@@ -128,7 +128,7 @@ def getValidTime(stringToSearch):
         # try to get a second time to establish valid time frame:
         secondTimeFound = getTime(stringToSearch[firstTimeIndex + len(firstTimeFound):])
         if secondTimeFound:
-            return firstTimeFound , 'to' , secondTimeFound
+            return firstTimeFound , 'to' , secondTimeFound  # return time in this format
 
 
 def getTime(stringToSearch):
