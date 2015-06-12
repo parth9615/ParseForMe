@@ -82,8 +82,21 @@ def makeEventFromDate(date, stringToSearch, dictionary):
     #get the proper event and time and then add to dictionary
     eventType = getEventType(stringToSearch)
     time =      getValidTime(stringToSearch)
-    dictionary[date] = (eventType) , (time) , (stringToSearch)
+    dictionary[date] = (eventType) , (time) , (getInfo(eventType, time , date, stringToSearch))
 
+
+def getInfo(event,  time, date, stringToSearch):
+    removedEvent = removeSubstring(stringToSearch , event) # return string with removed event
+    removedTime = removeSubstring(removedEvent , time) # return string with removed event, time
+    removedDate = removeSubstring(removedTime, date) #  return string with removed event, time, date
+    return removedDate                                # return string with printed info deleted
+
+
+def removeSubstring(stringToSearch, findingObject):
+    if isinstance(findingObject , str):                 # if findingObject is of type string
+        return stringToSearch.replace(findingObject , '') # return the removed version
+    else:
+        return stringToSearch                             # else return the original string
 
 def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
     monthFound = ''
