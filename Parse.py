@@ -87,8 +87,12 @@ def makeEventFromDate(date, stringToSearch, dictionary):
 
 def getInfo(event,  time, date, stringToSearch):
     removedEvent = removeSubstring(stringToSearch , event) # return string with removed event
-    removedTime = removeSubstring(removedEvent , time) # return string with removed event, time
-    removedDate = removeSubstring(removedTime, date) #  return string with removed event, time, date
+    if time:
+        rmTime0 = removeSubstring(removedEvent , time[0]) # return string with removed event, time
+        rmTime1 = removeSubstring(rmTime0 , time[1]) # return string with removed event, time
+        removedDate = removeSubstring(rmTime1, date) #  return string with removed event, time, date
+    else :
+        removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
     return removedDate                                # return string with printed info deleted
 
 
@@ -141,7 +145,7 @@ def getValidTime(stringToSearch):
         # try to get a second time to establish valid time frame:
         secondTimeFound = getTime(stringToSearch[firstTimeIndex + len(firstTimeFound):])
         if secondTimeFound:
-            return firstTimeFound , 'to' , secondTimeFound  # return time in this format
+            return (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)  # return time in this format
 
 
 def getTime(stringToSearch):
