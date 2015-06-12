@@ -87,10 +87,10 @@ def makeEventFromDate(date, stringToSearch, dictionary):
 
 def getInfo(event,  time, date, stringToSearch):
     removedEvent = removeSubstring(stringToSearch , event) # return string with removed event
-    if time:
-        rmTime0 = removeSubstring(removedEvent , time[0]) # return string with removed event, time
-        rmTime1 = removeSubstring(rmTime0 , time[1]) # return string with removed event, time
-        removedDate = removeSubstring(rmTime1, date) #  return string with removed event, time, date
+    if time:                                               # if valid time was there
+        rmTime0 = removeSubstring(removedEvent , time[0]) #rm both times
+        rmTime1 = removeSubstring(rmTime0 , time[1])
+        removedDate = removeSubstring(rmTime1, date) 
     else :
         removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
     return removedDate                                # return string with printed info deleted
