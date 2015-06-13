@@ -3,34 +3,56 @@ import re
 from pprint import pprint
 from docx import Document
 from docx.shared import Inches
-
+import commands
 
 def getRawData(filename):
 
 
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
-    f = open(filename, 'rU')              # Open and read the file. for read only
+    rawListOfData = []
 
-    rawListOfData = f.readlines()         # get each line as a list
-    extractDates(dictOfDatesAndInfo, rawListOfData)
+    if '.docx' in filename:                # if file is .docx then read from that method
+        rawListOfData = readFromDOCX( filename)
 
-    if '.doc' in filename:                # if the file is a word document
-        document = Document(filename)       # open the document
-        try:
+    elif '.doc' in filename:                # if .doc file
+        rawListOfData = readFromDOC(filename)
 
-            table = document.tables[0]      # check if there s a table
-            for row in table.rows:
-                x = ''
-                for cell in row.cells:
-                    x += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
-                rawListOfData.append(x)              # add it to the list
+    elif '.txt' in filename:                # if .txt file
+        rawListOfData = readFromTXT( filename)
 
-        except IndexError:
-            print ' '
     extractDates(dictOfDatesAndInfo, rawListOfData)
     pprint(dictOfDatesAndInfo)                     # print the result
 
 
+def readFromDOCX(filename):
+    rawListOfData= []
+    document = Document(filename)       # open the document
+    for paragraph in document.paragraphs:
+        encodedText = paragraph.text.encode('ascii','ignore') # get encoded text from paragrpahs
+        rawListOfData.append(encodedText)
+    for table in document.tables:                             # get encoded text from tables
+        for row in table.rows:
+            encodedTableText = ''
+            for cell in row.cells:
+                encodedTableText += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
+            rawListOfData.append(encodedTableText)                     # add it to the list
+    return rawListOfData
+
+def readFromDOC(filename):
+
+    newFileName = 'convertedFromDocToTxt.txt'                   # name of piping file
+    cmd = 'antiword ' + filename + ' > ' + newFileName           # construct antiword command
+    (status, output) = commands.getstatusoutput(cmd)
+    if status:                                                  # if problem exit
+        sys.stderr.write('there was an error: ' , output)
+        sys.exit(1)
+    else:
+        return readFromTXT(newFileName)                                # else now readfromthetxt file
+
+def readFromTXT( filename):
+    f = open(filename, 'rU')              # Open and read the file. for read only
+    rawListOfData = f.readlines()         # get each line as a list
+    return rawListOfData
 
 def extractDates(dictOfDatesAndInfo, rawListOfData):
   dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
