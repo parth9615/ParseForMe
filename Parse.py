@@ -9,12 +9,13 @@ def getRawData(filename):
 
 
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
-    f = open(filename, 'rU')              # Open and read the file. for read only
-
-    rawListOfData = f.readlines()         # get each line as a list
-    extractDates(dictOfDatesAndInfo, rawListOfData)
+    # f = open(filename, 'rU')              # Open and read the file. for read only
+    #
+    # rawListOfData = f.readlines()         # get each line as a list
+    #extractDates(dictOfDatesAndInfo, rawListOfData)
 
     if '.doc' in filename:                # if the file is a word document
+        rawListOfData = []
         document = Document(filename)       # open the document
         try:
 
@@ -27,6 +28,9 @@ def getRawData(filename):
 
         except IndexError:
             print ' '
+    else :
+        f = open(filename, 'rU')              # Open and read the file. for read only
+        rawListOfData = f.readlines()         # get each line as a list
     extractDates(dictOfDatesAndInfo, rawListOfData)
     pprint(dictOfDatesAndInfo)                     # print the result
 
