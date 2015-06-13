@@ -9,28 +9,33 @@ def getRawData(filename):
 
 
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
-    # f = open(filename, 'rU')              # Open and read the file. for read only
-    #
-    # rawListOfData = f.readlines()         # get each line as a list
-    #extractDates(dictOfDatesAndInfo, rawListOfData)
 
-    if '.doc' in filename:                # if the file is a word document
+
+    if '.docx' in filename:                # if the file is a word document
         rawListOfData = []
         document = Document(filename)       # open the document
-        try:
-
-            table = document.tables[0]      # check if there s a table
+        for paragraph in document.paragraphs:
+            rawListOfData.append(paragraph.text)
+        for table in document.tables:
             for row in table.rows:
                 x = ''
                 for cell in row.cells:
                     x += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
                 rawListOfData.append(x)              # add it to the list
-
-        except IndexError:
-            print ' '
-    else :
-        f = open(filename, 'rU')              # Open and read the file. for read only
-        rawListOfData = f.readlines()         # get each line as a list
+        # try:
+        #
+        #     table = document.tables[0]      # check if there s a table
+        #     for row in table.rows:
+        #         x = ''
+        #         for cell in row.cells:
+        #             x += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
+        #         rawListOfData.append(x)              # add it to the list
+        #pprint (rawListOfData)
+        # except IndexError:
+        #     print ' '
+    # else :
+    #     f = open(filename, 'rU')              # Open and read the file. for read only
+    #     rawListOfData = f.readlines()         # get each line as a list
     extractDates(dictOfDatesAndInfo, rawListOfData)
     pprint(dictOfDatesAndInfo)                     # print the result
 
