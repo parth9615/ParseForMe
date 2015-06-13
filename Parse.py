@@ -15,24 +15,15 @@ def getRawData(filename):
         rawListOfData = []
         document = Document(filename)       # open the document
         for paragraph in document.paragraphs:
-            rawListOfData.append(paragraph.text)
-        for table in document.tables:
+            encodedText = paragraph.text.encode('ascii','ignore') # get encoded text from paragrpahs
+            rawListOfData.append(encodedText)
+        for table in document.tables:                             # get encoded text from tables
             for row in table.rows:
-                x = ''
+                encodedTableText = ''
                 for cell in row.cells:
-                    x += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
-                rawListOfData.append(x)              # add it to the list
-        # try:
-        #
-        #     table = document.tables[0]      # check if there s a table
-        #     for row in table.rows:
-        #         x = ''
-        #         for cell in row.cells:
-        #             x += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
-        #         rawListOfData.append(x)              # add it to the list
-        #pprint (rawListOfData)
-        # except IndexError:
-        #     print ' '
+                    encodedTableText += cell.text.encode('ascii','ignore') # get the text for that cell in proper formatting
+                rawListOfData.append(encodedTableText)              # add it to the list
+                
     # else :
     #     f = open(filename, 'rU')              # Open and read the file. for read only
     #     rawListOfData = f.readlines()         # get each line as a list
