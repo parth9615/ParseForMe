@@ -138,6 +138,17 @@ if (window.FileReader) {
 
                 //attach event handlers here...
 
+
+
+
+
+                getRawData(file) //calling getRawData function from Parse.py file
+
+
+
+
+
+
                 reader.readAsDataURL(file);
                 addEventHandler(reader, 'loadend', function (e, file) {
                     var bin = this.result;
