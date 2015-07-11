@@ -81,13 +81,16 @@ body{
 #fileBox{
     display:none;
 }
+
 </style>
 </head>
 <DIV id="drop">
     <div class="msg-drop">
     <span class="glyphicon glyphicon-cloud-upload cloud"></span>
         Drop files here or click to <span id="browse">browse</span>.
+
     </div>
+
 </DIV>
 <input id="fileBox" type="file"/>
 <DIV id="status"></DIV>
@@ -110,12 +113,14 @@ if (window.FileReader) {
         var status = document.getElementById('status');
         drop = document.getElementById('drop');
         var list = document.getElementById('list');
+
         function cancel(e) {
             if (e.preventDefault) {
                 e.preventDefault();
             }
             return false;
         }
+
         // Tells the browser that we *can* drop on this target
         addEventHandler(drop, 'dragover', cancel);
         addEventHandler(drop, 'dragenter', cancel);
@@ -129,36 +134,43 @@ if (window.FileReader) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var reader = new FileReader();
-                //attach event handlers here...
+
                 reader.readAsDataURL(file);
                 addEventHandler(reader, 'loadend', function (e, file) {
                     var bin = this.result;
                     var fileCont = document.createElement('div');
                     fileCont.className = "fileCont";
                     list.appendChild(fileCont);
+
                     var fileNumber = list.getElementsByTagName('img').length + 1;
                     status.innerHTML = fileNumber < files.length ? 'Loaded 100% of file ' + fileNumber + ' of ' + files.length + '...' : 'Done loading. processed ' + fileNumber + ' files.';
+
                     var img = document.createElement("img");
                     img.file = file;
                     img.src = bin;
                     img.className = "thumb";
                     fileCont.appendChild(img);
+
                     var newFile = document.createElement('div');
                     newFile.innerHTML = file.name;
                     newFile.className = "fileName";
                     fileCont.appendChild(newFile);
+
                     var fileSize = document.createElement('div');
                     fileSize.className = "fileSize";
                     fileSize.innerHTML = Math.round(file.size/1024) + ' KB';
                     fileCont.appendChild(fileSize);
+
                     var progress = document.createElement('div');
                     progress.className = "progress";
                     progress.innerHTML = '<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar progress-bar-success" role="progressbar" style="width: 100%"></div>';
                     fileCont.appendChild(progress);
+
                     var remove = document.createElement('div');
                     remove.className = "remove";
                     remove.innerHTML = '<span class="glyphicon glyphicon-remove"></div>';
                     list.appendChild(remove);
+
                 }.bindToEventHandler(file));
             }
             return false;
@@ -177,6 +189,7 @@ if (window.FileReader) {
 } else {
     document.getElementById('status').innerHTML = 'Your browser does not support the HTML5 FileReader.';
 }
+
 function addEventHandler(obj, evt, handler) {
     if (obj.addEventListener) {
         // W3C method
@@ -189,6 +202,7 @@ function addEventHandler(obj, evt, handler) {
         obj['on' + evt] = handler;
     }
 }
+
 //Not plugged yet
 var bar = $('.progress-bar');
 $(function(){
@@ -197,6 +211,7 @@ $(function(){
     $(this).width(bar_width + '%');
   });
 });
+
 </script>
     <hr>
     <a href="%s">%s</a>
