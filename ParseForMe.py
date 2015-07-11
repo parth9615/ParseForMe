@@ -1,3 +1,4 @@
+
 import cgi
 import urllib
 
@@ -123,31 +124,16 @@ if (window.FileReader) {
         // Tells the browser that we *can* drop on this target
         addEventHandler(drop, 'dragover', cancel);
         addEventHandler(drop, 'dragenter', cancel);
-
         addEventHandler(drop, 'drop', function (e) {
             e = e || window.event; // get window.event if e argument missing (in IE)
             if (e.preventDefault) {
                 e.preventDefault();
             } // stops the browser from redirecting off to the image.
-
             var dt = e.dataTransfer;
             var files = dt.files;
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var reader = new FileReader();
-
-                //attach event handlers here...
-
-
-
-
-
-                getRawData(file) //calling getRawData function from Parse.py file
-
-
-
-
-
 
                 reader.readAsDataURL(file);
                 addEventHandler(reader, 'loadend', function (e, file) {
@@ -185,7 +171,6 @@ if (window.FileReader) {
                     remove.innerHTML = '<span class="glyphicon glyphicon-remove"></div>';
                     list.appendChild(remove);
 
-
                 }.bindToEventHandler(file));
             }
             return false;
@@ -205,7 +190,6 @@ if (window.FileReader) {
     document.getElementById('status').innerHTML = 'Your browser does not support the HTML5 FileReader.';
 }
 
-
 function addEventHandler(obj, evt, handler) {
     if (obj.addEventListener) {
         // W3C method
@@ -218,7 +202,6 @@ function addEventHandler(obj, evt, handler) {
         obj['on' + evt] = handler;
     }
 }
-
 
 //Not plugged yet
 var bar = $('.progress-bar');
