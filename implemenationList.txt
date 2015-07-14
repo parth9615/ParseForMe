@@ -1,6 +1,3 @@
-fix python docx to do read the entire word document and not just the table
-
-then for the .doc file use antiword to pipe into txt and then call normally
-
-then format in if statement format for .docx, .doc, and .txt to get optimized results
+1. fix | problem in .doc files
+2. find % weights
 
