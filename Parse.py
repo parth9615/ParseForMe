@@ -10,17 +10,20 @@ def getRawData(filename):
 
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
     rawListOfData = []
+    removeTableLineFromDocTable = False  # to remove | from doc tables
 
     if '.docx' in filename:                # if file is .docx then read from that method
         rawListOfData = readFromDOCX( filename)
 
     elif '.doc' in filename:                # if .doc file
+        removeTableLineFromDocTable = True
         rawListOfData = readFromDOC(filename)
 
     elif '.txt' in filename:                # if .txt file
         rawListOfData = readFromTXT( filename)
 
-    extractDates(dictOfDatesAndInfo, rawListOfData)
+
+    extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable)
     pprint(dictOfDatesAndInfo)                     # print the result
 
 
@@ -54,7 +57,7 @@ def readFromTXT( filename):
     rawListOfData = f.readlines()         # get each line as a list
     return rawListOfData
 
-def extractDates(dictOfDatesAndInfo, rawListOfData):
+def extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable):
   dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
 'Mondays' , 'Tuesdays' , 'Wednesdays' , 'Thursdays' , 'Fridays' ,'Saturdays' , 'Sundays' 'Mon' , 'Tue',
  'Wed' , 'Thur' , 'Fri' , 'Sat' , 'Sun' , 'January', 'February' , 'March' , 'April' , 'May' , 'June',
@@ -64,7 +67,7 @@ def extractDates(dictOfDatesAndInfo, rawListOfData):
                                        # get all days and store in relevantDates
 
 
-  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList)
+  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable)
 
 '''
 This method iterates through the rawListOfData to find patterns in the method
@@ -75,9 +78,11 @@ Current parsing methods included in the pattern
 4: Finding a line that contains a date in the format ##/##
 todo : update this numeric list as more patterns are added:
 '''
-def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList):
+def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable):
     optimizationBoolean = False
     for individualLine in rawListOfData:  # iterate through each line
+        if removeTableLineFromDocTable:
+            individualLine = individualLine.replace("|" , "")
         for days in dayAndMonthList:              # iterate through each day combination
             # regex pattern to find the entire line that contains a day in the dayList
             dayOfTheWeekPattern = ('.+')+(days)+('\s.+')
@@ -103,7 +108,7 @@ def makeEventFromDate(date, stringToSearch, dictionary):
 
     #get the proper event and time and then add to dictionary
     eventType = getEventType(stringToSearch)
-    time =      getValidTime(stringToSearch)
+    time =      getValidTime(stringToSearch) # time returned in (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
     if time:                                    # if time found send the formatted version
         dictionary[date] = (eventType) , (time[2]) , (getInfo(eventType, time , date, stringToSearch))
     else:
@@ -117,7 +122,8 @@ def getInfo(event,  time, date, stringToSearch):
         removedDate = removeSubstring(rmTime1, date)
     else :
         removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
-    return removedDate                                # return string with printed info deleted
+        return removedDate
+
 
 
 def removeSubstring(stringToSearch, findingObject):
@@ -161,7 +167,7 @@ def getEventType(stringToSearch):
             return event
 
 
-
+# return a tuple in form (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
 def getValidTime(stringToSearch):
     firstTimeFound = getTime(stringToSearch)
     if firstTimeFound:
