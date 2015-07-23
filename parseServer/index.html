@@ -2,20 +2,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
     <script type="text/javascript" src="dragDropController.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
   </head>
   <body>
-    <div ng-app="reusableThings" ng-controller="TestCtrl">
-        <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-                      file="image" file-name="imageFileName" data-max-file-size="3">
-          <span>Drop Image Here</span>
-        </div>
-        <div class="image-container">
-          <img ng-src={{image}} />
-          <span class="file-name">{{imageFileName}}</span>
-        </div>
+    <div ng-app="dragDropApp" ng-controller="dragDropController">
+      Drop File:
+      <div ngf-drop ng-model="files" class="dropzone"
+        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+        ngf-accept="'application/pdf,text/plain'">Drop Images or PDFs files here</div>
     </div>
   </body>
 </html>
