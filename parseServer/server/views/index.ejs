@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+    <script src="/javascripts/ng-file-upload-shim.js"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script type="text/javascript" src="/javascripts/ng-file-upload.js"></script>
+
+    <script type="text/javascript" src="/javascripts/dragDropController.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
+  </head>
+  <body>
+    <div ng-app="dragDropApp" ng-controller="dragDropController">
+      Drop File:
+      <div ngf-drop ng-model="files" class="dropzone"
+        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+        ngf-accept="'application/pdf,text/plain'">Drop Images or PDFs files here</div>
+    </div>
+  </body>
+</html>
