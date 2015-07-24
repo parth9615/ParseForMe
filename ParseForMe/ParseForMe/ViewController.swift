@@ -52,6 +52,9 @@ PFSignUpViewControllerDelegate  {
     
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+        println("just completed loggin in")
+        //move to new view controller
     }
     
     func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?) {

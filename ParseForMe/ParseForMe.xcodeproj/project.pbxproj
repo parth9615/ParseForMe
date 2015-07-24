@@ -33,6 +33,7 @@
 		EE356AB31B5035EB003DE4B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE356AB21B5035EB003DE4B4 /* libsqlite3.dylib */; };
 		EE356AB51B5036A6003DE4B4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE356AB41B5036A6003DE4B4 /* Accounts.framework */; };
 		EE356AB71B5036AC003DE4B4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE356AB61B5036AC003DE4B4 /* Social.framework */; };
+		EE36B6651B61F983009F9A37 /* eventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6641B61F983009F9A37 /* eventsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		EE356AB21B5035EB003DE4B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EE356AB41B5036A6003DE4B4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		EE356AB61B5036AC003DE4B4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EE36B6641B61F983009F9A37 /* eventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				EE356A7A1B503330003DE4B4 /* LaunchScreen.xib */,
 				EE356A701B503330003DE4B4 /* ParseForMe.xcdatamodeld */,
 				EE356A6C1B503330003DE4B4 /* Supporting Files */,
+				EE36B6641B61F983009F9A37 /* eventsViewController.swift */,
 			);
 			path = ParseForMe;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE356A741B503330003DE4B4 /* ViewController.swift in Sources */,
+				EE36B6651B61F983009F9A37 /* eventsViewController.swift in Sources */,
 				EE356A6F1B503330003DE4B4 /* AppDelegate.swift in Sources */,
 				EE356A721B503330003DE4B4 /* ParseForMe.xcdatamodeld in Sources */,
 			);
@@ -505,6 +509,7 @@
 				EE356A8D1B503330003DE4B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EE356A8E1B503330003DE4B4 /* Build configuration list for PBXNativeTarget "ParseForMeTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +518,7 @@
 				EE356A901B503330003DE4B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
