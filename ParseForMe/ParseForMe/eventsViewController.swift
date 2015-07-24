@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class eventsViewController: UIViewController {
     
     
     override func viewDidLoad() {
