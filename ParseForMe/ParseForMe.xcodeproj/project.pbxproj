@@ -33,7 +33,10 @@
 		EE356AB31B5035EB003DE4B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE356AB21B5035EB003DE4B4 /* libsqlite3.dylib */; };
 		EE356AB51B5036A6003DE4B4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE356AB41B5036A6003DE4B4 /* Accounts.framework */; };
 		EE356AB71B5036AC003DE4B4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE356AB61B5036AC003DE4B4 /* Social.framework */; };
-		EE36B6651B61F983009F9A37 /* eventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6641B61F983009F9A37 /* eventsViewController.swift */; };
+		EE36B68F1B635B09009F9A37 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B68E1B635B09009F9A37 /* EventsController.swift */; };
+		EE36B6961B635CDD009F9A37 /* EventsContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6951B635CDD009F9A37 /* EventsContainerController.swift */; };
+		EE36B6981B635FBD009F9A37 /* HamburgerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6971B635FBD009F9A37 /* HamburgerController.swift */; };
+		EE36B69A1B63624A009F9A37 /* Hamburger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE36B6991B63624A009F9A37 /* Hamburger.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +80,10 @@
 		EE356AB21B5035EB003DE4B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EE356AB41B5036A6003DE4B4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		EE356AB61B5036AC003DE4B4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		EE36B6641B61F983009F9A37 /* eventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventsViewController.swift; sourceTree = "<group>"; };
+		EE36B68E1B635B09009F9A37 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
+		EE36B6951B635CDD009F9A37 /* EventsContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsContainerController.swift; sourceTree = "<group>"; };
+		EE36B6971B635FBD009F9A37 /* HamburgerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerController.swift; sourceTree = "<group>"; };
+		EE36B6991B63624A009F9A37 /* Hamburger.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hamburger.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,14 +158,12 @@
 		EE356A6B1B503330003DE4B4 /* ParseForMe */ = {
 			isa = PBXGroup;
 			children = (
+				EE36B69B1B636318009F9A37 /* Cells */,
+				EE36B6941B635CB1009F9A37 /* StoryBoards */,
+				EE36B6921B635C85009F9A37 /* Controllers */,
 				EE356A6E1B503330003DE4B4 /* AppDelegate.swift */,
-				EE356A731B503330003DE4B4 /* ViewController.swift */,
-				EE356A751B503330003DE4B4 /* Main.storyboard */,
-				EE356A781B503330003DE4B4 /* Images.xcassets */,
-				EE356A7A1B503330003DE4B4 /* LaunchScreen.xib */,
 				EE356A701B503330003DE4B4 /* ParseForMe.xcdatamodeld */,
 				EE356A6C1B503330003DE4B4 /* Supporting Files */,
-				EE36B6641B61F983009F9A37 /* eventsViewController.swift */,
 			);
 			path = ParseForMe;
 			sourceTree = "<group>";
@@ -167,6 +171,8 @@
 		EE356A6C1B503330003DE4B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EE356A7A1B503330003DE4B4 /* LaunchScreen.xib */,
+				EE356A781B503330003DE4B4 /* Images.xcassets */,
 				EE356A6D1B503330003DE4B4 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -200,6 +206,41 @@
 				EE356A971B503591003DE4B4 /* ParseUI.framework */,
 			);
 			path = "parse-library-1";
+			sourceTree = "<group>";
+		};
+		EE36B6921B635C85009F9A37 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EE36B6931B635C9F009F9A37 /* Hamburger */,
+				EE356A731B503330003DE4B4 /* ViewController.swift */,
+				EE36B68E1B635B09009F9A37 /* EventsController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EE36B6931B635C9F009F9A37 /* Hamburger */ = {
+			isa = PBXGroup;
+			children = (
+				EE36B6951B635CDD009F9A37 /* EventsContainerController.swift */,
+				EE36B6971B635FBD009F9A37 /* HamburgerController.swift */,
+			);
+			name = Hamburger;
+			sourceTree = "<group>";
+		};
+		EE36B6941B635CB1009F9A37 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				EE356A751B503330003DE4B4 /* Main.storyboard */,
+				EE36B6991B63624A009F9A37 /* Hamburger.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		EE36B69B1B636318009F9A37 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE36B69A1B63624A009F9A37 /* Hamburger.storyboard in Resources */,
 				EE356A771B503330003DE4B4 /* Main.storyboard in Resources */,
 				EE356A7C1B503330003DE4B4 /* LaunchScreen.xib in Resources */,
 				EE356A791B503330003DE4B4 /* Images.xcassets in Resources */,
@@ -302,10 +344,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE36B6961B635CDD009F9A37 /* EventsContainerController.swift in Sources */,
 				EE356A741B503330003DE4B4 /* ViewController.swift in Sources */,
-				EE36B6651B61F983009F9A37 /* eventsViewController.swift in Sources */,
 				EE356A6F1B503330003DE4B4 /* AppDelegate.swift in Sources */,
+				EE36B68F1B635B09009F9A37 /* EventsController.swift in Sources */,
 				EE356A721B503330003DE4B4 /* ParseForMe.xcdatamodeld in Sources */,
+				EE36B6981B635FBD009F9A37 /* HamburgerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

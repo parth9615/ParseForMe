@@ -12,6 +12,9 @@ import ParseUI
 
 class ViewController: UIViewController, PFLogInViewControllerDelegate,
 PFSignUpViewControllerDelegate  {
+    
+    //for eventsContainerContainer
+    var window: UIWindow?
 
     
     override func viewDidLoad() {
@@ -55,6 +58,13 @@ PFSignUpViewControllerDelegate  {
         
         println("just completed loggin in")
         //move to new view controller
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let containerViewController = EventsContainerController()
+        
+        window!.rootViewController = containerViewController
+        window!.makeKeyAndVisible()
+
     }
     
     func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?) {
