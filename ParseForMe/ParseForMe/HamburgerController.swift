@@ -8,6 +8,13 @@
 
 import UIKit
 
+public enum HamburgerCells: Int {
+    case Filler = 0
+    case Settings
+    case AboutUs
+    case Fluff
+}
+
 class HamburgerController: UITableViewController {
 
     var parent:EventsContainerController?
@@ -43,7 +50,7 @@ class HamburgerController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.row == HamburgerCells.Filler.rawValue {
             var cellIdentifier = "Filler"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
@@ -52,7 +59,7 @@ class HamburgerController: UITableViewController {
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
-        else if indexPath.row == 1 {
+        else if indexPath.row == HamburgerCells.Settings.rawValue {
             var cellIdentifier = "Settings"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
@@ -61,7 +68,7 @@ class HamburgerController: UITableViewController {
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
-        else if indexPath.row == 2 {
+        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             var cellIdentifier = "AboutUs"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
@@ -83,10 +90,10 @@ class HamburgerController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
-        if indexPath.row == 1 || indexPath.row == 2 {
+        if indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue {
             return 45
         }
         else {
@@ -101,11 +108,11 @@ class HamburgerController: UITableViewController {
     //    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-        if indexPath.row == 1 {
+        if indexPath.row == HamburgerCells.Settings.rawValue {
             //go to new page
            
         }
-        else if indexPath.row == 2 {
+        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             //go to new page
             
         }
