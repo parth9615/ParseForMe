@@ -77,9 +77,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .BothCollapsed
-                
-                self.hamburgerController!.view.removeFromSuperview()
-                self.hamburgerController = nil;
+        
             }
         }
     }
