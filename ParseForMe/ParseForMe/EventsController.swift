@@ -48,6 +48,11 @@ class EventsController: UITableViewController {
         // Return the number of rows in the section.
         return 0
     }
+    
+    //For Hamburger Settings
+    @IBAction func hamburgerPressed(sender: AnyObject) {
+        delegate?.toggleLeftPanel?()
+    }
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

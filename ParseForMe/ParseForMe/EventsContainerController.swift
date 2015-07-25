@@ -31,7 +31,7 @@ class EventsContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        eventsNavigationController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("ChallengeNavigationController") as? UINavigationController
+        eventsNavigationController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsNavigationController") as? UINavigationController
         eventsController = eventsNavigationController.topViewController as? EventsController
         eventsController.delegate = self
         
@@ -100,7 +100,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
 }
 
 private extension UIStoryboard {
-    class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Challenges", bundle: NSBundle.mainBundle()) }
+    class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()) }
     
     class func hamburgerController() -> HamburgerController? {
         var HamburgerStoryBoard = UIStoryboard(name: "Hamburger", bundle: nil)

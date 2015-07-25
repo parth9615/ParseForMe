@@ -26,9 +26,15 @@ PFSignUpViewControllerDelegate  {
         
         var user = PFUser.currentUser()
         if user != nil {
+            //move to new view controller
             
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            let containerViewController = EventsContainerController()
             
-        } else {
+            window!.rootViewController = containerViewController
+            window!.makeKeyAndVisible()
+        }
+        else {
             println("No Logged in user")
             var loginViewController = PFLogInViewController()
             loginViewController.fields = PFLogInFields.UsernameAndPassword | PFLogInFields.LogInButton | PFLogInFields.SignUpButton
@@ -57,14 +63,6 @@ PFSignUpViewControllerDelegate  {
         self.dismissViewControllerAnimated(true, completion: nil)
         
         println("just completed loggin in")
-        //move to new view controller
-        
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let containerViewController = EventsContainerController()
-        
-        window!.rootViewController = containerViewController
-        window!.makeKeyAndVisible()
-
     }
     
     func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?) {
