@@ -53,7 +53,7 @@ class HamburgerController: UITableViewController {
             return cell!
         }
         else if indexPath.row == 1 {
-            var cellIdentifier = "Stats"
+            var cellIdentifier = "Settings"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
@@ -62,7 +62,7 @@ class HamburgerController: UITableViewController {
             return cell!
         }
         else if indexPath.row == 2 {
-            var cellIdentifier = "Settings"
+            var cellIdentifier = "AboutUs"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
@@ -102,18 +102,12 @@ class HamburgerController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
         if indexPath.row == 1 {
-            //go to statistics page
-            parent = self.parentViewController as? HamburgerContainerController
-            parent?.toggleLeftPanel()
-            
-            parent?.pushToStats()
+            //go to new page
+           
         }
         else if indexPath.row == 2 {
-            //go to settings page
-            parent = self.parentViewController as? HamburgerContainerController
-            parent?.toggleLeftPanel()
+            //go to new page
             
-            parent?.pushToSettings()
         }
         else {
             

@@ -17,7 +17,7 @@ enum SlideOutState {
 class EventsContainerController: UIViewController {
     
     var eventsNavigationController: UINavigationController!
-    var eventsContainerController: EventsContainerController!
+    var eventsController: EventsController!
     var currentState: SlideOutState = .BothCollapsed {
         didSet {
             let shouldShowShadow = currentState != .BothCollapsed
@@ -32,8 +32,8 @@ class EventsContainerController: UIViewController {
         super.viewDidLoad()
         
         eventsNavigationController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("ChallengeNavigationController") as? UINavigationController
-        eventsContainerController = eventsNavigationController.topViewController as? EventsContainerController
-        eventsContainerController.delegate = self
+        eventsController = eventsNavigationController.topViewController as? EventsController
+        eventsController.delegate = self
         
         view.addSubview(eventsNavigationController.view)
         addChildViewController(eventsNavigationController)

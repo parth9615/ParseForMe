@@ -8,8 +8,18 @@
 
 import UIKit
 
+@objc
+protocol EventsContainerControllerDelegate {
+    optional func toggleLeftPanel()
+    optional func collapseSidePanels()
+}
+
 class EventsController: UITableViewController {
 
+    
+    var delegate: EventsContainerControllerDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
