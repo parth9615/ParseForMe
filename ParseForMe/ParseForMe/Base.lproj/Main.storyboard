@@ -72,7 +72,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="SyllaSync" id="Qup-Fc-b79">
-                        <barButtonItem key="leftBarButtonItem" title="Burger" id="xBg-oC-fgd">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="xBg-oC-fgd">
                             <connections>
                                 <action selector="hamburgerPressed:" destination="JB7-gI-58T" id="aQ3-eD-gvn"/>
                             </connections>
@@ -102,4 +102,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu" width="22" height="22"/>
+    </resources>
 </document>
