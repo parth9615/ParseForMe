@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		EE356A6F1B503330003DE4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE356A6E1B503330003DE4B4 /* AppDelegate.swift */; };
 		EE356A721B503330003DE4B4 /* ParseForMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE356A701B503330003DE4B4 /* ParseForMe.xcdatamodeld */; };
-		EE356A741B503330003DE4B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE356A731B503330003DE4B4 /* ViewController.swift */; };
+		EE356A741B503330003DE4B4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE356A731B503330003DE4B4 /* LoginController.swift */; };
 		EE356A771B503330003DE4B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE356A751B503330003DE4B4 /* Main.storyboard */; };
 		EE356A791B503330003DE4B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE356A781B503330003DE4B4 /* Images.xcassets */; };
 		EE356A7C1B503330003DE4B4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE356A7A1B503330003DE4B4 /* LaunchScreen.xib */; };
@@ -57,7 +57,7 @@
 		EE356A6D1B503330003DE4B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE356A6E1B503330003DE4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE356A711B503330003DE4B4 /* ParseForMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ParseForMe.xcdatamodel; sourceTree = "<group>"; };
-		EE356A731B503330003DE4B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EE356A731B503330003DE4B4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		EE356A761B503330003DE4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE356A781B503330003DE4B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EE356A7B1B503330003DE4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				EE36B6931B635C9F009F9A37 /* Hamburger */,
-				EE356A731B503330003DE4B4 /* ViewController.swift */,
+				EE356A731B503330003DE4B4 /* LoginController.swift */,
 				EE36B68E1B635B09009F9A37 /* EventsController.swift */,
 			);
 			name = Controllers;
@@ -354,7 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE36B6961B635CDD009F9A37 /* EventsContainerController.swift in Sources */,
-				EE356A741B503330003DE4B4 /* ViewController.swift in Sources */,
+				EE356A741B503330003DE4B4 /* LoginController.swift in Sources */,
 				EE36B69F1B6365CB009F9A37 /* Settings.swift in Sources */,
 				EE36B6A11B636657009F9A37 /* AboutUs.swift in Sources */,
 				EE356A6F1B503330003DE4B4 /* AppDelegate.swift in Sources */,

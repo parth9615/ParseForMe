@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class ViewController: UIViewController, PFLogInViewControllerDelegate,
+class LoginController: UIViewController, PFLogInViewControllerDelegate,
 PFSignUpViewControllerDelegate  {
     
     //for eventsContainerContainer
