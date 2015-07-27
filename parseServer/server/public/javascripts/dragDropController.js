@@ -1,5 +1,4 @@
 var app = angular.module('dragDropApp', ['ngFileUpload']);
-alert("derp");
 
 app.controller('dragDropController', ['$scope', 'Upload', function ($scope, Upload) {
     $scope.$watch('files', function () {
@@ -8,7 +7,6 @@ app.controller('dragDropController', ['$scope', 'Upload', function ($scope, Uplo
 
     $scope.upload = function (files) {
         if (files && files.length) {
-          alert("uploaded");
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 Upload.upload({

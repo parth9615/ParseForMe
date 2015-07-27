@@ -9,6 +9,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
+var UserController = require('./controllers/UserController');
+var fs = require('fs');
+
 
 var app = express();
 
@@ -16,7 +19,6 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 
 
 
@@ -31,10 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.post('/upload', multipartMiddleware, function(req, resp) {
-  console.log(req.body, req.files);
-  // don't forget to delete all req.files when done
-});
+app.post('/uploads', multipartMiddleware, UserController.uploadFile);
 
 app.use('/', routes);
 app.use('/users', users);
