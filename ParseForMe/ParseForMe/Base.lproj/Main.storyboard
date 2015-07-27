@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login Controller-->
@@ -24,39 +25,51 @@
             <point key="canvasLocation" x="-161" y="329"/>
         </scene>
         <!--SyllaSync-->
-        <scene sceneID="bj6-yb-ytO">
+        <scene sceneID="aon-86-8KZ">
             <objects>
-                <tableViewController id="JB7-gI-58T" customClass="EventsController" customModule="ParseForMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="f1u-dR-pTU">
+                <viewController id="HLu-gP-R6k" customClass="EventsController" customModule="ParseForMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8u8-7o-mmd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cg1-ez-edt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z9Z-EB-gaj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U8H-ha-NnM">
+                                <rect key="frame" x="-16" y="0.0" width="336" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8aa-A5-Toh">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8aa-A5-Toh" id="XRO-DF-aZ6">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JB7-gI-58T" id="lAv-QI-egZ"/>
-                            <outlet property="delegate" destination="JB7-gI-58T" id="NEr-1T-Oxa"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="SyllaSync" id="Qup-Fc-b79">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="xBg-oC-fgd">
+                        <constraints>
+                            <constraint firstItem="Cg1-ez-edt" firstAttribute="top" secondItem="U8H-ha-NnM" secondAttribute="bottom" id="B6v-55-I5z"/>
+                            <constraint firstItem="U8H-ha-NnM" firstAttribute="top" secondItem="Z9Z-EB-gaj" secondAttribute="topMargin" id="Jd0-S9-p0I"/>
+                            <constraint firstItem="U8H-ha-NnM" firstAttribute="top" secondItem="8u8-7o-mmd" secondAttribute="bottom" constant="-64" id="cWL-Tv-Fd4"/>
+                            <constraint firstItem="U8H-ha-NnM" firstAttribute="leading" secondItem="Z9Z-EB-gaj" secondAttribute="leading" constant="-16" id="k3q-l4-PzG"/>
+                            <constraint firstAttribute="trailing" secondItem="U8H-ha-NnM" secondAttribute="trailing" id="sec-bY-sdQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cWL-Tv-Fd4"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="SyllaSync" id="E8g-Bc-va5">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="7DE-ce-r20">
                             <connections>
-                                <action selector="hamburgerPressed:" destination="JB7-gI-58T" id="aQ3-eD-gvn"/>
+                                <action selector="hamburgerPressed:" destination="HLu-gP-R6k" id="oe8-ra-F2Y"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="5Ce-77-kUq"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jgj-We-YGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="eventsTable" destination="U8H-ha-NnM" id="1kn-y9-4nO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HRw-UT-loj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="329"/>
+            <point key="canvasLocation" x="1014" y="-1"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xGF-MF-DS3">
@@ -68,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JB7-gI-58T" kind="relationship" relationship="rootViewController" id="d7Z-K4-Fa8"/>
+                        <segue destination="HLu-gP-R6k" kind="relationship" relationship="rootViewController" id="Dpf-xn-3AN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1D-Ss-zCG" userLabel="First Responder" sceneMemberID="firstResponder"/>

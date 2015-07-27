@@ -14,9 +14,10 @@ protocol EventsContainerControllerDelegate {
     optional func collapseSidePanels()
 }
 
-class EventsController: UITableViewController {
+class EventsController: UIViewController {
 
     
+    @IBOutlet weak var eventsTable: UITableView!
     var delegate: EventsContainerControllerDelegate?
     
     
@@ -37,13 +38,13 @@ class EventsController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 0
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return 0
