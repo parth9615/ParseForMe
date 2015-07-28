@@ -8,7 +8,7 @@
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script type="text/javascript" src="/javascripts/ng-file-upload.js"></script>
 
-  <script type="text/javascript" src="/javascripts/dragDropController.js"></script>
+
   <script src="/javascripts/loginController.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
 
@@ -36,8 +36,13 @@
     </div>
 
     <div ng-show="currentUser">
-      <h1>Welcome {{currentUser.get('username')}}</h1>
-      <p> You have been successfully logged in</p>
+      <div ng-controller="dragDropController">
+      Drop File:
+      <div ngf-drop ng-model="files" class="dropzone"
+      ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+      ngf-accept="'application/pdf,text/plain'">Drop Images or PDFs files here</div>
+      </div>
+      <p>derp</p>
       <button ng-click="logOut(user)">Log out</button>
     </div>
 
