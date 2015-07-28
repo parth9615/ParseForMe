@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="315" y="319"/>
         </scene>
-        <!--SyllaSync-->
+        <!--Events Controller-->
         <scene sceneID="aon-86-8KZ">
             <objects>
                 <viewController storyboardIdentifier="EventsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HLu-gP-R6k" customClass="EventsController" customModule="ParseForMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +47,11 @@
                                     </textAttributes>
                                     <items>
                                         <navigationItem title="SyllaSync" id="TQI-Hh-28o">
-                                            <barButtonItem key="leftBarButtonItem" image="menu" id="ECu-ma-03O"/>
+                                            <barButtonItem key="leftBarButtonItem" image="menu" id="ECu-ma-03O">
+                                                <connections>
+                                                    <action selector="hamburgerPressed:" destination="HLu-gP-R6k" id="GEv-f3-Onc"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </navigationItem>
                                     </items>
                                 </navigationBar>
@@ -67,13 +71,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="SyllaSync" id="E8g-Bc-va5">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="7DE-ce-r20">
-                            <connections>
-                                <action selector="hamburgerPressed:" destination="HLu-gP-R6k" id="oe8-ra-F2Y"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="eventsTable" destination="U8H-ha-NnM" id="1kn-y9-4nO"/>

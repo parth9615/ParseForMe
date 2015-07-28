@@ -81,6 +81,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         
         if pages > 0 {
             let firstController = getItemController(0)!
+            firstController.delegate = self
+            eventsController = firstController
             let startingViewControllers: NSArray = [firstController]
             pageController.setViewControllers(startingViewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         }
@@ -190,7 +192,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         if (shouldExpand) {
             currentState = .LeftPanelExpanded
             
-            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsNavigationController.view.frame) - centerPanelExpandedOffset)
+            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsController.view.frame) - centerPanelExpandedOffset)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .BothCollapsed
@@ -201,15 +203,15 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     
     func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            self.eventsNavigationController.view.frame.origin.x = targetPosition
+            self.eventsController.view.frame.origin.x = targetPosition
             }, completion: completion)
     }
     
     func showShadowForCenterViewController(shouldShowShadow: Bool) {
         if (shouldShowShadow) {
-            eventsNavigationController?.view.layer.shadowOpacity = 0.8
+            eventsController?.view.layer.shadowOpacity = 0.8
         } else {
-            eventsNavigationController?.view.layer.shadowOpacity = 0.0
+            eventsController?.view.layer.shadowOpacity = 0.0
         }
     }
 }
