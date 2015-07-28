@@ -10,7 +10,6 @@
 		EE356A6F1B503330003DE4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE356A6E1B503330003DE4B4 /* AppDelegate.swift */; };
 		EE356A721B503330003DE4B4 /* ParseForMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE356A701B503330003DE4B4 /* ParseForMe.xcdatamodeld */; };
 		EE356A741B503330003DE4B4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE356A731B503330003DE4B4 /* LoginController.swift */; };
-		EE356A771B503330003DE4B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE356A751B503330003DE4B4 /* Main.storyboard */; };
 		EE356A791B503330003DE4B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE356A781B503330003DE4B4 /* Images.xcassets */; };
 		EE356A7C1B503330003DE4B4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE356A7A1B503330003DE4B4 /* LaunchScreen.xib */; };
 		EE356A881B503330003DE4B4 /* ParseForMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE356A871B503330003DE4B4 /* ParseForMeTests.swift */; };
@@ -40,6 +39,7 @@
 		EE36B69D1B636578009F9A37 /* Filler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B69C1B636578009F9A37 /* Filler.swift */; };
 		EE36B69F1B6365CB009F9A37 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B69E1B6365CB009F9A37 /* Settings.swift */; };
 		EE36B6A11B636657009F9A37 /* AboutUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6A01B636657009F9A37 /* AboutUs.swift */; };
+		EE9361E31B674BE4000744C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9361E11B674BE4000744C4 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +58,6 @@
 		EE356A6E1B503330003DE4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE356A711B503330003DE4B4 /* ParseForMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ParseForMe.xcdatamodel; sourceTree = "<group>"; };
 		EE356A731B503330003DE4B4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		EE356A761B503330003DE4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE356A781B503330003DE4B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EE356A7B1B503330003DE4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EE356A811B503330003DE4B4 /* ParseForMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseForMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +89,7 @@
 		EE36B69C1B636578009F9A37 /* Filler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filler.swift; sourceTree = "<group>"; };
 		EE36B69E1B6365CB009F9A37 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EE36B6A01B636657009F9A37 /* AboutUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUs.swift; sourceTree = "<group>"; };
+		EE9361E21B674BE4000744C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,7 +236,7 @@
 		EE36B6941B635CB1009F9A37 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
-				EE356A751B503330003DE4B4 /* Main.storyboard */,
+				EE9361E11B674BE4000744C4 /* Main.storyboard */,
 				EE36B6991B63624A009F9A37 /* Hamburger.storyboard */,
 			);
 			name = StoryBoards;
@@ -333,9 +333,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE36B69A1B63624A009F9A37 /* Hamburger.storyboard in Resources */,
-				EE356A771B503330003DE4B4 /* Main.storyboard in Resources */,
 				EE356A7C1B503330003DE4B4 /* LaunchScreen.xib in Resources */,
 				EE356A791B503330003DE4B4 /* Images.xcassets in Resources */,
+				EE9361E31B674BE4000744C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,20 +384,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EE356A751B503330003DE4B4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EE356A761B503330003DE4B4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EE356A7A1B503330003DE4B4 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EE356A7B1B503330003DE4B4 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		EE9361E11B674BE4000744C4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE9361E21B674BE4000744C4 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

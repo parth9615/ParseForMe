@@ -16,13 +16,16 @@ protocol EventsContainerControllerDelegate {
 
 class EventsController: UIViewController {
 
-    
+    var itemIndex: Int = 0
     @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var navBar: UINavigationBar!
     var delegate: EventsContainerControllerDelegate?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navBar.frame = CGRectMake(0, 0, 320, 70)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -22,12 +22,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-161" y="329"/>
+            <point key="canvasLocation" x="315" y="319"/>
         </scene>
         <!--SyllaSync-->
         <scene sceneID="aon-86-8KZ">
             <objects>
-                <viewController id="HLu-gP-R6k" customClass="EventsController" customModule="ParseForMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HLu-gP-R6k" customClass="EventsController" customModule="ParseForMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8u8-7o-mmd"/>
                         <viewControllerLayoutGuide type="bottom" id="Cg1-ez-edt"/>
@@ -37,8 +37,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U8H-ha-NnM">
-                                <rect key="frame" x="-16" y="0.0" width="336" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <navigationBar key="tableFooterView" contentMode="scaleToFill" id="vGM-Ni-sRr">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textAttributes key="titleTextAttributes">
+                                        <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                    </textAttributes>
+                                    <items>
+                                        <navigationItem title="SyllaSync" id="TQI-Hh-28o">
+                                            <barButtonItem key="leftBarButtonItem" image="menu" id="ECu-ma-03O"/>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +58,7 @@
                             <constraint firstItem="Cg1-ez-edt" firstAttribute="top" secondItem="U8H-ha-NnM" secondAttribute="bottom" id="B6v-55-I5z"/>
                             <constraint firstItem="U8H-ha-NnM" firstAttribute="top" secondItem="Z9Z-EB-gaj" secondAttribute="topMargin" id="Jd0-S9-p0I"/>
                             <constraint firstItem="U8H-ha-NnM" firstAttribute="top" secondItem="8u8-7o-mmd" secondAttribute="bottom" constant="-64" id="cWL-Tv-Fd4"/>
-                            <constraint firstItem="U8H-ha-NnM" firstAttribute="leading" secondItem="Z9Z-EB-gaj" secondAttribute="leading" constant="-16" id="k3q-l4-PzG"/>
+                            <constraint firstItem="U8H-ha-NnM" firstAttribute="leading" secondItem="Z9Z-EB-gaj" secondAttribute="leading" id="k3q-l4-PzG"/>
                             <constraint firstAttribute="trailing" secondItem="U8H-ha-NnM" secondAttribute="trailing" id="sec-bY-sdQ"/>
                         </constraints>
                         <variation key="default">
@@ -65,28 +77,22 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="eventsTable" destination="U8H-ha-NnM" id="1kn-y9-4nO"/>
+                        <outlet property="navBar" destination="vGM-Ni-sRr" id="h4s-I6-cYt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRw-UT-loj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1014" y="-1"/>
+            <point key="canvasLocation" x="1389" y="319"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xGF-MF-DS3">
+        <!--Page View Controller-->
+        <scene sceneID="FjK-uZ-sGl">
             <objects>
-                <navigationController storyboardIdentifier="EventsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4jS-lG-KhP" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="PageController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="jVk-Oc-y3v" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d0e-hn-zZ3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="HLu-gP-R6k" kind="relationship" relationship="rootViewController" id="Dpf-xn-3AN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q1D-Ss-zCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tU9-SN-G3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276" y="329"/>
+            <point key="canvasLocation" x="773" y="319"/>
         </scene>
     </scenes>
     <resources>
