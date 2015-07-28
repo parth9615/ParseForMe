@@ -37,43 +37,15 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // instantiate the page view controller and then get i think the top view controller on it
-        //THIS IS OUR VIEW CONTROLLER AND EVENTSCONTROLLER IS OUR PAGEITEMCONTROLLER
-        
           //****************************************************************************************** begin page vc stuff
-        
-        
+   
         createPageViewController()
         setupPageControl()
-        
-        
-        
-        
+     
            //****************************************************************************************** end page vc stuff
-        
-        
-        
-        
-        
-//        
-//        eventsNavigationController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsNavigationController") as? UINavigationController
-//        eventsController = eventsNavigationController.topViewController as? EventsController
-//        eventsController.delegate = self
-//        
-//        view.addSubview(eventsNavigationController.view)
-//        addChildViewController(eventsNavigationController)
-//        eventsNavigationController.didMoveToParentViewController(self)
     }
-    
-    
-    
-    
-    
-    
+
         //****************************************************************************************** begin page vc stuff
-    
     private func createPageViewController() {
         
         let pageController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("PageController") as! UIPageViewController
@@ -157,7 +129,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     
     
-    
+    //Hamburger code
 }
 
 extension EventsContainerController: EventsContainerControllerDelegate {
