@@ -8,10 +8,13 @@ UserController.prototype.uploadFile = function(req, res) {
     var file = req.files.file;
     console.log(file.name);
     console.log(file.type);
-    fs.writeFile(file.name, file, function(err) {
+
+    fs.writeFile('./uploads/'+file.name, file, function(err) {
       if (err) throw err;
       console.log('It\'s saved');
     })
+
+    
 }
 
 module.exports = new UserController();

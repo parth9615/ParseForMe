@@ -8,9 +8,26 @@
     <script type="text/javascript" src="/javascripts/ng-file-upload.js"></script>
 
     <script type="text/javascript" src="/javascripts/dragDropController.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
+
   </head>
   <body>
+    <script>
+      Parse.initialize("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT", "XSZ5x97qzUWiALEbAKUq49QlcKKPxuJlhmOedEEj");
+      var TestObject = Parse.Object.extend("TestObject");
+      var testObject = new TestObject();
+      testObject.save({foo: "bar"}).then(function(object) {
+        alert("yay! it worked");
+      });
+
+      if(Parse.User.current()){
+        console.log('user');
+      } else {
+        console.log('no user');
+      }
+
+    </script>
     <div ng-app="dragDropApp" ng-controller="dragDropController">
       Drop File:
       <div ngf-drop ng-model="files" class="dropzone"

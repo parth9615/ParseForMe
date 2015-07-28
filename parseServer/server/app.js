@@ -7,11 +7,12 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+// upload dependencies
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var UserController = require('./controllers/UserController');
 var fs = require('fs');
-
 
 var app = express();
 
@@ -19,10 +20,6 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-
-
-
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -32,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// route uploads from the drag drop
 app.post('/uploads', multipartMiddleware, UserController.uploadFile);
 
 app.use('/', routes);
@@ -68,6 +65,7 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 
 module.exports = app;
