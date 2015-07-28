@@ -1,38 +1,51 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
-    <script src="/javascripts/ng-file-upload-shim.js"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <script type="text/javascript" src="/javascripts/ng-file-upload.js"></script>
+<head>
+  <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+  <script src="/javascripts/ng-file-upload-shim.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script type="text/javascript" src="/javascripts/ng-file-upload.js"></script>
 
-    <script type="text/javascript" src="/javascripts/dragDropController.js"></script>
-    <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
+  <script type="text/javascript" src="/javascripts/dragDropController.js"></script>
+  <script src="/javascripts/loginController.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
 
-  </head>
-  <body>
-    <script>
-      Parse.initialize("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT", "XSZ5x97qzUWiALEbAKUq49QlcKKPxuJlhmOedEEj");
-      var TestObject = Parse.Object.extend("TestObject");
-      var testObject = new TestObject();
-      testObject.save({foo: "bar"}).then(function(object) {
-        alert("yay! it worked");
-      });
+</head>
+<body ng-app="AuthApp">
 
-      if(Parse.User.current()){
-        console.log('user');
-      } else {
-        console.log('no user');
-      }
 
-    </script>
-    <div ng-app="dragDropApp" ng-controller="dragDropController">
-      Drop File:
-      <div ngf-drop ng-model="files" class="dropzone"
-        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-        ngf-accept="'application/pdf,text/plain'">Drop Images or PDFs files here</div>
+    <div ng-hide="currentUser">
+      <form ng-show="scenario == 'Sign up'">
+        <h2>Sign up</h2>
+        Email: <input type="email" ng-model="user.email" /><br />
+        Username: <input type="text" ng-model="user.username" /><br />
+        Password: <input type="password" ng-model="user.password" /><br />
+        <button ng-click="signUp(user)">Sign up</button>
+        or <a href="#" ng-click='scenario="Log in"'>Log in</a>
+      </form>
+
+      <form ng-show="scenario == 'Log in'">
+        <h2>Log in</h2>
+        Username: <input type="text" ng-model="user.username" /><br />
+        Password: <input type="password" ng-model="user.password" /><br />
+        <button ng-click="logIn(user)">Log in</button>
+        or <a href="#" ng-click='scenario="Sign up"'>Sign up</a>
+      </form>
     </div>
-  </body>
+
+    <div ng-show="currentUser">
+      <h1>Welcome {{currentUser.get('username')}}</h1>
+      <p> You have been successfully logged in</p>
+      <button ng-click="logOut(user)">Log out</button>
+    </div>
+
+<!-- <div ng-app="dragDropApp" ng-controller="dragDropController">
+Drop File:
+<div ngf-drop ng-model="files" class="dropzone"
+ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+ngf-accept="'application/pdf,text/plain'">Drop Images or PDFs files here</div>
+</div> -->
+</body>
 </html>
