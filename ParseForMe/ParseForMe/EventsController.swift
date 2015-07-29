@@ -16,11 +16,11 @@ protocol EventsContainerControllerDelegate {
 
 class EventsController: UIViewController {
 
-    var itemIndex: Int = 0
+    var itemIndex: Int = 1
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
     var delegate: EventsContainerControllerDelegate?
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

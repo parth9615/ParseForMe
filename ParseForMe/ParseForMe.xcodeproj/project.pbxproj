@@ -40,6 +40,7 @@
 		EE36B69F1B6365CB009F9A37 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B69E1B6365CB009F9A37 /* Settings.swift */; };
 		EE36B6A11B636657009F9A37 /* AboutUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6A01B636657009F9A37 /* AboutUs.swift */; };
 		EE9361E31B674BE4000744C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9361E11B674BE4000744C4 /* Main.storyboard */; };
+		EEB55FA11B689443008D121B /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB55FA01B689443008D121B /* CalendarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		EE36B69E1B6365CB009F9A37 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EE36B6A01B636657009F9A37 /* AboutUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUs.swift; sourceTree = "<group>"; };
 		EE9361E21B674BE4000744C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EEB55FA01B689443008D121B /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				EE36B6931B635C9F009F9A37 /* Hamburger */,
 				EE356A731B503330003DE4B4 /* LoginController.swift */,
 				EE36B68E1B635B09009F9A37 /* EventsController.swift */,
+				EEB55FA01B689443008D121B /* CalendarController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				EE356A6F1B503330003DE4B4 /* AppDelegate.swift in Sources */,
 				EE36B69D1B636578009F9A37 /* Filler.swift in Sources */,
 				EE36B68F1B635B09009F9A37 /* EventsController.swift in Sources */,
+				EEB55FA11B689443008D121B /* CalendarController.swift in Sources */,
 				EE356A721B503330003DE4B4 /* ParseForMe.xcdatamodeld in Sources */,
 				EE36B6981B635FBD009F9A37 /* HamburgerController.swift in Sources */,
 			);

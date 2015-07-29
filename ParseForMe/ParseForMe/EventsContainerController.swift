@@ -19,12 +19,13 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     
     private var pageViewController: UIPageViewController?
-    
-    
+    var pageEventsController:EventsController?
+    var pageCalendarController:CalendarController?
+    var calendarController: CalendarController?
     
     
     var eventsNavigationController: UINavigationController!
-    var eventsController: EventsController!
+    var eventsController: EventsController?
     var currentState: SlideOutState = .BothCollapsed {
         didSet {
             let shouldShowShadow = currentState != .BothCollapsed
@@ -53,8 +54,14 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         
         if pages > 0 {
             let firstController = getItemController(0)!
-            firstController.delegate = self
-            eventsController = firstController
+            if firstController is EventsController {
+                eventsController = firstController as? EventsController
+                eventsController!.delegate = self
+            }
+            else if firstController is CalendarController {
+                calendarController = firstController as? CalendarController
+            }
+            
             let startingViewControllers: NSArray = [firstController]
             pageController.setViewControllers(startingViewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         }
@@ -76,33 +83,65 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        let itemController = viewController as! EventsController
-        
-        if itemController.itemIndex > 0 {
-            return getItemController(itemController.itemIndex-1)
+        if viewController is EventsController {
+            let itemController = viewController as! EventsController
+            
+            if itemController.itemIndex > 0 {
+                return getItemController(itemController.itemIndex-1)
+            }
         }
-        
+        else if viewController is CalendarController {
+            let itemController = viewController as! CalendarController
+            
+            if itemController.itemIndex > 0 {
+                return getItemController(itemController.itemIndex-1)
+            }
+        }
+
         return nil
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        let itemController = viewController as! EventsController
-        
-        if itemController.itemIndex+1 < pages {
-            return getItemController(itemController.itemIndex+1)
+        if viewController is EventsController {
+            let itemController = viewController as! EventsController
+            
+            if itemController.itemIndex+1 < pages {
+                return getItemController(itemController.itemIndex+1)
+            }
+        }
+        else if viewController is CalendarController {
+            let itemController = viewController as! CalendarController
+            
+            if itemController.itemIndex+1 < pages {
+                return getItemController(itemController.itemIndex+1)
+            }
         }
         
         return nil
     }
     
-    private func getItemController(itemIndex: Int) -> EventsController? {
+    private func getItemController(itemIndex: Int) -> UIViewController? {
         
         if itemIndex < pages {
-            let pageItemController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as! EventsController
-            pageItemController.itemIndex = itemIndex
+
+            if itemIndex == 0 {
+                if pageEventsController == nil {
+                    pageEventsController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as? EventsController
+                }
+                pageEventsController?.itemIndex = itemIndex
+                return pageEventsController
+            }
+            else {
+                if pageCalendarController == nil {
+                    pageCalendarController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("CalendarController") as? CalendarController
+                }
+                pageCalendarController?.itemIndex = itemIndex
+                return pageCalendarController
+            }
+            //pageItemController?.itemIndex = itemIndex
             //pageItemController.imageName = contentImages[itemIndex]
-            return pageItemController
+//            return pageItemController
         }
         
         return nil
@@ -164,7 +203,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         if (shouldExpand) {
             currentState = .LeftPanelExpanded
             
-            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsController.view.frame) - centerPanelExpandedOffset)
+            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsController!.view.frame) - centerPanelExpandedOffset)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .BothCollapsed
@@ -175,7 +214,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     
     func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            self.eventsController.view.frame.origin.x = targetPosition
+            self.eventsController?.view.frame.origin.x = targetPosition
             }, completion: completion)
     }
     
