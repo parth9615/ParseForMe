@@ -11,6 +11,7 @@ import UIKit
 class CalendarController: UIViewController {
 
     var itemIndex:Int = 1
+    var eventsArray:NSMutableArray?
     @IBOutlet weak var navBar: UINavigationBar!
     var delegate: EventsContainerControllerDelegate?
     
@@ -18,6 +19,8 @@ class CalendarController: UIViewController {
         super.viewDidLoad()
         
         self.navBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
+        
+        println(self.eventsArray)
         // Do any additional setup after loading the view.
     }
 

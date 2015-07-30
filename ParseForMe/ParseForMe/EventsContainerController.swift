@@ -46,8 +46,6 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         
           //****************************************************************************************** begin page vc stuff
    
-        createPageViewController()
-        setupPageControl()
      
            //****************************************************************************************** end page vc stuff
     }
@@ -62,6 +60,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 println("got a query for \(UserSettings.sharedInstance.Username)")
                 if let objects = objects as? [PFObject!] {
                     self.eventsArray.addObjectsFromArray(objects)
+                    self.createPageViewController()
+                    self.setupPageControl()
                 }
             }
             else {
@@ -83,9 +83,11 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
             if firstController is EventsController {
                 eventsController = firstController as? EventsController
                 eventsController!.delegate = self
+                eventsController?.eventsArray = self.eventsArray
             }
             calendarController = getItemController(1)! as? CalendarController
             calendarController!.delegate = self
+            calendarController!.eventsArray = self.eventsArray
             
             let startingViewControllers: NSArray = [firstController]
             pageController.setViewControllers(startingViewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)

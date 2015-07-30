@@ -20,13 +20,15 @@ class EventsController: UIViewController {
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
     var delegate: EventsContainerControllerDelegate?
+    var eventsArray:NSMutableArray?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
-
+        
+        println(self.eventsArray)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
