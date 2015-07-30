@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 @objc
 public protocol EventsContainerControllerDelegate {
@@ -21,7 +20,6 @@ class EventsController: UIViewController {
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
     var delegate: EventsContainerControllerDelegate?
-    var eventsArray:NSMutableArray = NSMutableArray()
 
     
     override func viewDidLoad() {

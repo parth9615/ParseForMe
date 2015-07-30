@@ -31,21 +31,21 @@ public class UserSettings {
         }
     }
     
-    public var SyllabusArray:Array<AnyObject>? {
-        get {
-            return NSUserDefaults.standardUserDefaults().arrayForKey(Constants.SyllabusArray)
-        }
-        set (newSyllabusArray) {
-            NSUserDefaults.standardUserDefaults().setObject(newSyllabusArray, forKey: Constants.SyllabusArray)
-        }
-    }
-    
-    public var EventsArray:Array<AnyObject>? {
-        get {
-            return NSUserDefaults.standardUserDefaults().arrayForKey(Constants.EventsArray)
-        }
-        set (newEventsArray) {
-            NSUserDefaults.standardUserDefaults().setObject(newEventsArray, forKey: Constants.EventsArray)
-        }
-    }
+//    public var SyllabusArray:Array<AnyObject>? {
+//        get {
+//            return NSUserDefaults.standardUserDefaults().arrayForKey(Constants.SyllabusArray)
+//        }
+//        set (newSyllabusArray) {
+//            NSUserDefaults.standardUserDefaults().setObject(newSyllabusArray, forKey: Constants.SyllabusArray)
+//        }
+//    }
+//    
+//    public var EventsArray:NSData? {
+//        get {
+//            return NSUserDefaults.standardUserDefaults().objectForKey(Constants.EventsArray) as? NSData
+//        }
+//        set (newEventsArray) {
+//            NSUserDefaults.standardUserDefaults().setObject(newEventsArray, forKey: Constants.EventsArray)
+//        }
+//    }
 }

@@ -21,7 +21,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     private var pageViewController: UIPageViewController?
     
-    
+    var eventsArray:NSMutableArray = NSMutableArray()
     var calendarController: CalendarController?
     var eventsNavigationController: UINavigationController!
     var eventsController: EventsController?
@@ -63,15 +63,11 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 if let objects = objects as? [PFObject!] {
                     self.eventsArray.addObjectsFromArray(objects)
                 }
-                // println("self.eventsArray \(self.eventsArray)")
-                UserSettings.sharedInstance.EventsArray = self.eventsArray as Array
             }
             else {
                 println("Error", error, error!.userInfo!)
             }
-        }
-        
-        
+        }     
     }
     
 
