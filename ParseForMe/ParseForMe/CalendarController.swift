@@ -11,16 +11,23 @@ import UIKit
 class CalendarController: UIViewController {
 
     var itemIndex:Int = 1
+    @IBOutlet weak var navBar: UINavigationBar!
+    var delegate: EventsContainerControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navBar.frame = CGRectMake(0, 0, 320, 70)
+        self.reloadInputViews()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func hamburgerPressed(sender: AnyObject) {
+        delegate?.toggleLeftPanel?(self)
     }
     
 

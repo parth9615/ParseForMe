@@ -60,6 +60,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
             }
             else if firstController is CalendarController {
                 calendarController = firstController as? CalendarController
+                calendarController!.delegate = self
             }
             
             let startingViewControllers: NSArray = [firstController]
@@ -136,6 +137,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 if pageCalendarController == nil {
                     pageCalendarController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("CalendarController") as? CalendarController
                 }
+                calendarController = pageCalendarController
+                pageCalendarController!.delegate = self
                 pageCalendarController?.itemIndex = itemIndex
                 return pageCalendarController
             }
@@ -173,15 +176,14 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
 
 extension EventsContainerController: EventsContainerControllerDelegate {
     
-    func toggleLeftPanel() {
+    func toggleLeftPanel(sender :AnyObject) {
         let notAlreadyExpanded = (currentState != .LeftPanelExpanded)
         
         if notAlreadyExpanded {
             addLeftPanelViewController()
             
         }
-        
-        animateLeftPanel(shouldExpand: notAlreadyExpanded)
+        animateLeftPanel(shouldExpand: notAlreadyExpanded, sender: sender)
     }
     
     func addLeftPanelViewController() {
@@ -199,30 +201,39 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         sidePanelController.didMoveToParentViewController(self)
     }
     
-    func animateLeftPanel(#shouldExpand: Bool) {
+    func animateLeftPanel(#shouldExpand: Bool, sender: AnyObject) {
         if (shouldExpand) {
             currentState = .LeftPanelExpanded
             
-            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsController!.view.frame) - centerPanelExpandedOffset)
+            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsController!.view.frame) - centerPanelExpandedOffset, sender: sender)
         } else {
-            animateCenterPanelXPosition(targetPosition: 0) { finished in
+            animateCenterPanelXPosition(targetPosition: 0, sender: sender) { finished in
                 self.currentState = .BothCollapsed
         
             }
         }
     }
     
-    func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            self.eventsController?.view.frame.origin.x = targetPosition
-            }, completion: completion)
+    func animateCenterPanelXPosition(#targetPosition: CGFloat, sender: AnyObject, completion: ((Bool) -> Void)! = nil) {
+        if sender is EventsController {
+            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+                self.eventsController?.view.frame.origin.x = targetPosition
+                }, completion: completion)
+        }
+        else if sender is CalendarController {
+            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+                self.calendarController?.view.frame.origin.x = targetPosition
+                }, completion: completion)
+        }
     }
     
     func showShadowForCenterViewController(shouldShowShadow: Bool) {
         if (shouldShowShadow) {
             eventsController?.view.layer.shadowOpacity = 0.8
+            calendarController?.view.layer.shadowOpacity = 0.8
         } else {
             eventsController?.view.layer.shadowOpacity = 0.0
+            calendarController?.view.layer.shadowOpacity = 0.0
         }
     }
 }

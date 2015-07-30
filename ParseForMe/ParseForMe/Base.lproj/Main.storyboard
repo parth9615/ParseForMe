@@ -102,9 +102,29 @@
                     <view key="view" contentMode="scaleToFill" id="jXj-Zu-ixH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRY-YV-drG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="SyllaSync" id="ChN-EE-MBs">
+                                        <barButtonItem key="leftBarButtonItem" image="menu" id="kE6-kt-mtN">
+                                            <connections>
+                                                <action selector="hamburgerPressed:" destination="IrT-J8-MJZ" id="Tam-JK-izT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" red="0.95452008929999999" green="0.61409581810000002" blue="0.95082836989999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="navBar" destination="sRY-YV-drG" id="urs-5e-8zI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buA-NS-LWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

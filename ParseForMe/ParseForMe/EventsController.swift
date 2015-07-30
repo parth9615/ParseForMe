@@ -9,8 +9,8 @@
 import UIKit
 
 @objc
-protocol EventsContainerControllerDelegate {
-    optional func toggleLeftPanel()
+public protocol EventsContainerControllerDelegate {
+    optional func toggleLeftPanel(sender: AnyObject)
     optional func collapseSidePanels()
 }
 
@@ -55,7 +55,7 @@ class EventsController: UIViewController {
     
     //For Hamburger Settings
     @IBAction func hamburgerPressed(sender: AnyObject) {
-        delegate?.toggleLeftPanel?()
+        delegate?.toggleLeftPanel?(self)
     }
 
     /*
