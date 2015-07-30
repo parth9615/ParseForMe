@@ -16,8 +16,8 @@ class CalendarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navBar.frame = CGRectMake(0, 0, 320, 70)
-        self.reloadInputViews()
+        
+        self.navBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
         // Do any additional setup after loading the view.
     }
 

@@ -15,7 +15,7 @@ PFSignUpViewControllerDelegate  {
     
     //for eventsContainerContainer
     var window: UIWindow?
-
+    var user:PFUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +24,11 @@ PFSignUpViewControllerDelegate  {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        var user = PFUser.currentUser()
+        user = PFUser.currentUser()
         if user != nil {
             //move to new view controller
             
+            UserSettings.sharedInstance.Username = user!.username
             window = UIWindow(frame: UIScreen.mainScreen().bounds)
             let containerViewController = EventsContainerController()
             
@@ -62,7 +63,8 @@ PFSignUpViewControllerDelegate  {
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        println("just completed loggin in")
+        UserSettings.sharedInstance.Username = user.username!
+        println("just completed loggin in for user: \(UserSettings.sharedInstance.Username)")
     }
     
     func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?) {

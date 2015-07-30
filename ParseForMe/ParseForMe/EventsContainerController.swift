@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import Parse
 
 enum SlideOutState {
     case BothCollapsed
@@ -19,11 +20,9 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     
     private var pageViewController: UIPageViewController?
-    var pageEventsController:EventsController?
-    var pageCalendarController:CalendarController?
+    
+    
     var calendarController: CalendarController?
-    
-    
     var eventsNavigationController: UINavigationController!
     var eventsController: EventsController?
     var currentState: SlideOutState = .BothCollapsed {
@@ -38,6 +37,13 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        getUserEvents()
+        
+        
+        
           //****************************************************************************************** begin page vc stuff
    
         createPageViewController()
@@ -45,6 +51,30 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
      
            //****************************************************************************************** end page vc stuff
     }
+    
+    
+    func getUserEvents() {
+        var query: PFQuery = PFQuery(className: "Events")
+        query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error:NSError?) -> Void in
+            if (error == nil) {
+                println("got a query for \(UserSettings.sharedInstance.Username)")
+                if let objects = objects as? [PFObject!] {
+                    self.eventsArray.addObjectsFromArray(objects)
+                }
+                // println("self.eventsArray \(self.eventsArray)")
+                UserSettings.sharedInstance.EventsArray = self.eventsArray as Array
+            }
+            else {
+                println("Error", error, error!.userInfo!)
+            }
+        }
+        
+        
+    }
+    
+
 
         //****************************************************************************************** begin page vc stuff
     private func createPageViewController() {
@@ -58,10 +88,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 eventsController = firstController as? EventsController
                 eventsController!.delegate = self
             }
-            else if firstController is CalendarController {
-                calendarController = firstController as? CalendarController
-                calendarController!.delegate = self
-            }
+            calendarController = getItemController(1)! as? CalendarController
+            calendarController!.delegate = self
             
             let startingViewControllers: NSArray = [firstController]
             pageController.setViewControllers(startingViewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
@@ -127,20 +155,19 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         if itemIndex < pages {
 
             if itemIndex == 0 {
-                if pageEventsController == nil {
-                    pageEventsController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as? EventsController
+                if eventsController == nil {
+                    eventsController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as? EventsController
                 }
-                pageEventsController?.itemIndex = itemIndex
-                return pageEventsController
+                eventsController?.itemIndex = itemIndex
+                return eventsController
             }
             else {
-                if pageCalendarController == nil {
-                    pageCalendarController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("CalendarController") as? CalendarController
+                if calendarController == nil {
+                    calendarController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("CalendarController") as? CalendarController
                 }
-                calendarController = pageCalendarController
-                pageCalendarController!.delegate = self
-                pageCalendarController?.itemIndex = itemIndex
-                return pageCalendarController
+                calendarController!.delegate = self
+                calendarController?.itemIndex = itemIndex
+                return calendarController
             }
             //pageItemController?.itemIndex = itemIndex
             //pageItemController.imageName = contentImages[itemIndex]

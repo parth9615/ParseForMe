@@ -41,6 +41,7 @@
 		EE36B6A11B636657009F9A37 /* AboutUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36B6A01B636657009F9A37 /* AboutUs.swift */; };
 		EE9361E31B674BE4000744C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9361E11B674BE4000744C4 /* Main.storyboard */; };
 		EEB55FA11B689443008D121B /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB55FA01B689443008D121B /* CalendarController.swift */; };
+		EEB55FB21B6A91FB008D121B /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB55FB11B6A91FB008D121B /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		EE36B6A01B636657009F9A37 /* AboutUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUs.swift; sourceTree = "<group>"; };
 		EE9361E21B674BE4000744C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEB55FA01B689443008D121B /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		EEB55FB11B6A91FB008D121B /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		EE356A6B1B503330003DE4B4 /* ParseForMe */ = {
 			isa = PBXGroup;
 			children = (
+				EEB55FB01B6A91D8008D121B /* Utils */,
 				EE36B69B1B636318009F9A37 /* Cells */,
 				EE36B6941B635CB1009F9A37 /* StoryBoards */,
 				EE36B6921B635C85009F9A37 /* Controllers */,
@@ -253,6 +256,14 @@
 				EE36B6A01B636657009F9A37 /* AboutUs.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		EEB55FB01B6A91D8008D121B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EEB55FB11B6A91FB008D121B /* UserSettings.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +377,7 @@
 				EEB55FA11B689443008D121B /* CalendarController.swift in Sources */,
 				EE356A721B503330003DE4B4 /* ParseForMe.xcdatamodeld in Sources */,
 				EE36B6981B635FBD009F9A37 /* HamburgerController.swift in Sources */,
+				EEB55FB21B6A91FB008D121B /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
