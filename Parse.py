@@ -85,17 +85,16 @@ def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthLi
             individualLine = individualLine.replace("|" , "")
         for days in dayAndMonthList:              # iterate through each day combination
             # regex pattern to find the entire line that contains a day in the dayList
-            dayOfTheWeekPattern = ('.+')+(days)+('\s.+')
+            dayOfTheWeekPattern = ('.+')+(days)+('?\s.+')
             # regex flag to ingnorecase and make the dot include whitespace
             dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
             # call findInString to check if such a pattern exists
             result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
             if result:
                 makeEventFromMonth(individualLine, dictOfDatesAndInfo)
-
                 break
 
-        # pattern to find the pattern ##/## which is commonly used to denote dates
+        #pattern to find the pattern ##/## which is commonly used to denote dates
         dateTimePattern = ('\d\d?/\d\d?')
         dateTimeFlags   = re.DOTALL
         result = findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
