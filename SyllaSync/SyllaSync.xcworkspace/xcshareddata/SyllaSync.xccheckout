@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3A66ACB8-A205-4C5A-9E32-BEE3E8E604EA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SyllaSync</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7F31B37210A742BB525DA6D3764188059CC43B39</key>
+		<string>github.com:joelwass/ParseForMe.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SyllaSync/SyllaSync.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7F31B37210A742BB525DA6D3764188059CC43B39</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:joelwass/ParseForMe.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7F31B37210A742BB525DA6D3764188059CC43B39</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7F31B37210A742BB525DA6D3764188059CC43B39</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SyllaSync</string>
+		</dict>
+	</array>
+</dict>
+</plist>
