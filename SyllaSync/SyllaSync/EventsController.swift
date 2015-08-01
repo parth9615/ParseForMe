@@ -16,8 +16,8 @@ public protocol EventsContainerControllerDelegate {
 
 class EventsController: UIViewController {
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var eventsTable: UITableView!
-    @IBOutlet weak var navBar: UINavigationBar!
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
     var eventsArray:NSMutableArray?
@@ -25,8 +25,6 @@ class EventsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
         
         println(self.eventsArray)
         // Uncomment the following line to preserve selection between presentations
