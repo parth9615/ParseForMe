@@ -18,11 +18,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func start(sender: AnyObject) {
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let containerViewController = EventsContainerController()
-        
-        window!.rootViewController = containerViewController
-        window!.makeKeyAndVisible()
+        var parseVC = self.storyboard?.instantiateViewControllerWithIdentifier("ParseLoginController") as! ParseLoginController
+        self.presentViewController(parseVC, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

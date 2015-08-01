@@ -20,23 +20,26 @@
 		EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */; };
 		EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */; };
 		EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */; };
-		EE0835F41B6D569300F5CD9C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835F31B6D569300F5CD9C /* AudioToolbox.framework */; };
-		EE0835F61B6D56A400F5CD9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835F51B6D56A400F5CD9C /* CFNetwork.framework */; };
-		EE0835F81B6D56AB00F5CD9C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835F71B6D56AB00F5CD9C /* CoreGraphics.framework */; };
-		EE0835FA1B6D56B000F5CD9C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835F91B6D56B000F5CD9C /* CoreLocation.framework */; };
-		EE0835FC1B6D56B700F5CD9C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835FB1B6D56B700F5CD9C /* libz.dylib */; };
-		EE0835FE1B6D56BD00F5CD9C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835FD1B6D56BD00F5CD9C /* MobileCoreServices.framework */; };
-		EE0836001B6D56C300F5CD9C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0835FF1B6D56C300F5CD9C /* QuartzCore.framework */; };
-		EE0836021B6D56C900F5CD9C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836011B6D56C900F5CD9C /* Security.framework */; };
-		EE0836041B6D56D400F5CD9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836031B6D56D400F5CD9C /* StoreKit.framework */; };
-		EE0836061B6D56DA00F5CD9C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836051B6D56DA00F5CD9C /* SystemConfiguration.framework */; };
-		EE0836081B6D56E200F5CD9C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836071B6D56E200F5CD9C /* libsqlite3.dylib */; };
 		EE0836131B6D583D00F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360D1B6D583D00F5CD9C /* Bolts.framework */; };
 		EE0836141B6D583D00F5CD9C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360E1B6D583D00F5CD9C /* Parse.framework */; };
 		EE0836151B6D583D00F5CD9C /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360F1B6D583D00F5CD9C /* ParseCrashReporting.framework */; };
 		EE0836161B6D583D00F5CD9C /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836101B6D583D00F5CD9C /* ParseFacebookUtils.framework */; };
 		EE0836171B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836111B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework */; };
 		EE0836181B6D583D00F5CD9C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836121B6D583D00F5CD9C /* ParseUI.framework */; };
+		EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */; };
+		EE08361E1B6D5CAA00F5CD9C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08361D1B6D5CAA00F5CD9C /* AudioToolbox.framework */; };
+		EE0836201B6D5CB000F5CD9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08361F1B6D5CB000F5CD9C /* CFNetwork.framework */; };
+		EE0836221B6D5CB500F5CD9C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836211B6D5CB500F5CD9C /* CoreGraphics.framework */; };
+		EE0836241B6D5CB900F5CD9C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836231B6D5CB900F5CD9C /* CoreLocation.framework */; };
+		EE0836261B6D5CBF00F5CD9C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836251B6D5CBF00F5CD9C /* libz.dylib */; };
+		EE0836281B6D5CC500F5CD9C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */; };
+		EE08362A1B6D5CCB00F5CD9C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */; };
+		EE08362C1B6D5CD100F5CD9C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362B1B6D5CD100F5CD9C /* Security.framework */; };
+		EE08362E1B6D5CD700F5CD9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362D1B6D5CD700F5CD9C /* StoreKit.framework */; };
+		EE0836301B6D5CDE00F5CD9C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */; };
+		EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */; };
+		EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836331B6D5DC400F5CD9C /* Social.framework */; };
+		EE0836361B6D5DC900F5CD9C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836351B6D5DC900F5CD9C /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,17 +70,6 @@
 		EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsContainerController.swift; sourceTree = "<group>"; };
 		EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerController.swift; sourceTree = "<group>"; };
-		EE0835F31B6D569300F5CD9C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		EE0835F51B6D56A400F5CD9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		EE0835F71B6D56AB00F5CD9C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		EE0835F91B6D56B000F5CD9C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		EE0835FB1B6D56B700F5CD9C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		EE0835FD1B6D56BD00F5CD9C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		EE0835FF1B6D56C300F5CD9C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EE0836011B6D56C900F5CD9C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		EE0836031B6D56D400F5CD9C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		EE0836051B6D56DA00F5CD9C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		EE0836071B6D56E200F5CD9C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EE08360D1B6D583D00F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		EE08360E1B6D583D00F5CD9C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		EE08360F1B6D583D00F5CD9C /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -85,6 +77,20 @@
 		EE0836111B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		EE0836121B6D583D00F5CD9C /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		EE0836191B6D588800F5CD9C /* SyllaSync-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SyllaSync-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginController.swift; sourceTree = "<group>"; };
+		EE08361D1B6D5CAA00F5CD9C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EE08361F1B6D5CB000F5CD9C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EE0836211B6D5CB500F5CD9C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EE0836231B6D5CB900F5CD9C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EE0836251B6D5CBF00F5CD9C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EE08362B1B6D5CD100F5CD9C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EE08362D1B6D5CD700F5CD9C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		EE0836331B6D5DC400F5CD9C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EE0836351B6D5DC900F5CD9C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,23 +98,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE0836081B6D56E200F5CD9C /* libsqlite3.dylib in Frameworks */,
-				EE0836061B6D56DA00F5CD9C /* SystemConfiguration.framework in Frameworks */,
-				EE0836041B6D56D400F5CD9C /* StoreKit.framework in Frameworks */,
+				EE0836361B6D5DC900F5CD9C /* Accounts.framework in Frameworks */,
+				EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */,
+				EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */,
+				EE0836301B6D5CDE00F5CD9C /* SystemConfiguration.framework in Frameworks */,
+				EE08362E1B6D5CD700F5CD9C /* StoreKit.framework in Frameworks */,
+				EE08362C1B6D5CD100F5CD9C /* Security.framework in Frameworks */,
+				EE08362A1B6D5CCB00F5CD9C /* QuartzCore.framework in Frameworks */,
+				EE0836281B6D5CC500F5CD9C /* MobileCoreServices.framework in Frameworks */,
+				EE0836261B6D5CBF00F5CD9C /* libz.dylib in Frameworks */,
+				EE0836241B6D5CB900F5CD9C /* CoreLocation.framework in Frameworks */,
+				EE0836221B6D5CB500F5CD9C /* CoreGraphics.framework in Frameworks */,
+				EE0836201B6D5CB000F5CD9C /* CFNetwork.framework in Frameworks */,
+				EE08361E1B6D5CAA00F5CD9C /* AudioToolbox.framework in Frameworks */,
 				EE0836131B6D583D00F5CD9C /* Bolts.framework in Frameworks */,
-				EE0836021B6D56C900F5CD9C /* Security.framework in Frameworks */,
 				EE0836151B6D583D00F5CD9C /* ParseCrashReporting.framework in Frameworks */,
-				EE0836001B6D56C300F5CD9C /* QuartzCore.framework in Frameworks */,
 				EE0836141B6D583D00F5CD9C /* Parse.framework in Frameworks */,
 				EE0836161B6D583D00F5CD9C /* ParseFacebookUtils.framework in Frameworks */,
 				EE0836181B6D583D00F5CD9C /* ParseUI.framework in Frameworks */,
-				EE0835FE1B6D56BD00F5CD9C /* MobileCoreServices.framework in Frameworks */,
 				EE0836171B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework in Frameworks */,
-				EE0835FC1B6D56B700F5CD9C /* libz.dylib in Frameworks */,
-				EE0835FA1B6D56B000F5CD9C /* CoreLocation.framework in Frameworks */,
-				EE0835F81B6D56AB00F5CD9C /* CoreGraphics.framework in Frameworks */,
-				EE0835F61B6D56A400F5CD9C /* CFNetwork.framework in Frameworks */,
-				EE0835F41B6D569300F5CD9C /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,8 +133,20 @@
 		EE0835B11B6D37EC00F5CD9C = {
 			isa = PBXGroup;
 			children = (
+				EE0836351B6D5DC900F5CD9C /* Accounts.framework */,
+				EE0836331B6D5DC400F5CD9C /* Social.framework */,
+				EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */,
+				EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */,
+				EE08362D1B6D5CD700F5CD9C /* StoreKit.framework */,
+				EE08362B1B6D5CD100F5CD9C /* Security.framework */,
+				EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */,
+				EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */,
+				EE0836251B6D5CBF00F5CD9C /* libz.dylib */,
+				EE0836231B6D5CB900F5CD9C /* CoreLocation.framework */,
+				EE0836211B6D5CB500F5CD9C /* CoreGraphics.framework */,
+				EE08361F1B6D5CB000F5CD9C /* CFNetwork.framework */,
+				EE08361D1B6D5CAA00F5CD9C /* AudioToolbox.framework */,
 				EE08360C1B6D583D00F5CD9C /* parse-library-1 */,
-				EE0836091B6D56F200F5CD9C /* Frameworks */,
 				EE0835BC1B6D37EC00F5CD9C /* SyllaSync */,
 				EE0835D51B6D37EC00F5CD9C /* SyllaSyncTests */,
 				EE0835BB1B6D37EC00F5CD9C /* Products */,
@@ -194,6 +214,7 @@
 		EE0835E31B6D3BD900F5CD9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
 				EE0835C41B6D37EC00F5CD9C /* ViewController.swift */,
 				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
@@ -220,24 +241,6 @@
 			name = Hamburger;
 			sourceTree = "<group>";
 		};
-		EE0836091B6D56F200F5CD9C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EE0835F31B6D569300F5CD9C /* AudioToolbox.framework */,
-				EE0835F51B6D56A400F5CD9C /* CFNetwork.framework */,
-				EE0835F71B6D56AB00F5CD9C /* CoreGraphics.framework */,
-				EE0835F91B6D56B000F5CD9C /* CoreLocation.framework */,
-				EE0835FB1B6D56B700F5CD9C /* libz.dylib */,
-				EE0835FD1B6D56BD00F5CD9C /* MobileCoreServices.framework */,
-				EE0835FF1B6D56C300F5CD9C /* QuartzCore.framework */,
-				EE0836011B6D56C900F5CD9C /* Security.framework */,
-				EE0836031B6D56D400F5CD9C /* StoreKit.framework */,
-				EE0836071B6D56E200F5CD9C /* libsqlite3.dylib */,
-				EE0836051B6D56DA00F5CD9C /* SystemConfiguration.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		EE08360C1B6D583D00F5CD9C /* parse-library-1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +252,14 @@
 				EE0836121B6D583D00F5CD9C /* ParseUI.framework */,
 			);
 			path = "parse-library-1";
+			sourceTree = "<group>";
+		};
+		EE08361A1B6D5A2D00F5CD9C /* Logins */ = {
+			isa = PBXGroup;
+			children = (
+				EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */,
+			);
+			name = Logins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +370,7 @@
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
+				EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

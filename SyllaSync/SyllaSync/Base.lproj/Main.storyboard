@@ -17,8 +17,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52d-tf-MQi">
-                                <rect key="frame" x="137" y="269" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="102" y="269" width="117" height="30"/>
+                                <state key="normal" title="Login With Parse">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -36,7 +36,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="477"/>
+            <point key="canvasLocation" x="241" y="477"/>
+        </scene>
+        <!--Parse Login Controller-->
+        <scene sceneID="fsF-Yy-F35">
+            <objects>
+                <viewController storyboardIdentifier="ParseLoginController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zFC-vd-nFr" customClass="ParseLoginController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1uw-gS-otL"/>
+                        <viewControllerLayoutGuide type="bottom" id="NXf-lL-MVf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qXw-fE-cHz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Rs-tR-evX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="650" y="477"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="v6a-rg-adC">
