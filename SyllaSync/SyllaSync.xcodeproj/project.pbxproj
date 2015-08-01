@@ -14,6 +14,12 @@
 		EE0835CA1B6D37EC00F5CD9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C91B6D37EC00F5CD9C /* Images.xcassets */; };
 		EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0835CB1B6D37EC00F5CD9C /* LaunchScreen.xib */; };
 		EE0835D91B6D37EC00F5CD9C /* SyllaSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835D81B6D37EC00F5CD9C /* SyllaSyncTests.swift */; };
+		EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */; };
+		EE0835E91B6D3CDF00F5CD9C /* Hamburger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */; };
+		EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */; };
+		EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */; };
+		EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */; };
+		EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +44,12 @@
 		EE0835D21B6D37EC00F5CD9C /* SyllaSyncTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SyllaSyncTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0835D71B6D37EC00F5CD9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE0835D81B6D37EC00F5CD9C /* SyllaSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllaSyncTests.swift; sourceTree = "<group>"; };
+		EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hamburger.storyboard; sourceTree = "<group>"; };
+		EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
+		EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsContainerController.swift; sourceTree = "<group>"; };
+		EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +91,10 @@
 		EE0835BC1B6D37EC00F5CD9C /* SyllaSync */ = {
 			isa = PBXGroup;
 			children = (
+				EE0835E41B6D3BDF00F5CD9C /* StoryBoards */,
+				EE0835E31B6D3BD900F5CD9C /* Controllers */,
+				EE0835E21B6D3BCA00F5CD9C /* Utils */,
 				EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */,
-				EE0835C41B6D37EC00F5CD9C /* ViewController.swift */,
-				EE0835C61B6D37EC00F5CD9C /* Main.storyboard */,
 				EE0835C91B6D37EC00F5CD9C /* Images.xcassets */,
 				EE0835CB1B6D37EC00F5CD9C /* LaunchScreen.xib */,
 				EE0835C11B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld */,
@@ -113,6 +126,43 @@
 				EE0835D71B6D37EC00F5CD9C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EE0835E21B6D3BCA00F5CD9C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		EE0835E31B6D3BD900F5CD9C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
+				EE0835C41B6D37EC00F5CD9C /* ViewController.swift */,
+				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
+				EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EE0835E41B6D3BDF00F5CD9C /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				EE0835C61B6D37EC00F5CD9C /* Main.storyboard */,
+				EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		EE0835EA1B6D3E0500F5CD9C /* Hamburger */ = {
+			isa = PBXGroup;
+			children = (
+				EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */,
+				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
+			);
+			name = Hamburger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0835E91B6D3CDF00F5CD9C /* Hamburger.storyboard in Resources */,
 				EE0835C81B6D37EC00F5CD9C /* Main.storyboard in Resources */,
 				EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */,
 				EE0835CA1B6D37EC00F5CD9C /* Images.xcassets in Resources */,
@@ -216,8 +267,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0835C51B6D37EC00F5CD9C /* ViewController.swift in Sources */,
+				EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */,
+				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
+				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
+				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
+				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
