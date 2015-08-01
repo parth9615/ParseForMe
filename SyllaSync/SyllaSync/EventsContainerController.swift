@@ -8,7 +8,7 @@
 
 import UIKit
 import QuartzCore
-//import Parse
+import Parse
 
 enum SlideOutState {
     case BothCollapsed
@@ -42,8 +42,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         
         getUserEvents()
         
-        self.createPageViewController()
-        self.setupPageControl()
+//        self.createPageViewController()
+//        self.setupPageControl()
         
         //****************************************************************************************** begin page vc stuff
         
@@ -53,22 +53,22 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     
     func getUserEvents() {
-//        var query: PFQuery = PFQuery(className: "Events")
-//        query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
-//        query.findObjectsInBackgroundWithBlock{
-//            (objects: [AnyObject]?, error:NSError?) -> Void in
-//            if (error == nil) {
-//                println("got a query for \(UserSettings.sharedInstance.Username)")
-//                if let objects = objects as? [PFObject!] {
-//                    self.eventsArray.addObjectsFromArray(objects)
-//                    self.createPageViewController()
-//                    self.setupPageControl()
-//                }
-//            }
-//            else {
-//                println("Error", error, error!.userInfo!)
-//            }
-//        }
+        var query:PFQuery = PFQuery(className: "Events")
+        query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error:NSError?) -> Void in
+            if (error == nil) {
+                println("got a query for \(UserSettings.sharedInstance.Username)")
+                if let objects = objects as? [PFObject!] {
+                    self.eventsArray.addObjectsFromArray(objects)
+                    self.createPageViewController()
+                    self.setupPageControl()
+                }
+            }
+            else {
+                println("Error", error, error!.userInfo!)
+            }
+        }
     }
     
     
@@ -168,9 +168,6 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 calendarController?.itemIndex = itemIndex
                 return calendarController
             }
-            //pageItemController?.itemIndex = itemIndex
-            //pageItemController.imageName = contentImages[itemIndex]
-            //            return pageItemController
         }
         
         return nil
