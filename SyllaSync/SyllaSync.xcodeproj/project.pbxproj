@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		629476539D62952F541CDDE3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F2A8C8CC6FD05B266A6979 /* libPods.a */; };
 		904C33884F1A4B3D88F521CA /* libPods-SyllaSyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */; };
 		E1C851107E981979A016A6CD /* libPods-SyllaSync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A45E127EDBD75DA760627 /* libPods-SyllaSync.a */; };
 		EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */; };
 		EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C11B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld */; };
-		EE0835C51B6D37EC00F5CD9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C41B6D37EC00F5CD9C /* ViewController.swift */; };
+		EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C41B6D37EC00F5CD9C /* LoginController.swift */; };
 		EE0835C81B6D37EC00F5CD9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C61B6D37EC00F5CD9C /* Main.storyboard */; };
 		EE0835CA1B6D37EC00F5CD9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C91B6D37EC00F5CD9C /* Images.xcassets */; };
 		EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0835CB1B6D37EC00F5CD9C /* LaunchScreen.xib */; };
@@ -64,13 +65,14 @@
 		16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SyllaSyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A45E127EDBD75DA760627 /* libPods-SyllaSync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SyllaSync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8E00C42DC0613F8C1BD672 /* Pods-SyllaSyncTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSyncTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSyncTests/Pods-SyllaSyncTests.release.xcconfig"; sourceTree = "<group>"; };
+		B9F2A8C8CC6FD05B266A6979 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD04F7650DDBD24E84D8CA8F /* Pods-SyllaSyncTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSyncTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSyncTests/Pods-SyllaSyncTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D579BD6B9864D59F2C534E7B /* Pods-SyllaSync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSync.release.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSync/Pods-SyllaSync.release.xcconfig"; sourceTree = "<group>"; };
 		EE0835BA1B6D37EC00F5CD9C /* SyllaSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyllaSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0835BE1B6D37EC00F5CD9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE0835C21B6D37EC00F5CD9C /* SyllaSync.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SyllaSync.xcdatamodel; sourceTree = "<group>"; };
-		EE0835C41B6D37EC00F5CD9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EE0835C41B6D37EC00F5CD9C /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		EE0835C71B6D37EC00F5CD9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE0835C91B6D37EC00F5CD9C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EE0835CC1B6D37EC00F5CD9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				EE0836181B6D583D00F5CD9C /* ParseUI.framework in Frameworks */,
 				EE0836171B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework in Frameworks */,
 				E1C851107E981979A016A6CD /* libPods-SyllaSync.a in Frameworks */,
+				629476539D62952F541CDDE3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +243,7 @@
 			children = (
 				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
-				EE0835C41B6D37EC00F5CD9C /* ViewController.swift */,
+				EE0835C41B6D37EC00F5CD9C /* LoginController.swift */,
 				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
 				EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */,
 			);
@@ -308,6 +311,7 @@
 				EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */,
 				273A45E127EDBD75DA760627 /* libPods-SyllaSync.a */,
 				16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */,
+				B9F2A8C8CC6FD05B266A6979 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -483,7 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE0835C51B6D37EC00F5CD9C /* ViewController.swift in Sources */,
+				EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */,
 				EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */,
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,

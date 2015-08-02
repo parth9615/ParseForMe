@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
+class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
     
     var window: UIWindow?
     var req:FBSDKGraphRequest?
@@ -24,6 +24,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
         println(GIDSignIn.sharedInstance().currentUser)
         if GIDSignIn.sharedInstance().currentUser != nil {
             //skipToChallenges()
+        }
+        else {
+            let loginView:GIDSignInButton = GIDSignInButton()
+            self.view.addSubview(loginView)
+            loginView.center = CGPointMake((self.view.frame.width/2), 220)
         }
         
         
@@ -109,7 +114,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
             if (error == nil) {
-                // Perform any operations on signed in user here.
+                
+                
+            
+                
                 let userId = user.userID                  // For client-side use only!
                 let idToken = user.authentication.idToken // Safe to send to the server
                 let name = user.profile.name
