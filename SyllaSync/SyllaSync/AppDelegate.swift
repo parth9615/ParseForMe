@@ -26,7 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: "PqKUmPMkFwQAClVFYqSuw9xfidR179CyGQwlXHYh")
 
         
-        
+        // Initialize sign-in
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         // Override point for customization after application launch.
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -124,13 +127,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
             
-//        if url.absoluteString?.rangeOfString("facebook") == nil {
-//            //return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
-//        }
-//        else {
+        if url.absoluteString?.rangeOfString("facebook") == nil {
+            return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+        }
+        else {
             return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
         }
         
-//    }
+    }
 }
 

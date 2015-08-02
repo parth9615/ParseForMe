@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
     
     var window: UIWindow?
     var req:FBSDKGraphRequest?
@@ -17,8 +17,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         
         
+        GIDSignIn.sharedInstance().uiDelegate = self
         
+        GIDSignIn.sharedInstance().delegate = self
         
+        println(GIDSignIn.sharedInstance().currentUser)
+        if GIDSignIn.sharedInstance().currentUser != nil {
+            //skipToChallenges()
+        }
         
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
@@ -100,7 +106,25 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+        withError error: NSError!) {
+            if (error == nil) {
+                // Perform any operations on signed in user here.
+                let userId = user.userID                  // For client-side use only!
+                let idToken = user.authentication.idToken // Safe to send to the server
+                let name = user.profile.name
+                let email = user.profile.email
+                // ...
+            } else {
+                println("\(error.localizedDescription)")
+            }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+        withError error: NSError!) {
+            // Perform any operations when the user disconnects from app here.
+            // ...
+    }
 
 }
 

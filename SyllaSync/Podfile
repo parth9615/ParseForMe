@@ -3,9 +3,13 @@
 
 target 'SyllaSync' do
 
+pod 'Google/SignIn'
+
 end
 
 target 'SyllaSyncTests' do
+
+pod 'Google/SignIn'
 
 end
 
