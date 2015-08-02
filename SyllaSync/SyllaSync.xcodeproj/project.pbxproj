@@ -43,10 +43,10 @@
 		EE0838791B6D659900F5CD9C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */; };
 		EE08387A1B6D659900F5CD9C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838771B6D659900F5CD9C /* FBSDKLoginKit.framework */; };
 		EE08387B1B6D659900F5CD9C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838781B6D659900F5CD9C /* FBSDKShareKit.framework */; };
-		EE08387E1B6DA9E700F5CD9C /* GoogleService-Info-3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info-3.plist */; };
+		EE08387E1B6DA9E700F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
 		EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */; };
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
-		EE0838861B6DB06600F5CD9C /* GoogleService-Info-3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info-3.plist */; };
+		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +105,7 @@
 		EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EE0838771B6D659900F5CD9C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		EE0838781B6D659900F5CD9C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		EE08387D1B6DA9E700F5CD9C /* GoogleService-Info-3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-3.plist"; sourceTree = "<group>"; };
+		EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -167,7 +167,6 @@
 		EE0835B11B6D37EC00F5CD9C = {
 			isa = PBXGroup;
 			children = (
-				EE08387D1B6DA9E700F5CD9C /* GoogleService-Info-3.plist */,
 				EE08387C1B6D660A00F5CD9C /* Frameworks */,
 				EE08360C1B6D583D00F5CD9C /* parse-library-1 */,
 				EE0835BC1B6D37EC00F5CD9C /* SyllaSync */,
@@ -205,6 +204,7 @@
 		EE0835BD1B6D37EC00F5CD9C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */,
 				EE0835BE1B6D37EC00F5CD9C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -401,7 +401,7 @@
 				EE0835C81B6D37EC00F5CD9C /* Main.storyboard in Resources */,
 				EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */,
 				EE0835CA1B6D37EC00F5CD9C /* Images.xcassets in Resources */,
-				EE08387E1B6DA9E700F5CD9C /* GoogleService-Info-3.plist in Resources */,
+				EE08387E1B6DA9E700F5CD9C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE0838861B6DB06600F5CD9C /* GoogleService-Info-3.plist in Resources */,
+				EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
