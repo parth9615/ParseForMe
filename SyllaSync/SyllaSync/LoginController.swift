@@ -81,6 +81,11 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                         dimView?.removeFromSuperview()
                         UserSettings.sharedInstance.Username = "\(objects)"
                         //proceed to events page.
+                        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                        let containerViewController = EventsContainerController()
+                        
+                        self.window!.rootViewController = containerViewController
+                        self.window!.makeKeyAndVisible()
                     }
                     else {
                         println("There wasn't a user registered to that email")
