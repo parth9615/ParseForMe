@@ -37,22 +37,24 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         }
         
         
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-           self.returnUserData()
-        }
-        else {
+//        if (FBSDKAccessToken.currentAccessToken() != nil)
+//        {
+//           self.returnUserData()
+//        }
+//        else {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
             loginView.center = CGPointMake((self.view.frame.width/2), 140)
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
             FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
-        }
+//        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        
+        var dimView:DimView?
         
         println("User Logged In")
         
@@ -66,8 +68,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         self.returnUserData()
         
         
-        var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+        var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
             var query = PFQuery(className: "Users")
             query.whereKey("email", equalTo: self.userEmail!)
             query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
@@ -76,8 +78,16 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                     if let objects = user as? [PFUser!] {
                         println("There was in fact a user registered through facebook email")
                         
-                        
+                        dimView?.removeFromSuperview()
+                        UserSettings.sharedInstance.Username = "\(objects)"
                         //proceed to events page.
+                    }
+                    else {
+                        println("There wasn't a user registered to that email")
+                        
+                        dimView?.removeFromSuperview()
+                        self.alertUser("no email registered facebook")
+                        //send an alert saying we either couldn't access their email or they don't have an account associated with that email
                     }
                 }
                 else {
@@ -85,6 +95,12 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                 }
             }
         }
+        
+        
+        //loading view when waiting to fetch graph request.
+        dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
+        self.view.addSubview(dimView!)
+        self.view.bringSubviewToFront(dimView!)
         
         
         if ((error) != nil)
@@ -101,6 +117,16 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             {
                 // Do work
             }
+        }
+    }
+    
+    func alertUser(message: String) {
+        if message == "no email registered facebook" {
+            var alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't an account registered with the email used for your Facebook, please create an account at our website, SyllaSync.com, on a computer", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     

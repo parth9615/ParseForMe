@@ -48,6 +48,7 @@
 		EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */; };
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
 		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
+		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */,
+				EE1887591B6FFC80003FA7A9 /* DimView.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
 				EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
+				EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
