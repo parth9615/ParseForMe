@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
     
     var window: UIWindow?
     var req:FBSDKGraphRequest?
+    
+    var userName:NSString?
+    var userEmail:NSString?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +39,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
-           // skipToChallenges()
+           self.returnUserData()
         }
         else {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
@@ -51,9 +56,35 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         
         println("User Logged In")
         
+        println(result)
+        println(result.declinedPermissions)
+        println(result.grantedPermissions)
         var accessToken = FBSDKAccessToken.currentAccessToken()
         println("FB User ID String: \(accessToken.userID)")
         println("Logged in with FB")
+
+        self.returnUserData()
+        
+        
+        var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            var query = PFQuery(className: "Users")
+            query.whereKey("email", equalTo: self.userEmail!)
+            query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
+                if error == nil {
+                    println("query for facebook email user is succesful")
+                    if let objects = user as? [PFUser!] {
+                        println("There was in fact a user registered through facebook email")
+                        
+                        
+                        //proceed to events page.
+                    }
+                }
+                else {
+                    println("Error", error, error!.userInfo!)
+                }
+            }
+        }
         
         
         if ((error) != nil)
@@ -82,8 +113,12 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
     //fetch facebook user data
     func returnUserData()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"id, email"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if connection == nil {
+                println("connection \(connection) equal to nil")
+            }
             
             if ((error) != nil)
             {
@@ -93,10 +128,14 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             else
             {
                 println("fetched user: \(result)")
-                let userName : NSString = result.valueForKey("name") as! NSString
-                println("User Name is: \(userName)")
-                let userEmail : NSString = result.valueForKey("email") as! NSString
-                println("User Email is: \(userEmail)")
+                self.userName = result.valueForKey("name") as? NSString
+                println("User Name is: \(self.userName)")
+                self.userEmail = result.valueForKey("email") as? NSString
+                println("User Email is: \(self.userEmail)")
+                
+                println(result)
+                println(self.userEmail)
+                println(self.userName)
             }
         })
     }

@@ -45,6 +45,7 @@ PFSignUpViewControllerDelegate {
             loginViewController.delegate = self
             
             var signupViewController = PFSignUpViewController()
+            signupViewController.emailAsUsername = true
             signupViewController.delegate = self
             
             self.presentViewController(loginViewController, animated: true, completion: nil)
@@ -54,6 +55,7 @@ PFSignUpViewControllerDelegate {
     //MARK: Parse Login
     
     func logInViewController(logInController: PFLogInViewController, shouldBeginLogInWithUsername username: String, password: String) -> Bool {
+        
         
         if(!username.isEmpty || !password.isEmpty){
             return true
