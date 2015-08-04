@@ -11,6 +11,19 @@ import CoreData
 import Parse
 import Bolts
 
+
+
+
+
+//add in reachability https://github.com/ashleymills/Reachability.swift
+
+
+
+
+
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

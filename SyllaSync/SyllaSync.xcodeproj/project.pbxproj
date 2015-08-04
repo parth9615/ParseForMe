@@ -49,6 +49,10 @@
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
 		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
+		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
+		EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */; };
+		EEEB0CB21B707C8600C54CC7 /* InviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB11B707C8600C54CC7 /* InviteController.swift */; };
+		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +117,10 @@
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
+		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareController.swift; sourceTree = "<group>"; };
+		EEEB0CB11B707C8600C54CC7 /* InviteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteController.swift; sourceTree = "<group>"; };
+		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +275,10 @@
 			children = (
 				EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */,
 				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
+				EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */,
+				EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */,
+				EEEB0CB11B707C8600C54CC7 /* InviteController.swift */,
+				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 			);
 			name = Hamburger;
 			sourceTree = "<group>";
@@ -495,9 +507,13 @@
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
+				EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */,
+				EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */,
+				EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
 				EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */,
+				EEEB0CB21B707C8600C54CC7 /* InviteController.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
 				EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */,
 			);

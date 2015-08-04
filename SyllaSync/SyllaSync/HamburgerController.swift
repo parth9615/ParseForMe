@@ -138,7 +138,16 @@ class HamburgerController: UITableViewController {
             //go to new page
             
         }
+        else if indexPath.row == HamburgerCells.Compare.rawValue {
+            
+            
+        }
+        else if indexPath.row == HamburgerCells.Invite.rawValue {
+            
+            
+        }
         else {
+            
             
         }
     }
