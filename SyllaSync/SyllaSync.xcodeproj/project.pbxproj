@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		629476539D62952F541CDDE3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F2A8C8CC6FD05B266A6979 /* libPods.a */; };
 		904C33884F1A4B3D88F521CA /* libPods-SyllaSyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */; };
 		E1C851107E981979A016A6CD /* libPods-SyllaSync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273A45E127EDBD75DA760627 /* libPods-SyllaSync.a */; };
 		EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */; };
@@ -151,7 +150,6 @@
 				EE0836181B6D583D00F5CD9C /* ParseUI.framework in Frameworks */,
 				EE0836171B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework in Frameworks */,
 				E1C851107E981979A016A6CD /* libPods-SyllaSync.a in Frameworks */,
-				629476539D62952F541CDDE3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
