@@ -38,17 +38,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         getUserEvents()
-        
-//        self.createPageViewController()
-//        self.setupPageControl()
-        
-        //****************************************************************************************** begin page vc stuff
-        
-        
-        //****************************************************************************************** end page vc stuff
     }
     
     
@@ -63,6 +53,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                     self.eventsArray.addObjectsFromArray(objects)
                     self.createPageViewController()
                     self.setupPageControl()
+                    
+                    println(self.eventsArray)
                 }
             }
             else {
@@ -70,6 +62,26 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    //Working with JSON in swift 
+    //http://www.raywenderlich.com/82706/working-with-json-in-swift-tutorial
+    //
+    //
+    //
+    //
+    
+    
+    
+    
+    
+    
     
     
     

@@ -10,7 +10,9 @@ import UIKit
 
 public enum HamburgerCells: Int {
     case Filler = 0
+    case Compare
     case Settings
+    case Invite
     case AboutUs
     case Fluff
 }
@@ -46,7 +48,7 @@ class HamburgerController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 4
+        return 6
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -59,6 +61,16 @@ class HamburgerController: UITableViewController {
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
+        else if indexPath.row == HamburgerCells.Compare.rawValue {
+            var cellIdentifier = "Compare"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            }
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
+
+        }
         else if indexPath.row == HamburgerCells.Settings.rawValue {
             var cellIdentifier = "Settings"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
@@ -67,6 +79,16 @@ class HamburgerController: UITableViewController {
             }
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
+        }
+        else if indexPath.row == HamburgerCells.Invite.rawValue {
+            var cellIdentifier = "Invite"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            }
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
+
         }
         else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             var cellIdentifier = "AboutUs"
@@ -93,7 +115,7 @@ class HamburgerController: UITableViewController {
         if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
-        if indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue {
+        if indexPath.row == HamburgerCells.Invite.rawValue || indexPath.row == HamburgerCells.Compare.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue  {
             return 45
         }
         else {
