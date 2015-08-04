@@ -21,12 +21,15 @@ class EventsController: UIViewController {
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
     var eventsArray:NSMutableArray?
+    var headerCount:Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         println(self.eventsArray)
+        
+        getHeaderCount()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -34,6 +37,26 @@ class EventsController: UIViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    func getHeaderCount() {
+        var prevSyllabus:AnyObject?
+        if eventsArray != nil {
+            for var i = 0; i < eventsArray!.count; i++ {
+                if let event: AnyObject = eventsArray?[0] {
+                    if let syllabus: AnyObject? = event["syllabus"] {
+                        if syllabus!.isEqual(prevSyllabus) {
+                            continue
+                        }
+                        else {
+                            headerCount++
+                            prevSyllabus = syllabus
+                        }
+                    }
+                }
+            }
+        }
+        
+        println("\n\n\n\n\(headerCount)\n\n\n")
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +69,7 @@ class EventsController: UIViewController {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return headerCount
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
