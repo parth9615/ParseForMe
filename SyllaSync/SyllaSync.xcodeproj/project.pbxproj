@@ -69,7 +69,6 @@
 		16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SyllaSyncTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A45E127EDBD75DA760627 /* libPods-SyllaSync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SyllaSync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8E00C42DC0613F8C1BD672 /* Pods-SyllaSyncTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSyncTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSyncTests/Pods-SyllaSyncTests.release.xcconfig"; sourceTree = "<group>"; };
-		B9F2A8C8CC6FD05B266A6979 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD04F7650DDBD24E84D8CA8F /* Pods-SyllaSyncTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSyncTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSyncTests/Pods-SyllaSyncTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D579BD6B9864D59F2C534E7B /* Pods-SyllaSync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSync.release.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSync/Pods-SyllaSync.release.xcconfig"; sourceTree = "<group>"; };
 		EE0835BA1B6D37EC00F5CD9C /* SyllaSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyllaSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,7 +323,6 @@
 				EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */,
 				273A45E127EDBD75DA760627 /* libPods-SyllaSync.a */,
 				16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */,
-				B9F2A8C8CC6FD05B266A6979 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
