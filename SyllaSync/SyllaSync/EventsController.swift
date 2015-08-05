@@ -14,7 +14,7 @@ public protocol EventsContainerControllerDelegate {
     optional func collapseSidePanels()
 }
 
-class EventsController: UIViewController {
+class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var eventsTable: UITableView!
@@ -23,6 +23,8 @@ class EventsController: UIViewController {
     var eventsArray:NSMutableArray?
     var eventsArrayCount:Array<Int> = [0]
     var syllabusArray:Array<String> = []
+    var eventsArrayNames:Array<String> = []
+    var eventsArrayDates:Array<String> = []
     var headerCount:Int = 0
     
     
@@ -30,15 +32,29 @@ class EventsController: UIViewController {
         super.viewDidLoad()
         
         getHeaderCount()
+        
+        eventsTable.delegate = self
+        eventsTable.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func getHeaderCount() {
         var prevSyllabus:AnyObject?
+        
+        if eventsArray != nil {
+            if let event:AnyObject = eventsArray?[0] {
+                if let syllabus:AnyObject? = event["syllabus"] {
+                    syllabusArray.append("\(syllabus)")
+                    prevSyllabus = syllabus
+                    headerCount++
+                }
+            }
+        }
+        
         if eventsArray != nil {
             for var i = 0; i < eventsArray!.count; i++ {
                 if let event: AnyObject = eventsArray?[0] {
@@ -69,14 +85,38 @@ class EventsController: UIViewController {
     }
     
     func getEventsPerHeader() {
+        var firstSyllabus:AnyObject?
         var prevSyllabus:AnyObject?
+        
         var tmpHeaderCount = 0
+        if eventsArray != nil {
+            if let event:AnyObject = eventsArray?[0] {
+                if let syllabus:AnyObject? = event["syllabus"] {
+                    firstSyllabus = syllabus
+                    prevSyllabus = firstSyllabus
+                }
+            }
+        }
+        
         if eventsArray != nil {
             for var i = 0; i < eventsArray!.count; i++ {
                 if let event: AnyObject = eventsArray?[0] {
                     if let syllabus: AnyObject? = event["syllabus"] {
                         if syllabus!.isEqual(prevSyllabus) {
                             eventsArrayCount[tmpHeaderCount]++
+                            
+                            //will be used once we figured out the JSON format
+                            
+//                            if let eventDetails: AnyObject? = event["events"] {
+//                                eventsArrayNames = eventDetails[1]
+//                            }
+//                            if let eventDetails: AnyObject? = event["events"] {
+//                                eventsArrayDates = eventDetails[0]
+//                            }
+                            
+                            
+                            
+                            
                             continue
                         }
                         else {
@@ -102,12 +142,15 @@ class EventsController: UIViewController {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
+        println("headerCount \(headerCount)")
         return headerCount
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
+        println("section: \(section)")
+        println("eventsArrayCount: \(eventsArrayCount)")
         return eventsArrayCount[section]
     }
     
@@ -132,6 +175,7 @@ class EventsController: UIViewController {
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
+        println(section)
         label.text = syllabusArray[section]
 //        if tableViewSectionsArray[section].dayString() == NSDate().dayString() {
 //            label.text = "Today"

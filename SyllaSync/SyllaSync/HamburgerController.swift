@@ -26,7 +26,6 @@ class HamburgerController: UITableViewController {
         
         self.tableView.scrollEnabled = false //comment to enable scrolling
         
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -132,19 +131,23 @@ class HamburgerController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
         if indexPath.row == HamburgerCells.Settings.rawValue {
             //go to new page
-            
+            var settingsVC = self.storyboard?.instantiateViewControllerWithIdentifier("Settings") as! SettingsController
+            self.presentViewController(settingsVC, animated: true, completion: nil)
         }
         else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             //go to new page
-            
+            var aboutVC = self.storyboard?.instantiateViewControllerWithIdentifier("AboutUs") as! AboutController
+            self.presentViewController(aboutVC, animated: true, completion: nil)
         }
         else if indexPath.row == HamburgerCells.Compare.rawValue {
             
-            
+            var compareVC = self.storyboard?.instantiateViewControllerWithIdentifier("Compare") as! CompareController
+            self.presentViewController(compareVC, animated: true, completion: nil)
         }
         else if indexPath.row == HamburgerCells.Invite.rawValue {
             
-            
+            var inviteVC = self.storyboard?.instantiateViewControllerWithIdentifier("Invite") as! InviteController
+            self.presentViewController(inviteVC, animated: true, completion: nil)
         }
         else {
             

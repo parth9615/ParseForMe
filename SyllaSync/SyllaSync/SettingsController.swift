@@ -23,6 +23,7 @@ import Foundation
 
 class SettingsController: UIViewController {
 
+    @IBOutlet weak var closeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +35,9 @@ class SettingsController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func dismiss(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
