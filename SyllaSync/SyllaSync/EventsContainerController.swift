@@ -43,6 +43,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     
     func getUserEvents() {
+        var dimView:DimView?
+        
         var query:PFQuery = PFQuery(className: "Events")
         query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
         query.findObjectsInBackgroundWithBlock{
@@ -51,16 +53,22 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 println("got a query for \(UserSettings.sharedInstance.Username)")
                 if let objects = objects as? [PFObject!] {
                     self.eventsArray.addObjectsFromArray(objects)
+                    
+                    dimView?.removeFromSuperview()
+                    
                     self.createPageViewController()
                     self.setupPageControl()
-                    
-                    println(self.eventsArray)
                 }
             }
             else {
                 println("Error", error, error!.userInfo!)
             }
         }
+        
+        //loading view when waiting to fetch graph request.
+        dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
+        self.view.addSubview(dimView!)
+        self.view.bringSubviewToFront(dimView!)
     }
     
     

@@ -21,13 +21,12 @@ class EventsController: UIViewController {
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
     var eventsArray:NSMutableArray?
+    var eventsArrayCount:Array<Int> = [0]
     var headerCount:Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        println(self.eventsArray)
         
         getHeaderCount()
         // Uncomment the following line to preserve selection between presentations
@@ -56,6 +55,38 @@ class EventsController: UIViewController {
         }
         
         println("\n\n\n\n\(headerCount)\n\n\n")
+        
+        createEventsArray()
+    }
+    
+    func createEventsArray() {
+        for var i = 1; i < headerCount; i++ {
+            eventsArrayCount.append(0)
+        }
+        getEventsPerHeader()
+    }
+    
+    func getEventsPerHeader() {
+        var prevSyllabus:AnyObject?
+        var tmpHeaderCount = 0
+        if eventsArray != nil {
+            for var i = 0; i < eventsArray!.count; i++ {
+                if let event: AnyObject = eventsArray?[0] {
+                    if let syllabus: AnyObject? = event["syllabus"] {
+                        if syllabus!.isEqual(prevSyllabus) {
+                            eventsArrayCount[tmpHeaderCount]++
+                            continue
+                        }
+                        else {
+                            headerCount++
+                            prevSyllabus = syllabus
+                        }
+                    }
+                }
+            }
+        }
+        
+        println(eventsArrayCount)
     }
     
     

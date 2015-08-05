@@ -89,7 +89,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                     }
                     else {
                         println("There wasn't a user registered to that email")
-                        
+                            
                         dimView?.removeFromSuperview()
                         self.alertUser("no email registered facebook")
                         //send an alert saying we either couldn't access their email or they don't have an account associated with that email

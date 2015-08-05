@@ -18,7 +18,7 @@ class CalendarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println(self.eventsArray)
+        //println(self.eventsArray)
         // Do any additional setup after loading the view.
     }
     
