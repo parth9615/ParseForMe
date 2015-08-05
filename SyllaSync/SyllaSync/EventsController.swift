@@ -22,6 +22,7 @@ class EventsController: UIViewController {
     var delegate: EventsContainerControllerDelegate?
     var eventsArray:NSMutableArray?
     var eventsArrayCount:Array<Int> = [0]
+    var syllabusArray:Array<String> = []
     var headerCount:Int = 0
     
     
@@ -46,6 +47,7 @@ class EventsController: UIViewController {
                             continue
                         }
                         else {
+                            syllabusArray.append("\(syllabus)")
                             headerCount++
                             prevSyllabus = syllabus
                         }
@@ -106,7 +108,82 @@ class EventsController: UIViewController {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return eventsArrayCount[section]
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        if indexPath.row == HamburgerCells.Filler.rawValue {
+            var cellIdentifier = "Event"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            }
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
+//        }
+    }
+    
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var label = UILabel(frame: CGRectMake(-1, 0, self.view.bounds.size.width+2, 24))
+        label.font = UIFont(name: "Helvetica", size: 13)
+        label.layer.borderColor = UIColor.lightGrayColor().CGColor
+        label.layer.borderWidth = 1
+        label.textColor = UIColor.blackColor()
+        label.textAlignment = NSTextAlignment.Center
+        
+        label.text = syllabusArray[section]
+//        if tableViewSectionsArray[section].dayString() == NSDate().dayString() {
+//            label.text = "Today"
+//        }
+//        else {
+//            label.text = "\(tableViewSectionsArray[section].dayString())"
+//        }
+        
+        var view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, 30))
+        view.backgroundColor = UIColor.whiteColor()
+        
+        view.addSubview(label)
+        return view
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
+    
+    
+    
+    
+    
+    //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    //        // Return NO if you do not want the specified item to be editable.
+    //        return false
+    //    }
+    
+    
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
+//        if indexPath.row == HamburgerCells.Settings.rawValue {
+//            //go to new page
+//            
+//        }
+//        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
+//            //go to new page
+//            
+//        }
+//        else if indexPath.row == HamburgerCells.Compare.rawValue {
+//            
+//            
+//        }
+//        else if indexPath.row == HamburgerCells.Invite.rawValue {
+//            
+//            
+//        }
+//        else {
+//            
+//            
+//        }
     }
     
     //For Hamburger Settings
