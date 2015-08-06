@@ -172,11 +172,11 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     private func getItemController(itemIndex: Int) -> UIViewController? {
         
         if itemIndex < pages {
-            
             if itemIndex == 0 {
                 if eventsController == nil {
                     eventsController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as? EventsController
                 }
+                eventsController?.delegate = self
                 eventsController?.itemIndex = itemIndex
                 return eventsController
             }
@@ -241,6 +241,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         view.insertSubview(sidePanelController.view, atIndex: 0)
         
         addChildViewController(sidePanelController)
+        //self.view.bringSubviewToFront(sidePanelController.view)
         sidePanelController.didMoveToParentViewController(self)
     }
     
@@ -260,12 +261,12 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     func animateCenterPanelXPosition(#targetPosition: CGFloat, sender: AnyObject, completion: ((Bool) -> Void)! = nil) {
         if sender is EventsController {
             UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-                self.eventsController?.view.frame.origin.x = targetPosition
+                self.pageViewController?.view.frame.origin.x = targetPosition
                 }, completion: completion)
         }
         else if sender is CalendarController {
             UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-                self.calendarController?.view.frame.origin.x = targetPosition
+                self.pageViewController?.view.frame.origin.x = targetPosition
                 }, completion: completion)
         }
     }
@@ -286,7 +287,7 @@ private extension UIStoryboard {
     
     class func hamburgerController() -> HamburgerController? {
         var HamburgerStoryBoard = UIStoryboard(name: "Hamburger", bundle: nil)
-        return HamburgerStoryBoard.instantiateViewControllerWithIdentifier("HamburgerController") as? HamburgerController
+        return HamburgerStoryBoard.instantiateViewControllerWithIdentifier("Hamburger") as? HamburgerController
     }
     
     class func challengeViewController() -> EventsContainerController? {

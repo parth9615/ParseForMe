@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="1357" y="423"/>
         </scene>
-        <!--Hamburger Controller-->
+        <!--Hamburger-->
         <scene sceneID="8In-i1-UhT">
             <objects>
-                <tableViewController storyboardIdentifier="HamburgerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OIt-Re-Ag0" customClass="HamburgerController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Hamburger" title="Hamburger" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OIt-Re-Ag0" customClass="HamburgerController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hHQ-wh-r7v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,8 +199,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="OIt-Re-Ag0" id="mMM-sI-70Q"/>
-                            <outlet property="delegate" destination="OIt-Re-Ag0" id="AdE-Xr-Qmk"/>
+                            <outlet property="dataSource" destination="OIt-Re-Ag0" id="69X-XM-IdI"/>
+                            <outlet property="delegate" destination="OIt-Re-Ag0" id="Nry-Y4-Zoj"/>
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
