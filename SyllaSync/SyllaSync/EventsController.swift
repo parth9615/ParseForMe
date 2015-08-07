@@ -20,150 +20,43 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var eventsTable: UITableView!
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
-    var eventsArray:NSMutableArray?
-    var eventsArrayCount:Array<Int> = [0]
-    var syllabusArray:Array<String> = []
     var eventsArrayNames:Array<String> = []
     var eventsArrayDates:Array<String> = []
-    var headerCount:Int = 0
+    var eventService = EventService.sharedInstance
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getHeaderCount()
-        
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func getHeaderCount() {
-        var prevSyllabus:AnyObject?
-        
-        if eventsArray != nil {
-            if let event:AnyObject = eventsArray?[0] {
-                if let syllabus:AnyObject? = event["syllabus"] {
-                    syllabusArray.append("\(syllabus)")
-                    prevSyllabus = syllabus
-                    headerCount++
-                }
-            }
-        }
-        
-        if eventsArray != nil {
-            for var i = 0; i < eventsArray!.count; i++ {
-                if let event: AnyObject = eventsArray?[0] {
-                    if let syllabus: AnyObject? = event["syllabus"] {
-                        if syllabus!.isEqual(prevSyllabus) {
-                            continue
-                        }
-                        else {
-                            syllabusArray.append("\(syllabus)")
-                            headerCount++
-                            prevSyllabus = syllabus
-                        }
-                    }
-                }
-            }
-        }
-        
-        println("\n\n\n\n\(headerCount)\n\n\n")
-        
-        createEventsArray()
-    }
-    
-    func createEventsArray() {
-        for var i = 1; i < headerCount; i++ {
-            eventsArrayCount.append(0)
-        }
-        getEventsPerHeader()
-    }
-    
-    func getEventsPerHeader() {
-        var firstSyllabus:AnyObject?
-        var prevSyllabus:AnyObject?
-        
-        var tmpHeaderCount = 0
-        if eventsArray != nil {
-            if let event:AnyObject = eventsArray?[0] {
-                if let syllabus:AnyObject? = event["syllabus"] {
-                    firstSyllabus = syllabus
-                    prevSyllabus = firstSyllabus
-                }
-            }
-        }
-        
-        if eventsArray != nil {
-            for var i = 0; i < eventsArray!.count; i++ {
-                if let event: AnyObject = eventsArray?[0] {
-                    if let syllabus: AnyObject? = event["syllabus"] {
-                        if syllabus!.isEqual(prevSyllabus) {
-                            eventsArrayCount[tmpHeaderCount]++
-                            
-                            //will be used once we figured out the JSON format
-                            
-//                            if let eventDetails: AnyObject? = event["events"] {
-//                                eventsArrayNames = eventDetails[1]
-//                            }
-//                            if let eventDetails: AnyObject? = event["events"] {
-//                                eventsArrayDates = eventDetails[0]
-//                            }
-                            
-                            
-                            
-                            
-                            continue
-                        }
-                        else {
-                            headerCount++
-                            prevSyllabus = syllabus
-                        }
-                    }
-                }
-            }
-        }
-        
-        println(eventsArrayCount)
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
+        
+        var headerCount = eventService.headerCount
         println("headerCount \(headerCount)")
         return headerCount
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
+        
+        var eventsArrayCount = eventService.eventsArrayCount
         println("section: \(section)")
         println("eventsArrayCount: \(eventsArrayCount)")
         return eventsArrayCount[section]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        if indexPath.row == HamburgerCells.Filler.rawValue {
-            var cellIdentifier = "Event"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
-//        }
+        var cellIdentifier = "Event"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+        if cell == nil {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+        }
+        cell?.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell!
     }
     
     
@@ -175,14 +68,9 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
+        var syllabusArray = eventService.syllabusArray
         println(section)
         label.text = syllabusArray[section]
-//        if tableViewSectionsArray[section].dayString() == NSDate().dayString() {
-//            label.text = "Today"
-//        }
-//        else {
-//            label.text = "\(tableViewSectionsArray[section].dayString())"
-//        }
         
         var view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, 30))
         view.backgroundColor = UIColor.whiteColor()
@@ -190,6 +78,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         view.addSubview(label)
         return view
     }
+    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
@@ -208,33 +97,34 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-//        if indexPath.row == HamburgerCells.Settings.rawValue {
-//            //go to new page
-//            
-//        }
-//        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
-//            //go to new page
-//            
-//        }
-//        else if indexPath.row == HamburgerCells.Compare.rawValue {
-//            
-//            
-//        }
-//        else if indexPath.row == HamburgerCells.Invite.rawValue {
-//            
-//            
-//        }
-//        else {
-//            
-//            
-//        }
+        //        if indexPath.row == HamburgerCells.Settings.rawValue {
+        //            //go to new page
+        //
+        //        }
+        //        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
+        //            //go to new page
+        //
+        //        }
+        //        else if indexPath.row == HamburgerCells.Compare.rawValue {
+        //
+        //
+        //        }
+        //        else if indexPath.row == HamburgerCells.Invite.rawValue {
+        //
+        //
+        //        }
+        //        else {
+        //
+        //
+        //        }
     }
     
-    //For Hamburger Settings
     @IBAction func hamburgerPressed(sender: AnyObject) {
         delegate?.toggleLeftPanel?(self)
     }
-
     
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
 }

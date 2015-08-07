@@ -48,6 +48,10 @@
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
 		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
+		EEA0313D1B752DB10091B05C /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EEA0313C1B752DB10091B05C /* Cartfile */; };
+		EEA0313F1B752E5F0091B05C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */; };
+		EEA031431B7552C70091B05C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
+		EEA031451B75589F0091B05C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
 		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
 		EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */; };
 		EEEB0CB21B707C8600C54CC7 /* InviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB11B707C8600C54CC7 /* InviteController.swift */; };
@@ -116,6 +120,10 @@
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
+		EEA0313C1B752DB10091B05C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		EEA031421B7552C70091B05C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		EEA031441B75589F0091B05C /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareController.swift; sourceTree = "<group>"; };
 		EEEB0CB11B707C8600C54CC7 /* InviteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteController.swift; sourceTree = "<group>"; };
@@ -129,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */,
+				EEA0313F1B752E5F0091B05C /* SwiftyJSON.framework in Frameworks */,
 				EE0836361B6D5DC900F5CD9C /* Accounts.framework in Frameworks */,
 				EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */,
 				EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */,
@@ -179,6 +188,7 @@
 		EE0835B11B6D37EC00F5CD9C = {
 			isa = PBXGroup;
 			children = (
+				EEA0313C1B752DB10091B05C /* Cartfile */,
 				EE08387C1B6D660A00F5CD9C /* Frameworks */,
 				EE08360C1B6D583D00F5CD9C /* parse-library-1 */,
 				EE0835BC1B6D37EC00F5CD9C /* SyllaSync */,
@@ -201,6 +211,7 @@
 		EE0835BC1B6D37EC00F5CD9C /* SyllaSync */ = {
 			isa = PBXGroup;
 			children = (
+				EEA031411B7552A20091B05C /* Models */,
 				EE0835E41B6D3BDF00F5CD9C /* StoryBoards */,
 				EE0835E31B6D3BD900F5CD9C /* Controllers */,
 				EE0835E21B6D3BCA00F5CD9C /* Utils */,
@@ -305,6 +316,7 @@
 		EE08387C1B6D660A00F5CD9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */,
 				EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */,
 				EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */,
 				EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */,
@@ -327,6 +339,15 @@
 				16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EEA031411B7552A20091B05C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EEA031421B7552C70091B05C /* Event.swift */,
+				EEA031441B75589F0091B05C /* EventService.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		EEEB0CBA1B718C3700C54CC7 /* TableEvents */ = {
@@ -358,6 +379,7 @@
 				EE0835B71B6D37EC00F5CD9C /* Frameworks */,
 				EE0835B81B6D37EC00F5CD9C /* Resources */,
 				7C0B6F875D5957EA7C7F7307 /* Copy Pods Resources */,
+				EEA031401B752E720091B05C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -431,6 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEA0313D1B752DB10091B05C /* Cartfile in Resources */,
 				EE0835E91B6D3CDF00F5CD9C /* Hamburger.storyboard in Resources */,
 				EE0835C81B6D37EC00F5CD9C /* Main.storyboard in Resources */,
 				EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */,
@@ -510,6 +533,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		EEA031401B752E720091B05C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -519,12 +556,14 @@
 			files = (
 				EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */,
 				EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */,
+				EEA031451B75589F0091B05C /* EventService.swift in Sources */,
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
 				EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */,
 				EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */,
 				EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */,
+				EEA031431B7552C70091B05C /* Event.swift in Sources */,
 				EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
@@ -664,6 +703,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1",
 					"$(PROJECT_DIR)/FacebookSDK",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SyllaSync/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -682,6 +722,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1",
 					"$(PROJECT_DIR)/FacebookSDK",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SyllaSync/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

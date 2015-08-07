@@ -18,10 +18,9 @@ enum SlideOutState {
 class EventsContainerController: UIViewController, UIPageViewControllerDataSource {
     
     
-    
+    var eventService = EventService.sharedInstance
     private var pageViewController: UIPageViewController?
-    
-    var eventsArray:NSMutableArray = NSMutableArray()
+    var dimView:DimView?
     var calendarController: CalendarController?
     var eventsNavigationController: UINavigationController!
     var eventsController: EventsController?
@@ -43,32 +42,21 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     
     func getUserEvents() {
-        var dimView:DimView?
-        
-        var query:PFQuery = PFQuery(className: "Events")
-        query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
-        query.findObjectsInBackgroundWithBlock{
-            (objects: [AnyObject]?, error:NSError?) -> Void in
-            if (error == nil) {
-                println("got a query for \(UserSettings.sharedInstance.Username)")
-                if let objects = objects as? [PFObject!] {
-                    self.eventsArray.addObjectsFromArray(objects)
-                    
-                    dimView?.removeFromSuperview()
-                    
-                    self.createPageViewController()
-                    self.setupPageControl()
-                }
-            }
-            else {
-                println("Error", error, error!.userInfo!)
-            }
-        }
+
+        eventService.getJSON(self)
         
         //loading view when waiting to fetch graph request.
         dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
         self.view.addSubview(dimView!)
         self.view.bringSubviewToFront(dimView!)
+    }
+    
+    func removeDimView() {
+        dimView?.removeFromSuperview()
+        
+//        self.createPageViewController()
+//        self.setupPageControl()
+
     }
     
     
@@ -104,11 +92,9 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
             if firstController is EventsController {
                 eventsController = firstController as? EventsController
                 eventsController!.delegate = self
-                eventsController?.eventsArray = self.eventsArray
             }
             calendarController = getItemController(1)! as? CalendarController
             calendarController!.delegate = self
-            calendarController!.eventsArray = self.eventsArray
             
             let startingViewControllers: NSArray = [firstController]
             pageController.setViewControllers(startingViewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
