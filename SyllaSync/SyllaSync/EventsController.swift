@@ -20,8 +20,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var eventsTable: UITableView!
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
-    var eventsArrayNames:Array<String> = []
-    var eventsArrayDates:Array<String> = []
     var eventService = EventService.sharedInstance
     
     
@@ -68,7 +66,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
-        var syllabusArray = eventService.syllabusArray
+        var syllabusArray = eventService.eventsArraySyllabus
         println(section)
         label.text = syllabusArray[section]
         

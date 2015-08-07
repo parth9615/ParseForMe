@@ -15,14 +15,20 @@ public class EventService: NSObject {
     
     
     var eventsArray:NSMutableArray?
-    var syllabusArray:Array<String> = []
+    
+    var eventsArrayTypes = [String]()
+    var eventsArrayDates = [String]()
+    var eventsArrayTimes = [String]()
+    var eventsArrayTitles = [String]()
+    var eventsArrayWeights = [Int]()
+    var eventsArraySyllabus = [String]()
     var eventsArrayCount:Array<Int> = [0]
     var headerCount:Int = 0
     var json:JSON?
     public class var sharedInstance : EventService {
         return EventServiceInstance
     }
-   
+    
     func getJSON(sender: EventsContainerController) {
         
         var query:PFQuery = PFQuery(className: "Events")
@@ -32,6 +38,9 @@ public class EventService: NSObject {
             if (error == nil) {
                 println("got a query for \(UserSettings.sharedInstance.Username)")
                 if let objects = objects as? [PFObject!] {
+                    
+                    self.eventsArray = NSMutableArray()
+                    
                     self.eventsArray!.addObjectsFromArray(objects)
                     
                     self.getHeaderCount()
@@ -50,7 +59,7 @@ public class EventService: NSObject {
         if eventsArray != nil {
             if let event:AnyObject = eventsArray?[0] {
                 if let syllabus:AnyObject? = event["syllabus"] {
-                    syllabusArray.append("\(syllabus)")
+                    eventsArraySyllabus.append("\(syllabus)")
                     prevSyllabus = syllabus
                     headerCount++
                 }
@@ -65,7 +74,7 @@ public class EventService: NSObject {
                             continue
                         }
                         else {
-                            syllabusArray.append("\(syllabus)")
+                            eventsArraySyllabus.append("\(syllabus)")
                             headerCount++
                             prevSyllabus = syllabus
                         }
@@ -90,28 +99,41 @@ public class EventService: NSObject {
         var tmpHeaderCount = 0
         if eventsArray != nil {
             if let event:AnyObject = eventsArray?[0] {
-                if let syllabus:AnyObject? = event["syllabus"] {
-                    firstSyllabus = syllabus
-                    prevSyllabus = firstSyllabus
+                if let eventDetails:AnyObject = event["events"] {
+                    if let syllabus: AnyObject? = eventDetails["syllabus"] {
+                        firstSyllabus = syllabus
+                        prevSyllabus = firstSyllabus
+                    }
                 }
             }
         }
         
         if eventsArray != nil {
             for var i = 0; i < eventsArray!.count; i++ {
-                if let event: AnyObject = eventsArray?[0] {
-                    if let syllabus: AnyObject? = event["syllabus"] {
-                        if syllabus!.isEqual(prevSyllabus) {
-                            eventsArrayCount[tmpHeaderCount]++
-                            
-                            //will be used once we figured out the JSON format
-                            
-                            //                            if let eventDetails: AnyObject? = event["events"] {
-                            //                                eventsArrayNames = eventDetails[1]
-                            //                            }
-                            //                            if let eventDetails: AnyObject? = event["events"] {
-                            //                                eventsArrayDates = eventDetails[0]
-                            //                            }
+                if let event: AnyObject = eventsArray?[i] {
+                    if let eventDetails:AnyObject = event["events"] {
+                        if let syllabus: AnyObject = eventDetails["syllabus"] {
+                            if syllabus.isEqual(prevSyllabus) {
+                                eventsArrayCount[tmpHeaderCount]++
+                                
+                                if let eventType:AnyObject = eventDetails["Type"] {
+                                    eventsArrayTypes.append("\(eventType)")
+                                }
+                                if let eventDate:AnyObject = eventDetails["Date"] {
+                                    eventsArrayDates.append("\(eventDate)")
+                                }
+                                if let eventTime:AnyObject = eventDetails["Time"] {
+                                    eventsArrayTimes.append("\(eventTime)")
+                                }
+                                if let eventTitle:AnyObject = eventDetails["Title"] {
+                                    eventsArrayTitles.append("\(eventTitle)")
+                                }
+                                if let eventWeight:AnyObject = eventDetails["Weight"] {
+                                    eventsArrayWeights.append(eventWeight as! Int)
+                                }
+                                if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
+                                    eventsArraySyllabus.append("\(eventSyllabus)")
+                                }
                             
                             continue
                         }
@@ -126,5 +148,6 @@ public class EventService: NSObject {
         
         println(eventsArrayCount)
     }
-
+    
+}
 }

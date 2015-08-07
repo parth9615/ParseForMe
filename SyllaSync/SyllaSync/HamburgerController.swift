@@ -24,7 +24,6 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println(self.tableView)
         self.tableView.tableFooterView = UIView()
         //self.tableView.scrollEnabled = false //comment to enable scrolling
 
@@ -53,7 +52,6 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println(tableView)
         if indexPath.row == HamburgerCells.Filler.rawValue {
             var cellIdentifier = "Filler"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
@@ -114,7 +112,6 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        println(tableView)
         if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
@@ -133,7 +130,6 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
     //    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-        println(tableView)
         if indexPath.row == HamburgerCells.Settings.rawValue {
             //go to new page
             var settingsVC = self.storyboard?.instantiateViewControllerWithIdentifier("Settings") as! SettingsController

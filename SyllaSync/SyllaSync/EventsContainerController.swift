@@ -54,8 +54,8 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     func removeDimView() {
         dimView?.removeFromSuperview()
         
-//        self.createPageViewController()
-//        self.setupPageControl()
+        self.createPageViewController()
+        self.setupPageControl()
 
     }
     
