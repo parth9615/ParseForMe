@@ -29,7 +29,7 @@ public class EventService: NSObject {
         return EventServiceInstance
     }
     
-    func getJSON(sender: EventsContainerController) {
+    func getJSON(sender: AnyObject) {
         
         var query:PFQuery = PFQuery(className: "Events")
         query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
@@ -52,10 +52,11 @@ public class EventService: NSObject {
         }
     }
     
-    func getHeaderCount(sender: EventsContainerController) {
+    func getHeaderCount(sender: AnyObject) {
         var prevSyllabus:AnyObject?
         
         var tmpHeaderCount = 0
+        headerCount = 0
         if eventsArray != nil {
             if let event:AnyObject = eventsArray?[0] {
                 if let eventDetails:AnyObject = event["events"] {
@@ -68,6 +69,7 @@ public class EventService: NSObject {
         }
         
         if eventsArray != nil {
+            println("eventsArray count: \(eventsArray!.count)")
             for var i = 0; i < eventsArray!.count; i++ {
                 if let event: AnyObject = eventsArray?[i] {
                     if let eventDetails:AnyObject = event["events"] {
@@ -85,17 +87,21 @@ public class EventService: NSObject {
                 }
             }
         }
+        println(headerCount)
         createEventsArray(sender)
     }
     
-    func createEventsArray(sender: EventsContainerController) {
-        for var i = 1; i < headerCount; i++ {
-            eventsArrayCount.append(0)
+    func createEventsArray(sender: AnyObject) {
+        if headerCount != eventsArrayCount.count {
+            for var i = 1; i < headerCount; i++ {
+                eventsArrayCount.append(0)
+            }
+            getEventsPerHeader(sender)
         }
-        getEventsPerHeader(sender)
+        finish(sender)
     }
     
-    func getEventsPerHeader(sender: EventsContainerController) {
+    func getEventsPerHeader(sender: AnyObject) {
         var firstSyllabus:AnyObject?
         var prevSyllabus:AnyObject?
         
@@ -168,9 +174,18 @@ public class EventService: NSObject {
                     }
                 }
             }
-            sender.removeDimView()
-            println(eventsArrayCount)
         }
-        
+        finish(sender)
+    }
+    
+    func finish(sender: AnyObject) {
+        if sender is EventsContainerController  {
+            var mySender = sender as! EventsContainerController
+            mySender.finishedLoading()
+        }
+        if sender is EventsController {
+            var mySender = sender as! EventsController
+            mySender.finishedLoading()
+        }
     }
 }

@@ -43,7 +43,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
     
     func getUserEvents() {
 
-        eventService.getJSON(self)
+        eventService.getJSON(self as UIViewController)
         
         //loading view when waiting to fetch graph request.
         dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
@@ -51,7 +51,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         self.view.bringSubviewToFront(dimView!)
     }
     
-    func removeDimView() {
+    func finishedLoading() {
         dimView?.removeFromSuperview()
         
         self.createPageViewController()

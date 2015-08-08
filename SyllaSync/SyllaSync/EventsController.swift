@@ -21,6 +21,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
     var previousClasses:Int = 0
+    var refreshControl:UIRefreshControl!
     var eventService = EventService.sharedInstance
     
     
@@ -31,17 +32,22 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         eventsTable.dataSource = self
         
         //pull to refresh
-        var refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: Selector("reloadData"), forControlEvents: UIControlEvents.ValueChanged)
-        refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Events")
+        self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        eventsTable.addSubview(refreshControl)
   
         //isn't working for some reason
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    public func reloadData() {
+    func refresh() {
         eventService.getJSON(self)
         eventsTable.reloadData()
+    }
+    
+    func finishedLoading() {
+        self.refreshControl.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {
