@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BoosterNextFY-Black.otf</string>
+		<string>BoosterNextFY-Bold.otf</string>
+		<string>BoosterNextFY-Light.otf</string>
+		<string>BoosterNextFY-Medium.otf</string>
+		<string>BoosterNextFY-Regular.otf</string>
+		<string>BosterNextFY-Thin.otf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

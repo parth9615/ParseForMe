@@ -188,12 +188,14 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             if (error == nil) {
                 
                 
-            
+                //TO DO: INTEGRATE GOOGLE WITH PARSE USER LOGINS
                 
                 let userId = user.userID                  // For client-side use only!
                 let idToken = user.authentication.idToken // Safe to send to the server
                 let name = user.profile.name
                 let email = user.profile.email
+                
+                println(email)
                 // ...
             } else {
                 println("\(error.localizedDescription)")

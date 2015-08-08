@@ -30,7 +30,21 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
+
+        
+        
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width, self.navigationBar.frame.height));
+        var image = UIImage(named: "SyllaSyncWords")
+        imageView.image = image
+        navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width, self.view.frame.height)
+        println(navigationBar.topItem?.titleView?.frame)
+        navigationBar.topItem?.titleView = imageView
+        navigationBar.topItem?.titleView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -130,6 +144,32 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+}
+
+extension UIColor {
+    
+    convenience init(hex: Int) {
+        
+        let components = (
+            R: CGFloat((hex >> 16) & 0xff) / 255,
+            G: CGFloat((hex >> 08) & 0xff) / 255,
+            B: CGFloat((hex >> 00) & 0xff) / 255
+        )
+        
+        self.init(red: components.R, green: components.G, blue: components.B, alpha: 1)
+        
+    }
+    
+}
+
+extension CGColor {
+    
+    class func colorWithHex(hex: Int) -> CGColorRef {
+        
+        return UIColor(hex: hex).CGColor
+        
     }
     
 }
