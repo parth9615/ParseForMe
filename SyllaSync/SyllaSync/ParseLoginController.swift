@@ -67,6 +67,10 @@ PFSignUpViewControllerDelegate {
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
+        //                var currentInstallation = PFInstallation.currentInstallation()
+        //                currentInstallation.userID = "\(user.username!)"
+        
+        
         UserSettings.sharedInstance.Username = user.username!
         println("just completed loggin in for user: \(UserSettings.sharedInstance.Username)")
     }

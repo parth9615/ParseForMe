@@ -164,6 +164,9 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                 self.userEmail = result.valueForKey("email") as? NSString
                 println("User Email is: \(self.userEmail)")
                 
+//                var currentInstallation = PFInstallation.currentInstallation()
+//                currentInstallation.userID = "\(self.userEmail)"
+                
                 println(result)
                 println(self.userEmail)
                 println(self.userName)

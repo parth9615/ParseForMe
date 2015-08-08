@@ -19,7 +19,10 @@ import Bolts
 
 
 
-
+//setting up push notifications https://www.parse.com/tutorials/ios-push-notifications
+// swift help with ^ http://stackoverflow.com/questions/30761996/swift-2-0-binary-operator-cannot-be-applied-to-two-uiusernotificationtype
+//https://parse.com/questions/sending-push-notifications-to-a-specific-user
+//
 
 
 
@@ -37,8 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT",
             clientKey: "PqKUmPMkFwQAClVFYqSuw9xfidR179CyGQwlXHYh")
-
         
+        
+        //set up push notifications
+        var userNotificationTypes:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        var settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+
         // Initialize sign-in
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -147,6 +156,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
         }
         
+    }
+    
+    
+    
+    //for push notifications
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        var currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.channels = ["Global"]
+        currentInstallation.saveInBackground()
+    }
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
 }
 
