@@ -20,6 +20,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var eventsTable: UITableView!
     var itemIndex: Int = 1
     var delegate: EventsContainerControllerDelegate?
+    var previousClasses:Int = 0
     var eventService = EventService.sharedInstance
     
     
@@ -35,24 +36,32 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         var headerCount = eventService.headerCount
-        println("headerCount \(headerCount)")
         return headerCount
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var eventsArrayCount = eventService.eventsArrayCount
-        println("section: \(section)")
-        println("eventsArrayCount: \(eventsArrayCount)")
         return eventsArrayCount[section]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cellIdentifier = "Event"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? EventCell
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
         }
+        
+        var indexPathSection = indexPath.section
+        previousClasses = 0
+        for var i = indexPathSection-1; i >= 0; i-- {
+            previousClasses += eventService.eventsArrayCount[i]
+        }
+        
+        println(eventService.eventsArrayTitles)
+        cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
+        cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
+        
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
     }
@@ -66,9 +75,9 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
-        var syllabusArray = eventService.eventsArraySyllabus
+        var classNameArray = eventService.eventsArraySyllabus
         println(section)
-        label.text = syllabusArray[section]
+        label.text = classNameArray[section]
         
         var view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, 30))
         view.backgroundColor = UIColor.whiteColor()

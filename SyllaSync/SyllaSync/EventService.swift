@@ -43,8 +43,7 @@ public class EventService: NSObject {
                     
                     self.eventsArray!.addObjectsFromArray(objects)
                     
-                    self.getHeaderCount()
-                    sender.removeDimView()
+                    self.getHeaderCount(sender)
                 }
             }
             else {
@@ -53,46 +52,50 @@ public class EventService: NSObject {
         }
     }
     
-    public func getHeaderCount() {
+    func getHeaderCount(sender: EventsContainerController) {
         var prevSyllabus:AnyObject?
         
+        var tmpHeaderCount = 0
         if eventsArray != nil {
             if let event:AnyObject = eventsArray?[0] {
-                if let syllabus:AnyObject? = event["syllabus"] {
-                    eventsArraySyllabus.append("\(syllabus)")
-                    prevSyllabus = syllabus
-                    headerCount++
+                if let eventDetails:AnyObject = event["events"] {
+                    if let syllabus: AnyObject? = eventDetails["Syllabus"] {
+                        prevSyllabus = syllabus
+                        headerCount++
+                    }
                 }
             }
         }
         
         if eventsArray != nil {
             for var i = 0; i < eventsArray!.count; i++ {
-                if let event: AnyObject = eventsArray?[0] {
-                    if let syllabus: AnyObject? = event["syllabus"] {
-                        if syllabus!.isEqual(prevSyllabus) {
-                            continue
-                        }
-                        else {
-                            eventsArraySyllabus.append("\(syllabus)")
-                            headerCount++
-                            prevSyllabus = syllabus
+                if let event: AnyObject = eventsArray?[i] {
+                    if let eventDetails:AnyObject = event["events"] {
+                        if let syllabus: AnyObject = eventDetails["Syllabus"] {
+                            if syllabus.isEqual(prevSyllabus) {
+                                continue
+                            }
+                            else {
+                                eventsArraySyllabus.append("\(syllabus)")
+                                headerCount++
+                                prevSyllabus = syllabus
+                            }
                         }
                     }
                 }
             }
         }
-        createEventsArray()
+        createEventsArray(sender)
     }
     
-    func createEventsArray() {
+    func createEventsArray(sender: EventsContainerController) {
         for var i = 1; i < headerCount; i++ {
             eventsArrayCount.append(0)
         }
-        getEventsPerHeader()
+        getEventsPerHeader(sender)
     }
     
-    func getEventsPerHeader() {
+    func getEventsPerHeader(sender: EventsContainerController) {
         var firstSyllabus:AnyObject?
         var prevSyllabus:AnyObject?
         
@@ -100,7 +103,7 @@ public class EventService: NSObject {
         if eventsArray != nil {
             if let event:AnyObject = eventsArray?[0] {
                 if let eventDetails:AnyObject = event["events"] {
-                    if let syllabus: AnyObject? = eventDetails["syllabus"] {
+                    if let syllabus: AnyObject? = eventDetails["Syllabus"] {
                         firstSyllabus = syllabus
                         prevSyllabus = firstSyllabus
                     }
@@ -112,7 +115,7 @@ public class EventService: NSObject {
             for var i = 0; i < eventsArray!.count; i++ {
                 if let event: AnyObject = eventsArray?[i] {
                     if let eventDetails:AnyObject = event["events"] {
-                        if let syllabus: AnyObject = eventDetails["syllabus"] {
+                        if let syllabus: AnyObject = eventDetails["Syllabus"] {
                             if syllabus.isEqual(prevSyllabus) {
                                 eventsArrayCount[tmpHeaderCount]++
                                 
@@ -134,20 +137,40 @@ public class EventService: NSObject {
                                 if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
                                     eventsArraySyllabus.append("\(eventSyllabus)")
                                 }
-                            
-                            continue
-                        }
-                        else {
-                            headerCount++
-                            prevSyllabus = syllabus
+                                
+                                continue
+                            }
+                            else {
+                                tmpHeaderCount++
+                                eventsArrayCount[tmpHeaderCount]++
+                                prevSyllabus = syllabus
+                                
+                                if let eventType:AnyObject = eventDetails["Type"] {
+                                    eventsArrayTypes.append("\(eventType)")
+                                }
+                                if let eventDate:AnyObject = eventDetails["Date"] {
+                                    eventsArrayDates.append("\(eventDate)")
+                                }
+                                if let eventTime:AnyObject = eventDetails["Time"] {
+                                    eventsArrayTimes.append("\(eventTime)")
+                                }
+                                if let eventTitle:AnyObject = eventDetails["Title"] {
+                                    eventsArrayTitles.append("\(eventTitle)")
+                                }
+                                if let eventWeight:AnyObject = eventDetails["Weight"] {
+                                    eventsArrayWeights.append(eventWeight as! Int)
+                                }
+                                if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
+                                    eventsArraySyllabus.append("\(eventSyllabus)")
+                                }
+                            }
                         }
                     }
                 }
             }
+            sender.removeDimView()
+            println(eventsArrayCount)
         }
         
-        println(eventsArrayCount)
     }
-    
-}
 }
