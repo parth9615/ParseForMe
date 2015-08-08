@@ -190,6 +190,25 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" rowHeight="60" id="Lnb-9s-Wre">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lnb-9s-Wre" id="nQw-j6-5qV">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmK-8k-UAa">
+                                            <rect key="frame" x="60" y="19" width="54" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XmK-8k-UAa" firstAttribute="leading" secondItem="nQw-j6-5qV" secondAttribute="leadingMargin" constant="52" id="Ckq-tJ-e1u"/>
+                                        <constraint firstAttribute="centerY" secondItem="XmK-8k-UAa" secondAttribute="centerY" id="hdg-Xo-IZl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Fluff" rowHeight="270" id="JT2-Wf-rDd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -208,6 +227,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJs-Oa-6tG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="520" y="423"/>
+        </scene>
+        <!--Logout Controller-->
+        <scene sceneID="wFB-G1-S8X">
+            <objects>
+                <viewController storyboardIdentifier="Logout" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ldb-bM-tJZ" customClass="LogoutController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0XI-n3-hNM"/>
+                        <viewControllerLayoutGuide type="bottom" id="QAP-Kv-Ca4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SRs-DQ-tZo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRg-z5-zre">
+                                <rect key="frame" x="136" y="202" width="49" height="30"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="ldb-bM-tJZ" eventType="touchUpInside" id="BmG-f4-P8R"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaR-vK-BQo">
+                                <rect key="frame" x="258" y="20" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="ldb-bM-tJZ" eventType="touchUpInside" id="u72-Ol-0Qq"/>
+                                    <action selector="dismiss:" destination="HEa-Rm-AGJ" eventType="touchUpInside" id="FNm-1x-CDx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ubs-dU-SFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2618" y="423"/>
         </scene>
         <!--About Controller-->
         <scene sceneID="oMj-yg-WKP">

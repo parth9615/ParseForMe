@@ -14,6 +14,7 @@ public enum HamburgerCells: Int {
     case Settings
     case Invite
     case AboutUs
+    case Logout
     case Fluff
 }
 
@@ -48,7 +49,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 6
+        return 7
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -99,6 +100,15 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
+        else if indexPath.row == HamburgerCells.Logout.rawValue {
+            var cellIdentifier = "Logout"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier:cellIdentifier)
+            }
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
+        }
         else {
             var cellIdentifier = "Fluff"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
@@ -115,7 +125,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
         if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
-        if indexPath.row == HamburgerCells.Invite.rawValue || indexPath.row == HamburgerCells.Compare.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue  {
+        if indexPath.row == HamburgerCells.Invite.rawValue || indexPath.row == HamburgerCells.Compare.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue  {
             return 45
         }
         else {
@@ -149,6 +159,11 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             
             var inviteVC = self.storyboard?.instantiateViewControllerWithIdentifier("Invite") as! InviteController
             self.presentViewController(inviteVC, animated: true, completion: nil)
+        }
+        else if indexPath.row == HamburgerCells.Logout.rawValue {
+            
+            var logoutVC = self.storyboard?.instantiateViewControllerWithIdentifier("Logout") as! LogoutController
+            self.presentViewController(logoutVC, animated: true, completion: nil)
         }
         else {
             
