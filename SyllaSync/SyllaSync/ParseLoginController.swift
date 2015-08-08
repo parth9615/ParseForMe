@@ -67,8 +67,9 @@ PFSignUpViewControllerDelegate {
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        //                var currentInstallation = PFInstallation.currentInstallation()
-        //                currentInstallation.userID = "\(user.username!)"
+        var currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setObject(user.username!, forKey: "Username")
+        currentInstallation.saveInBackground()
         
         
         UserSettings.sharedInstance.Username = user.username!

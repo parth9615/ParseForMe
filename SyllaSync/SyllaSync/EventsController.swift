@@ -58,7 +58,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
             previousClasses += eventService.eventsArrayCount[i]
         }
         
-        println(eventService.eventsArrayTitles)
         cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
         cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
         
@@ -76,7 +75,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textAlignment = NSTextAlignment.Center
         
         var classNameArray = eventService.eventsArraySyllabus
-        println(section)
         label.text = classNameArray[section]
         
         var view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, 30))
