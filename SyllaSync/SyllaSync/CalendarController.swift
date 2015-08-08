@@ -28,7 +28,6 @@ class CalendarController: UIViewController {
         var image = UIImage(named: "SyllaSyncWords")
         imageView.image = image
         navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width, self.view.frame.height)
-        println(navigationBar.topItem?.titleView?.frame)
         navigationBar.topItem?.titleView = imageView
         navigationBar.topItem?.titleView?.contentMode = UIViewContentMode.ScaleAspectFit
     }

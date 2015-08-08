@@ -30,10 +30,18 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
-
-        
-        
+        //pull to refresh
+        var refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: Selector("reloadData"), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.tintColor = UIColor.whiteColor()
+  
+        //isn't working for some reason
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    public func reloadData() {
+        eventService.getJSON(self)
+        eventsTable.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,7 +50,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         var image = UIImage(named: "SyllaSyncWords")
         imageView.image = image
         navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width, self.view.frame.height)
-        println(navigationBar.topItem?.titleView?.frame)
         navigationBar.topItem?.titleView = imageView
         navigationBar.topItem?.titleView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
@@ -71,7 +78,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         for var i = indexPathSection-1; i >= 0; i-- {
             previousClasses += eventService.eventsArrayCount[i]
         }
-        
+//        cell?.backgroundColor = UIColor(rgba: "#0099CC")//.colorWithAlphaComponent(0.2)
         cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
         cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
         
@@ -88,6 +95,8 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
+        label.font = UIFont(name: "BoosterNextFY-Black", size: 15)
+        
         var classNameArray = eventService.eventsArraySyllabus
         label.text = classNameArray[section]
         
@@ -102,10 +111,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
-    
-    
-    
-    
+
     
     //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     //        // Return NO if you do not want the specified item to be editable.
@@ -149,27 +155,46 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
 }
 
 extension UIColor {
-    
-    convenience init(hex: Int) {
+    public convenience init(rgba: String) {
+        var red:   CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue:  CGFloat = 0.0
+        var alpha: CGFloat = 1.0
         
-        let components = (
-            R: CGFloat((hex >> 16) & 0xff) / 255,
-            G: CGFloat((hex >> 08) & 0xff) / 255,
-            B: CGFloat((hex >> 00) & 0xff) / 255
-        )
-        
-        self.init(red: components.R, green: components.G, blue: components.B, alpha: 1)
-        
+        if rgba.hasPrefix("#") {
+            let index   = advance(rgba.startIndex, 1)
+            let hex     = rgba.substringFromIndex(index)
+            let scanner = NSScanner(string: hex)
+            var hexValue: CUnsignedLongLong = 0
+            if scanner.scanHexLongLong(&hexValue) {
+                switch (count(hex)) {
+                case 3:
+                    red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
+                    green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
+                    blue  = CGFloat(hexValue & 0x00F)              / 15.0
+                case 4:
+                    red   = CGFloat((hexValue & 0xF000) >> 12)     / 15.0
+                    green = CGFloat((hexValue & 0x0F00) >> 8)      / 15.0
+                    blue  = CGFloat((hexValue & 0x00F0) >> 4)      / 15.0
+                    alpha = CGFloat(hexValue & 0x000F)             / 15.0
+                case 6:
+                    red   = CGFloat((hexValue & 0xFF0000) >> 16)   / 255.0
+                    green = CGFloat((hexValue & 0x00FF00) >> 8)    / 255.0
+                    blue  = CGFloat(hexValue & 0x0000FF)           / 255.0
+                case 8:
+                    red   = CGFloat((hexValue & 0xFF000000) >> 24) / 255.0
+                    green = CGFloat((hexValue & 0x00FF0000) >> 16) / 255.0
+                    blue  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
+                    alpha = CGFloat(hexValue & 0x000000FF)         / 255.0
+                default:
+                    print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8")
+                }
+            } else {
+                println("Scan hex error")
+            }
+        } else {
+            print("Invalid RGB string, missing '#' as prefix")
+        }
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
-    
-}
-
-extension CGColor {
-    
-    class func colorWithHex(hex: Int) -> CGColorRef {
-        
-        return UIColor(hex: hex).CGColor
-        
-    }
-    
 }
