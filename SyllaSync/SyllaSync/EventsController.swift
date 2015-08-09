@@ -16,10 +16,10 @@ public protocol EventsContainerControllerDelegate {
 
 class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
+
     @IBOutlet weak var eventsTable: UITableView!
     var itemIndex: Int = 1
-    var delegate: EventsContainerControllerDelegate?
+
     var previousClasses:Int = 0
     var refreshControl:UIRefreshControl!
     var eventService = EventService.sharedInstance
@@ -30,7 +30,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        navigationBar.barTintColor = UIColor(rgba: "#04a4ca")
+
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         
         //pull to refresh
@@ -39,8 +39,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         eventsTable.addSubview(refreshControl)
   
-        //isn't working for some reason
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func refresh() {
@@ -55,12 +53,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
 
-        var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
-        var image = UIImage(named: "SyllaSyncWords")
-        imageView.image = image
-        navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width/1.5, self.view.frame.height/1.5)
-        navigationBar.topItem?.titleView = imageView
-        navigationBar.topItem?.titleView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -99,8 +91,8 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var label = UILabel(frame: CGRectMake(-1, 0, self.view.bounds.size.width+2, 24))
         label.font = UIFont(name: "Helvetica", size: 13)
-        label.layer.borderColor = UIColor.lightGrayColor().CGColor
-        label.layer.borderWidth = 1
+        //label.layer.borderColor = UIColor.lightGrayColor().CGColor
+        //label.layer.borderWidth = 1
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
@@ -153,9 +145,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         //        }
     }
     
-    @IBAction func hamburgerPressed(sender: AnyObject) {
-        delegate?.toggleLeftPanel?(self)
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

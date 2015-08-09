@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="650" y="477"/>
         </scene>
-        <!--Events Controller-->
+        <!--Table Calendar Container Controller-->
         <scene sceneID="Biu-ER-Ayb">
             <objects>
-                <viewController storyboardIdentifier="EventsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zln-ye-ghh" customClass="EventsController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="containerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zln-ye-ghh" customClass="TableCalendarContainerController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e7u-li-gog"/>
                         <viewControllerLayoutGuide type="bottom" id="J90-vt-P1l"/>
@@ -83,8 +83,55 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w6V-Qd-SJq">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Bn-zQ-MvC">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="container" destination="4Bn-zQ-MvC" id="jT9-Ak-lJH"/>
+                        <outlet property="navigationBar" destination="6Hq-GG-TiK" id="HaF-uX-b56"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fsd-CZ-svf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157" y="477"/>
+        </scene>
+        <!--Calendar Controller-->
+        <scene sceneID="YPF-Ml-dul">
+            <objects>
+                <viewController storyboardIdentifier="Calendar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X0y-L3-JmP" customClass="CalendarController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jwK-tQ-mgN"/>
+                        <viewControllerLayoutGuide type="bottom" id="KVn-dD-Xo5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CGF-jI-ie1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="shz-z9-tM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1612" y="183"/>
+        </scene>
+        <!--Events Controller-->
+        <scene sceneID="XYS-bF-3gy">
+            <objects>
+                <viewController restorationIdentifier="Table" storyboardIdentifier="Table" id="o4x-s7-PxP" customClass="EventsController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xyk-1o-Ru3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vce-f5-4IX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SLH-72-jL0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w6V-Qd-SJq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="70" id="1Jn-OR-kg0" customClass="EventCell" customModule="SyllaSync" customModuleProvider="target">
@@ -122,16 +169,17 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="eventsTable" destination="w6V-Qd-SJq" id="15Q-wJ-OkP"/>
-                        <outlet property="navigationBar" destination="6Hq-GG-TiK" id="HaF-uX-b56"/>
+                        <outlet property="eventsTable" destination="w6V-Qd-SJq" id="M0V-Zd-cuO"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fsd-CZ-svf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rVX-OO-XP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157" y="477"/>
+            <point key="canvasLocation" x="1612" y="849"/>
         </scene>
     </scenes>
     <resources>

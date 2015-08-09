@@ -54,6 +54,8 @@
 		EE9FCE791B765E9200C052C7 /* BoosterNextFY-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE731B765E8200C052C7 /* BoosterNextFY-Medium.otf */; };
 		EE9FCE7A1B765E9200C052C7 /* BoosterNextFY-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE741B765E8200C052C7 /* BoosterNextFY-Regular.otf */; };
 		EE9FCE7B1B765E9200C052C7 /* BoosterNextFY-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE751B765E8200C052C7 /* BoosterNextFY-Thin.otf */; };
+		EE9FCE811B77F5B900C052C7 /* TableCalendarContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */; };
+		EE9FCE831B77F82800C052C7 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE821B77F82800C052C7 /* CalendarController.swift */; };
 		EEA0313D1B752DB10091B05C /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EEA0313C1B752DB10091B05C /* Cartfile */; };
 		EEA0313F1B752E5F0091B05C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */; };
 		EEA031431B7552C70091B05C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
@@ -132,6 +134,8 @@
 		EE9FCE731B765E8200C052C7 /* BoosterNextFY-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Medium.otf"; sourceTree = "<group>"; };
 		EE9FCE741B765E8200C052C7 /* BoosterNextFY-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Regular.otf"; sourceTree = "<group>"; };
 		EE9FCE751B765E8200C052C7 /* BoosterNextFY-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Thin.otf"; sourceTree = "<group>"; };
+		EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCalendarContainerController.swift; sourceTree = "<group>"; };
+		EE9FCE821B77F82800C052C7 /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		EEA0313C1B752DB10091B05C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		EEA031421B7552C70091B05C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -275,10 +279,11 @@
 		EE0835E31B6D3BD900F5CD9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EEEB0CBA1B718C3700C54CC7 /* TableEvents */,
+				EEEB0CBA1B718C3700C54CC7 /* Events */,
 				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
 				EE0835C41B6D37EC00F5CD9C /* LoginController.swift */,
+				EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */,
 				EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */,
 			);
 			name = Controllers;
@@ -376,13 +381,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		EEEB0CBA1B718C3700C54CC7 /* TableEvents */ = {
+		EEEB0CBA1B718C3700C54CC7 /* Events */ = {
 			isa = PBXGroup;
 			children = (
 				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
 				EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */,
+				EE9FCE821B77F82800C052C7 /* CalendarController.swift */,
 			);
-			name = TableEvents;
+			name = Events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,7 +587,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */,
+				EE9FCE831B77F82800C052C7 /* CalendarController.swift in Sources */,
 				EEA031451B75589F0091B05C /* EventService.swift in Sources */,
+				EE9FCE811B77F5B900C052C7 /* TableCalendarContainerController.swift in Sources */,
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,

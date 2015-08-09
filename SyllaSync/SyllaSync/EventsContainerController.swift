@@ -20,14 +20,14 @@ class EventsContainerController: UIViewController {
     
     var eventService = EventService.sharedInstance
     var dimView:DimView?
-    var eventsController: EventsController?
+    var tableCalendarController: TableCalendarContainerController?
     var currentState: SlideOutState = .BothCollapsed {
         didSet {
             let shouldShowShadow = currentState != .BothCollapsed
             showShadowForCenterViewController(shouldShowShadow)
         }
     }
-    var pages = 2
+    var index = 0
     var hamburgerController: HamburgerController?
     let centerPanelExpandedOffset: CGFloat = 60
     
@@ -51,12 +51,13 @@ class EventsContainerController: UIViewController {
     func finishedLoading() {
         dimView?.removeFromSuperview()
         
-        if eventsController == nil {
-            eventsController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as? EventsController
+        if tableCalendarController == nil {
+            tableCalendarController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("containerController") as? TableCalendarContainerController
         }
-        view.addSubview(eventsController!.view!)
-        eventsController!.delegate = self
-        
+        view.addSubview(tableCalendarController!.view)
+        addChildViewController(tableCalendarController!)
+        tableCalendarController?.didMoveToParentViewController(self)
+        tableCalendarController!.delegate = self
     }
     
     
@@ -68,9 +69,9 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     func toggleLeftPanel(sender :AnyObject) {
         let notAlreadyExpanded = (currentState != .LeftPanelExpanded)
         
+    
         if notAlreadyExpanded {
             addLeftPanelViewController()
-            
         }
         animateLeftPanel(shouldExpand: notAlreadyExpanded, sender: sender)
     }
@@ -95,7 +96,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         if (shouldExpand) {
             currentState = .LeftPanelExpanded
             
-            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(eventsController!.view.frame) - centerPanelExpandedOffset, sender: sender)
+            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(tableCalendarController!.view.frame) - centerPanelExpandedOffset, sender: sender)
         } else {
             animateCenterPanelXPosition(targetPosition: 0, sender: sender) { finished in
                 self.currentState = .BothCollapsed
@@ -106,15 +107,15 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     
     func animateCenterPanelXPosition(#targetPosition: CGFloat, sender: AnyObject, completion: ((Bool) -> Void)! = nil) {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            self.eventsController!.view.frame.origin.x = targetPosition
+            self.tableCalendarController!.view.frame.origin.x = targetPosition
             }, completion: completion)
     }
     
     func showShadowForCenterViewController(shouldShowShadow: Bool) {
         if (shouldShowShadow) {
-            eventsController?.view.layer.shadowOpacity = 0.8
+            tableCalendarController?.view.layer.shadowOpacity = 0.8
         } else {
-            eventsController?.view.layer.shadowOpacity = 0.0
+            tableCalendarController?.view.layer.shadowOpacity = 0.0
         }
     }
 }

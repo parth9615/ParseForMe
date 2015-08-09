@@ -10,6 +10,7 @@ import UIKit
 
 public enum HamburgerCells: Int {
     case Filler = 0
+    case Calendar
     case Compare
     case Settings
     case Invite
@@ -49,7 +50,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 7
+        return 8
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -61,6 +62,15 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             }
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             cell?.backgroundColor = UIColor(rgba: "#04a4ca")
+            return cell!
+        }
+        else if indexPath.row == HamburgerCells.Calendar.rawValue {
+            var cellIdentifier = "Calendar"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            }
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
         else if indexPath.row == HamburgerCells.Compare.rawValue {
@@ -126,7 +136,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
         if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
-        if indexPath.row == HamburgerCells.Invite.rawValue || indexPath.row == HamburgerCells.Compare.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue  {
+        if indexPath.row == HamburgerCells.Invite.rawValue || indexPath.row == HamburgerCells.Compare.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue || indexPath.row == HamburgerCells.Calendar.rawValue {
             return 45
         }
         else {
@@ -145,6 +155,9 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             //go to new page
             var settingsVC = self.storyboard?.instantiateViewControllerWithIdentifier("Settings") as! SettingsController
             self.presentViewController(settingsVC, animated: true, completion: nil)
+        }
+        else if indexPath.row == HamburgerCells.Calendar.rawValue {
+             parent?.toggleLeftPanel(self)
         }
         else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             //go to new page
