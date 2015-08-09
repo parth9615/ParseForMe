@@ -51,7 +51,7 @@ class TableCalendarContainerController: UIViewController {
             calendarView = true
             
             if calendarController == nil {
-                self.storyboard?.instantiateViewControllerWithIdentifier("Calendar")
+                calendarController = self.storyboard?.instantiateViewControllerWithIdentifier("Calendar") as? CalendarController
             }
             
             container.addSubview(calendarController!.view)
@@ -61,7 +61,7 @@ class TableCalendarContainerController: UIViewController {
             calendarView = false
             
             if eventsController == nil {
-                self.storyboard?.instantiateViewControllerWithIdentifier("Events")
+                eventsController = self.storyboard?.instantiateViewControllerWithIdentifier("Events") as? EventsController
             }
             
             container.addSubview(eventsController!.view)

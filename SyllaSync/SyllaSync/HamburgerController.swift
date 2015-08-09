@@ -22,6 +22,7 @@ public enum HamburgerCells: Int {
 class HamburgerController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
     var parent:EventsContainerController?
+    var toggleCell:ToggleCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +66,12 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             return cell!
         }
         else if indexPath.row == HamburgerCells.Calendar.rawValue {
-            var cellIdentifier = "Calendar"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
+            var cellIdentifier = "Toggle"
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? ToggleCell
             if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? ToggleCell
             }
+            toggleCell = cell
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
@@ -157,7 +159,15 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             self.presentViewController(settingsVC, animated: true, completion: nil)
         }
         else if indexPath.row == HamburgerCells.Calendar.rawValue {
-             parent?.toggleLeftPanel(self)
+            parent?.toggleLeftPanel(self)
+            parent?.tableCalendarController?.toggleViews()
+            if self.toggleCell!.label.text == "Calendar View"{
+                self.toggleCell!.label.text = "Table View"
+            }
+            else {
+                self.toggleCell!.label.text = "Calendar View"
+            }
+            
         }
         else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             //go to new page

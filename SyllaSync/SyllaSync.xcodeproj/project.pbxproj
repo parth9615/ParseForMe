@@ -56,6 +56,7 @@
 		EE9FCE7B1B765E9200C052C7 /* BoosterNextFY-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE751B765E8200C052C7 /* BoosterNextFY-Thin.otf */; };
 		EE9FCE811B77F5B900C052C7 /* TableCalendarContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */; };
 		EE9FCE831B77F82800C052C7 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE821B77F82800C052C7 /* CalendarController.swift */; };
+		EE9FCE851B7804E100C052C7 /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE841B7804E100C052C7 /* ToggleCell.swift */; };
 		EEA0313D1B752DB10091B05C /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EEA0313C1B752DB10091B05C /* Cartfile */; };
 		EEA0313F1B752E5F0091B05C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */; };
 		EEA031431B7552C70091B05C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
@@ -136,6 +137,7 @@
 		EE9FCE751B765E8200C052C7 /* BoosterNextFY-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Thin.otf"; sourceTree = "<group>"; };
 		EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCalendarContainerController.swift; sourceTree = "<group>"; };
 		EE9FCE821B77F82800C052C7 /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		EE9FCE841B7804E100C052C7 /* ToggleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		EEA0313C1B752DB10091B05C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		EEA0313E1B752E5F0091B05C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		EEA031421B7552C70091B05C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				EEEB0CB11B707C8600C54CC7 /* InviteController.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
+				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
 			);
 			name = Hamburger;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
 				EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */,
 				EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */,
+				EE9FCE851B7804E100C052C7 /* ToggleCell.swift in Sources */,
 				EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */,
 				EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */,
 				EEA031431B7552C70091B05C /* Event.swift in Sources */,

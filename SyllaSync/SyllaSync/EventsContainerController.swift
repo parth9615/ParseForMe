@@ -80,6 +80,7 @@ extension EventsContainerController: EventsContainerControllerDelegate {
         if (hamburgerController == nil) {
             hamburgerController = UIStoryboard.hamburgerController()
             
+            hamburgerController?.parent = self
             addChildSidePanelController(hamburgerController!)
         }
     }

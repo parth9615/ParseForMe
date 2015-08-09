@@ -116,7 +116,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Calendar" rowHeight="60" id="kix-xu-7aT">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Toggle" rowHeight="60" id="kix-xu-7aT" customClass="ToggleCell" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kix-xu-7aT" id="bj1-03-GZd">
@@ -134,6 +134,9 @@
                                         <constraint firstAttribute="centerY" secondItem="hg9-nP-Orb" secondAttribute="centerY" id="4cP-Tn-CD9"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="hg9-nP-Orb" id="ZqF-eV-8sd"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Compare" rowHeight="60" id="eA0-Uz-tyc">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
