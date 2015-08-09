@@ -58,12 +58,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
         self.setupPageControl()
 
     }
-    
-    
-    
-    
-    
-    
+
     
     
     //Working with JSON in swift 
@@ -162,7 +157,7 @@ class EventsContainerController: UIViewController, UIPageViewControllerDataSourc
                 if eventsController == nil {
                     eventsController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("EventsController") as? EventsController
                 }
-                eventsController?.delegate = self
+                eventsController!.delegate = self
                 eventsController?.itemIndex = itemIndex
                 return eventsController
             }

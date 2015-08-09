@@ -109,6 +109,11 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8iz-mf-9Hp" id="Rm2-qv-cGk">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoandPic" translatesAutoresizingMaskIntoConstraints="NO" id="5Gw-wk-5o1">
+                                            <rect key="frame" x="28" y="35" width="198" height="94"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Compare" rowHeight="60" id="eA0-Uz-tyc">
@@ -335,4 +340,7 @@
             <point key="canvasLocation" x="1765" y="423"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LogoandPic" width="988" height="472"/>
+    </resources>
 </document>

@@ -30,6 +30,8 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
+        navigationBar.barTintColor = UIColor(rgba: "#04a4ca")
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         
         //pull to refresh
         refreshControl = UIRefreshControl()
@@ -52,6 +54,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+
         var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width, self.navigationBar.frame.height));
         var image = UIImage(named: "SyllaSyncWords")
         imageView.image = image
@@ -84,7 +87,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         for var i = indexPathSection-1; i >= 0; i-- {
             previousClasses += eventService.eventsArrayCount[i]
         }
-//        cell?.backgroundColor = UIColor(rgba: "#0099CC")//.colorWithAlphaComponent(0.2)
+        //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
         cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
         cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
         

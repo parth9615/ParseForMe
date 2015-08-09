@@ -18,6 +18,7 @@ class CalendarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         //println(self.eventsArray)
         // Do any additional setup after loading the view.
     }
@@ -29,6 +30,7 @@ class CalendarController: UIViewController {
         imageView.image = image
         navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width, self.view.frame.height)
         navigationBar.topItem?.titleView = imageView
+        navigationBar.barTintColor = UIColor(rgba: "#04a4ca")
         navigationBar.topItem?.titleView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
 

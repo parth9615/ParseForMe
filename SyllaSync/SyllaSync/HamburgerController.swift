@@ -60,6 +60,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
             }
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            cell?.backgroundColor = UIColor(rgba: "#04a4ca")
             return cell!
         }
         else if indexPath.row == HamburgerCells.Compare.rawValue {
