@@ -55,10 +55,10 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
 
-        var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width, self.navigationBar.frame.height));
+        var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
         var image = UIImage(named: "SyllaSyncWords")
         imageView.image = image
-        navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width, self.view.frame.height)
+        navigationBar.topItem?.titleView?.frame = CGRectMake(self.view.frame.minX, self.view.frame.minY, self.view.frame.width/1.5, self.view.frame.height/1.5)
         navigationBar.topItem?.titleView = imageView
         navigationBar.topItem?.titleView?.contentMode = UIViewContentMode.ScaleAspectFit
     }

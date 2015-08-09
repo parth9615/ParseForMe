@@ -39,7 +39,7 @@ class EventsContainerController: UIViewController {
     
     
     func getUserEvents() {
-
+        
         eventService.getJSON(self as UIViewController)
         
         //loading view when waiting to fetch graph request.
@@ -56,7 +56,7 @@ class EventsContainerController: UIViewController {
         }
         view.addSubview(eventsController!.view!)
         eventsController!.delegate = self
-
+        
     }
     
     
@@ -105,16 +105,9 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     }
     
     func animateCenterPanelXPosition(#targetPosition: CGFloat, sender: AnyObject, completion: ((Bool) -> Void)! = nil) {
-        if sender is EventsController {
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-                self.eventsController!.view.frame.origin.x = targetPosition
-                }, completion: completion)
-        }
-        else if sender is CalendarController {
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-                self.eventsController!.view.frame.origin.x = targetPosition
-                }, completion: completion)
-        }
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+            self.eventsController!.view.frame.origin.x = targetPosition
+            }, completion: completion)
     }
     
     func showShadowForCenterViewController(shouldShowShadow: Bool) {
@@ -137,5 +130,5 @@ private extension UIStoryboard {
     class func challengeViewController() -> EventsContainerController? {
         return mainStoryboard().instantiateViewControllerWithIdentifier("EventsContainerController") as? EventsContainerController
     }
-
+    
 }

@@ -57,16 +57,6 @@
             </objects>
             <point key="canvasLocation" x="650" y="477"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="v6a-rg-adC">
-            <objects>
-                <pageViewController storyboardIdentifier="PageController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="E1F-vb-iei" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Mb-2K-8Sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1053" y="477"/>
-        </scene>
         <!--Events Controller-->
         <scene sceneID="Biu-ER-Ayb">
             <objects>
@@ -141,44 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fsd-CZ-svf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1533" y="110"/>
-        </scene>
-        <!--Calendar Controller-->
-        <scene sceneID="wN1-gE-CUy">
-            <objects>
-                <viewController storyboardIdentifier="CalendarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h8b-4Q-R9f" customClass="CalendarController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FhC-G8-TWq"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZSc-fV-aUF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8Ue-o5-8p5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzt-e2-9kL">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <navigationItem title="SyllaSync" id="1pQ-cC-9Co">
-                                        <barButtonItem key="leftBarButtonItem" image="menu" id="Nb0-Q7-WeD">
-                                            <connections>
-                                                <action selector="hamburgerPressed:" destination="h8b-4Q-R9f" id="emx-LN-hfu"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Item" id="MG1-Do-jGL"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="navigationBar" destination="Uzt-e2-9kL" id="DGh-x2-MpC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pHT-pR-vC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1533" y="857"/>
+            <point key="canvasLocation" x="1157" y="477"/>
         </scene>
     </scenes>
     <resources>

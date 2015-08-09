@@ -19,7 +19,6 @@
 		EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */; };
 		EE0835E91B6D3CDF00F5CD9C /* Hamburger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */; };
 		EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */; };
-		EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */; };
 		EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */; };
 		EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */; };
 		EE0836141B6D583D00F5CD9C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360E1B6D583D00F5CD9C /* Parse.framework */; };
@@ -97,7 +96,6 @@
 		EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hamburger.storyboard; sourceTree = "<group>"; };
 		EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
-		EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsContainerController.swift; sourceTree = "<group>"; };
 		EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerController.swift; sourceTree = "<group>"; };
 		EE08360E1B6D583D00F5CD9C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -277,7 +275,6 @@
 		EE0835E31B6D3BD900F5CD9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EEEB0CBB1B718C4700C54CC7 /* CalendarEvents */,
 				EEEB0CBA1B718C3700C54CC7 /* TableEvents */,
 				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
@@ -386,14 +383,6 @@
 				EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */,
 			);
 			name = TableEvents;
-			sourceTree = "<group>";
-		};
-		EEEB0CBB1B718C4700C54CC7 /* CalendarEvents */ = {
-			isa = PBXGroup;
-			children = (
-				EE0835ED1B6D3FA100F5CD9C /* CalendarController.swift */,
-			);
-			name = CalendarEvents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,7 +581,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */,
-				EE0835EE1B6D3FA100F5CD9C /* CalendarController.swift in Sources */,
 				EEA031451B75589F0091B05C /* EventService.swift in Sources */,
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
