@@ -4,6 +4,7 @@ from pprint import pprint
 from docx import Document
 from docx.shared import Inches
 import commands
+import json
 
 def getRawData(filename):
 
@@ -24,7 +25,8 @@ def getRawData(filename):
 
 
     extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable)
-    pprint(dictOfDatesAndInfo)                     # print the result
+    jsonDict = json.dumps(dictOfDatesAndInfo)
+    pprint(jsonDict)
 
 
 def readFromDOCX(filename):
