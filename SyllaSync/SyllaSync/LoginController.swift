@@ -12,6 +12,7 @@ import ParseUI
 
 class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
     
+    @IBOutlet weak var logoImageView: UIImageView!
     var window: UIWindow?
     var req:FBSDKGraphRequest?
     
@@ -21,6 +22,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        logoImageView.image = UIImage(named: "LogoandPic")
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         
         GIDSignIn.sharedInstance().uiDelegate = self
         
@@ -33,7 +36,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         else {
             let loginView:GIDSignInButton = GIDSignInButton()
             self.view.addSubview(loginView)
-            loginView.center = CGPointMake((self.view.frame.width/2), 220)
+            loginView.center = CGPointMake((self.view.frame.width/2), 420)
         }
         
         
@@ -44,7 +47,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
 //        else {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
-            loginView.center = CGPointMake((self.view.frame.width/2), 140)
+            loginView.center = CGPointMake((self.view.frame.width/2), 340)
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
             FBSDKProfile.enableUpdatesOnAccessTokenChange(true)

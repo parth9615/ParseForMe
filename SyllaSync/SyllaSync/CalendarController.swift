@@ -10,6 +10,9 @@ import UIKit
 
 class CalendarController: UIViewController {
     
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
@@ -163,7 +166,9 @@ extension CalendarController: CVCalendarViewDelegate {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     
                     //TODO: display the contents of the event onto the bottom of the calendar view
-                    
+                    self.titleLabel.text = eventService.eventsArrayTitles[i]
+                    self.timeLabel.text = eventService.eventsArrayTimes[i]
+                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
                     
                 }
             }
