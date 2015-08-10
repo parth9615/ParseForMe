@@ -91,8 +91,8 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var label = UILabel(frame: CGRectMake(-1, 0, self.view.bounds.size.width+2, 24))
         label.font = UIFont(name: "Helvetica", size: 13)
-        //label.layer.borderColor = UIColor.lightGrayColor().CGColor
-        //label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor.lightGrayColor().CGColor
+        label.layer.borderWidth = 1
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         

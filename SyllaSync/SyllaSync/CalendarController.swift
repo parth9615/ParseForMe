@@ -9,21 +9,42 @@
 import UIKit
 
 class CalendarController: UIViewController {
-
+    
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
     
-    var shouldShowDaysOut = false
+    var shouldShowDaysOut = true
     var animationFinished = true
+    var eventService = EventService.sharedInstance
+    var CVDatesArray = [CVDate]()
+    var CVMonthsArray = [Int]()
+    var CVDaysArray = [Int]()
+    var CVYearsArray = [Int]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        menuView.backgroundColor = UIColor.whiteColor()
+        calendarView.backgroundColor = UIColor.whiteColor()
+        getCVDatesFromDatesArray()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
     }
-
+    
+    func getCVDatesFromDatesArray() {
+        for each in eventService.eventsArrayDates {
+            let dateFromString = each.componentsSeparatedByString("/")
+            println(dateFromString)
+            var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
+            CVDatesArray.append(newCVDate)
+            CVMonthsArray.append(dateFromString[0].toInt()!)
+            CVDaysArray.append(dateFromString[1].toInt()!)
+            CVYearsArray.append(dateFromString[2].toInt()!)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,17 +57,17 @@ class CalendarController: UIViewController {
         menuView.commitMenuViewUpdate()
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
 
@@ -109,9 +130,21 @@ extension CalendarController: CVCalendarViewDelegate
     
     func supplementaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
-        if (Int(arc4random_uniform(3)) == 1)
-        {
-            return true
+        
+        if dayView.date != nil {
+            for var i = 0; i < CVMonthsArray.count; i++ {
+                if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
+                    return true
+                }
+            }
+            
+//            
+//            println("CVMonthsArray, \(CVMonthsArray) dayView.date.month \(dayView.date.month) CVYearsArray \(CVYearsArray) dayVIew.date.year \(dayView.date.year) CVDays Array \(CVDaysArray) dayView.date.day \(dayView.date.day) dayView.date \(dayView.date)")
+//            if contains(CVMonthsArray, dayView.date.month) && contains(CVYearsArray, dayView.date.year) && contains(CVDaysArray, dayView.date.day)
+//            //if contains(CVDatesArray, dayView.date)
+//            {
+//                return true
+//            }
         }
         return false
     }
@@ -179,9 +212,8 @@ extension CalendarController: CVCalendarViewDelegate {
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-        let day = dayView.date.day
-        let randomDay = Int(arc4random_uniform(31))
-        if day == randomDay {
+        let day = dayView.date
+        if contains(CVDatesArray, day) {
             return true
         }
         

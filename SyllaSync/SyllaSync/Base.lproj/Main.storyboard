@@ -123,7 +123,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTo-OV-m1B" customClass="CVCalendarView" customModule="SyllaSync" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="105" width="320" height="312"/>
+                                <rect key="frame" x="0.0" y="97" width="320" height="320"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="312" id="0rP-9X-4n2"/>
@@ -170,7 +170,7 @@
                             <constraint firstItem="Mk7-cn-PaU" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leading" id="0F5-JC-F5s"/>
                             <constraint firstAttribute="centerX" secondItem="Mk7-cn-PaU" secondAttribute="centerX" id="0Zq-Cu-Brx"/>
                             <constraint firstItem="Mk7-cn-PaU" firstAttribute="top" secondItem="9oS-hX-Lt2" secondAttribute="bottom" constant="10" id="1CQ-QE-8G2"/>
-                            <constraint firstItem="gTo-OV-m1B" firstAttribute="top" secondItem="Mk7-cn-PaU" secondAttribute="bottom" constant="8" id="44Z-Hs-ea7"/>
+                            <constraint firstItem="gTo-OV-m1B" firstAttribute="top" secondItem="Mk7-cn-PaU" secondAttribute="bottom" id="44Z-Hs-ea7"/>
                             <constraint firstItem="tDj-gQ-4SW" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="4" id="4M0-A1-LSX"/>
                             <constraint firstItem="9oS-hX-Lt2" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="8" id="517-fo-Xaa"/>
                             <constraint firstItem="6Tr-GN-WlQ" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="4" id="5ki-0j-ygU"/>
