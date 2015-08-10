@@ -36,7 +36,6 @@ class CalendarController: UIViewController {
     func getCVDatesFromDatesArray() {
         for each in eventService.eventsArrayDates {
             let dateFromString = each.componentsSeparatedByString("/")
-            println(dateFromString)
             var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
             CVDatesArray.append(newCVDate)
             CVMonthsArray.append(dateFromString[0].toInt()!)
@@ -137,14 +136,6 @@ extension CalendarController: CVCalendarViewDelegate
                     return true
                 }
             }
-            
-//            
-//            println("CVMonthsArray, \(CVMonthsArray) dayView.date.month \(dayView.date.month) CVYearsArray \(CVYearsArray) dayVIew.date.year \(dayView.date.year) CVDays Array \(CVDaysArray) dayView.date.day \(dayView.date.day) dayView.date \(dayView.date)")
-//            if contains(CVMonthsArray, dayView.date.month) && contains(CVYearsArray, dayView.date.year) && contains(CVDaysArray, dayView.date.day)
-//            //if contains(CVDatesArray, dayView.date)
-//            {
-//                return true
-//            }
         }
         return false
     }
@@ -167,6 +158,15 @@ extension CalendarController: CVCalendarViewDelegate {
     func didSelectDayView(dayView: CVCalendarDayView) {
         let date = dayView.date
         println("\(calendarView.presentedDate.commonDescription) is selected!")
+        if dayView.date != nil {
+            for var i = 0; i < CVMonthsArray.count; i++ {
+                if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
+                    //display the contents of the event onto the bottom of the calendar view
+                    
+                    
+                }
+            }
+        }
     }
     
     func presentedDateUpdated(date: CVDate) {
