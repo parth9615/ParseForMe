@@ -17,6 +17,7 @@ class TableCalendarContainerController: UIViewController {
     var calendarController:CalendarController?
     var calendarView = false
     var eventsView = true
+    var eventViews:[String:UIView]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,15 @@ class TableCalendarContainerController: UIViewController {
         }
         addChildViewController(eventsController!)
         container.addSubview(eventsController!.view)
+        
+        //manually adding constraints cause storyboarding sucks
+        eventViews = ["eventsContainer":container, "eventsView":eventsController!.view]
+        let verticalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
+        self.view.addConstraints(verticalSessionConstraints)
+        
+        let horizontalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
+        self.view.addConstraints(horizontalSessionConstraints)
         
         var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
         var image = UIImage(named: "SyllaSyncWords")

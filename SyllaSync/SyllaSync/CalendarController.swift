@@ -29,6 +29,10 @@ class CalendarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        titleLabel.text = ""
+        timeLabel.text = ""
+        weightLabel.text = ""
+        
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
         getCVDatesFromDatesArray()

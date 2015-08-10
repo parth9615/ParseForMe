@@ -26,8 +26,8 @@
                                     <action selector="dismiss:" destination="89c-Qm-0RL" eventType="touchUpInside" id="ysx-eB-hul"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mfv-f1-uUY">
-                                <rect key="frame" x="0.0" y="54" width="320" height="514"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mfv-f1-uUY">
+                                <rect key="frame" x="0.0" y="54" width="320" height="506"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Sorry" rowHeight="60" id="D05-Ac-P8W">
@@ -49,6 +49,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aey-dW-OI9" firstAttribute="top" secondItem="mfv-f1-uUY" secondAttribute="bottom" constant="8" id="6LQ-XC-m90"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mfv-f1-uUY" secondAttribute="trailing" constant="-16" id="Kxo-Zg-d5u"/>
+                            <constraint firstItem="mfv-f1-uUY" firstAttribute="leading" secondItem="QlR-ik-jKB" secondAttribute="leadingMargin" constant="-16" id="aaC-ac-dBa"/>
+                            <constraint firstItem="mfv-f1-uUY" firstAttribute="top" secondItem="Jhd-lo-CX3" secondAttribute="bottom" constant="34" id="b49-mh-FWG"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -71,28 +77,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter in your friends account email and see which classes you have together!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKi-so-7uD">
-                                <rect key="frame" x="50" y="76" width="221" height="98"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friend's Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvN-S6-Px4">
-                                <rect key="frame" x="16" y="182" width="288" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6F-UV-NO8">
-                                <rect key="frame" x="113" y="220" width="95" height="30"/>
-                                <state key="normal" title="Compare">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-fA-Jcz">
-                                <rect key="frame" x="0.0" y="258" width="320" height="310"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eg-n4-ccA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eg-n4-ccA">
                                 <rect key="frame" x="267" y="20" width="37" height="30"/>
                                 <state key="normal" title="close">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,8 +86,45 @@
                                     <action selector="dismiss:" destination="Yoh-Tx-umH" eventType="touchUpInside" id="QJ7-Yo-eNC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter in your friends account email and see which classes you have together!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKi-so-7uD">
+                                <rect key="frame" x="50" y="76" width="221" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friend's Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvN-S6-Px4">
+                                <rect key="frame" x="16" y="145" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6F-UV-NO8">
+                                <rect key="frame" x="129" y="183" width="64" height="30"/>
+                                <state key="normal" title="Compare">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-fA-Jcz">
+                                <rect key="frame" x="0.0" y="221" width="320" height="333"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lvN-S6-Px4" firstAttribute="top" secondItem="qKi-so-7uD" secondAttribute="bottom" constant="8" id="4M4-V8-3LL"/>
+                            <constraint firstItem="0eg-n4-ccA" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" id="4Mw-qf-Oyw"/>
+                            <constraint firstItem="N6F-UV-NO8" firstAttribute="top" secondItem="lvN-S6-Px4" secondAttribute="bottom" constant="8" id="9Gw-1b-IDY"/>
+                            <constraint firstAttribute="centerX" secondItem="lvN-S6-Px4" secondAttribute="centerX" id="C22-ty-OMW"/>
+                            <constraint firstItem="qKi-so-7uD" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" constant="34" id="CNu-o1-cLS"/>
+                            <constraint firstAttribute="centerX" secondItem="N6F-UV-NO8" secondAttribute="centerX" constant="-0.5" id="CfV-v1-IUd"/>
+                            <constraint firstItem="ag4-Dr-fIk" firstAttribute="top" secondItem="CAp-fA-Jcz" secondAttribute="bottom" constant="14" id="EVs-oX-phn"/>
+                            <constraint firstAttribute="centerX" secondItem="qKi-so-7uD" secondAttribute="centerX" constant="-0.5" id="EWA-O2-F6a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CAp-fA-Jcz" secondAttribute="trailing" constant="-16" id="PES-UT-dsU"/>
+                            <constraint firstItem="lvN-S6-Px4" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" id="UXN-Er-4JP"/>
+                            <constraint firstItem="0eg-n4-ccA" firstAttribute="trailing" secondItem="64M-B5-iWf" secondAttribute="trailingMargin" id="aek-Np-jdf"/>
+                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="top" secondItem="N6F-UV-NO8" secondAttribute="bottom" constant="8" id="dI2-FH-F7a"/>
+                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" constant="-16" id="eTT-va-SKc"/>
+                            <constraint firstItem="qKi-so-7uD" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="56" id="kif-bS-aBd"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -336,7 +358,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dream, Ideate, Develop     Go Heels" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewr-lp-Hax">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dream, Ideate, Develop                 Go Heels" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewr-lp-Hax">
                                 <rect key="frame" x="52" y="145" width="217" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -385,7 +407,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLW-Nz-DNf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLW-Nz-DNf">
                                 <rect key="frame" x="267" y="20" width="37" height="30"/>
                                 <state key="normal" title="close">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -396,6 +418,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aLW-Nz-DNf" firstAttribute="top" secondItem="Omw-cp-lkx" secondAttribute="bottom" id="JlV-Dd-35s"/>
+                            <constraint firstItem="aLW-Nz-DNf" firstAttribute="trailing" secondItem="7Zm-OI-NNQ" secondAttribute="trailingMargin" id="nMu-fx-bs8"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
