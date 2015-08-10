@@ -27,7 +27,18 @@ class SettingsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        var alert = UIAlertController(title: "We're Sorry", message: "There are no settings available at this time", preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alert.addAction(OKAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

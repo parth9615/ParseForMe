@@ -161,7 +161,8 @@ extension CalendarController: CVCalendarViewDelegate {
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
-                    //display the contents of the event onto the bottom of the calendar view
+                    
+                    //TODO: display the contents of the event onto the bottom of the calendar view
                     
                     
                 }
