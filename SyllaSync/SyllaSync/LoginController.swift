@@ -41,18 +41,18 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
 //        }
         
         
-//        if (FBSDKAccessToken.currentAccessToken() != nil)
-//        {
-//           self.returnUserData()
-//        }
-//        else {
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+           self.returnUserData()
+        }
+        else {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
             loginView.center = CGPointMake((self.view.frame.width/2), 340)
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
             FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
-//        }
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
