@@ -28,8 +28,8 @@ class TableCalendarContainerController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
         
         if calendarController == nil {
             calendarController = self.storyboard?.instantiateViewControllerWithIdentifier("Calendar") as? CalendarController
@@ -100,4 +100,12 @@ class TableCalendarContainerController: UIViewController {
         delegate?.toggleLeftPanel?(self)
     }
 
+    @IBAction func editPressed(sender: AnyObject) {
+        var alert = UIAlertController(title: "Oh No!", message: "This feature is currently unavailable", preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            
+        }
+        alert.addAction(OKAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 }

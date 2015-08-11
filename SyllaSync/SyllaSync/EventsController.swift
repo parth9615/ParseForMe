@@ -86,6 +86,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
         cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
         cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
+        cell?.eventPlace.text = eventService.eventsArrayDates[indexPath.row + previousClasses]
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!

@@ -66,6 +66,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="logoImageView" destination="7I9-nd-41h" id="DL8-Kh-waY"/>
@@ -88,6 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rs-tR-evX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,7 +118,11 @@
                                                 <action selector="hamburgerPressed:" destination="Zln-ye-ghh" id="ane-0p-h2G"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="c4o-Ic-g6n"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="c4o-Ic-g6n">
+                                            <connections>
+                                                <action selector="editPressed:" destination="Zln-ye-ghh" id="47E-Vi-Mpq"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -134,6 +140,7 @@
                             <constraint firstItem="J90-vt-P1l" firstAttribute="top" secondItem="f2v-ow-jI5" secondAttribute="bottom" id="xg2-CK-MfU"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="container" destination="f2v-ow-jI5" id="AFX-t7-Szi"/>
@@ -256,6 +263,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="calendarView" destination="gTo-OV-m1B" id="giq-3k-bbG"/>
@@ -363,6 +371,7 @@
                             <constraint firstItem="vs7-7F-x3S" firstAttribute="leading" secondItem="SLH-72-jL0" secondAttribute="leading" id="wdc-fn-nmz"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="eventsTable" destination="vs7-7F-x3S" id="hyd-cz-Ifl"/>

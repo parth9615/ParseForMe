@@ -56,6 +56,7 @@
                             <constraint firstItem="mfv-f1-uUY" firstAttribute="top" secondItem="Jhd-lo-CX3" secondAttribute="bottom" constant="34" id="b49-mh-FWG"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="closeButton" destination="I5m-mZ-XIr" id="4BM-vb-Ok9"/>
@@ -126,6 +127,7 @@
                             <constraint firstItem="qKi-so-7uD" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="56" id="kif-bS-aBd"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="closeButton" destination="0eg-n4-ccA" id="bYk-ak-0Xz"/>
@@ -288,6 +290,7 @@
                             <outlet property="delegate" destination="OIt-Re-Ag0" id="Nry-Y4-Zoj"/>
                         </connections>
                     </tableView>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJs-Oa-6tG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -334,6 +337,7 @@
                             <constraint firstItem="vaR-vK-BQo" firstAttribute="trailing" secondItem="SRs-DQ-tZo" secondAttribute="trailingMargin" id="gjk-Va-Wxz"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubs-dU-SFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -386,6 +390,7 @@
                             <constraint firstItem="dpc-rH-Grx" firstAttribute="top" secondItem="ppq-Wi-JzU" secondAttribute="bottom" id="wjD-72-voT"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="closeButton" destination="dpc-rH-Grx" id="A3D-0Z-EDK"/>
@@ -423,6 +428,7 @@
                             <constraint firstItem="aLW-Nz-DNf" firstAttribute="trailing" secondItem="7Zm-OI-NNQ" secondAttribute="trailingMargin" id="nMu-fx-bs8"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="closeButton" destination="aLW-Nz-DNf" id="DbN-Ma-03e"/>
