@@ -11,6 +11,7 @@ def getRawData(filename):
 
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
     rawListOfData = []
+    weightDictionary = {}
     removeTableLineFromDocTable = False  # to remove | from doc tables
 
     if '.docx' in filename:                # if file is .docx then read from that method
@@ -24,20 +25,32 @@ def getRawData(filename):
         rawListOfData = readFromTXT( filename)
 
 
-    extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable)
-    convertToJsonFormat(dictOfDatesAndInfo)
+    extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable , weightDictionary)
+    print weightDictionary
+    convertToJsonFormat(dictOfDatesAndInfo , weightDictionary)
 
 #converts the dictionary to the  Json DIct formatting
-def convertToJsonFormat (dictionary):
+def convertToJsonFormat (dictionary, weightDictionary):
     jsonList = []
     for key in dictionary.keys():
-        SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] }
+        weight = findWeightInDict(dictionary[key][0] , weightDictionary)
+        if weight:
+            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2], 'Weight' : weightDictionary[weight] }
+        else:
+            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] }
+
         jsonList.append(SingleEventDict)
     jsonDict = {"Events" : jsonList}
     print(jsonDict)
 
 
-
+def findWeightInDict(eventType, weight):
+    if eventType:
+        for key in weight.keys():
+            index = key.lower().find(eventType.lower())
+            if index > -1:
+                return key
+    return None
 
 def readFromDOCX(filename):
     rawListOfData= []
@@ -69,7 +82,7 @@ def readFromTXT( filename):
     rawListOfData = f.readlines()         # get each line as a list
     return rawListOfData
 
-def extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable):
+def extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable, weightDictionary):
   dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
 'Mondays' , 'Tuesdays' , 'Wednesdays' , 'Thursdays' , 'Fridays' ,'Saturdays' , 'Sundays' 'Mon' , 'Tue',
  'Wed' , 'Thur' , 'Fri' , 'Sat' , 'Sun' , 'January', 'February' , 'March' , 'April' , 'May' , 'June',
@@ -79,7 +92,7 @@ def extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable)
                                        # get all days and store in relevantDates
 
 
-  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable)
+  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable, weightDictionary)
 
 '''
 This method iterates through the rawListOfData to find patterns in the method
@@ -90,11 +103,11 @@ Current parsing methods included in the pattern
 4: Finding a line that contains a date in the format ##/##
 todo : update this numeric list as more patterns are added:
 '''
-def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable):
+def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable, weightDictionary):
     optimizationBoolean = False
     for individualLine in rawListOfData:  # iterate through each line
         if removeTableLineFromDocTable:
-            individualLine = individualLine.replace("|" , "")
+            individualLine = individualLine.replace("|" , "") # remove table lines
         for days in dayAndMonthList:              # iterate through each day combination
             # regex pattern to find the entire line that contains a day in the dayList
             dayOfTheWeekPattern = ('.+')+(days)+('?\s.+')
@@ -106,6 +119,7 @@ def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthLi
                 makeEventFromMonth(individualLine, dictOfDatesAndInfo)
                 break
 
+        extractWeight(individualLine , weightDictionary)
         #pattern to find the pattern ##/## which is commonly used to denote dates
         dateTimePattern = ('\d\d?/\d\d?')
         dateTimeFlags   = re.DOTALL
@@ -113,6 +127,14 @@ def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthLi
         if result:
              makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
 
+
+def extractWeight(lineToSearch, weightDictionary):
+    findPercentIndex = lineToSearch.find('%')  # if percent sign is present
+    if findPercentIndex > -1:                  # valid index found
+
+        findNumericalWeight = re.search('\d?\d?\.?\d?\d' , lineToSearch)  # find any possible numerical percent
+        if findNumericalWeight:
+            weightDictionary[lineToSearch] = findNumericalWeight.group()
 
 
 def makeEventFromDate(date, stringToSearch, dictionary):
