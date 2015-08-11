@@ -25,9 +25,18 @@ def getRawData(filename):
 
 
     extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable)
-    jsonDict = json.dumps(dictOfDatesAndInfo)
-    pprint(dictOfDatesAndInfo)
-    return jsonDict
+    convertToJsonFormat(dictOfDatesAndInfo)
+
+#converts the dictionary to the  Json DIct formatting
+def convertToJsonFormat (dictionary):
+    jsonList = []
+    for key in dictionary.keys():
+        SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] }
+        jsonList.append(SingleEventDict)
+    jsonDict = {"Events" : jsonList}
+    print(jsonDict)
+
+
 
 
 def readFromDOCX(filename):
