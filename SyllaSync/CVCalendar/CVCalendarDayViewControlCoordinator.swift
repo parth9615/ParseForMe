@@ -31,7 +31,7 @@ class CVCalendarDayViewControlCoordinator {
 
 extension CVCalendarDayViewControlCoordinator {
     func selectionPerformedOnDayView(dayView: DayView) {
-        // TODO:
+        // to do:
     }
     
     func deselectionPerformedOnDayView(dayView: DayView) {
