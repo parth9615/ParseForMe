@@ -13,9 +13,7 @@ import Bolts
 
 
 
-
-
-//add in reachability https://github.com/ashleymills/Reachability.swift
+//update push notifications to release status
 
 
 
@@ -35,13 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        
         Parse.enableLocalDatastore()
-        
         Parse.setApplicationId("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT",
             clientKey: "PqKUmPMkFwQAClVFYqSuw9xfidR179CyGQwlXHYh")
-        
-        
+    
         //set up push notifications
         var userNotificationTypes:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
         var settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
@@ -56,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    
+
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

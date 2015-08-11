@@ -36,6 +36,7 @@ class TableCalendarContainerController: UIViewController {
         }
         addChildViewController(eventsController!)
         container.addSubview(eventsController!.view)
+        eventsController!.view.needsUpdateConstraints()
         
         //manually adding constraints cause storyboarding sucks
         eventViews = ["eventsContainer":container, "eventsView":eventsController!.view]
@@ -45,6 +46,7 @@ class TableCalendarContainerController: UIViewController {
         let horizontalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
         self.view.addConstraints(horizontalSessionConstraints)
+        
         
         var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
         var image = UIImage(named: "SyllaSyncWords")

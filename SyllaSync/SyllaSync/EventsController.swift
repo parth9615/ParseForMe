@@ -55,6 +55,10 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         var headerCount = eventService.headerCount
@@ -89,10 +93,12 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var label = UILabel(frame: CGRectMake(-1, 0, self.view.bounds.size.width+2, 24))
+        var label = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width/1.5, 20))
         label.font = UIFont(name: "Helvetica", size: 13)
+        label.center = CGPoint(x: self.view.bounds.size.width/2, y:11)
         label.layer.borderColor = UIColor.lightGrayColor().CGColor
         label.layer.borderWidth = 1
+        label.layer.cornerRadius = 5
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         

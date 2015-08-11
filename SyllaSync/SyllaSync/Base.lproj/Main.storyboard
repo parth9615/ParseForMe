@@ -121,14 +121,15 @@
                                 </items>
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Bn-zQ-MvC">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4Bn-zQ-MvC" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="0TS-k4-2YB"/>
-                            <constraint firstItem="J90-vt-P1l" firstAttribute="top" secondItem="4Bn-zQ-MvC" secondAttribute="bottom" constant="44" id="7GL-r5-Vnp"/>
+                            <constraint firstItem="J90-vt-P1l" firstAttribute="top" secondItem="4Bn-zQ-MvC" secondAttribute="bottom" id="7GL-r5-Vnp"/>
                             <constraint firstItem="4Bn-zQ-MvC" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="Gbx-vW-As8"/>
+                            <constraint firstAttribute="trailing" secondItem="4Bn-zQ-MvC" secondAttribute="trailing" id="JQv-Ng-Zl9"/>
                             <constraint firstAttribute="trailing" secondItem="4Bn-zQ-MvC" secondAttribute="trailing" id="NN0-tn-lwd"/>
                             <constraint firstAttribute="centerX" secondItem="4Bn-zQ-MvC" secondAttribute="centerX" id="RzP-1k-c70"/>
                             <constraint firstItem="6Hq-GG-TiK" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="Y8h-Vb-60E"/>
@@ -144,6 +145,7 @@
                                 <exclude reference="x8m-Te-Vdk"/>
                                 <exclude reference="Gbx-vW-As8"/>
                                 <exclude reference="NN0-tn-lwd"/>
+                                <exclude reference="RzP-1k-c70"/>
                             </mask>
                         </variation>
                     </view>
@@ -155,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fsd-CZ-svf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157" y="477"/>
+            <point key="canvasLocation" x="1159" y="470"/>
         </scene>
         <!--Calendar Controller-->
         <scene sceneID="YPF-Ml-dul">
@@ -370,10 +372,10 @@
                         </subviews>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="vs7-7F-x3S" firstAttribute="bottom" secondItem="Vce-f5-4IX" secondAttribute="top" id="6em-Ox-ze3"/>
-                            <constraint firstItem="vs7-7F-x3S" firstAttribute="top" secondItem="SLH-72-jL0" secondAttribute="top" id="HtM-RQ-qVX"/>
-                            <constraint firstItem="vs7-7F-x3S" firstAttribute="leading" secondItem="SLH-72-jL0" secondAttribute="leading" id="bJQ-Cd-f4I"/>
-                            <constraint firstAttribute="trailing" secondItem="vs7-7F-x3S" secondAttribute="trailing" id="gon-lL-H6X"/>
+                            <constraint firstItem="Vce-f5-4IX" firstAttribute="top" secondItem="vs7-7F-x3S" secondAttribute="bottom" id="Cgv-t5-Ygg"/>
+                            <constraint firstItem="vs7-7F-x3S" firstAttribute="top" secondItem="SLH-72-jL0" secondAttribute="topMargin" id="Scw-ia-Yf9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vs7-7F-x3S" secondAttribute="trailing" constant="-16" id="Vav-Ax-dxZ"/>
+                            <constraint firstItem="vs7-7F-x3S" firstAttribute="leading" secondItem="SLH-72-jL0" secondAttribute="leadingMargin" constant="-16" id="wdc-fn-nmz"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

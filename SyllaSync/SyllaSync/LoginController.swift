@@ -30,14 +30,14 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         GIDSignIn.sharedInstance().delegate = self
         
         println(GIDSignIn.sharedInstance().currentUser)
-        if GIDSignIn.sharedInstance().currentUser != nil {
-            //skipToChallenges()
-        }
-        else {
-            let loginView:GIDSignInButton = GIDSignInButton()
-            self.view.addSubview(loginView)
-            loginView.center = CGPointMake((self.view.frame.width/2), 420)
-        }
+//        if GIDSignIn.sharedInstance().currentUser != nil {
+//            //skipToChallenges()
+//        }
+//        else {
+            let gmailLoginView:GIDSignInButton = GIDSignInButton()
+            self.view.addSubview(gmailLoginView)
+            gmailLoginView.center = CGPointMake((self.view.frame.width/2), 420)
+//        }
         
         
 //        if (FBSDKAccessToken.currentAccessToken() != nil)
@@ -53,6 +53,28 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
 //        }
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        checkInternetConnection()
+    }
+    
+    func checkInternetConnection() -> Bool {
+        if Reachability.isConnectedToNetwork() == true {
+            println("Internet connection OK")
+            return true
+        } else {
+            //NO INTERNET CONNECTION
+            var alert = UIAlertController(title: "Oh No!", message: "You don't have internet connection right now and you need internet to access our app!", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+                
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+            println("Internet connection FAILED")
+            return false
+        }
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -130,7 +152,14 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
     
     func alertUser(message: String) {
         if message == "no email registered facebook" {
-            var alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't an account registered with the email used for your Facebook, please create an account at our website, SyllaSync.com, on a computer", preferredStyle: .Alert)
+            var alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't a SyllaSync account registered with the email used for your Facebook, please create an account at our website, SyllaSync.com, on a computer to upload your syllabi.", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else if message == "no email registered gmail" {
+            var alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't a SyllaSync account registered with your gmail email, please create an account at our website, SyllaSync.com, on a computer to upload your syllabi.", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
             }
             alert.addAction(OKAction)
@@ -161,24 +190,25 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             }
             else
             {
-                println("fetched user: \(result)")
                 self.userName = result.valueForKey("name") as? NSString
-                println("User Name is: \(self.userName)")
+//                println("User Name is: \(self.userName)")
                 self.userEmail = result.valueForKey("email") as? NSString
-                println("User Email is: \(self.userEmail)")
+//                println("User Email is: \(self.userEmail)")
                 
             
                 
-                println(result)
-                println(self.userEmail)
-                println(self.userName)
+//                println(result)
+//                println(self.userEmail)
+//                println(self.userName)
             }
         })
     }
 
     @IBAction func start(sender: AnyObject) {
-        var parseVC = self.storyboard?.instantiateViewControllerWithIdentifier("ParseLoginController") as! ParseLoginController
-        self.presentViewController(parseVC, animated: true, completion: nil)
+        if checkInternetConnection() {
+            var parseVC = self.storyboard?.instantiateViewControllerWithIdentifier("ParseLoginController") as! ParseLoginController
+            self.presentViewController(parseVC, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -190,15 +220,49 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         withError error: NSError!) {
             if (error == nil) {
                 
-                
-                //TO DO: INTEGRATE GOOGLE WITH PARSE USER LOGINS
+                var dimView:DimView?
                 
                 let userId = user.userID                  // For client-side use only!
                 let idToken = user.authentication.idToken // Safe to send to the server
                 let name = user.profile.name
                 let email = user.profile.email
                 
-                println(email)
+//                println(email)
+                
+                
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+                    var query = PFQuery(className: "Users")
+                    query.whereKey("email", equalTo: user.profile.email)
+                    query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
+                        if error == nil {
+                            println("query for facebook email user is succesful")
+                            if let objects = user as? [PFUser!] {
+                                println("There was in fact a user registered through gmail email")
+                                
+                                dimView?.removeFromSuperview()
+                                UserSettings.sharedInstance.Username = "\(objects)"
+                                //proceed to events page.
+                                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                                let containerViewController = EventsContainerController()
+                                
+                                self.window!.rootViewController = containerViewController
+                                self.window!.makeKeyAndVisible()
+                            }
+                            else {
+                                println("There wasn't a user registered to that email")
+                                
+                                dimView?.removeFromSuperview()
+                                self.alertUser("no email registered gmail")
+                                //send an alert saying we either couldn't access their email or they don't have an account associated with that email
+                            }
+                        }
+                        else {
+                            println("Error", error, error!.userInfo!)
+                        }
+                    }
+                }
+                
                 // ...
             } else {
                 println("\(error.localizedDescription)")

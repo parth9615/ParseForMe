@@ -64,6 +64,10 @@ class CalendarController: UIViewController {
     }
     
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     /*
     // MARK: - Navigation
     
@@ -169,7 +173,6 @@ extension CalendarController: CVCalendarViewDelegate {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     
-                    //TODO: display the contents of the event onto the bottom of the calendar view
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
                     self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
