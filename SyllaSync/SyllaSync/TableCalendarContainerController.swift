@@ -15,8 +15,8 @@ class TableCalendarContainerController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     var eventsController:EventsController?
     var calendarController:CalendarController?
-    var calendarView = false
-    var eventsView = true
+    var calendarView = true
+    var eventsView = false
     var eventViews:[String:UIView]?
     
     override func viewDidLoad() {
@@ -31,21 +31,21 @@ class TableCalendarContainerController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        if eventsController == nil {
-            eventsController = self.storyboard?.instantiateViewControllerWithIdentifier("Table") as? EventsController
+        if calendarController == nil {
+            calendarController = self.storyboard?.instantiateViewControllerWithIdentifier("Calendar") as? CalendarController
         }
-        addChildViewController(eventsController!)
-        container.addSubview(eventsController!.view)
-        eventsController!.view.needsUpdateConstraints()
+        addChildViewController(calendarController!)
+        container.addSubview(calendarController!.view)
+        //eventsController!.view.needsUpdateConstraints()
         
         //manually adding constraints cause storyboarding sucks
-        eventViews = ["eventsContainer":container, "eventsView":eventsController!.view]
-        let verticalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
-        self.view.addConstraints(verticalSessionConstraints)
-        
-        let horizontalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
-        self.view.addConstraints(horizontalSessionConstraints)
+//        eventViews = ["eventsContainer":container, "eventsView":eventsController!.view]
+//        let verticalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
+//        self.view.addConstraints(verticalSessionConstraints)
+//        
+//        let horizontalSessionConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+//            "H:|[eventsView(==eventsContainer)]|", options: nil, metrics: nil, views: eventViews!)
+//        self.view.addConstraints(horizontalSessionConstraints)
         
         
         var imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
@@ -73,7 +73,7 @@ class TableCalendarContainerController: UIViewController {
             calendarView = false
             
             if eventsController == nil {
-                eventsController = self.storyboard?.instantiateViewControllerWithIdentifier("Events") as? EventsController
+                eventsController = self.storyboard?.instantiateViewControllerWithIdentifier("Table") as? EventsController
             }
             
             container.addSubview(eventsController!.view)

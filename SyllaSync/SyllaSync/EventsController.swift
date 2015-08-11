@@ -31,7 +31,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         eventsTable.delegate = self
         eventsTable.dataSource = self
 
-        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
+        //self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         
         //pull to refresh
         refreshControl = UIRefreshControl()

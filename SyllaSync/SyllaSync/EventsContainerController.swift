@@ -40,12 +40,37 @@ class EventsContainerController: UIViewController {
     
     func getUserEvents() {
         
-        eventService.getJSON(self as UIViewController)
+        
         
         //loading view when waiting to fetch graph request.
         dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
         self.view.addSubview(dimView!)
         self.view.bringSubviewToFront(dimView!)
+        
+        checkInternetConnection()
+        
+        eventService.getJSON(self as UIViewController)
+    }
+    
+    func checkInternetConnection() -> Bool {
+        if Reachability.isConnectedToNetwork() == true {
+            println("Internet connection OK")
+            return true
+        } else {
+            //NO INTERNET CONNECTION..
+            var alert = UIAlertController(title: "Oh No!", message: "You don't have internet connection right now and you need internet to access our app!", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+                PFUser.logOut()
+                
+                var loginStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                var loginVC = loginStoryBoard.instantiateViewControllerWithIdentifier("Login") as! LoginController
+                self.presentViewController(loginVC, animated: true, completion: nil)
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+            println("Internet connection FAILED")
+            return false
+        }
     }
     
     func finishedLoading() {

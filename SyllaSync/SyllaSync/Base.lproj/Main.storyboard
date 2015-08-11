@@ -120,38 +120,23 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Bn-zQ-MvC">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2v-ow-jI5">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="4Bn-zQ-MvC" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="0TS-k4-2YB"/>
-                            <constraint firstItem="J90-vt-P1l" firstAttribute="top" secondItem="4Bn-zQ-MvC" secondAttribute="bottom" id="7GL-r5-Vnp"/>
-                            <constraint firstItem="4Bn-zQ-MvC" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="Gbx-vW-As8"/>
-                            <constraint firstAttribute="trailing" secondItem="4Bn-zQ-MvC" secondAttribute="trailing" id="JQv-Ng-Zl9"/>
-                            <constraint firstAttribute="trailing" secondItem="4Bn-zQ-MvC" secondAttribute="trailing" id="NN0-tn-lwd"/>
-                            <constraint firstAttribute="centerX" secondItem="4Bn-zQ-MvC" secondAttribute="centerX" id="RzP-1k-c70"/>
+                            <constraint firstItem="f2v-ow-jI5" firstAttribute="trailing" secondItem="bzh-3O-Urw" secondAttribute="trailing" id="IzT-ix-85P"/>
+                            <constraint firstItem="f2v-ow-jI5" firstAttribute="top" secondItem="6Hq-GG-TiK" secondAttribute="bottom" id="NhQ-lt-Ldw"/>
                             <constraint firstItem="6Hq-GG-TiK" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="Y8h-Vb-60E"/>
                             <constraint firstItem="6Hq-GG-TiK" firstAttribute="top" secondItem="e7u-li-gog" secondAttribute="bottom" id="bP8-KT-5ap"/>
-                            <constraint firstItem="6Hq-GG-TiK" firstAttribute="leading" secondItem="4Bn-zQ-MvC" secondAttribute="trailing" constant="-320" id="eDw-CS-dfO"/>
-                            <constraint firstItem="4Bn-zQ-MvC" firstAttribute="top" secondItem="6Hq-GG-TiK" secondAttribute="bottom" id="jPS-VG-QXI"/>
+                            <constraint firstItem="f2v-ow-jI5" firstAttribute="leading" secondItem="bzh-3O-Urw" secondAttribute="leading" id="gJF-km-Ck7"/>
                             <constraint firstAttribute="trailing" secondItem="6Hq-GG-TiK" secondAttribute="trailing" id="obX-dg-AaB"/>
-                            <constraint firstItem="6Hq-GG-TiK" firstAttribute="leading" secondItem="4Bn-zQ-MvC" secondAttribute="trailing" constant="-320" id="x8m-Te-Vdk"/>
+                            <constraint firstItem="J90-vt-P1l" firstAttribute="top" secondItem="f2v-ow-jI5" secondAttribute="bottom" id="xg2-CK-MfU"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="eDw-CS-dfO"/>
-                                <exclude reference="x8m-Te-Vdk"/>
-                                <exclude reference="Gbx-vW-As8"/>
-                                <exclude reference="NN0-tn-lwd"/>
-                                <exclude reference="RzP-1k-c70"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="container" destination="4Bn-zQ-MvC" id="jT9-Ak-lJH"/>
+                        <outlet property="container" destination="f2v-ow-jI5" id="AFX-t7-Szi"/>
                         <outlet property="navigationBar" destination="6Hq-GG-TiK" id="HaF-uX-b56"/>
                     </connections>
                 </viewController>
@@ -259,7 +244,7 @@
                             <constraint firstItem="tDj-gQ-4SW" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="Fqa-kU-oac"/>
                             <constraint firstAttribute="centerX" secondItem="9oS-hX-Lt2" secondAttribute="centerX" constant="-0.5" id="IHo-ek-CN4"/>
                             <constraint firstItem="d1I-tc-BJI" firstAttribute="top" secondItem="eQf-et-QVn" secondAttribute="bottom" constant="8" id="SjC-RP-tkL"/>
-                            <constraint firstItem="gTo-OV-m1B" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" constant="-16" id="UTW-Er-QED"/>
+                            <constraint firstItem="gTo-OV-m1B" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leading" id="UTW-Er-QED"/>
                             <constraint firstItem="Mk7-cn-PaU" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="39" id="bzv-6D-9o8"/>
                             <constraint firstItem="KVn-dD-Xo5" firstAttribute="top" secondItem="gTo-OV-m1B" secondAttribute="bottom" constant="171" id="l7G-Th-zYr"/>
                             <constraint firstItem="o0z-lz-Oge" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="nmc-8j-8AQ"/>
@@ -294,7 +279,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Vce-f5-4IX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SLH-72-jL0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vs7-7F-x3S">
@@ -372,14 +357,13 @@
                         </subviews>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Vce-f5-4IX" firstAttribute="top" secondItem="vs7-7F-x3S" secondAttribute="bottom" id="Cgv-t5-Ygg"/>
+                            <constraint firstItem="Vce-f5-4IX" firstAttribute="top" secondItem="vs7-7F-x3S" secondAttribute="bottom" constant="64" id="Cgv-t5-Ygg"/>
                             <constraint firstItem="vs7-7F-x3S" firstAttribute="top" secondItem="SLH-72-jL0" secondAttribute="topMargin" id="Scw-ia-Yf9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vs7-7F-x3S" secondAttribute="trailing" constant="-16" id="Vav-Ax-dxZ"/>
-                            <constraint firstItem="vs7-7F-x3S" firstAttribute="leading" secondItem="SLH-72-jL0" secondAttribute="leadingMargin" constant="-16" id="wdc-fn-nmz"/>
+                            <constraint firstAttribute="trailing" secondItem="vs7-7F-x3S" secondAttribute="trailing" id="Vav-Ax-dxZ"/>
+                            <constraint firstItem="vs7-7F-x3S" firstAttribute="leading" secondItem="SLH-72-jL0" secondAttribute="leading" id="wdc-fn-nmz"/>
                         </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="504"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="eventsTable" destination="vs7-7F-x3S" id="hyd-cz-Ifl"/>
                     </connections>

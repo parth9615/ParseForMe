@@ -12,6 +12,9 @@ import Parse
 import Bolts
 
 
+//THIS WAS MONEY IN THE FUCKING BANK FOR TESTING INTERNET CONNECTION http://www.brianjcoleman.com/tutorial-check-for-internet-connection-in-swift/
+
+
 
 //update push notifications to release status
 

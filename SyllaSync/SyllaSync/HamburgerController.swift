@@ -161,11 +161,11 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
         else if indexPath.row == HamburgerCells.Calendar.rawValue {
             parent?.toggleLeftPanel(self)
             parent?.tableCalendarController?.toggleViews()
-            if self.toggleCell!.label.text == "Calendar View"{
-                self.toggleCell!.label.text = "Table View"
+            if self.toggleCell!.label.text == "Table View"{
+                self.toggleCell!.label.text = "Calendar View"
             }
             else {
-                self.toggleCell!.label.text = "Calendar View"
+                self.toggleCell!.label.text = "Table View"
             }
             
         }
