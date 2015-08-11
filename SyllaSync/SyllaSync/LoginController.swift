@@ -65,7 +65,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             println("Internet connection OK")
             return true
         } else {
-            //NO INTERNET CONNECTION
+            //NO INTERNET CONNECTION..
             var alert = UIAlertController(title: "Oh No!", message: "You don't have internet connection right now and you need internet to access our app!", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
                 
