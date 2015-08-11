@@ -1,0 +1,15 @@
+# Uncomment this line to define a global platform for your project
+ platform :ios, '8.0'
+
+target 'SyllaSync' do
+
+pod 'Google/SignIn'
+
+end
+
+target 'SyllaSyncTests' do
+
+pod 'Google/SignIn'
+
+end
+
