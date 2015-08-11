@@ -26,7 +26,8 @@ def getRawData(filename):
 
     extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable)
     jsonDict = json.dumps(dictOfDatesAndInfo)
-    pprint(jsonDict)
+    pprint(dictOfDatesAndInfo)
+    return jsonDict
 
 
 def readFromDOCX(filename):
@@ -177,6 +178,9 @@ def getValidTime(stringToSearch):
         secondTimeFound = getTime(stringToSearch[firstTimeIndex + len(firstTimeFound):])
         if secondTimeFound:
             return (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)  # return time in this format
+        else:
+            return (firstTimeFound) , (None) , (firstTimeFound)
+
 
 
 def getTime(stringToSearch):
