@@ -18,6 +18,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
     
     var userName:NSString?
     var userEmail:NSString?
+    var dimView:DimView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +80,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
-        var dimView:DimView?
+        
         
         println("User Logged In")
         
@@ -93,38 +94,32 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         self.returnUserData()
         
         
-        var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
-            var query = PFQuery(className: "Users")
-            query.whereKey("email", equalTo: self.userEmail!)
-            query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
-                if error == nil {
-                    println("query for facebook email user is succesful")
-                    if let objects = user as? [PFUser!] {
-                        println("There was in fact a user registered through facebook email")
-                        
-                        dimView?.removeFromSuperview()
-                        UserSettings.sharedInstance.Username = "\(objects)"
-                        //proceed to events page.
-                        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                        let containerViewController = EventsContainerController()
-                        
-                        self.window!.rootViewController = containerViewController
-                        self.window!.makeKeyAndVisible()
-                    }
-                    else {
-                        println("There wasn't a user registered to that email")
-                            
-                        dimView?.removeFromSuperview()
-                        self.alertUser("no email registered facebook")
-                        //send an alert saying we either couldn't access their email or they don't have an account associated with that email
-                    }
-                }
-                else {
-                    println("Error", error, error!.userInfo!)
-                }
-            }
-        }
+//        var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
+//        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+//            var query = PFQuery(className: "Users")
+//            query.whereKey("email", equalTo: self.userEmail!)
+//            query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
+//                if error == nil {
+//                    println("query for facebook email user is succesful")
+//                    if let objects = user as? [PFUser!] {
+//                        println("There was in fact a user registered through facebook email")
+//                        
+//                        UserSettings.sharedInstance.Username = "\(self.userEmail!)"
+//                        self.finishLoading()
+//                    }
+//                    else {
+//                        println("There wasn't a user registered to that email")
+//                            
+//                        self.dimView?.removeFromSuperview()
+//                        self.alertUser("no email registered facebook")
+//                        //send an alert saying we either couldn't access their email or they don't have an account associated with that email
+//                    }
+//                }
+//                else {
+//                    println("Error", error, error!.userInfo!)
+//                }
+//            }
+//        }
         
         
         //loading view when waiting to fetch graph request.
@@ -147,6 +142,20 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
             {
                 // Do work
             }
+        }
+    }
+    
+    func finishLoading() {
+        dimView?.removeFromSuperview()
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            //proceed to events page.
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            let containerViewController = EventsContainerController()
+            
+            self.window!.rootViewController = containerViewController
+            self.window!.makeKeyAndVisible()
+
         }
     }
     
@@ -196,7 +205,30 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
 //                println("User Email is: \(self.userEmail)")
                 
             
-                
+                var query = PFQuery(className: "Users")
+                query.whereKey("email", equalTo: self.userEmail!)
+                query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
+                    if error == nil {
+                        println("query for facebook email user is succesful")
+                        if let objects = user as? [PFUser!] {
+                            println("There was in fact a user registered through facebook email")
+                            
+                            UserSettings.sharedInstance.Username = "\(self.userEmail!)"
+                            self.finishLoading()
+                        }
+                        else {
+                            println("There wasn't a user registered to that email")
+                            
+                            self.dimView?.removeFromSuperview()
+                            self.alertUser("no email registered facebook")
+                            //send an alert saying we either couldn't access their email or they don't have an account associated with that email
+                        }
+                    }
+                    else {
+                        println("Error", error, error!.userInfo!)
+                    }
+                }
+
 //                println(result)
 //                println(self.userEmail)
 //                println(self.userName)
@@ -228,10 +260,10 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                 let email = user.profile.email
                 
 //                println(email)
-                
-                
-                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-                dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+                dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
+                self.view.addSubview(dimView!)
+                self.view.bringSubviewToFront(dimView!)
+
                     var query = PFQuery(className: "Users")
                     query.whereKey("email", equalTo: user.profile.email)
                     query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
@@ -261,7 +293,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
                             println("Error", error, error!.userInfo!)
                         }
                     }
-                }
                 
                 // ...
             } else {

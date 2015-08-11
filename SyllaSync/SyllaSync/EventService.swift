@@ -45,6 +45,9 @@ public class EventService: NSObject {
                     
                     self.getHeaderCount(sender)
                 }
+                else {
+                    self.finish(sender)
+                }
             }
             else {
                 println("Error", error, error!.userInfo!)
@@ -57,6 +60,9 @@ public class EventService: NSObject {
         
         var tmpHeaderCount = 0
         headerCount = 0
+        if eventsArray!.count == 0 {
+            self.finish(sender)
+        }
         if eventsArray != nil {
             if let event:AnyObject = eventsArray?[0] {
                 if let eventDetails:AnyObject = event["events"] {

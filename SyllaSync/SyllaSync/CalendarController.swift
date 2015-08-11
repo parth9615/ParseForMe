@@ -66,6 +66,15 @@ class CalendarController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if eventService.eventsArray?.count == 0 {
+            var alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     /*

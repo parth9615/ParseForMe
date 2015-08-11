@@ -34,9 +34,14 @@ class EventsContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getUserEvents()
+         getUserEvents()
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+       
+    }
     
     func getUserEvents() {
         
