@@ -17,7 +17,6 @@ UserController.prototype.uploadFile = function(req, res) {
       console.log('It\'s saved');
     })
 
-
 }
 
 module.exports = new UserController();

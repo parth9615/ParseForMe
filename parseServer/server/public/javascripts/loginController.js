@@ -1,6 +1,8 @@
 Parse.initialize("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT", "XSZ5x97qzUWiALEbAKUq49QlcKKPxuJlhmOedEEj");
 
+
 var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
+
 .run(['$rootScope', function($scope) {
   $scope.scenario = 'Sign up';
   $scope.currentUser = Parse.User.current();
@@ -40,6 +42,12 @@ var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
   };
 }]);
 
+loginApp.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+]);
+
 loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function ($scope, Upload, $http) {
     $scope.$watch('files', function () {
         $scope.upload($scope.files, $http);
@@ -47,38 +55,55 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
 
     $scope.upload = function (files) {
         if(files && files.length) {
-          var file = files[0];
-        $http.post("https://api.parse.com/1/files/"+file.name, file, {
+          for(var i = 0; i < files.length; i++){
+            var file = files[i];
+            Upload.upload({
+              url: 'uploads',
+              fields: {'username': $scope.username},
+              file: file
+            })
 
-               headers: {
-                   'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-                   'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-                   'Content-Type': file.type
-               },
-               transformRequest: angular.identity
+            var done=function(resp){
+              console.log(resp.data);
+              //$scope.lists=resp.data;
+            };
+            var fail=function(err){
 
-        }).then(function(data) {
-          console.log(data.data.name);
-        })
-        };
+            };
+              $http.post("http://localhost:5000/dates", "./uploads/"+file.name).then(done, fail);
+
+
+          // $http.post("https://api.parse.com/1/files/"+file.name, file, {
+          //
+          //        headers: {
+          //            'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+          //            'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+          //            'Content-Type': file.type
+          //        },
+          //        transformRequest: angular.identity
+          //
+          // }).then(function(data) {
+          //   console.log(data.data.name);
+          //   console.log($scope.currentUser);
+          //   $http.post("https://api.parse.com/1/classes/Events", {
+          //
+          //     "username": $scope.currentUser.attributes.username,
+          //     "syllabus": {
+          //       "name": data.data.name,
+          //       "__type": "File"
+          //     }
+          //   },
+          //
+          //   {
+          //     headers: {
+          //         'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+          //         'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+          //         'Content-Type': 'application/json'
+          //     }
+          //   })
+          // })
+          };
+        }
       }
-
-    //     if (files && files.length) {
-    //         for (var i = 0; i < files.length; i++) {
-    //             var file = files[i];
-    //             Upload.upload({
-    //                 url: 'uploads/',
-    //                 fields: {'username': $scope.username},
-    //                 file: file
-    //             }).progress(function (evt) {
-    //                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-    //                 console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-    //             }).success(function (data, status, headers, config) {
-    //                 console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-    //             }).error(function (data, status, headers, config) {
-    //                 console.log('error status: ' + status);
-    //             })
-    //         }
-    //     }
 
 }]);
