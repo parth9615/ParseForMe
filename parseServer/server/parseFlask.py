@@ -22,7 +22,7 @@ def parse_syllabus():
     #syllabusText = request.data
     #print syllabusText
 
-    syllabusText = 'psyc.txt'
+    syllabusText = 'calcSyllabus.txt'
 
     dataDict = getRawData(syllabusText)
     return jsonify(dataDict), 200
