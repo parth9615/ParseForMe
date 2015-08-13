@@ -121,7 +121,7 @@ def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthLi
 
         extractWeight(individualLine , weightDictionary)
         #pattern to find the pattern ##/## which is commonly used to denote dates
-        dateTimePattern = ('\d\d?/\d\d?')
+        dateTimePattern = ('\d\d?.\d\d?')
         dateTimeFlags   = re.DOTALL
         result = findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
         if result:
