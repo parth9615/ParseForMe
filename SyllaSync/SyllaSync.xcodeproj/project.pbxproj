@@ -46,6 +46,8 @@
 		EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */; };
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
 		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
+		EE10F5971B7E511700931D4D /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5961B7E511700931D4D /* SyllabiController.swift */; };
+		EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5991B7E571F00931D4D /* SyllabiCell.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
@@ -90,7 +92,6 @@
 		EEA031451B75589F0091B05C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
 		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
 		EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */; };
-		EEEB0CB21B707C8600C54CC7 /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB11B707C8600C54CC7 /* SyllabiController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
 		EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */; };
 /* End PBXBuildFile section */
@@ -154,6 +155,8 @@
 		EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		EE10F5961B7E511700931D4D /* SyllabiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiController.swift; sourceTree = "<group>"; };
+		EE10F5991B7E571F00931D4D /* SyllabiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiCell.swift; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE9BC0F81B79A75600D33818 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -198,7 +201,6 @@
 		EEA031441B75589F0091B05C /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareController.swift; sourceTree = "<group>"; };
-		EEEB0CB11B707C8600C54CC7 /* SyllabiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiController.swift; sourceTree = "<group>"; };
 		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -359,10 +361,10 @@
 		EE0835EA1B6D3E0500F5CD9C /* Hamburger */ = {
 			isa = PBXGroup;
 			children = (
+				EE10F5981B7E56FA00931D4D /* SyllabiViewer */,
 				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
 				EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */,
 				EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */,
-				EEEB0CB11B707C8600C54CC7 /* SyllabiController.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
 				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
@@ -416,6 +418,15 @@
 				16D8ABF074C624E6C5247A20 /* libPods-SyllaSyncTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE10F5981B7E56FA00931D4D /* SyllabiViewer */ = {
+			isa = PBXGroup;
+			children = (
+				EE10F5961B7E511700931D4D /* SyllabiController.swift */,
+				EE10F5991B7E571F00931D4D /* SyllabiCell.swift */,
+			);
+			name = SyllabiViewer;
 			sourceTree = "<group>";
 		};
 		EE9FCE6F1B765E7100C052C7 /* Fonts */ = {
@@ -680,6 +691,7 @@
 			files = (
 				EE9FCEB11B78076600C052C7 /* CVCalendarViewPresentationMode.swift in Sources */,
 				EE9FCEAC1B78076600C052C7 /* CVCalendarViewAnimator.swift in Sources */,
+				EE10F5971B7E511700931D4D /* SyllabiController.swift in Sources */,
 				EE9FCEA91B78076600C052C7 /* CVCalendarMonthView.swift in Sources */,
 				EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */,
 				EE9FCEB51B78076600C052C7 /* CVDate.swift in Sources */,
@@ -705,6 +717,7 @@
 				EE9FCEAF1B78076600C052C7 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				EE9FCEB91B78076600C052C7 /* CVSet.swift in Sources */,
 				EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */,
+				EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */,
 				EEA031431B7552C70091B05C /* Event.swift in Sources */,
 				EE9FCEA11B78076600C052C7 /* CVAuxiliaryView.swift in Sources */,
 				EE9FCEB31B78076600C052C7 /* CVCalendarWeekday.swift in Sources */,
@@ -720,7 +733,6 @@
 				EE9FCEA51B78076600C052C7 /* CVCalendarManager.swift in Sources */,
 				EE9FCEB71B78076600C052C7 /* CVScrollDirection.swift in Sources */,
 				EE9FCEA61B78076600C052C7 /* CVCalendarMenuView.swift in Sources */,
-				EEEB0CB21B707C8600C54CC7 /* SyllabiController.swift in Sources */,
 				EE9FCEAB1B78076600C052C7 /* CVCalendarView.swift in Sources */,
 				EE9FCEAD1B78076600C052C7 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,

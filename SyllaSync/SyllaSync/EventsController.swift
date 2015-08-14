@@ -60,15 +60,11 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        var headerCount = eventService.headerCount
-        return headerCount
+        return eventService.headerCount
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        var eventsArrayCount = eventService.eventsArrayCount
-        return eventsArrayCount[section]
+        return eventService.eventsArrayCount[section]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

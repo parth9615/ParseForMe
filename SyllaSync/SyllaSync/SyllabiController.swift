@@ -1,51 +1,122 @@
 //
-//  InviteController.swift
+//  SyllabiController.swift
 //  SyllaSync
 //
-//  Created by Joel Wasserman on 8/3/15.
+//  Created by Joel Wasserman on 8/14/15.
 //  Copyright (c) 2015 IVET. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class SyllabiController: UIViewController {
-
-    @IBOutlet weak var closeButton: UIButton!
+class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var refreshControl:UIRefreshControl!
+    @IBOutlet weak var syllabiTable: UITableView!
+    var eventService = EventService.sharedInstance
+    
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    super.viewDidLoad()
+    
+    syllabiTable.delegate = self
+    syllabiTable.dataSource = self
+    
+    //self.view.backgroundColor = UIColor(rgba: "#04a4ca")
+    
+    //pull to refresh
+    refreshControl = UIRefreshControl()
+    self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Events")
+    self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+    syllabiTable.addSubview(refreshControl)
+    
+    }
+    
+    func refresh() {
+        eventService.getJSON(self)
+        syllabiTable.reloadData()
+    }
+    
+    func finishedLoading() {
+    self.refreshControl.endRefreshing()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(true)
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        var alert = UIAlertController(title: "We're Sorry", message: "This feature is not available at this time", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        alert.addAction(OKAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    super.viewDidAppear(animated)
     }
     
-    @IBAction func dismiss(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventService.headerCount
     }
-    */
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    var cellIdentifier = "Syllabi"
+    var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? SyllabiCell
+    if cell == nil {
+        cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? SyllabiCell
+    }
+    
+    
+    cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
+    cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
+    cell?.eventPlace.text = eventService.eventsArrayDates[indexPath.row + previousClasses]
+    
+    cell?.selectionStyle = UITableViewCellSelectionStyle.None
+    return cell!
+    }
+    
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+    }
+    
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 70
+    }
+    
+    
+    //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    //        // Return NO if you do not want the specified item to be editable.
+    //        return false
+    //    }
+    
+    
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
+    //        if indexPath.row == HamburgerCells.Settings.rawValue {
+    //            //go to new page
+    //
+    //        }
+    //        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
+    //            //go to new page
+    //
+    //        }
+    //        else if indexPath.row == HamburgerCells.Compare.rawValue {
+    //
+    //
+    //        }
+    //        else if indexPath.row == HamburgerCells.Invite.rawValue {
+    //
+    //
+    //        }
+    //        else {
+    //
+    //
+    //        }
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    }
 
 }
