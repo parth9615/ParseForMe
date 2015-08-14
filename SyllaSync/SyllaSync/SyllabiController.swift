@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InviteController: UIViewController {
+class SyllabiController: UIViewController {
 
     @IBOutlet weak var closeButton: UIButton!
     

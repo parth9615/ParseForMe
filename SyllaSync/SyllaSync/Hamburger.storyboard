@@ -220,14 +220,14 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Invite" rowHeight="60" id="Vcm-Gf-Wy4">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewSyllabi" rowHeight="60" id="Vcm-Gf-Wy4">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vcm-Gf-Wy4" id="AEp-av-OSy">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite your friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeY-dM-IMR">
-                                            <rect key="frame" x="60" y="19" width="137" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Your Syllabi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeY-dM-IMR">
+                                            <rect key="frame" x="60" y="19" width="131" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -400,10 +400,10 @@
             </objects>
             <point key="canvasLocation" x="2184" y="423"/>
         </scene>
-        <!--Invite Controller-->
+        <!--Syllabi Controller-->
         <scene sceneID="AvH-4b-ykD">
             <objects>
-                <viewController storyboardIdentifier="Invite" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AT0-W4-8iP" customClass="InviteController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Syllabi" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AT0-W4-8iP" customClass="SyllabiController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Omw-cp-lkx"/>
                         <viewControllerLayoutGuide type="bottom" id="CVK-eC-7w6"/>

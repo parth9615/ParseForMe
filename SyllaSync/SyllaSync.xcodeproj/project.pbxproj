@@ -90,7 +90,7 @@
 		EEA031451B75589F0091B05C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
 		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
 		EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */; };
-		EEEB0CB21B707C8600C54CC7 /* InviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB11B707C8600C54CC7 /* InviteController.swift */; };
+		EEEB0CB21B707C8600C54CC7 /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB11B707C8600C54CC7 /* SyllabiController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
 		EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */; };
 /* End PBXBuildFile section */
@@ -198,7 +198,7 @@
 		EEA031441B75589F0091B05C /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareController.swift; sourceTree = "<group>"; };
-		EEEB0CB11B707C8600C54CC7 /* InviteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteController.swift; sourceTree = "<group>"; };
+		EEEB0CB11B707C8600C54CC7 /* SyllabiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiController.swift; sourceTree = "<group>"; };
 		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -362,7 +362,7 @@
 				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
 				EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */,
 				EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */,
-				EEEB0CB11B707C8600C54CC7 /* InviteController.swift */,
+				EEEB0CB11B707C8600C54CC7 /* SyllabiController.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
 				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
@@ -720,7 +720,7 @@
 				EE9FCEA51B78076600C052C7 /* CVCalendarManager.swift in Sources */,
 				EE9FCEB71B78076600C052C7 /* CVScrollDirection.swift in Sources */,
 				EE9FCEA61B78076600C052C7 /* CVCalendarMenuView.swift in Sources */,
-				EEEB0CB21B707C8600C54CC7 /* InviteController.swift in Sources */,
+				EEEB0CB21B707C8600C54CC7 /* SyllabiController.swift in Sources */,
 				EE9FCEAB1B78076600C052C7 /* CVCalendarView.swift in Sources */,
 				EE9FCEAD1B78076600C052C7 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
