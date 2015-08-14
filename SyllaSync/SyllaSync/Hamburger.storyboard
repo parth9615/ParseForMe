@@ -400,6 +400,33 @@
             </objects>
             <point key="canvasLocation" x="2184" y="423"/>
         </scene>
+        <!--Syllabus Viewer Controller-->
+        <scene sceneID="Acv-9B-XFP">
+            <objects>
+                <viewController storyboardIdentifier="SyllabusViewer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vSf-h7-JX0" customClass="SyllabusViewerController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rTR-jY-5Qk"/>
+                        <viewControllerLayoutGuide type="bottom" id="MqA-M6-6xC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TWT-xB-7X2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KzU-dF-zwK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="syllabusViewer" destination="KzU-dF-zwK" id="SGj-Dz-lGZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tGd-rx-GUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1765" y="-219"/>
+        </scene>
         <!--Syllabi Controller-->
         <scene sceneID="AvH-4b-ykD">
             <objects>

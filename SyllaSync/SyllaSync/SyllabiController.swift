@@ -13,22 +13,37 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     var refreshControl:UIRefreshControl!
     @IBOutlet weak var syllabiTable: UITableView!
     var eventService = EventService.sharedInstance
+    var syllabiArray = [String]()
     
     
     override func viewDidLoad() {
-    super.viewDidLoad()
+        super.viewDidLoad()
+        
+        syllabiTable.delegate = self
+        syllabiTable.dataSource = self
+        
+        getSyllabiArray()
+        
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Events")
+        self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        syllabiTable.addSubview(refreshControl)
+        
+    }
     
-    syllabiTable.delegate = self
-    syllabiTable.dataSource = self
-    
-    //self.view.backgroundColor = UIColor(rgba: "#04a4ca")
-    
-    //pull to refresh
-    refreshControl = UIRefreshControl()
-    self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Events")
-    self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-    syllabiTable.addSubview(refreshControl)
-    
+    func getSyllabiArray() {
+        var syllabusArray = eventService.eventsArraySyllabus
+        var syllabus = syllabusArray.first
+        syllabiArray.append(syllabus!)
+        for each in syllabusArray {
+            if each == syllabus {
+                continue
+            }
+            else {
+                syllabiArray.append(each)
+            }
+        }
     }
     
     func refresh() {
@@ -37,15 +52,15 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func finishedLoading() {
-    self.refreshControl.endRefreshing()
+        self.refreshControl.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(true)
+        super.viewWillAppear(true)
     }
     
     override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
+        super.viewDidAppear(animated)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -57,66 +72,32 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cellIdentifier = "Syllabi"
-    var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? SyllabiCell
-    if cell == nil {
-        cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? SyllabiCell
+        var cellIdentifier = "Syllabi"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? SyllabiCell
+        if cell == nil {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? SyllabiCell
+        }
+        
+        cell?.syllabusTitleLabel.text = syllabiArray[indexPath.row]
+        
+        cell?.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell!
     }
-    
-    
-    cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
-    cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
-    cell?.eventPlace.text = eventService.eventsArrayDates[indexPath.row + previousClasses]
-    
-    cell?.selectionStyle = UITableViewCellSelectionStyle.None
-    return cell!
-    }
-    
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-    }
-    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 70
+        return 70
     }
     
-    
-    //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    //        // Return NO if you do not want the specified item to be editable.
-    //        return false
-    //    }
-    
-    
-    
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-    //        if indexPath.row == HamburgerCells.Settings.rawValue {
-    //            //go to new page
-    //
-    //        }
-    //        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
-    //            //go to new page
-    //
-    //        }
-    //        else if indexPath.row == HamburgerCells.Compare.rawValue {
-    //
-    //
-    //        }
-    //        else if indexPath.row == HamburgerCells.Invite.rawValue {
-    //
-    //
-    //        }
-    //        else {
-    //
-    //
-    //        }
+        var syllabus = syllabiArray[indexPath.row]
+        var syllabusViewerVC = self.storyboard?.instantiateViewControllerWithIdentifier("SyllabusViewer") as? SyllabusViewerController
+        syllabusViewerVC?.syllabusToDisplayString = syllabus
+        self.presentViewController(syllabusViewerVC!, animated: true, completion: nil)
     }
     
     
     override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning()
     }
-
+    
 }

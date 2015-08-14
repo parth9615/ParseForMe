@@ -48,6 +48,7 @@
 		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
 		EE10F5971B7E511700931D4D /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5961B7E511700931D4D /* SyllabiController.swift */; };
 		EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5991B7E571F00931D4D /* SyllabiCell.swift */; };
+		EE10F59C1B7E5A4900931D4D /* SyllabusViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
@@ -157,6 +158,7 @@
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		EE10F5961B7E511700931D4D /* SyllabiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiController.swift; sourceTree = "<group>"; };
 		EE10F5991B7E571F00931D4D /* SyllabiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiCell.swift; sourceTree = "<group>"; };
+		EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusViewerController.swift; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE9BC0F81B79A75600D33818 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 			children = (
 				EE10F5961B7E511700931D4D /* SyllabiController.swift */,
 				EE10F5991B7E571F00931D4D /* SyllabiCell.swift */,
+				EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */,
 			);
 			name = SyllabiViewer;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				EE9FCEA71B78076600C052C7 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				EE9FCE811B77F5B900C052C7 /* TableCalendarContainerController.swift in Sources */,
 				EE9FCEA41B78076600C052C7 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
+				EE10F59C1B7E5A4900931D4D /* SyllabusViewerController.swift in Sources */,
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE9FCEAA1B78076600C052C7 /* CVCalendarTouchController.swift in Sources */,
 				EE9FCEB41B78076600C052C7 /* CVCalendarWeekView.swift in Sources */,
