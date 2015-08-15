@@ -10,6 +10,8 @@ import UIKit
 
 class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var syllabiLabel: UINavigationItem!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var refreshControl:UIRefreshControl!
     @IBOutlet weak var syllabiTable: UITableView!
     var eventService = EventService.sharedInstance
@@ -21,6 +23,11 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         syllabiTable.delegate = self
         syllabiTable.dataSource = self
+        
+        syllabiLabel.titleView?.backgroundColor = UIColor(rgba: "#04a4ca")
+        navigationBar.barTintColor = UIColor(rgba: "#04a4ca")
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
+        navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
         
         getSyllabiArray()
         
@@ -44,6 +51,14 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
                 syllabiArray.append(each)
             }
         }
+    }
+    
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func editSyllabi(sender: AnyObject) {
+        //TODO add in functionality for a table view edit manually
     }
     
     func refresh() {

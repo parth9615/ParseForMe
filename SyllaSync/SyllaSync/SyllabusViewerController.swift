@@ -22,7 +22,12 @@ class SyllabusViewerController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        
+        //grabbing syllabus file from parse to stick in image view
+        //TODO input syllabus file from parse into image view see if it is even possible
+    }
+    
+    @IBAction func close(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
