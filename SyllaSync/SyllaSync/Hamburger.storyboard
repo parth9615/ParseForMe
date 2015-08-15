@@ -528,5 +528,4 @@
     <resources>
         <image name="LogoandPic" width="988" height="472"/>
     </resources>
-    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

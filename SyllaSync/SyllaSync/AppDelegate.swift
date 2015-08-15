@@ -164,6 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         var currentInstallation:PFInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation["user"] = PFUser.currentUser()
         currentInstallation.channels = ["Global"]
         currentInstallation.saveInBackground()
     }

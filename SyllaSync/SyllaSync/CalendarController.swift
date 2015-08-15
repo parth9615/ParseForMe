@@ -104,6 +104,15 @@ extension CalendarController: CVCalendarViewDelegate
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
         if (dayView.isCurrentDay) {
+            for var i = 0; i < CVMonthsArray.count; i++ {
+                if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
+                    
+                    self.titleLabel.text = eventService.eventsArrayTitles[i]
+                    self.timeLabel.text = eventService.eventsArrayTimes[i]
+                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
+                    
+                }
+            }
             return true
         }
         return false
@@ -186,6 +195,11 @@ extension CalendarController: CVCalendarViewDelegate {
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
                     self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
                     
+                }
+                else {
+                    self.titleLabel.text = ""
+                    self.timeLabel.text = ""
+                    self.weightLabel.text = ""
                 }
             }
         }
