@@ -211,6 +211,11 @@ def getValidTime(stringToSearch):
             return (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)  # return time in this format
         else:
             return (firstTimeFound) , (None) , (firstTimeFound)
+    else:
+        # time in above format not found try searching for am/pm
+        am = stringToSearch.lower().find('am')
+        if am > -1:
+
 
 
 
