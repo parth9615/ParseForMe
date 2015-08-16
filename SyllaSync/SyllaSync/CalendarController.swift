@@ -29,6 +29,12 @@ class CalendarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        PFCloud.callFunctionInBackground("hello", withParameters: nil) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            let responseString = response as? String
+            println(responseString)
+        }
+        
         titleLabel.text = ""
         timeLabel.text = ""
         weightLabel.text = ""

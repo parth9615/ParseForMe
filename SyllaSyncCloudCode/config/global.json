@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.5.0"
+  },
+  "applications": {
+    "SyllaSync": {
+      "applicationId": "D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT",
+      "masterKey": "Hipo8eAqaV8DeQue2EuZz6TNgEGIo9fi6nWbLXwm"
+    },
+    "_default": {
+      "link": "SyllaSync"
+    }
+  }
+}
