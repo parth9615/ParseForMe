@@ -3,7 +3,7 @@
 // For example:
 Parse.Cloud.define("hello", function(request, response) {
   var query = new Parse.Query(Parse.Installation);
-  query.equalTo('joelwass', username);
+  query.equalTo('joelwass', Username);
   Parse.Push.send({
     where: query, //set to our installation query
     data: {
