@@ -63,40 +63,52 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
               file: file
             })
 
-          $http.post("http://localhost:5000/dates", "./uploads/"+file.name)
 
+            var fail = function(err){
+              throw err;
+            }
 
-          $http.post("https://api.parse.com/1/files/"+file.name, file, {
+            var success = function(flaskResponse){
+              var eventsArray = flaskResponse.data.Events;
+              $http.post("https://api.parse.com/1/files/"+file.name, file, {
 
-                 headers: {
-                     'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-                     'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-                     'Content-Type': file.type
-                 },
-                 transformRequest: angular.identity
+                     headers: {
+                         'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+                         'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+                         'Content-Type': file.type
+                     },
+                     transformRequest: angular.identity
 
-          }).then(function(data) {
-            console.log(data.data.name);
-            console.log($scope.currentUser);
-            $http.post("https://api.parse.com/1/classes/Events", {
+              }).then(function(data) {
 
-              "username": $scope.currentUser.attributes.username,
-              "syllabus": {
-                "name": data.data.name,
-                "__type": "File"
+                  for(var i = 0; i < eventsArray.length; i++){
+                    var syllabiEvent = eventsArray[i];
+
+                    $http.post("https://api.parse.com/1/classes/Events", {
+
+                      "username": $scope.currentUser.attributes.username,
+                      "events": syllabiEvent,
+                      "syllabus": {
+                        "name": data.data.name,
+                        "__type": "File"
+                      }
+                    },
+
+                    {
+                      headers: {
+                          'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+                          'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+                          'Content-Type': 'application/json'
+                      }
+                    })
+                  }
+                })
+                 }
               }
-            },
 
-            {
-              headers: {
-                  'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-                  'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-                  'Content-Type': 'application/json'
-              }
-            })
-          })
+          $http.post("http://localhost:5000/dates", "./uploads/"+file.name).then(success, fail)
           };
         }
-      }
+
 
 }]);
