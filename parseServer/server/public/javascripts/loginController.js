@@ -63,45 +63,38 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
               file: file
             })
 
-            var done=function(resp){
-              console.log(resp.data);
-              //$scope.lists=resp.data;
-            };
-            var fail=function(err){
-
-            };
-              $http.post("http://localhost:5000/dates", "./uploads/"+file.name).then(done, fail);
+          $http.post("http://localhost:5000/dates", "./uploads/"+file.name)
 
 
-          // $http.post("https://api.parse.com/1/files/"+file.name, file, {
-          //
-          //        headers: {
-          //            'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-          //            'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-          //            'Content-Type': file.type
-          //        },
-          //        transformRequest: angular.identity
-          //
-          // }).then(function(data) {
-          //   console.log(data.data.name);
-          //   console.log($scope.currentUser);
-          //   $http.post("https://api.parse.com/1/classes/Events", {
-          //
-          //     "username": $scope.currentUser.attributes.username,
-          //     "syllabus": {
-          //       "name": data.data.name,
-          //       "__type": "File"
-          //     }
-          //   },
-          //
-          //   {
-          //     headers: {
-          //         'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-          //         'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-          //         'Content-Type': 'application/json'
-          //     }
-          //   })
-          // })
+          $http.post("https://api.parse.com/1/files/"+file.name, file, {
+
+                 headers: {
+                     'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+                     'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+                     'Content-Type': file.type
+                 },
+                 transformRequest: angular.identity
+
+          }).then(function(data) {
+            console.log(data.data.name);
+            console.log($scope.currentUser);
+            $http.post("https://api.parse.com/1/classes/Events", {
+
+              "username": $scope.currentUser.attributes.username,
+              "syllabus": {
+                "name": data.data.name,
+                "__type": "File"
+              }
+            },
+
+            {
+              headers: {
+                  'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+                  'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+                  'Content-Type': 'application/json'
+              }
+            })
+          })
           };
         }
       }
