@@ -2,8 +2,8 @@
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
 Parse.Cloud.define("hello", function(request, response) {
-  var query = new Parse.Query(Parse.Installation);
-  query.equalTo('joelwass', Username);
+  var query = new Parse.Query('Events');
+  query.equalTo('username', 'joelwass');
   Parse.Push.send({
     where: query, //set to our installation query
     data: {
