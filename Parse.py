@@ -8,7 +8,6 @@ import json
 
 def getRawData(filename):
 
-
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
     rawListOfData = []
     weightDictionary = {}
@@ -26,7 +25,6 @@ def getRawData(filename):
 
 
     extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable , weightDictionary)
-    print weightDictionary
     convertToJsonFormat(dictOfDatesAndInfo , weightDictionary)
 
 #converts the dictionary to the  Json DIct formatting
@@ -37,7 +35,7 @@ def convertToJsonFormat (dictionary, weightDictionary):
         if weight:
             SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2], 'Weight' : weightDictionary[weight] }
         else:
-            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] }
+            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] , 'Weight' : None }
 
         jsonList.append(SingleEventDict)
     jsonDict = {"Events" : jsonList}
@@ -143,16 +141,15 @@ def makeEventFromDate(date, stringToSearch, dictionary):
     eventType = getEventType(stringToSearch)
     time =      getValidTime(stringToSearch) # time returned in (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
     if time:                                    # if time found send the formatted version
-        dictionary[date] = (eventType) , (time[2]) , (getInfo(eventType, time , date, stringToSearch))
+        dictionary[date] = (eventType) , (time) , (getInfo(eventType, time , date, stringToSearch))
     else:
         dictionary[date] = (eventType) , (time) , (getInfo(eventType, time , date, stringToSearch))
 
 def getInfo(event,  time, date, stringToSearch):
     removedEvent = removeSubstring(stringToSearch , event) # return string with removed event
     if time:                                               # if valid time was there
-        rmTime0 = removeSubstring(removedEvent , time[0]) #rm both times
-        rmTime1 = removeSubstring(rmTime0 , time[1])
-        removedDate = removeSubstring(rmTime1, date)
+        rmTime0 = removeSubstring(removedEvent , time) #rm both times
+        removedDate = removeSubstring(rmTime0, date)
     else :
         removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
         return removedDate
@@ -208,11 +205,22 @@ def getValidTime(stringToSearch):
         # try to get a second time to establish valid time frame:
         secondTimeFound = getTime(stringToSearch[firstTimeIndex + len(firstTimeFound):])
         if secondTimeFound:
-            return (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)  # return time in this format
+            return (firstTimeFound , 'to' , secondTimeFound)  # return time in this format
         else:
-            return (firstTimeFound) , (None) , (firstTimeFound)
-
-
+            return  (firstTimeFound)
+    else:
+        # time in above format not found try searching for am/pm
+        am = stringToSearch.lower().find('am')
+        if am > -1:
+            print stringToSearch , '\n'                                 # found a time at a valid am
+            time = re.search('\d\d?:?\d?\d?' , stringToSearch)
+            if time:
+                return time.group()
+        pm = stringToSearch.lower().find('pm')
+        if pm > -1:
+            time = re.search('\d\d?.\d?\d?' , stringToSearch)
+            if time:
+                return time.group()
 
 def getTime(stringToSearch):
     # pattern to find the pattern ##:## which is commonly used to denote time
