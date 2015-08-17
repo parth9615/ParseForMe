@@ -29,10 +29,15 @@ class CalendarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PFCloud.callFunctionInBackground("hello", withParameters: nil) {
+        
+        //Cloud code for push notifications. not working yet TODO
+        
+        println("\n\nNSDate for today \(NSDate())")
+        PFCloud.callFunctionInBackground("hello", withParameters: ["date":"Stuff"]) {
             (response: AnyObject?, error: NSError?) -> Void in
             let responseString = response as? String
             println(responseString)
+            println(error)
         }
         
         titleLabel.text = ""

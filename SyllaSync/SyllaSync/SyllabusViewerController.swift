@@ -12,6 +12,7 @@ class SyllabusViewerController: UIViewController {
 
     @IBOutlet weak var syllabusViewer: UIImageView!
     var syllabusToDisplayString = ""
+    var fileToDisplay = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,38 @@ class SyllabusViewerController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
+        
+        //HARD CODED IN CALC SYLLABUS NEED TO CHANGEBACK TO SYLLABUSTODISPLAYSTRING WHEN DONE TESTING
+        
+        var query:PFQuery = PFQuery(className: "Events")
+        query.whereKey("syllabus", equalTo: "calcSyllabus.txt") //cast as a PFFile TODO
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error:NSError?) -> Void in
+            if (error == nil) {
+                println("got a query for calcSyllabus.txt")
+                for object in objects! {
+                    let userSyllabus = object["syllabus"] as! PFFile
+                    userSyllabus.getDataInBackgroundWithBlock { // This is the part your overlooking
+                        (imageData: NSData?, error:NSError?) -> Void in
+                        if (error == nil) {
+                            let image = UIImage(data:imageData!)
+                            self.fileToDisplay.append(image!)
+                            
+                            println(self.fileToDisplay)
+                        }
+                    }
+                }
+                println(self.fileToDisplay)
+//                else {
+//                    println("couldn't get syllabus for \(self.syllabusToDisplayString)")
+//                }
+            }
+            else {
+                println("Error", error, error!.userInfo!)
+            }
+        }
+        println(fileToDisplay)
+        //self.syllabusViewer.image = fileToDisplay[0]
         //grabbing syllabus file from parse to stick in image view
         //TODO input syllabus file from parse into image view see if it is even possible
     }
