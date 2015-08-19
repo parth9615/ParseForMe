@@ -150,6 +150,9 @@ public class EventService: NSObject {
                                     eventsArraySyllabus.append("\(eventSyllabus)")
                                 }
                                 
+                                //schedule notifications
+                                scheduleNotifications(eventDetails)
+                                
                                 continue
                             }
                             else {
@@ -175,6 +178,9 @@ public class EventService: NSObject {
                                 if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
                                     eventsArraySyllabus.append("\(eventSyllabus)")
                                 }
+                                
+                                //schedule notifications
+                                scheduleNotifications(eventDetails)
                             }
                         }
                     }
@@ -182,6 +188,21 @@ public class EventService: NSObject {
             }
         }
         finish(sender)
+    }
+    
+    
+    func scheduleNotifications(eventDetails: AnyObject) {
+        var twoWeekNotification = UILocalNotification()
+        var oneWeekNotification = UILocalNotification()
+        var dayBeforeNotification = UILocalNotification()
+        if let eventFireDate:AnyObject = eventDetails["Date"] {
+            var eventFireDateString = "\(eventFireDate)"
+            let dateFromString = eventFireDateString.componentsSeparatedByString("/")
+            var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
+            twoWeekNotification.fireDate = newCVDate.convertedDate()
+            twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
+            
+        }
     }
     
     func finish(sender: AnyObject) {

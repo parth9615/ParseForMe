@@ -27,7 +27,7 @@ class SyllabusViewerController: UIViewController {
         //HARD CODED IN CALC SYLLABUS NEED TO CHANGEBACK TO SYLLABUSTODISPLAYSTRING WHEN DONE TESTING
         
         var query:PFQuery = PFQuery(className: "Events")
-        query.whereKey("syllabus", equalTo: "calcSyllabus.txt") //cast as a PFFile TODO
+        query.whereKey("syllabus", equalTo:  "calcSyllabus.txt") //cast as a PFFile TODO
         query.findObjectsInBackgroundWithBlock{
             (objects: [AnyObject]?, error:NSError?) -> Void in
             if (error == nil) {
