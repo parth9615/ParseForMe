@@ -195,16 +195,32 @@ public class EventService: NSObject {
         var twoWeekNotification = UILocalNotification()
         var oneWeekNotification = UILocalNotification()
         var dayBeforeNotification = UILocalNotification()
+        var eventTitle:AnyObject? = eventDetails["Title"]
         if let eventFireDate:AnyObject = eventDetails["Date"] {
             var eventFireDateString = "\(eventFireDate)"
             let dateFromString = eventFireDateString.componentsSeparatedByString("/")
             var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
             
             //two week prior notification
-            twoWeekNotification.fireDate = newCVDate.convertedDate()
+            twoWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-14)
             twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
+            twoWeekNotification.alertBody = "Don't forget! You have \(eventTitle!) in just two weeks!"
+            twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
             
+            //one week prior notification
+            oneWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-7)
+            oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
+            oneWeekNotification.alertBody = "Oh boy... Only one week until \(eventTitle!). You can do it!"
+            oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
             
+            //one day prior notification
+            dayBeforeNotification.fireDate = newCVDate.convertedDate()?.addDays(-1)
+            dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
+            dayBeforeNotification.alertBody = "Tomorrow is the day for \(eventTitle!). Don't forget and good luck!"
+            dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
         }
     }
     
