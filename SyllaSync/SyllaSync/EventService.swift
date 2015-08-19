@@ -221,6 +221,8 @@ public class EventService: NSObject {
             dayBeforeNotification.alertBody = "Tomorrow is the day for \(eventTitle!). Don't forget and good luck!"
             dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
             UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
+            
+            //TODO use user settings that were just implemented to set the notifications that were set so that we don't set them more than once
         }
     }
     

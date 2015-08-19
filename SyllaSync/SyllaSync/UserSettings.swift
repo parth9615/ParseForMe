@@ -16,10 +16,20 @@ public class UserSettings {
         static let Username = "Username"
         static let SyllabusArray = "SyllabusArray"
         static let EventsArray = "EventsArray"
+        static let notificationsScheduled = "notificationsScheduled"
     }
     
     public class var sharedInstance: UserSettings {
         return _UserSettings
+    }
+    
+    public var notificationsScheduled:[NSObject:AnyObject] { //[String:Bool]
+        get {
+            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.notificationsScheduled)!
+        }
+        set (newNotificaionsScheduled) {
+            NSUserDefaults.standardUserDefaults().setObject(newNotificaionsScheduled, forKey: Constants.notificationsScheduled)
+        }
     }
     
     public var Username:String? {
