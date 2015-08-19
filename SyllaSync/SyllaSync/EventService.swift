@@ -199,8 +199,11 @@ public class EventService: NSObject {
             var eventFireDateString = "\(eventFireDate)"
             let dateFromString = eventFireDateString.componentsSeparatedByString("/")
             var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
+            
+            //two week prior notification
             twoWeekNotification.fireDate = newCVDate.convertedDate()
             twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
+            
             
         }
     }

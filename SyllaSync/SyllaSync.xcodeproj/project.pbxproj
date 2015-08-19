@@ -49,6 +49,21 @@
 		EE10F5971B7E511700931D4D /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5961B7E511700931D4D /* SyllabiController.swift */; };
 		EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5991B7E571F00931D4D /* SyllabiCell.swift */; };
 		EE10F59C1B7E5A4900931D4D /* SyllabusViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */; };
+		EE10F5AF1B84F82300931D4D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A01B84F82300931D4D /* Array.swift */; };
+		EE10F5B01B84F82300931D4D /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A11B84F82300931D4D /* Bool.swift */; };
+		EE10F5B11B84F82300931D4D /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A21B84F82300931D4D /* Character.swift */; };
+		EE10F5B21B84F82300931D4D /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A31B84F82300931D4D /* Dictionary.swift */; };
+		EE10F5B31B84F82300931D4D /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A41B84F82300931D4D /* Double.swift */; };
+		EE10F5B41B84F82300931D4D /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A61B84F82300931D4D /* ExSwift.swift */; };
+		EE10F5B51B84F82300931D4D /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A71B84F82300931D4D /* Float.swift */; };
+		EE10F5B61B84F82300931D4D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE10F5A81B84F82300931D4D /* Info.plist */; };
+		EE10F5B71B84F82300931D4D /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A91B84F82300931D4D /* Int.swift */; };
+		EE10F5B81B84F82300931D4D /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AA1B84F82300931D4D /* NSArray.swift */; };
+		EE10F5B91B84F82300931D4D /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AB1B84F82300931D4D /* NSDate.swift */; };
+		EE10F5BA1B84F82300931D4D /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AC1B84F82300931D4D /* Range.swift */; };
+		EE10F5BB1B84F82300931D4D /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AD1B84F82300931D4D /* Sequence.swift */; };
+		EE10F5BC1B84F82300931D4D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AE1B84F82300931D4D /* String.swift */; };
+		EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
@@ -159,6 +174,22 @@
 		EE10F5961B7E511700931D4D /* SyllabiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiController.swift; sourceTree = "<group>"; };
 		EE10F5991B7E571F00931D4D /* SyllabiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiCell.swift; sourceTree = "<group>"; };
 		EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusViewerController.swift; sourceTree = "<group>"; };
+		EE10F5A01B84F82300931D4D /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		EE10F5A11B84F82300931D4D /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		EE10F5A21B84F82300931D4D /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		EE10F5A31B84F82300931D4D /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		EE10F5A41B84F82300931D4D /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		EE10F5A51B84F82300931D4D /* ExSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExSwift.h; sourceTree = "<group>"; };
+		EE10F5A61B84F82300931D4D /* ExSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExSwift.swift; sourceTree = "<group>"; };
+		EE10F5A71B84F82300931D4D /* Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
+		EE10F5A81B84F82300931D4D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE10F5A91B84F82300931D4D /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		EE10F5AA1B84F82300931D4D /* NSArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSArray.swift; sourceTree = "<group>"; };
+		EE10F5AB1B84F82300931D4D /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		EE10F5AC1B84F82300931D4D /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
+		EE10F5AD1B84F82300931D4D /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		EE10F5AE1B84F82300931D4D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Util.swift"; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE9BC0F81B79A75600D33818 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -331,6 +362,8 @@
 		EE0835E21B6D3BCA00F5CD9C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */,
+				EE10F59F1B84F82300931D4D /* ExSwift */,
 				EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */,
 				EE1887591B6FFC80003FA7A9 /* DimView.swift */,
 				EE9BC0F81B79A75600D33818 /* Reachability.swift */,
@@ -430,6 +463,28 @@
 				EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */,
 			);
 			name = SyllabiViewer;
+			sourceTree = "<group>";
+		};
+		EE10F59F1B84F82300931D4D /* ExSwift */ = {
+			isa = PBXGroup;
+			children = (
+				EE10F5A01B84F82300931D4D /* Array.swift */,
+				EE10F5A11B84F82300931D4D /* Bool.swift */,
+				EE10F5A21B84F82300931D4D /* Character.swift */,
+				EE10F5A31B84F82300931D4D /* Dictionary.swift */,
+				EE10F5A41B84F82300931D4D /* Double.swift */,
+				EE10F5A51B84F82300931D4D /* ExSwift.h */,
+				EE10F5A61B84F82300931D4D /* ExSwift.swift */,
+				EE10F5A71B84F82300931D4D /* Float.swift */,
+				EE10F5A81B84F82300931D4D /* Info.plist */,
+				EE10F5A91B84F82300931D4D /* Int.swift */,
+				EE10F5AA1B84F82300931D4D /* NSArray.swift */,
+				EE10F5AB1B84F82300931D4D /* NSDate.swift */,
+				EE10F5AC1B84F82300931D4D /* Range.swift */,
+				EE10F5AD1B84F82300931D4D /* Sequence.swift */,
+				EE10F5AE1B84F82300931D4D /* String.swift */,
+			);
+			path = ExSwift;
 			sourceTree = "<group>";
 		};
 		EE9FCE6F1B765E7100C052C7 /* Fonts */ = {
@@ -597,6 +652,7 @@
 				EE9FCE7A1B765E9200C052C7 /* BoosterNextFY-Regular.otf in Resources */,
 				EE9FCE771B765E9200C052C7 /* BoosterNextFY-Bold.otf in Resources */,
 				EE9FCE791B765E9200C052C7 /* BoosterNextFY-Medium.otf in Resources */,
+				EE10F5B61B84F82300931D4D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +752,8 @@
 				EE9FCEAC1B78076600C052C7 /* CVCalendarViewAnimator.swift in Sources */,
 				EE10F5971B7E511700931D4D /* SyllabiController.swift in Sources */,
 				EE9FCEA91B78076600C052C7 /* CVCalendarMonthView.swift in Sources */,
+				EE10F5BC1B84F82300931D4D /* String.swift in Sources */,
+				EE10F5B41B84F82300931D4D /* ExSwift.swift in Sources */,
 				EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */,
 				EE9FCEB51B78076600C052C7 /* CVDate.swift in Sources */,
 				EE9FCE831B77F82800C052C7 /* CalendarController.swift in Sources */,
@@ -712,7 +770,9 @@
 				EE9FCEB41B78076600C052C7 /* CVCalendarWeekView.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
+				EE10F5B71B84F82300931D4D /* Int.swift in Sources */,
 				EE9FCEA31B78076600C052C7 /* CVCalendarDayView.swift in Sources */,
+				EE10F5AF1B84F82300931D4D /* Array.swift in Sources */,
 				EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */,
 				EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */,
 				EE9FCE851B7804E100C052C7 /* ToggleCell.swift in Sources */,
@@ -722,24 +782,34 @@
 				EE9FCEB91B78076600C052C7 /* CVSet.swift in Sources */,
 				EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */,
 				EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */,
+				EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */,
 				EEA031431B7552C70091B05C /* Event.swift in Sources */,
 				EE9FCEA11B78076600C052C7 /* CVAuxiliaryView.swift in Sources */,
 				EE9FCEB31B78076600C052C7 /* CVCalendarWeekday.swift in Sources */,
+				EE10F5B31B84F82300931D4D /* Double.swift in Sources */,
 				EE9FCEB21B78076600C052C7 /* CVCalendarWeekContentViewController.swift in Sources */,
 				EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */,
+				EE10F5BA1B84F82300931D4D /* Range.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
 				EE9FCEBA1B78076600C052C7 /* CVShape.swift in Sources */,
+				EE10F5B11B84F82300931D4D /* Character.swift in Sources */,
 				EE9FCEB81B78076600C052C7 /* CVSelectionType.swift in Sources */,
+				EE10F5BB1B84F82300931D4D /* Sequence.swift in Sources */,
 				EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */,
 				EE9FCEB01B78076600C052C7 /* CVCalendarViewDelegate.swift in Sources */,
+				EE10F5B21B84F82300931D4D /* Dictionary.swift in Sources */,
 				EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */,
 				EE9FCEA51B78076600C052C7 /* CVCalendarManager.swift in Sources */,
+				EE10F5B01B84F82300931D4D /* Bool.swift in Sources */,
 				EE9FCEB71B78076600C052C7 /* CVScrollDirection.swift in Sources */,
 				EE9FCEA61B78076600C052C7 /* CVCalendarMenuView.swift in Sources */,
 				EE9FCEAB1B78076600C052C7 /* CVCalendarView.swift in Sources */,
+				EE10F5B51B84F82300931D4D /* Float.swift in Sources */,
 				EE9FCEAD1B78076600C052C7 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
+				EE10F5B81B84F82300931D4D /* NSArray.swift in Sources */,
+				EE10F5B91B84F82300931D4D /* NSDate.swift in Sources */,
 				EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
