@@ -28,6 +28,7 @@ public class EventService: NSObject {
     public class var sharedInstance : EventService {
         return EventServiceInstance
     }
+    var notificationsScheduled = [String:Bool]()
     
     func getJSON(sender: AnyObject) {
         
@@ -197,36 +198,43 @@ public class EventService: NSObject {
         var dayBeforeNotification = UILocalNotification()
         var eventTitle:AnyObject? = eventDetails["Title"]
         if let eventFireDate:AnyObject = eventDetails["Date"] {
-            var eventFireDateString = "\(eventFireDate)"
-            let dateFromString = eventFireDateString.componentsSeparatedByString("/")
-            var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
-            
-            //two week prior notification
-            twoWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-14)
-            twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
-            twoWeekNotification.alertBody = "Don't forget! You have \(eventTitle!) in just two weeks!"
-            twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
-            UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
-            
-            //one week prior notification
-            oneWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-7)
-            oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
-            oneWeekNotification.alertBody = "Oh boy... Only one week until \(eventTitle!). You can do it!"
-            oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
-            UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
-            
-            //one day prior notification
-            dayBeforeNotification.fireDate = newCVDate.convertedDate()?.addDays(-1)
-            dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
-            dayBeforeNotification.alertBody = "Tomorrow is the day for \(eventTitle!). Don't forget and good luck!"
-            dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
-            UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
-            
+            if UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)"] == nil {
+                var eventFireDateString = "\(eventFireDate)"
+                let dateFromString = eventFireDateString.componentsSeparatedByString("/")
+                var newCVDate = CVDate(day: dateFromString[1].toInt()!, month: dateFromString[0].toInt()!, week: ((dateFromString[1].toInt()!)/7)+1, year: dateFromString[2].toInt()!)
+                
+                //two week prior notification
+                twoWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-14)
+                twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
+                twoWeekNotification.alertBody = "Don't forget! You have \(eventTitle!) in just two weeks!"
+                twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
+                
+                //one week prior notification
+                oneWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-7)
+                oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
+                oneWeekNotification.alertBody = "Oh boy... Only one week until \(eventTitle!). You can do it!"
+                oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
+                
+                //one day prior notification
+                dayBeforeNotification.fireDate = newCVDate.convertedDate()?.addDays(-1)
+                dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
+                dayBeforeNotification.alertBody = "Tomorrow is the day for \(eventTitle!). Don't forget and good luck!"
+                dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
+                
+                UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)"] = true
+            }
+            notificationsScheduled["\(eventTitle)"] == true
             //TODO use user settings that were just implemented to set the notifications that were set so that we don't set them more than once
         }
     }
     
     func finish(sender: AnyObject) {
+        
+        checkNoRepeatNotifications()
+        
         if sender is EventsContainerController  {
             var mySender = sender as! EventsContainerController
             mySender.finishedLoading()
@@ -235,5 +243,9 @@ public class EventService: NSObject {
             var mySender = sender as! EventsController
             mySender.finishedLoading()
         }
+    }
+    
+    func checkNoRepeatNotifications() {
+        //TODO iterate through the local class level notifications list and the user settings notifications list and remove any repeats and remove any that are no longer there.
     }
 }
