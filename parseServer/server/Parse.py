@@ -15,13 +15,16 @@ def getRawData(filename):
     removeTableLineFromDocTable = False  # to remove | from doc tables
 
     if '.docx' in filename:                # if file is .docx then read from that method
+        print "got to .docx"
         rawListOfData = readFromDOCX(filename)
 
     elif '.doc' in filename:                # if .doc file
+        print "got to .doc"
         removeTableLineFromDocTable = True
         rawListOfData = readFromDOC(filename)
 
     elif '.txt' in filename:                # if .txt file
+        print "got to .txt"
         rawListOfData = readFromTXT(filename)
 
 
@@ -72,7 +75,7 @@ def readFromDOC(filename):
     cmd = 'antiword ' + filename + ' > ' + newFileName           # construct antiword command
     (status, output) = commands.getstatusoutput(cmd)
     if status:                                                  # if problem exit
-        sys.stderr.write('there was an error: ' , output)
+        sys.stderr.write(output)
         sys.exit(1)
     else:
         return readFromTXT(newFileName)                                # else now readfromthetxt file

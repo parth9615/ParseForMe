@@ -65,6 +65,7 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
 
 
             var fail = function(err){
+              console.log('got an error in date algo')
               throw err;
             }
 
