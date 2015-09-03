@@ -6,6 +6,10 @@ from docx.shared import Inches
 import commands
 import json
 
+#logan adds
+from subprocess import Popen, PIPE
+#from docx import opendocx, getdocumenttext
+
 def getRawData(filename):
 
 
@@ -71,7 +75,7 @@ def readFromDOCX(filename):
 
 def readFromDOC(filename):
 
-    newFileName = 'convertedFromDocToTxt.txt'                   # name of piping file
+    newFileName = 'txtConverted.txt'                   # name of piping file
     cmd = 'antiword ' + filename + ' > ' + newFileName           # construct antiword command
     (status, output) = commands.getstatusoutput(cmd)
     if status:                                                  # if problem exit
@@ -80,7 +84,8 @@ def readFromDOC(filename):
     else:
         return readFromTXT(newFileName)                                # else now readfromthetxt file
 
-def readFromTXT( filename):
+
+def readFromTXT(filename):
     f = open(filename, 'rU')              # Open and read the file. for read only
     rawListOfData = f.readlines()         # get each line as a list
     return rawListOfData
