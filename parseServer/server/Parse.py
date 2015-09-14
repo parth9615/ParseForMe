@@ -8,7 +8,6 @@ import json
 
 #logan adds
 from subprocess import Popen, PIPE
-#from docx import opendocx, getdocumenttext
 
 def getRawData(filename):
 
@@ -30,7 +29,6 @@ def getRawData(filename):
     elif '.txt' in filename:                # if .txt file
         print "got to .txt"
         rawListOfData = readFromTXT(filename)
-
 
     extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable , weightDictionary)
     print weightDictionary

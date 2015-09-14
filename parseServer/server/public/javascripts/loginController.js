@@ -3,7 +3,7 @@ Parse.initialize("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT", "XSZ5x97qzUWiALEbAK
 
 var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
 
-.run(['$rootScope', function($scope) {
+.run(['$rootScope', function($scope, $httpProvider) {
   $scope.scenario = 'Sign up';
   $scope.currentUser = Parse.User.current();
 
@@ -112,4 +112,32 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
         }
 
 
+}]);
+
+
+loginApp.controller('uploadEventController', ['$scope', '$http', function ($scope, $http) {
+    $scope.$watch('manualEventForm', function () {
+        $scope.uploadEvent($scope.manualEventForm, $http);
+    });
+
+$scope.uploadEvent = function(form){
+
+  console.log('attempted upload');
+  var manualEvent = {"date": form.date, "time": form.time, "title": form.title,
+                      "type": form.type, "weight": form.weight}
+
+  $http.post("https://api.parse.com/1/classes/Events", {
+
+    "username": $scope.currentUser.attributes.username,
+    "events": JSON.stringify(manualEvent)
+  },
+
+  {
+    headers: {
+        'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+        'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+        'Content-Type': 'application/json'
+    }
+  })
+}
 }]);

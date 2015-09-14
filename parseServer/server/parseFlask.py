@@ -20,10 +20,6 @@ cors = CORS(app)
 @app.route("/dates", methods=['POST'])
 def parse_syllabus():
     syllabusText = request.data
-    print "syllabusText = " + syllabusText
-
-    #syllabusText = 'calcSyllabus.txt'
-
     dataDict = getRawData(syllabusText)
     return jsonify(dataDict), 200
 
