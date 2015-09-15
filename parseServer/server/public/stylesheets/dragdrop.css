@@ -3,6 +3,17 @@
   src: url(../fonts/BoosterNextFY-Regular.otf);
 }
 
+h3 {
+  color: white;
+  position: relative;
+  left: 43%;
+}
+
+form {
+  position: relative;
+  left: 43%;
+}
+
 body {
   background-color: #04a4ca;
   font-family: syllasyncRegular
@@ -23,13 +34,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
-form {
-  position: relative;
-  left: 45%;
-}
-
-
 
 .dropzone {
     border: 2px dashed white;

@@ -19,14 +19,13 @@
     <div class="loginGroup" ng-hide="currentUser">
       <form ng-show="scenario == 'Sign up'">
         <input type="email" ng-model="user.email" placeholder="Email" /><br />
-        <input type="text" ng-model="user.username" placeholder="Username" /><br />
         <input type="password" ng-model="user.password" placeholder="Password" /><br />
         <button ng-click="signUp(user)">Sign up</button>
         or <a href="#" ng-click='scenario="Log in"'>Log in</a>
       </form>
 
       <form ng-show="scenario == 'Log in'">
-        <input type="text" ng-model="user.username" placeholder="Username"/><br />
+        <input type="text" ng-model="user.username" placeholder="Email"/><br />
         <input type="password" ng-model="user.password" placeholder="Password"/><br />
         <button ng-click="logIn(user)">Log in</button>
         or <a href="#" ng-click='scenario="Sign up"'>Sign up</a>
@@ -46,12 +45,13 @@
 
         <form name="manualForm" ng-submit="submit(manualEvent)" ng-controller="uploadEventController">
           <input type="text" ng-model="manualEvent.title" placeholder="Event title" /><br />
+          <input type="text" ng-model="manualEvent.classname" placeholder="Class name" /><br />
           <input type="text" ng-model="manualEvent.date" placeholder="Date" /><br />
           <input type="text" ng-model="manualEvent.time" placeholder="Time" /><br />
           <input type="text" ng-model="manualEvent.type" placeholder="Type" /><br />
           <input type="text" ng-model="manualEvent.weight" placeholder="% of Grade" /><br />
 
-          <button type="submit">upload</button>
+          <button type="submit">Upload</button>
         </form>
 
       <button ng-click="logOut(user)">Log out</button>

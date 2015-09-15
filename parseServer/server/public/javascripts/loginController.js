@@ -10,7 +10,7 @@ var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
   $scope.signUp = function(form) {
     var user = new Parse.User();
     user.set("email", form.email);
-    user.set("username", form.username);
+    user.set("username", form.email);
     user.set("password", form.password);
 
     user.signUp(null, {
@@ -118,7 +118,7 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
 loginApp.controller('uploadEventController', ['$scope', '$http', function ($scope, $http) {
   $scope.submit = function(form){
     var manualEvent = {"date": form.date, "time": form.time, "title": form.title,
-                        "type": form.type, "weight": form.weight}
+                        "type": form.type, "weight": form.weight, "classname": form.classname}
 
 
     $http.post("https://api.parse.com/1/classes/Events", {
