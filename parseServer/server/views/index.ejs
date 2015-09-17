@@ -15,21 +15,18 @@
 </head>
 <body ng-app="AuthApp">
 
-
-    <div ng-hide="currentUser">
+    <img class="logo" src="/images/LogoandPic.png" />
+    <div class="loginGroup" ng-hide="currentUser">
       <form ng-show="scenario == 'Sign up'">
-        <h2>Sign up</h2>
-        Email: <input type="email" ng-model="user.email" /><br />
-        Username: <input type="text" ng-model="user.username" /><br />
-        Password: <input type="password" ng-model="user.password" /><br />
+        <input type="email" ng-model="user.email" placeholder="Email" /><br />
+        <input type="password" ng-model="user.password" placeholder="Password" /><br />
         <button ng-click="signUp(user)">Sign up</button>
         or <a href="#" ng-click='scenario="Log in"'>Log in</a>
       </form>
 
       <form ng-show="scenario == 'Log in'">
-        <h2>Log in</h2>
-        Username: <input type="text" ng-model="user.username" /><br />
-        Password: <input type="password" ng-model="user.password" /><br />
+        <input type="text" ng-model="user.username" placeholder="Email"/><br />
+        <input type="password" ng-model="user.password" placeholder="Password"/><br />
         <button ng-click="logIn(user)">Log in</button>
         or <a href="#" ng-click='scenario="Sign up"'>Sign up</a>
       </form>
@@ -37,11 +34,26 @@
 
     <div ng-show="currentUser">
       <div ng-controller="dragDropController">
-      Drop File:
-      <div ngf-drop ng-model="files" class="dropzone"
-      ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-      ngf-accept="'application/pdf,text/plain'">Drop Images or PDFs files here</div>
+        <div ngf-drop ng-model="files" class="dropzone"
+          ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+          ngf-accept="'text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword'">Drop .txt, .doc, or .docx files here
+        </div>
       </div>
+
+
+      <h3>Manual Events</h3>
+
+        <form name="manualForm" ng-submit="submit(manualEvent)" ng-controller="uploadEventController">
+          <input type="text" ng-model="manualEvent.title" placeholder="Event title" /><br />
+          <input type="text" ng-model="manualEvent.classname" placeholder="Class name" /><br />
+          <input type="text" ng-model="manualEvent.date" placeholder="Date" /><br />
+          <input type="text" ng-model="manualEvent.time" placeholder="Time" /><br />
+          <input type="text" ng-model="manualEvent.type" placeholder="Type" /><br />
+          <input type="text" ng-model="manualEvent.weight" placeholder="% of Grade" /><br />
+
+          <button type="submit">Upload</button>
+        </form>
+
       <button ng-click="logOut(user)">Log out</button>
     </div>
 

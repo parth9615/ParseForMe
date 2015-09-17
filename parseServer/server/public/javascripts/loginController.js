@@ -3,14 +3,14 @@ Parse.initialize("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT", "XSZ5x97qzUWiALEbAK
 
 var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
 
-.run(['$rootScope', function($scope) {
+.run(['$rootScope', function($scope, $httpProvider) {
   $scope.scenario = 'Sign up';
   $scope.currentUser = Parse.User.current();
 
   $scope.signUp = function(form) {
     var user = new Parse.User();
     user.set("email", form.email);
-    user.set("username", form.username);
+    user.set("username", form.email);
     user.set("password", form.password);
 
     user.signUp(null, {
@@ -63,47 +63,83 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
               file: file
             })
 
-            var done=function(resp){
-              console.log(resp.data);
-              //$scope.lists=resp.data;
-            };
-            var fail=function(err){
 
-            };
-              $http.post("http://localhost:5000/dates", "./uploads/"+file.name).then(done, fail);
+            var fail = function(err){
+              console.log('got an error in date algo')
+              throw err;
+            }
 
+            var success = function(flaskResponse){
+              var eventsArray = flaskResponse.data.Events;
+              $http.post("https://api.parse.com/1/files/"+file.name, file, {
 
-          // $http.post("https://api.parse.com/1/files/"+file.name, file, {
-          //
-          //        headers: {
-          //            'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-          //            'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-          //            'Content-Type': file.type
-          //        },
-          //        transformRequest: angular.identity
-          //
-          // }).then(function(data) {
-          //   console.log(data.data.name);
-          //   console.log($scope.currentUser);
-          //   $http.post("https://api.parse.com/1/classes/Events", {
-          //
-          //     "username": $scope.currentUser.attributes.username,
-          //     "syllabus": {
-          //       "name": data.data.name,
-          //       "__type": "File"
-          //     }
-          //   },
-          //
-          //   {
-          //     headers: {
-          //         'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
-          //         'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
-          //         'Content-Type': 'application/json'
-          //     }
-          //   })
-          // })
+                     headers: {
+                         'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+                         'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+                         'Content-Type': file.type
+                     },
+                     transformRequest: angular.identity
+
+              }).then(function(data) {
+
+                  for(var i = 0; i < eventsArray.length; i++){
+                    var syllabiEvent = eventsArray[i];
+
+                    $http.post("https://api.parse.com/1/classes/Events", {
+
+                      "username": $scope.currentUser.attributes.username,
+                      "events": syllabiEvent,
+                      "syllabus": {
+                        "name": data.data.name,
+                        "__type": "File"
+                      }
+                    },
+
+                    {
+                      headers: {
+                          'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+                          'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+                          'Content-Type': 'application/json'
+                      }
+                    })
+                  }
+                })
+                 }
+              }
+
+          $http.post("http://localhost:5000/dates", "./uploads/"+file.name).then(success, fail)
           };
         }
+
+
+}]);
+
+
+loginApp.controller('uploadEventController', ['$scope', '$http', function ($scope, $http) {
+  $scope.submit = function(form){
+    var manualEvent = {"date": form.date, "time": form.time, "title": form.title,
+                        "type": form.type, "weight": form.weight, "classname": form.classname}
+
+
+    $http.post("https://api.parse.com/1/classes/Events", {
+
+      "username": $scope.currentUser.attributes.username,
+      "events": manualEvent
+    },
+
+    {
+      headers: {
+          'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+          'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
+          'Content-Type': 'application/json'
       }
+    })
+
+    $scope.manualEvent = {};
+    $scope.manualForm.$setPristine();
+  }
+
+
+
 
 }]);

@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'ejs' });
 });
 
-router.get('/derp', function(req, res, next) {
-  res.render('index', { title: 'ejs' });
+router.get('/manualevent', function(req, res, next) {
+  res.render('manualevent', { title: 'ejs' });
 });
 
 /**

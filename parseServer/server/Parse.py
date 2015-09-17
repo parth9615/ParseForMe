@@ -4,26 +4,58 @@ from pprint import pprint
 from docx import Document
 from docx.shared import Inches
 import commands
+import json
+
+#logan adds
+from subprocess import Popen, PIPE
 
 def getRawData(filename):
 
 
     dictOfDatesAndInfo = {} # dictionary that maps from ('date' --> (eventType) , (time) , (description))
     rawListOfData = []
+    weightDictionary = {}
+    removeTableLineFromDocTable = False  # to remove | from doc tables
 
     if '.docx' in filename:                # if file is .docx then read from that method
+        print "got to .docx"
         rawListOfData = readFromDOCX(filename)
 
     elif '.doc' in filename:                # if .doc file
+        print "got to .doc"
+        removeTableLineFromDocTable = True
         rawListOfData = readFromDOC(filename)
 
     elif '.txt' in filename:                # if .txt file
-        rawListOfData = readFromTXT( filename)
+        print "got to .txt"
+        rawListOfData = readFromTXT(filename)
 
-    extractDates(dictOfDatesAndInfo, rawListOfData)
-    #print dictOfDatesAndInfo
-    return dictOfDatesAndInfo                     # print the result
-    #return "yagotme"
+    extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable , weightDictionary)
+    print weightDictionary
+    return convertToJsonFormat(dictOfDatesAndInfo , weightDictionary)
+
+#converts the dictionary to the  Json DIct formatting
+def convertToJsonFormat (dictionary, weightDictionary):
+    jsonList = []
+    for key in dictionary.keys():
+        weight = findWeightInDict(dictionary[key][0] , weightDictionary)
+        if weight:
+            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2], 'Weight' : weightDictionary[weight] }
+        else:
+            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] }
+
+        jsonList.append(SingleEventDict)
+    jsonDict = {"Events" : jsonList}
+    return jsonDict
+
+
+def findWeightInDict(eventType, weight):
+    if eventType:
+        for key in weight.keys():
+            index = key.lower().find(eventType.lower())
+            if index > -1:
+                return key
+    return None
 
 def readFromDOCX(filename):
     rawListOfData= []
@@ -41,21 +73,22 @@ def readFromDOCX(filename):
 
 def readFromDOC(filename):
 
-    newFileName = 'convertedFromDocToTxt.txt'                   # name of piping file
+    newFileName = 'txtConverted.txt'                   # name of piping file
     cmd = 'antiword ' + filename + ' > ' + newFileName           # construct antiword command
     (status, output) = commands.getstatusoutput(cmd)
     if status:                                                  # if problem exit
-        sys.stderr.write('there was an error: ' , output)
+        sys.stderr.write(output)
         sys.exit(1)
     else:
         return readFromTXT(newFileName)                                # else now readfromthetxt file
 
-def readFromTXT( filename):
+
+def readFromTXT(filename):
     f = open(filename, 'rU')              # Open and read the file. for read only
     rawListOfData = f.readlines()         # get each line as a list
     return rawListOfData
 
-def extractDates(dictOfDatesAndInfo, rawListOfData):
+def extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable, weightDictionary):
   dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
 'Mondays' , 'Tuesdays' , 'Wednesdays' , 'Thursdays' , 'Fridays' ,'Saturdays' , 'Sundays' 'Mon' , 'Tue',
  'Wed' , 'Thur' , 'Fri' , 'Sat' , 'Sun' , 'January', 'February' , 'March' , 'April' , 'May' , 'June',
@@ -64,8 +97,8 @@ def extractDates(dictOfDatesAndInfo, rawListOfData):
   relevantDates = []                    # make a list to hold all the dates
                                        # get all days and store in relevantDates
 
-  print "reachedextract"
-  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList)
+
+  extractDays(dictOfDatesAndInfo,relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable, weightDictionary)
 
 '''
 This method iterates through the rawListOfData to find patterns in the method
@@ -76,35 +109,45 @@ Current parsing methods included in the pattern
 4: Finding a line that contains a date in the format ##/##
 todo : update this numeric list as more patterns are added:
 '''
-def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList):
+def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable, weightDictionary):
     optimizationBoolean = False
     for individualLine in rawListOfData:  # iterate through each line
+        if removeTableLineFromDocTable:
+            individualLine = individualLine.replace("|" , "") # remove table lines
         for days in dayAndMonthList:              # iterate through each day combination
             # regex pattern to find the entire line that contains a day in the dayList
-            dayOfTheWeekPattern = ('.+')+(days)+('\s.+')
+            dayOfTheWeekPattern = ('.+')+(days)+('?\s.+')
             # regex flag to ingnorecase and make the dot include whitespace
             dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
             # call findInString to check if such a pattern exists
             result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
             if result:
                 makeEventFromMonth(individualLine, dictOfDatesAndInfo)
-
                 break
 
-        # pattern to find the pattern ##/## which is commonly used to denote dates
-        dateTimePattern = ('\d\d?/\d\d?')
+        extractWeight(individualLine , weightDictionary)
+        #pattern to find the pattern ##/## which is commonly used to denote dates
+        dateTimePattern = ('\d\d?.\d\d?')
         dateTimeFlags   = re.DOTALL
         result = findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
         if result:
              makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
 
 
+def extractWeight(lineToSearch, weightDictionary):
+    findPercentIndex = lineToSearch.find('%')  # if percent sign is present
+    if findPercentIndex > -1:                  # valid index found
+
+        findNumericalWeight = re.search('\d?\d?\.?\d?\d' , lineToSearch)  # find any possible numerical percent
+        if findNumericalWeight:
+            weightDictionary[lineToSearch] = findNumericalWeight.group()
+
 
 def makeEventFromDate(date, stringToSearch, dictionary):
 
     #get the proper event and time and then add to dictionary
     eventType = getEventType(stringToSearch)
-    time =      getValidTime(stringToSearch)
+    time =      getValidTime(stringToSearch) # time returned in (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
     if time:                                    # if time found send the formatted version
         dictionary[date] = (eventType) , (time[2]) , (getInfo(eventType, time , date, stringToSearch))
     else:
@@ -118,7 +161,8 @@ def getInfo(event,  time, date, stringToSearch):
         removedDate = removeSubstring(rmTime1, date)
     else :
         removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
-    return removedDate                                # return string with printed info deleted
+        return removedDate
+
 
 
 def removeSubstring(stringToSearch, findingObject):
@@ -162,7 +206,7 @@ def getEventType(stringToSearch):
             return event
 
 
-
+# return a tuple in form (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
 def getValidTime(stringToSearch):
     firstTimeFound = getTime(stringToSearch)
     if firstTimeFound:
@@ -171,6 +215,9 @@ def getValidTime(stringToSearch):
         secondTimeFound = getTime(stringToSearch[firstTimeIndex + len(firstTimeFound):])
         if secondTimeFound:
             return (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)  # return time in this format
+        else:
+            return (firstTimeFound) , (None) , (firstTimeFound)
+
 
 
 def getTime(stringToSearch):
