@@ -228,6 +228,7 @@ public class EventService: NSObject {
             }
             notificationsScheduled["\(eventTitle)"] == true
             //TODO use user settings that were just implemented to set the notifications that were set so that we don't set them more than once
+            
         }
     }
     

@@ -25,7 +25,13 @@ public class UserSettings {
     
     public var notificationsScheduled:[NSObject:AnyObject] { //[String:Bool]
         get {
-            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.notificationsScheduled)!
+            if NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.notificationsScheduled) == nil {
+                return [:]
+                //return new dictionary object
+            }
+            else {
+                return NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.notificationsScheduled)!
+            }
         }
         set (newNotificaionsScheduled) {
             NSUserDefaults.standardUserDefaults().setObject(newNotificaionsScheduled, forKey: Constants.notificationsScheduled)
