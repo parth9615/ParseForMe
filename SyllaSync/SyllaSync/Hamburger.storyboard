@@ -87,54 +87,64 @@
                                     <action selector="dismiss:" destination="Yoh-Tx-umH" eventType="touchUpInside" id="QJ7-Yo-eNC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter in your friends account email and see which classes you have together!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKi-so-7uD">
-                                <rect key="frame" x="50" y="76" width="221" height="61"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friend's Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvN-S6-Px4">
-                                <rect key="frame" x="16" y="145" width="288" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6F-UV-NO8">
-                                <rect key="frame" x="129" y="183" width="64" height="30"/>
-                                <state key="normal" title="Compare">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="compare:" destination="Yoh-Tx-umH" eventType="touchUpInside" id="sPW-Y9-H6s"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-fA-Jcz">
-                                <rect key="frame" x="0.0" y="221" width="320" height="333"/>
+                                <rect key="frame" x="0.0" y="58" width="320" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BarEvents" rowHeight="50" id="xPI-Az-XLS">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xPI-Az-XLS" id="kXM-Ha-aIy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXl-Dp-gSm">
+                                                    <rect key="frame" x="263" y="9" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bar Deal Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHT-L2-439">
+                                                    <rect key="frame" x="8" y="14" width="123" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SportEvents" rowHeight="50" id="yi8-U8-x2W">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yi8-U8-x2W" id="gTg-uR-Wtb">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rb8-sk-Q9w">
+                                                    <rect key="frame" x="263" y="9" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sporting Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW4-8n-fVq">
+                                                    <rect key="frame" x="8" y="14" width="122" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lvN-S6-Px4" firstAttribute="top" secondItem="qKi-so-7uD" secondAttribute="bottom" constant="8" id="4M4-V8-3LL"/>
                             <constraint firstItem="0eg-n4-ccA" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" id="4Mw-qf-Oyw"/>
-                            <constraint firstItem="N6F-UV-NO8" firstAttribute="top" secondItem="lvN-S6-Px4" secondAttribute="bottom" constant="8" id="9Gw-1b-IDY"/>
-                            <constraint firstAttribute="centerX" secondItem="lvN-S6-Px4" secondAttribute="centerX" id="C22-ty-OMW"/>
-                            <constraint firstItem="qKi-so-7uD" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" constant="34" id="CNu-o1-cLS"/>
-                            <constraint firstAttribute="centerX" secondItem="N6F-UV-NO8" secondAttribute="centerX" constant="-0.5" id="CfV-v1-IUd"/>
                             <constraint firstItem="ag4-Dr-fIk" firstAttribute="top" secondItem="CAp-fA-Jcz" secondAttribute="bottom" constant="14" id="EVs-oX-phn"/>
-                            <constraint firstAttribute="centerX" secondItem="qKi-so-7uD" secondAttribute="centerX" constant="-0.5" id="EWA-O2-F6a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CAp-fA-Jcz" secondAttribute="trailing" constant="-16" id="PES-UT-dsU"/>
-                            <constraint firstItem="lvN-S6-Px4" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" id="UXN-Er-4JP"/>
                             <constraint firstItem="0eg-n4-ccA" firstAttribute="trailing" secondItem="64M-B5-iWf" secondAttribute="trailingMargin" id="aek-Np-jdf"/>
-                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="top" secondItem="N6F-UV-NO8" secondAttribute="bottom" constant="8" id="dI2-FH-F7a"/>
                             <constraint firstItem="CAp-fA-Jcz" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" constant="-16" id="eTT-va-SKc"/>
-                            <constraint firstItem="qKi-so-7uD" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="56" id="kif-bS-aBd"/>
+                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="38" id="jGw-sa-bJS"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="classmatesTable" destination="CAp-fA-Jcz" id="crh-9A-JQx"/>
-                        <outlet property="compareTextField" destination="lvN-S6-Px4" id="vQo-HY-Yzf"/>
+                        <outlet property="notificationsTableView" destination="CAp-fA-Jcz" id="WFd-t3-Vu7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pl-ny-EGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
