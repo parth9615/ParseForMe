@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="948" y="423"/>
         </scene>
-        <!--Compare Controller-->
+        <!--Notifications Controller-->
         <scene sceneID="eL9-4Y-MJI">
             <objects>
-                <viewController storyboardIdentifier="Compare" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yoh-Tx-umH" customClass="CompareController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Notifications" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yoh-Tx-umH" customClass="NotificationsController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QUn-7x-b1x"/>
                         <viewControllerLayoutGuide type="bottom" id="ag4-Dr-fIk"/>
@@ -134,7 +134,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="classmatesTable" destination="CAp-fA-Jcz" id="crh-9A-JQx"/>
-                        <outlet property="closeButton" destination="0eg-n4-ccA" id="bYk-ak-0Xz"/>
                         <outlet property="compareTextField" destination="lvN-S6-Px4" id="vQo-HY-Yzf"/>
                     </connections>
                 </viewController>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CompareController: UIViewController {
+class NotificationsController: UIViewController {
     
     
     @IBOutlet weak var classmatesTable: UITableView!

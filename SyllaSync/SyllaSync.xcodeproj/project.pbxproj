@@ -107,7 +107,7 @@
 		EEA031431B7552C70091B05C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
 		EEA031451B75589F0091B05C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
 		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
-		EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */; };
+		EEEB0CB01B707A4E00C54CC7 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
 		EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */; };
 /* End PBXBuildFile section */
@@ -233,7 +233,7 @@
 		EEA031421B7552C70091B05C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EEA031441B75589F0091B05C /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareController.swift; sourceTree = "<group>"; };
+		EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -399,7 +399,7 @@
 				EE10F5981B7E56FA00931D4D /* SyllabiViewer */,
 				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
 				EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */,
-				EEEB0CAF1B707A4E00C54CC7 /* CompareController.swift */,
+				EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
 				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
@@ -774,7 +774,7 @@
 				EE9FCEA31B78076600C052C7 /* CVCalendarDayView.swift in Sources */,
 				EE10F5AF1B84F82300931D4D /* Array.swift in Sources */,
 				EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */,
-				EEEB0CB01B707A4E00C54CC7 /* CompareController.swift in Sources */,
+				EEEB0CB01B707A4E00C54CC7 /* NotificationsController.swift in Sources */,
 				EE9FCE851B7804E100C052C7 /* ToggleCell.swift in Sources */,
 				EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */,
 				EE9FCEAE1B78076600C052C7 /* CVCalendarViewAppearance.swift in Sources */,
