@@ -76,7 +76,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             return cell!
         }
         else if indexPath.row == HamburgerCells.Notifications.rawValue {
-            var cellIdentifier = "Compare"
+            var cellIdentifier = "Notifications"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)

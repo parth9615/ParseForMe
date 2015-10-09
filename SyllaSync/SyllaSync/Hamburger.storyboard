@@ -88,7 +88,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-fA-Jcz">
-                                <rect key="frame" x="0.0" y="58" width="320" height="496"/>
+                                <rect key="frame" x="0.0" y="335" width="320" height="219"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BarEvents" rowHeight="50" id="xPI-Az-XLS">
@@ -97,7 +97,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xPI-Az-XLS" id="kXM-Ha-aIy">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXl-Dp-gSm">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXl-Dp-gSm">
                                                     <rect key="frame" x="263" y="9" width="51" height="31"/>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bar Deal Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHT-L2-439">
@@ -107,6 +107,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cXl-Dp-gSm" firstAttribute="top" secondItem="kXM-Ha-aIy" secondAttribute="topMargin" constant="1" id="cXN-Jd-4lI"/>
+                                                <constraint firstItem="cXl-Dp-gSm" firstAttribute="trailing" secondItem="kXM-Ha-aIy" secondAttribute="trailingMargin" id="fFA-0G-G1d"/>
+                                                <constraint firstAttribute="centerX" secondItem="cXl-Dp-gSm" secondAttribute="centerX" constant="-127.5" id="s3r-ZC-6Hb"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="s3r-ZC-6Hb"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SportEvents" rowHeight="50" id="yi8-U8-x2W">
@@ -115,7 +125,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yi8-U8-x2W" id="gTg-uR-Wtb">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rb8-sk-Q9w">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rb8-sk-Q9w">
                                                     <rect key="frame" x="263" y="9" width="51" height="31"/>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sporting Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW4-8n-fVq">
@@ -125,25 +135,59 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rb8-sk-Q9w" firstAttribute="top" secondItem="gTg-uR-Wtb" secondAttribute="topMargin" constant="1" id="RXk-h7-0mh"/>
+                                                <constraint firstItem="rb8-sk-Q9w" firstAttribute="trailing" secondItem="gTg-uR-Wtb" secondAttribute="trailingMargin" id="tV8-dp-U0T"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Yoh-Tx-umH" id="cH4-cC-wtI"/>
+                                    <outlet property="delegate" destination="Yoh-Tx-umH" id="3tP-5f-xfC"/>
+                                </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7m-hq-ZVX">
+                                <rect key="frame" x="19" y="53" width="282" height="269"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="269" id="N0C-D9-LVo"/>
+                                </constraints>
+                                <string key="text">Do you want to be notified when any local bars are having deals, also likely the place everyone will be at some given night? Would you like to know when your schools sports team is playing next? We can notify you a day in advance for either of these with no in app use necessary, we’ll just send you a friendly push notification reminding you it’s gonna be popping at a certain bar tonight! Toggle these on or off to start getting notifications now! </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75B-jg-Ill">
+                                <rect key="frame" x="108" y="24" width="104" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="top" secondItem="P7m-hq-ZVX" secondAttribute="bottom" constant="13" id="0wu-Eo-CD6"/>
                             <constraint firstItem="0eg-n4-ccA" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" id="4Mw-qf-Oyw"/>
                             <constraint firstItem="ag4-Dr-fIk" firstAttribute="top" secondItem="CAp-fA-Jcz" secondAttribute="bottom" constant="14" id="EVs-oX-phn"/>
+                            <constraint firstItem="P7m-hq-ZVX" firstAttribute="top" secondItem="0eg-n4-ccA" secondAttribute="bottom" constant="3" id="Fvm-nd-blD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CAp-fA-Jcz" secondAttribute="trailing" constant="-16" id="PES-UT-dsU"/>
+                            <constraint firstAttribute="centerX" secondItem="P7m-hq-ZVX" secondAttribute="centerX" id="TCD-Up-Avf"/>
                             <constraint firstItem="0eg-n4-ccA" firstAttribute="trailing" secondItem="64M-B5-iWf" secondAttribute="trailingMargin" id="aek-Np-jdf"/>
                             <constraint firstItem="CAp-fA-Jcz" firstAttribute="leading" secondItem="64M-B5-iWf" secondAttribute="leadingMargin" constant="-16" id="eTT-va-SKc"/>
-                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="38" id="jGw-sa-bJS"/>
+                            <constraint firstItem="75B-jg-Ill" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="4" id="hEe-fZ-Z8y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="P7m-hq-ZVX" secondAttribute="trailing" constant="3" id="iWa-i0-clq"/>
+                            <constraint firstItem="CAp-fA-Jcz" firstAttribute="top" secondItem="QUn-7x-b1x" secondAttribute="bottom" constant="315" id="jGw-sa-bJS"/>
+                            <constraint firstAttribute="centerX" secondItem="75B-jg-Ill" secondAttribute="centerX" id="z3c-Lr-csI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jGw-sa-bJS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="classmatesTable" destination="CAp-fA-Jcz" id="crh-9A-JQx"/>
                         <outlet property="notificationsTableView" destination="CAp-fA-Jcz" id="WFd-t3-Vu7"/>
                     </connections>
                 </viewController>
@@ -193,14 +237,14 @@
                                     <outlet property="label" destination="hg9-nP-Orb" id="ZqF-eV-8sd"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Compare" rowHeight="60" id="eA0-Uz-tyc">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" rowHeight="60" id="eA0-Uz-tyc">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eA0-Uz-tyc" id="tNR-Yu-3l9">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compare your schedule with friends!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJI-b3-ugF">
-                                            <rect key="frame" x="60" y="9" width="170" height="41"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Settings" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJI-b3-ugF">
+                                            <rect key="frame" x="60" y="19" width="170" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="170" id="z4e-CM-bVO"/>
                                             </constraints>
