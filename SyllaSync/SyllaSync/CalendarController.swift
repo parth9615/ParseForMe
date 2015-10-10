@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalendarController: UIViewController {
+class CalendarController:UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!

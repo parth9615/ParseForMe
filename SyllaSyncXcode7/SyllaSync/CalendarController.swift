@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class CalendarController: UIViewController {
+class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -104,7 +104,7 @@ class CalendarController: UIViewController {
 
 // MARK: - CVCalendarViewDelegate
 
-extension CalendarController: CVCalendarViewDelegate
+extension CalendarController
 {
     func preliminaryView(viewOnDayView dayView: DayView) -> UIView
     {
@@ -308,7 +308,7 @@ extension CalendarController: CVCalendarViewAppearanceDelegate {
 
 // MARK: - CVCalendarMenuViewDelegate
 
-extension CalendarController: CVCalendarMenuViewDelegate {
+extension CalendarController {
     // firstWeekday() has been already implemented.
 }
 
