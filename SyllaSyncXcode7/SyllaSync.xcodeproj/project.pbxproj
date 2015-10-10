@@ -39,9 +39,6 @@
 		EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */; };
 		EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836331B6D5DC400F5CD9C /* Social.framework */; };
 		EE0836361B6D5DC900F5CD9C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836351B6D5DC900F5CD9C /* Accounts.framework */; };
-		EE0838791B6D659900F5CD9C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */; };
-		EE08387A1B6D659900F5CD9C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838771B6D659900F5CD9C /* FBSDKLoginKit.framework */; };
-		EE08387B1B6D659900F5CD9C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838781B6D659900F5CD9C /* FBSDKShareKit.framework */; };
 		EE08387E1B6DA9E700F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
 		EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */; };
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
@@ -79,6 +76,9 @@
 		EEA0313D1B752DB10091B05C /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EEA0313C1B752DB10091B05C /* Cartfile */; };
 		EEA031431B7552C70091B05C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
 		EEA031451B75589F0091B05C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
+		EEBDF4C21BC9660A00EA80A5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
+		EEBDF4C31BC9660A00EA80A5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
+		EEBDF4C41BC9660A00EA80A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
 		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
 		EEEB0CB01B707A4E00C54CC7 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
@@ -137,9 +137,6 @@
 		EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EE0836331B6D5DC400F5CD9C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EE0836351B6D5DC900F5CD9C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		EE0838771B6D659900F5CD9C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		EE0838781B6D659900F5CD9C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
@@ -178,6 +175,9 @@
 		EEA0313C1B752DB10091B05C /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		EEA031421B7552C70091B05C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EEA031441B75589F0091B05C /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
@@ -193,12 +193,12 @@
 				EE0836361B6D5DC900F5CD9C /* Accounts.framework in Frameworks */,
 				EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */,
 				EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */,
-				EE0838791B6D659900F5CD9C /* FBSDKCoreKit.framework in Frameworks */,
+				EEBDF4C21BC9660A00EA80A5 /* FBSDKCoreKit.framework in Frameworks */,
 				EE0836301B6D5CDE00F5CD9C /* SystemConfiguration.framework in Frameworks */,
 				EE08362E1B6D5CD700F5CD9C /* StoreKit.framework in Frameworks */,
-				EE08387B1B6D659900F5CD9C /* FBSDKShareKit.framework in Frameworks */,
+				EEBDF4C41BC9660A00EA80A5 /* FBSDKShareKit.framework in Frameworks */,
 				EE08362C1B6D5CD100F5CD9C /* Security.framework in Frameworks */,
-				EE08387A1B6D659900F5CD9C /* FBSDKLoginKit.framework in Frameworks */,
+				EEBDF4C31BC9660A00EA80A5 /* FBSDKLoginKit.framework in Frameworks */,
 				EE08362A1B6D5CCB00F5CD9C /* QuartzCore.framework in Frameworks */,
 				EE0836281B6D5CC500F5CD9C /* MobileCoreServices.framework in Frameworks */,
 				EE0836261B6D5CBF00F5CD9C /* libz.dylib in Frameworks */,
@@ -374,6 +374,9 @@
 		EE08387C1B6D660A00F5CD9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */,
+				EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */,
+				EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */,
 				EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */,
 				EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */,
 				EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */,
@@ -389,9 +392,6 @@
 				EE08361D1B6D5CAA00F5CD9C /* AudioToolbox.framework */,
 				EE0836331B6D5DC400F5CD9C /* Social.framework */,
 				EE0836351B6D5DC900F5CD9C /* Accounts.framework */,
-				EE0838781B6D659900F5CD9C /* FBSDKShareKit.framework */,
-				EE0838771B6D659900F5CD9C /* FBSDKLoginKit.framework */,
-				EE0838761B6D659900F5CD9C /* FBSDKCoreKit.framework */,
 				4CF18E2AECA5BAF0A5907A99 /* Pods_SyllaSync.framework */,
 				7F20076DB3308C39A14D1ED5 /* Pods_SyllaSyncTests.framework */,
 			);
@@ -790,6 +790,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.ivetechnologies.SyllaSync";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -835,6 +836,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.ivetechnologies.SyllaSync";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

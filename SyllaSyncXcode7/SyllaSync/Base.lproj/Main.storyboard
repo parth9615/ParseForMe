@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -154,7 +154,7 @@
             </objects>
             <point key="canvasLocation" x="1159" y="470"/>
         </scene>
-        <!--Calendar Controller-->
+        <!--Calendar Appearance Delegate-->
         <scene sceneID="YPF-Ml-dul">
             <objects>
                 <viewController storyboardIdentifier="Calendar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X0y-L3-JmP" customClass="CalendarController" customModule="SyllaSync" customModuleProvider="target" sceneMemberID="viewController">
@@ -166,29 +166,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mk7-cn-PaU" customClass="CVCalendarMenuView" customModule="SyllaSync" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="320" height="38"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mk7-cn-PaU" customClass="CVCalendarMenuView" customModule="SyllaSync" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="57" width="320" height="38"/>
                                 <color key="backgroundColor" red="0.95452008929999999" green="0.61409581810000002" blue="0.95082836989999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Qne-5O-d7g"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="menuViewDelegate" destination="X0y-L3-JmP" id="CbK-Fh-Vna"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTo-OV-m1B" customClass="CVCalendarView" customModule="SyllaSync" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="97" width="320" height="300"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="312" id="0rP-9X-4n2"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="0rP-9X-4n2"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="calendarDelegate" destination="X0y-L3-JmP" id="sJb-wj-kBg"/>
+                                    <outlet property="menuViewDelegate" destination="X0y-L3-JmP" id="Qz3-9b-cyh"/>
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oS-hX-Lt2">
@@ -236,6 +221,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTo-OV-m1B" customClass="CVCalendarView" customModule="SyllaSync" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="97" width="320" height="300"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="312" id="0rP-9X-4n2"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0rP-9X-4n2"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="calendarAppearanceDelegate" destination="X0y-L3-JmP" id="ezB-8J-3pG"/>
+                                    <outlet property="calendarDelegate" destination="X0y-L3-JmP" id="yjE-8x-Jf4"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -298,9 +299,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="Event" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="60" id="QZz-db-DYy" customClass="EventCell" customModule="SyllaSync" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZz-db-DYy" id="szk-we-oK8">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsN-Ld-Zzo">

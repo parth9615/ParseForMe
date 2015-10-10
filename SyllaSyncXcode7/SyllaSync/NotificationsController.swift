@@ -66,7 +66,8 @@ class NotificationsController: UIViewController, UITableViewDataSource, UITableV
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
-        else if indexPath.row == NotificationCells.SportEvents.rawValue {
+        else {
+//            if indexPath.row == NotificationCells.SportEvents.rawValue {
             let cellIdentifier = "SportEvents"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
@@ -75,11 +76,6 @@ class NotificationsController: UIViewController, UITableViewDataSource, UITableV
 
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
-        }
-        else {
-            let cell: UITableViewCell!
-            return cell
-            //
         }
     }
     

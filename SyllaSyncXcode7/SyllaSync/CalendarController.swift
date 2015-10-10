@@ -180,10 +180,7 @@ extension CalendarController: CVCalendarViewDelegate
         }
         return false
     }
-}
 
-
-extension CalendarController {
     func presentationMode() -> CalendarMode {
         return .MonthView
     }

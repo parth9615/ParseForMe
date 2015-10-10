@@ -4,14 +4,12 @@ use_frameworks!
 
 target 'SyllaSync' do
 
-pod 'Google/SignIn'
 pod 'CVCalendar', :git => 'https://github.com/Mozharovsky/CVCalendar', :branch => 'master'
 
 end
 
 target 'SyllaSyncTests' do
 
-pod 'Google/SignIn'
 pod 'CVCalendar', :git => 'https://github.com/Mozharovsky/CVCalendar', :branch => 'master'
 
 end
