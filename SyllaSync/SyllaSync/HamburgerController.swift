@@ -11,9 +11,9 @@ import UIKit
 public enum HamburgerCells: Int {
     case Filler = 0
     case Calendar
-    case Compare
+    case Notifications
     case Settings
-    case Invite
+    case ViewSyllabi
     case AboutUs
     case Logout
     case Fluff
@@ -75,8 +75,8 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
-        else if indexPath.row == HamburgerCells.Compare.rawValue {
-            var cellIdentifier = "Compare"
+        else if indexPath.row == HamburgerCells.Notifications.rawValue {
+            var cellIdentifier = "Notifications"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
@@ -94,8 +94,8 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
-        else if indexPath.row == HamburgerCells.Invite.rawValue {
-            var cellIdentifier = "Invite"
+        else if indexPath.row == HamburgerCells.ViewSyllabi.rawValue {
+            var cellIdentifier = "ViewSyllabi"
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
             if cell == nil {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
@@ -138,7 +138,7 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
         if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
-        if indexPath.row == HamburgerCells.Invite.rawValue || indexPath.row == HamburgerCells.Compare.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue || indexPath.row == HamburgerCells.Calendar.rawValue {
+        if indexPath.row == HamburgerCells.ViewSyllabi.rawValue || indexPath.row == HamburgerCells.Notifications.rawValue || indexPath.row == HamburgerCells.Settings.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue || indexPath.row == HamburgerCells.Calendar.rawValue {
             return 45
         }
         else {
@@ -174,14 +174,14 @@ class HamburgerController: UITableViewController, UITableViewDataSource, UITable
             var aboutVC = self.storyboard?.instantiateViewControllerWithIdentifier("AboutUs") as! AboutController
             self.presentViewController(aboutVC, animated: true, completion: nil)
         }
-        else if indexPath.row == HamburgerCells.Compare.rawValue {
+        else if indexPath.row == HamburgerCells.Notifications.rawValue {
             
-            var compareVC = self.storyboard?.instantiateViewControllerWithIdentifier("Compare") as! CompareController
-            self.presentViewController(compareVC, animated: true, completion: nil)
+            var notificationsVC = self.storyboard?.instantiateViewControllerWithIdentifier("Notifications") as! NotificationsController
+            self.presentViewController(notificationsVC, animated: true, completion: nil)
         }
-        else if indexPath.row == HamburgerCells.Invite.rawValue {
+        else if indexPath.row == HamburgerCells.ViewSyllabi.rawValue {
             
-            var inviteVC = self.storyboard?.instantiateViewControllerWithIdentifier("Invite") as! InviteController
+            var inviteVC = self.storyboard?.instantiateViewControllerWithIdentifier("Syllabi") as! SyllabiController
             self.presentViewController(inviteVC, animated: true, completion: nil)
         }
         else if indexPath.row == HamburgerCells.Logout.rawValue {

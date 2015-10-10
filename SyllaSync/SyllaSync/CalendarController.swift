@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalendarController: UIViewController {
+class CalendarController:UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -28,6 +28,17 @@ class CalendarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //Cloud code for push notifications. not working yet TODO
+        
+        println("\n\nNSDate for today \(NSDate())")
+        PFCloud.callFunctionInBackground("hello", withParameters: ["date":"Stuff"]) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            let responseString = response as? String
+            println(responseString)
+            println(error)
+        }
         
         titleLabel.text = ""
         timeLabel.text = ""
@@ -70,7 +81,7 @@ class CalendarController: UIViewController {
         if eventService.eventsArray?.count == 0 {
             var alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
-
+                
             }
             alert.addAction(OKAction)
             self.presentViewController(alert, animated: true, completion: nil)
@@ -104,6 +115,15 @@ extension CalendarController: CVCalendarViewDelegate
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
         if (dayView.isCurrentDay) {
+            for var i = 0; i < CVMonthsArray.count; i++ {
+                if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
+                    
+                    self.titleLabel.text = eventService.eventsArrayTitles[i]
+                    self.timeLabel.text = eventService.eventsArrayTimes[i]
+                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
+                    
+                }
+            }
             return true
         }
         return false
@@ -176,16 +196,25 @@ extension CalendarController: CVCalendarViewDelegate {
     }
     
     func didSelectDayView(dayView: CVCalendarDayView) {
+        var tappedFlag = false
         let date = dayView.date
         println("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
-                    
+                    tappedFlag = true
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
                     self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
                     
+                }
+                else {
+                    if tappedFlag == false {
+                        tappedFlag = true
+                        self.titleLabel.text = ""
+                        self.timeLabel.text = ""
+                        self.weightLabel.text = ""
+                    }
                 }
             }
         }

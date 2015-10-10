@@ -37,7 +37,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
 //        else {
             let gmailLoginView:GIDSignInButton = GIDSignInButton()
             self.view.addSubview(gmailLoginView)
-            gmailLoginView.center = CGPointMake((self.view.frame.width/2), 420)
+            gmailLoginView.frame = CGRectMake(self.view.frame.width/2, 200, 210, 40)
+            gmailLoginView.center = CGPointMake((self.view.frame.width/2), 400)
 //        }
         
         
@@ -48,6 +49,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         else {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
+            
+            loginView.frame = CGRectMake(self.view.frame.width/2, 200, 210, 40)
             loginView.center = CGPointMake((self.view.frame.width/2), 340)
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self

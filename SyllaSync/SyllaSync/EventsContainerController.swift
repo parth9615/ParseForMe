@@ -35,6 +35,9 @@ class EventsContainerController: UIViewController {
         super.viewDidLoad()
         
          getUserEvents()
+        var currentInstallation:PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation["userID"] = PFUser.currentUser()
+        
     }
     
     

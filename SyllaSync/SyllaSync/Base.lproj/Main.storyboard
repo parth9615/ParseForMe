@@ -31,21 +31,30 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52d-tf-MQi">
-                                <rect key="frame" x="88" y="237" width="144" height="39"/>
+                                <rect key="frame" x="55" y="260" width="210" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="144" id="EaO-Ta-2EV"/>
-                                    <constraint firstAttribute="width" secondItem="52d-tf-MQi" secondAttribute="height" multiplier="11:3" constant="1" id="p9p-CE-syD"/>
+                                    <constraint firstAttribute="width" constant="210" id="EaO-Ta-2EV"/>
+                                    <constraint firstAttribute="height" constant="40" id="GL3-Ai-DUo"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="144" id="kzG-dr-CeE"/>
+                                    <constraint firstAttribute="width" secondItem="52d-tf-MQi" secondAttribute="height" multiplier="11:3" constant="41.333333333333343" id="p9p-CE-syD"/>
                                 </constraints>
-                                <state key="normal" title="Custom Login">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Sign in with SyllaSync Account">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
+                                        <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kzG-dr-CeE"/>
+                                        <exclude reference="p9p-CE-syD"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="start:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mnO-Yl-UVr"/>
                                 </connections>
@@ -54,17 +63,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="52d-tf-MQi" secondAttribute="centerX" id="9nN-6j-Fix"/>
-                            <constraint firstItem="52d-tf-MQi" firstAttribute="top" secondItem="7I9-nd-41h" secondAttribute="bottom" constant="53" id="JXJ-I0-Hvi"/>
                             <constraint firstItem="7I9-nd-41h" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="52" id="Jfi-e0-gT3"/>
                             <constraint firstItem="7I9-nd-41h" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="24" id="TyT-zK-tf9"/>
                             <constraint firstAttribute="centerX" secondItem="7I9-nd-41h" secondAttribute="centerX" id="aU2-8W-eab"/>
-                            <constraint firstAttribute="centerY" secondItem="52d-tf-MQi" secondAttribute="centerY" id="wuR-d1-JXw"/>
+                            <constraint firstItem="52d-tf-MQi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="240" id="u4W-1W-Z7d"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="wuR-d1-JXw"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
