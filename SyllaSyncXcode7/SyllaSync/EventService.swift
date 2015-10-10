@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CVCalendar
 
 private let EventServiceInstance = EventService()
 

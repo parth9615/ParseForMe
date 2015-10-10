@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CVCalendar
 
 class CalendarController: UIViewController {
     
@@ -182,7 +183,7 @@ extension CalendarController: CVCalendarViewDelegate
 }
 
 
-extension CalendarController: CVCalendarViewDelegate {
+extension CalendarController {
     func presentationMode() -> CalendarMode {
         return .MonthView
     }

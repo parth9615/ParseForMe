@@ -70,7 +70,7 @@ public extension NSDate {
     public var time : NSDate {
         get {
             let past = NSDate.distantPast() 
-            return past.add(self.seconds, minutes: self.minutes, hours: self.hours)
+            return past.add(seconds: self.seconds, minutes: self.minutes, hours: self.hours)
         }
     }
 

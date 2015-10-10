@@ -19,7 +19,7 @@ public enum HamburgerCells: Int {
     case Fluff
 }
 
-class HamburgerController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class HamburgerController: UITableViewController {
     
     var parent:EventsContainerController?
     var toggleCell:ToggleCell?
