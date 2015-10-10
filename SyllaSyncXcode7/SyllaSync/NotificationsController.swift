@@ -79,6 +79,7 @@ class NotificationsController: UIViewController, UITableViewDataSource, UITableV
         else {
             let cell: UITableViewCell!
             return cell
+            //
         }
     }
     
