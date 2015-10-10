@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate  {
+class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     
     @IBOutlet weak var logoImageView: UIImageView!
     var window: UIWindow?
@@ -25,22 +25,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         
         logoImageView.image = UIImage(named: "LogoandPic")
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        GIDSignIn.sharedInstance().delegate = self
-        
-        print(GIDSignIn.sharedInstance().currentUser)
-//        if GIDSignIn.sharedInstance().currentUser != nil {
-//            //skipToChallenges()
-//        }
-//        else {
-            let gmailLoginView:GIDSignInButton = GIDSignInButton()
-            self.view.addSubview(gmailLoginView)
-            gmailLoginView.frame = CGRectMake(self.view.frame.width/2, 200, 210, 40)
-            gmailLoginView.center = CGPointMake((self.view.frame.width/2), 400)
-//        }
-        
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
@@ -220,63 +204,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDe
         // Dispose of any resources that can be recreated.
     }
 
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-        withError error: NSError!) {
-            if (error == nil) {
-                
-                var dimView:DimView?
-                
-                let userId = user.userID                  // For client-side use only!
-                let idToken = user.authentication.idToken // Safe to send to the server
-                let name = user.profile.name
-                let email = user.profile.email
-                
-//                println(email)
-                dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
-                self.view.addSubview(dimView!)
-                self.view.bringSubviewToFront(dimView!)
-
-                    var query = PFQuery(className: "Users")
-                    query.whereKey("email", equalTo: user.profile.email)
-                    query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
-                        if error == nil {
-                            print("query for facebook email user is succesful")
-                            if let objects = user as? [PFUser!] {
-                                print("There was in fact a user registered through gmail email")
-                                
-                                dimView?.removeFromSuperview()
-                                UserSettings.sharedInstance.Username = "\(objects)"
-                                //proceed to events page.
-                                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                                let containerViewController = EventsContainerController()
-                                
-                                self.window!.rootViewController = containerViewController
-                                self.window!.makeKeyAndVisible()
-                            }
-                            else {
-                                print("There wasn't a user registered to that email")
-                                
-                                dimView?.removeFromSuperview()
-                                self.alertUser("no email registered gmail")
-                                //send an alert saying we either couldn't access their email or they don't have an account associated with that email
-                            }
-                        }
-                        else {
-                            print("Error", error, error!.userInfo)
-                        }
-                    }
-                
-                // ...
-            } else {
-                print("\(error.localizedDescription)")
-            }
-    }
     
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
-        withError error: NSError!) {
-            // Perform any operations when the user disconnects from app here.
-            // ...
-    }
-
 }
 
