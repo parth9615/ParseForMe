@@ -249,5 +249,14 @@ public class EventService: NSObject {
     func checkNoRepeatNotifications() {
         //TODO iterate through the local class level notifications list and the user settings notifications list and remove any repeats and remove any that are no longer there.
         print(UserSettings.sharedInstance.notificationsScheduled)
+        var previousNotification = UserSettings.sharedInstance.notificationsScheduled.first
+
+        //TODO check if there are repeat notifications scheduled. there shouldn't be but could possibly be...
+        
+//        for each in UserSettings.sharedInstance.notificationsScheduled {
+//            if each == previousNotification! {
+//                UserSettings.sharedInstance.notificationsScheduled.removeAtIndex(each.0, each.1)
+//            }
+//        }
     }
 }
