@@ -195,7 +195,6 @@ extension CalendarController
     
     func didSelectDayView(dayView: CVCalendarDayView) {
         var tappedFlag = false
-        let date = dayView.date
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
@@ -270,7 +269,6 @@ extension CalendarController
     }
     
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
-        let day = dayView.date.day
         
         let red = CGFloat(arc4random_uniform(600) / 255)
         let green = CGFloat(arc4random_uniform(600) / 255)

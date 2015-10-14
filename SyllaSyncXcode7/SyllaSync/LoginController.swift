@@ -122,6 +122,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         if message == "no email registered facebook" {
             let alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't a SyllaSync account registered with the email used for your Facebook, please create an account at our website, SyllaSync.com, on a computer to upload your syllabi.", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+                
             }
             alert.addAction(OKAction)
             self.presentViewController(alert, animated: true, completion: nil)
@@ -129,6 +130,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         else if message == "no email registered gmail" {
             let alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't a SyllaSync account registered with your gmail email, please create an account at our website, SyllaSync.com, on a computer to upload your syllabi.", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+                
             }
             alert.addAction(OKAction)
             self.presentViewController(alert, animated: true, completion: nil)
@@ -164,12 +166,12 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
 //                println("User Email is: \(self.userEmail)")
                 
             
-                var query = PFQuery(className: "Users")
+                let query = PFQuery(className: "Users")
                 query.whereKey("email", equalTo: self.userEmail!)
                 query.findObjectsInBackgroundWithBlock{(user: [AnyObject]?, error:NSError?) -> Void in
                     if error == nil {
                         print("query for facebook email user is succesful")
-                        if let objects = user as? [PFUser!] {
+                        if let _ = user as? [PFUser!] {
                             print("There was in fact a user registered through facebook email")
                             
                             UserSettings.sharedInstance.Username = "\(self.userEmail!)"

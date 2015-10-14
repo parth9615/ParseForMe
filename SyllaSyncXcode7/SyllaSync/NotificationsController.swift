@@ -59,23 +59,16 @@ class NotificationsController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == NotificationCells.BarEvents.rawValue {
             let cellIdentifier = "BarEvents"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
         else {
 //            if indexPath.row == NotificationCells.SportEvents.rawValue {
             let cellIdentifier = "SportEvents"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as UITableViewCell
-            }
-
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
     }
     
