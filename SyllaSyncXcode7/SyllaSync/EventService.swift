@@ -32,7 +32,7 @@ public class EventService: NSObject {
     
     func getJSON(sender: AnyObject) {
         
-        var query:PFQuery = PFQuery(className: "Events")
+        let query:PFQuery = PFQuery(className: "Events")
         query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
         query.findObjectsInBackgroundWithBlock{
             (objects: [AnyObject]?, error:NSError?) -> Void in
@@ -59,7 +59,6 @@ public class EventService: NSObject {
     func getHeaderCount(sender: AnyObject) {
         var prevSyllabus:AnyObject?
         
-        var tmpHeaderCount = 0
         headerCount = 0
         if eventsArray!.count == 0 {
             self.finish(sender)
@@ -152,7 +151,7 @@ public class EventService: NSObject {
                                 }
                                 
                                 //schedule notifications
-                                scheduleNotifications(eventDetails)
+                                scheduleNotification(eventDetails)
                                 
                                 continue
                             }
@@ -181,7 +180,7 @@ public class EventService: NSObject {
                                 }
                                 
                                 //schedule notifications
-                                scheduleNotifications(eventDetails)
+                                scheduleNotification(eventDetails)
                             }
                         }
                     }
@@ -192,7 +191,7 @@ public class EventService: NSObject {
     }
     
     
-    func scheduleNotifications(eventDetails: AnyObject) {
+    func scheduleNotification(eventDetails: AnyObject) {
         let twoWeekNotification = UILocalNotification()
         let oneWeekNotification = UILocalNotification()
         let dayBeforeNotification = UILocalNotification()
@@ -202,23 +201,24 @@ public class EventService: NSObject {
                 let eventFireDateString = "\(eventFireDate)"
                 let dateFromString = eventFireDateString.componentsSeparatedByString("/")
                 let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
+                let finalDate = newCVDate.convertedDate()?.addHours(5)
                 
                 //two week prior notification
-                twoWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-14)
+                twoWeekNotification.fireDate = finalDate!.addDays(-14)
                 twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
                 twoWeekNotification.alertBody = "Don't forget! You have \(eventTitle!) in just two weeks!"
                 twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
                 
                 //one week prior notification
-                oneWeekNotification.fireDate = newCVDate.convertedDate()?.addDays(-7)
+                oneWeekNotification.fireDate = finalDate!.addDays(-7)
                 oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
                 oneWeekNotification.alertBody = "Oh boy... Only one week until \(eventTitle!). You can do it!"
                 oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
                 
                 //one day prior notification
-                dayBeforeNotification.fireDate = newCVDate.convertedDate()?.addDays(-1)
+                dayBeforeNotification.fireDate = finalDate!.addDays(-1)
                 dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
                 dayBeforeNotification.alertBody = "Tomorrow is the day for \(eventTitle!). Don't forget and good luck!"
                 dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName

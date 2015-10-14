@@ -57,13 +57,10 @@ class HamburgerController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == HamburgerCells.Filler.rawValue {
             let cellIdentifier = "Filler"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            cell?.backgroundColor = UIColor(rgba: "#04a4ca")
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.backgroundColor = UIColor(rgba: "#04a4ca")
+            return cell
         }
         else if indexPath.row == HamburgerCells.Calendar.rawValue {
             let cellIdentifier = "Toggle"
@@ -77,59 +74,41 @@ class HamburgerController: UITableViewController {
         }
         else if indexPath.row == HamburgerCells.Notifications.rawValue {
             let cellIdentifier = "Notifications"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
 
         }
         else if indexPath.row == HamburgerCells.Settings.rawValue {
             let cellIdentifier = "Settings"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
         else if indexPath.row == HamburgerCells.ViewSyllabi.rawValue {
             let cellIdentifier = "ViewSyllabi"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
 
         }
         else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             let cellIdentifier = "AboutUs"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
         else if indexPath.row == HamburgerCells.Logout.rawValue {
             let cellIdentifier = "Logout"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier:cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
         else {
             let cellIdentifier = "Fluff"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
         }
         
     }
