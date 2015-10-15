@@ -81,7 +81,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         
         if eventService.eventsArray?.count == 0 {
             let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
                 
             }
             alert.addAction(OKAction)

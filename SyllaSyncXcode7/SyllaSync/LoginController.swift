@@ -55,7 +55,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         } else {
             //NO INTERNET CONNECTION..
             let alert = UIAlertController(title: "Oh No!", message: "You don't have internet connection right now and you need internet to access our app!", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
                 
             }
             alert.addAction(OKAction)
@@ -118,7 +118,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     func alertUser(message: String) {
         if message == "no email registered facebook" {
             let alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't a SyllaSync account registered with the email used for your Facebook, please create an account at our website, SyllaSync.com, on a computer to upload your syllabi.", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
                 
             }
             alert.addAction(OKAction)
@@ -126,7 +126,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         }
         else if message == "no email registered gmail" {
             let alert = UIAlertController(title: "No Email Registered", message: "We're sorry, but there isn't a SyllaSync account registered with your gmail email, please create an account at our website, SyllaSync.com, on a computer to upload your syllabi.", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
                 
             }
             alert.addAction(OKAction)
