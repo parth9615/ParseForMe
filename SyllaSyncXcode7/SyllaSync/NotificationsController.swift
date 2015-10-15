@@ -29,6 +29,8 @@ class NotificationsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        barEventsToggle.addTarget(self, action: Selector("barStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        sportEventsToggle.addTarget(self, action: Selector("sportStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         //self.tableView.scrollEnabled = false //comment to enable scrolling
         
         // Uncomment the following line to preserve selection between presentations
@@ -36,6 +38,26 @@ class NotificationsController: UIViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func barStateChanged(switchState: UISwitch) {
+        if switchState.on {
+            print("The Switch is On")
+            UserSettings.sharedInstance.BarEvents = true
+        } else {
+            UserSettings.sharedInstance.BarEvents = false
+            print("The Switch is Off")
+        }
+    }
+    
+    func sportStateChanged(switchState: UISwitch) {
+        if switchState.on {
+            print("The Switch is On")
+            UserSettings.sharedInstance.SportEvents = true
+        } else {
+            UserSettings.sharedInstance.SportEvents = false
+            print("The Switch is Off")
+        }
     }
     
     override func didReceiveMemoryWarning() {
