@@ -175,6 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstallation.channels = ["Global"]
         currentInstallation.saveInBackground()
     }
+    
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
