@@ -34,9 +34,14 @@ class EventsContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         getUserEvents()
+        getUserEvents()
         let currentInstallation:PFInstallation = PFInstallation.currentInstallation()
         currentInstallation["userID"] = PFUser.currentUser()
+        
+        currentInstallation.addUniqueObject("BarEvents", forKey: "channels")
+        currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
+        currentInstallation.saveInBackground()
+
         
     }
     

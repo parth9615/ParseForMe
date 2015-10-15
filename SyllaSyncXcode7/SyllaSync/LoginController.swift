@@ -67,8 +67,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
-        
-        
         print("User Logged In")
         
         print(result)
@@ -79,7 +77,6 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         print("Logged in with FB")
 
         self.returnUserData()
-        
         
         //loading view when waiting to fetch graph request.
         dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))

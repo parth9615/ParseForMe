@@ -51,24 +51,14 @@ public class UserSettings {
         }
         set(newBarEvents) {
             if newBarEvents == true {
-                PFPush.subscribeToChannelInBackground("BarEvents") { (succeeded, error) in
-                    if succeeded {
-                        print("ParseStarterProject successfully subscribed to push notifications on the barEvents channel.");
-                    } else {
-                        print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.", error)
-                    }
-                }
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.addUniqueObject("BarEvents", forKey: "channels")
+                currentInstallation.saveInBackground()
             }
             else {
-                PFPush.unsubscribeFromChannelInBackground("BarEvents") {
-                    (succeeded, error) in
-                    if succeeded {
-                        print("ParseStarterProject successfully unsubscribed to push notifications on the barEvents channel.");
-                    } else {
-                        print("ParseStarterProject failed to unsubscribe to push notifications on the barEvents channel with error = %@.", error)
-                    }
-                }
-            }
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.removeObject("BarEvents", forKey: "channels")
+                currentInstallation.saveInBackground()            }
             NSUserDefaults.standardUserDefaults().setObject(newBarEvents, forKey: Constants.BarEvents)
         }
     }
@@ -84,23 +74,14 @@ public class UserSettings {
         }
         set(newSportEvents) {
             if newSportEvents == true {
-                PFPush.subscribeToChannelInBackground("SportEvents") { (succeeded, error) in
-                    if succeeded {
-                        print("ParseStarterProject successfully subscribed to push notifications on the sportEvents channel.");
-                    } else {
-                        print("ParseStarterProject failed to subscribe to push notifications on the sportEvents channel with error = %@.", error)
-                    }
-                }
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
+                currentInstallation.saveInBackground()
             }
             else {
-                PFPush.unsubscribeFromChannelInBackground("SportEvents") {
-                    (succeeded, error) in
-                    if succeeded {
-                        print("ParseStarterProject successfully unsubscribed to push notifications on the sportEvents channel.");
-                    } else {
-                        print("ParseStarterProject failed to unsubscribe to push notifications on the sportEvents channel with error = %@.", error)
-                    }
-                }
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.removeObject("SportEvents", forKey: "channels")
+                currentInstallation.saveInBackground()
             }
             NSUserDefaults.standardUserDefaults().setObject(newSportEvents, forKey: Constants.SportEvents)
         }
