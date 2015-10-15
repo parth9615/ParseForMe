@@ -9,13 +9,14 @@
 import UIKit
 import QuartzCore
 import Parse
+import CoreLocation
 
 enum SlideOutState {
     case BothCollapsed
     case LeftPanelExpanded
 }
 
-class EventsContainerController: UIViewController {
+class EventsContainerController: UIViewController, CLLocationManagerDelegate {
     
     
     var eventService = EventService.sharedInstance
@@ -31,6 +32,8 @@ class EventsContainerController: UIViewController {
     var hamburgerController: HamburgerController?
     let centerPanelExpandedOffset: CGFloat = 60
     
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +44,16 @@ class EventsContainerController: UIViewController {
         currentInstallation.addUniqueObject("BarEvents", forKey: "channels")
         currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
         currentInstallation.saveInBackground()
-
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
+        }
         
     }
     
@@ -49,6 +61,15 @@ class EventsContainerController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
        
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
     }
     
     func getUserEvents() {
