@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  SyllaSync
+
+  Created by Joel Wasserman on 10/15/15.
+  Copyright © 2015 IVET. All rights reserved.
+*/
+"NSLocationWhenInUseUsageDescription" = "So that SyllaSync can accurately provide you with your local college events";

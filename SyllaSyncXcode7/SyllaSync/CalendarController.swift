@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -17,6 +17,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var deleteEventButton: UIButton!
     
     var shouldShowDaysOut = true
     var animationFinished = true
@@ -25,7 +26,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVMonthsArray = [Int]()
     var CVDaysArray = [Int]()
     var CVYearsArray = [Int]()
+    var day:CVDate?
     
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +47,24 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         titleLabel.text = ""
         timeLabel.text = ""
         weightLabel.text = ""
+        deleteEventButton.hidden = true
+        deleteEventButton.enabled = false
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
         getCVDatesFromDatesArray()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("\n\nError for location manager CLLocation... line 71 in events container controller\(error)\n\n")
     }
     
     func getCVDatesFromDatesArray() {
@@ -79,26 +94,87 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if eventService.eventsArray?.count == 0 {
-            let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
-                
-            }
-            alert.addAction(OKAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+//        if eventService.eventsArray?.count == 0 {
+//            let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
+//            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
+//                
+//            }
+//            alert.addAction(OKAction)
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        }
+        
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        let authstate = CLLocationManager.authorizationStatus()
+        if(authstate == CLAuthorizationStatus.NotDetermined){
+            print("Not Authorised")
+            locationManager.requestWhenInUseAuthorization()
         }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+
     }
     
-    /*
-    // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    @IBAction func deleteEvent(sender: AnyObject) {
+        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this event?", preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "Yes", style: .Default) { _ in
+            let query:PFQuery = PFQuery(className: "Events")
+            query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error:NSError?) -> Void in
+                if (error == nil) {
+                    print("got a query for \(UserSettings.sharedInstance.Username)")
+                    if let object = objects as? [PFObject!] {
+                        for each in object {
+                            if let event:AnyObject = each {
+                                if let eventDetails:AnyObject = event["events"] {
+                                    print(eventDetails)
+                                    var title = ""
+                                    
+                                    if let eventTitle:AnyObject = eventDetails["Title"] {
+                                        title = "\(eventTitle)"
+                                    }
+                                    
+                                    if let eventDate:AnyObject = eventDetails["Date"] {
+                                        let dateFromString = eventDate.componentsSeparatedByString("/")
+                                        let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
+                                        
+                                        if newCVDate.day == self.day?.day && newCVDate.month == self.day?.month && title == self.titleLabel.text {
+                                            print("\(self.titleLabel.text) event was deleted succesfully")
+                                            each.deleteEventually()
+                                            
+                                            self.eventService.getJSON(self)
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    print("Error getting query", error, error!.userInfo)
+                }
+            }
+        }
+        let CancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
+        }
+        alert.addAction(OKAction)
+        alert.addAction(CancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
-    */
     
+    func finishLoading() {
+        //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
+     //   self.calendarView.reloadInputViews()
+        self.calendarView.removeAllSubviews()
+    }
 }
 
 
@@ -122,7 +198,6 @@ extension CalendarController
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
                     self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
-                    
                 }
             }
             return true
@@ -170,7 +245,6 @@ extension CalendarController
     
     func supplementaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
-        
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
@@ -195,7 +269,7 @@ extension CalendarController
     
     func didSelectDayView(dayView: CVCalendarDayView) {
         var tappedFlag = false
-        let date = dayView.date
+        day = dayView.date!
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
@@ -203,7 +277,9 @@ extension CalendarController
                     tappedFlag = true
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
-                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
+                    self.weightLabel.text = "Worth \(eventService.eventsArrayWeights[i])% of your grade"
+                    self.deleteEventButton.enabled = true
+                    self.deleteEventButton.hidden = false
                     
                 }
                 else {
@@ -212,6 +288,8 @@ extension CalendarController
                         self.titleLabel.text = ""
                         self.timeLabel.text = ""
                         self.weightLabel.text = ""
+                        self.deleteEventButton.enabled = false
+                        self.deleteEventButton.hidden = true
                     }
                 }
             }
@@ -270,7 +348,6 @@ extension CalendarController
     }
     
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
-        let day = dayView.date.day
         
         let red = CGFloat(arc4random_uniform(600) / 255)
         let green = CGFloat(arc4random_uniform(600) / 255)

@@ -60,6 +60,10 @@
 		<string>BoosterNextFY-Regular.otf</string>
 		<string>BosterNextFY-Thin.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

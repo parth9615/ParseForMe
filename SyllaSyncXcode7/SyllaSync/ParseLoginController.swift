@@ -19,7 +19,6 @@ PFSignUpViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -41,7 +40,7 @@ PFSignUpViewControllerDelegate {
             print("No Logged in user")
             let loginViewController = PFLogInViewController()
             loginViewController.fields = [PFLogInFields.UsernameAndPassword, PFLogInFields.LogInButton, PFLogInFields.SignUpButton]
-            
+            loginViewController.emailAsUsername = true
             loginViewController.delegate = self
             
             let signupViewController = PFSignUpViewController()

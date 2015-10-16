@@ -90,8 +90,10 @@ class TableCalendarContainerController: UIViewController {
     }
 
     @IBAction func editPressed(sender: AnyObject) {
+        
+        
         let alert = UIAlertController(title: "Oh No!", message: "This feature is currently unavailable", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+        let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
             
         }
         alert.addAction(OKAction)

@@ -13,6 +13,8 @@ private let _UserSettings = UserSettings()
 public class UserSettings {
     
     struct Constants {
+        static let SportEvents = "SportEvents"
+        static let BarEvents = "BarEvents"
         static let Username = "Username"
         static let SyllabusArray = "SyllabusArray"
         static let EventsArray = "EventsArray"
@@ -35,6 +37,53 @@ public class UserSettings {
         }
         set (newNotificaionsScheduled) {
             NSUserDefaults.standardUserDefaults().setObject(newNotificaionsScheduled, forKey: Constants.notificationsScheduled)
+        }
+    }
+    
+    public var BarEvents:Bool? {
+        get {
+            if NSUserDefaults.standardUserDefaults().objectForKey(Constants.BarEvents) == nil {
+                return true
+            }
+            else {
+                return NSUserDefaults.standardUserDefaults().objectForKey(Constants.BarEvents) as? Bool
+            }
+        }
+        set(newBarEvents) {
+            if newBarEvents == true {
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.addUniqueObject("BarEvents", forKey: "channels")
+                currentInstallation.saveInBackground()
+            }
+            else {
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.removeObject("BarEvents", forKey: "channels")
+                currentInstallation.saveInBackground()            }
+            NSUserDefaults.standardUserDefaults().setObject(newBarEvents, forKey: Constants.BarEvents)
+        }
+    }
+    
+    public var SportEvents:Bool? {
+        get {
+            if NSUserDefaults.standardUserDefaults().objectForKey(Constants.SportEvents) == nil {
+                return true
+            }
+            else {
+                return NSUserDefaults.standardUserDefaults().objectForKey(Constants.SportEvents) as? Bool
+            }
+        }
+        set(newSportEvents) {
+            if newSportEvents == true {
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
+                currentInstallation.saveInBackground()
+            }
+            else {
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.removeObject("SportEvents", forKey: "channels")
+                currentInstallation.saveInBackground()
+            }
+            NSUserDefaults.standardUserDefaults().setObject(newSportEvents, forKey: Constants.SportEvents)
         }
     }
     

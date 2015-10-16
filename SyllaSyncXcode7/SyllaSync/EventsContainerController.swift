@@ -34,22 +34,22 @@ class EventsContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         getUserEvents()
+        getUserEvents()
         let currentInstallation:PFInstallation = PFInstallation.currentInstallation()
         currentInstallation["userID"] = PFUser.currentUser()
+        
+        currentInstallation.addUniqueObject("BarEvents", forKey: "channels")
+        currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
+        currentInstallation.saveInBackground()
         
     }
     
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-       
     }
     
     func getUserEvents() {
-        
-        
-        
         //loading view when waiting to fetch graph request.
         dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
         self.view.addSubview(dimView!)

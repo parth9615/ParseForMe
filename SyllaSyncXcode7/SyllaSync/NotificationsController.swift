@@ -13,10 +13,11 @@ public enum NotificationCells: Int {
     case SportEvents
 }
 
-class NotificationsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class NotificationsController: UIViewController {
     
-    
-    @IBOutlet weak var notificationsTableView: UITableView!
+    @IBOutlet weak var barEventsToggle: UISwitch!
+    @IBOutlet weak var sportEventsToggle: UISwitch!
+
     //
     //  HamburgerController.swift
     //  SyllaSync
@@ -27,9 +28,9 @@ class NotificationsController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        print("stuff has happened", terminator: "")
+
+        barEventsToggle.addTarget(self, action: Selector("barStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        sportEventsToggle.addTarget(self, action: Selector("sportStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         //self.tableView.scrollEnabled = false //comment to enable scrolling
         
         // Uncomment the following line to preserve selection between presentations
@@ -39,44 +40,25 @@ class NotificationsController: UIViewController, UITableViewDataSource, UITableV
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    func barStateChanged(switchState: UISwitch) {
+        if switchState.on {
+            UserSettings.sharedInstance.BarEvents = true
+        } else {
+            UserSettings.sharedInstance.BarEvents = false
+        }
+    }
+    
+    func sportStateChanged(switchState: UISwitch) {
+        if switchState.on {
+            UserSettings.sharedInstance.SportEvents = true
+        } else {
+            UserSettings.sharedInstance.SportEvents = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == NotificationCells.BarEvents.rawValue {
-            let cellIdentifier = "BarEvents"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            }
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
-        }
-        else {
-//            if indexPath.row == NotificationCells.SportEvents.rawValue {
-            let cellIdentifier = "SportEvents"
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? UITableViewCell
-            if cell == nil {
-                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as UITableViewCell
-            }
-
-            cell?.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell!
-        }
     }
     
     
