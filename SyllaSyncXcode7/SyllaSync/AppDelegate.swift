@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Parse
 import Bolts
+import CoreLocation
 
 
 //THIS WAS MONEY IN THE FUCKING BANK FOR TESTING INTERNET CONNECTION http://www.brianjcoleman.com/tutorial-check-for-internet-connection-in-swift/
@@ -32,7 +33,7 @@ import Bolts
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
 
+        locationManager.requestAlwaysAuthorization()
         
         // Override point for customization after application launch.
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

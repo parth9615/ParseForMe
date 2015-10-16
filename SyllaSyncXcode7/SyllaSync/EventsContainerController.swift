@@ -9,14 +9,13 @@
 import UIKit
 import QuartzCore
 import Parse
-import CoreLocation
 
 enum SlideOutState {
     case BothCollapsed
     case LeftPanelExpanded
 }
 
-class EventsContainerController: UIViewController, CLLocationManagerDelegate {
+class EventsContainerController: UIViewController {
     
     
     var eventService = EventService.sharedInstance
@@ -32,8 +31,6 @@ class EventsContainerController: UIViewController, CLLocationManagerDelegate {
     var hamburgerController: HamburgerController?
     let centerPanelExpandedOffset: CGFloat = 60
     
-    let locationManager = CLLocationManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,35 +42,14 @@ class EventsContainerController: UIViewController, CLLocationManagerDelegate {
         currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
         currentInstallation.saveInBackground()
         
-        locationManager.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-//            locationManager.startUpdatingLocation()
-            locationManager.requestLocation()
-        }
     }
     
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-       
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("\n\nError for location manager CLLocation... line 71 in events container controller\(error)\n\n")
     }
     
     func getUserEvents() {
-        
-        
-        
         //loading view when waiting to fetch graph request.
         dimView = DimView(frame: CGRectMake(0,0,self.view.frame.width,self.view.frame.height))
         self.view.addSubview(dimView!)

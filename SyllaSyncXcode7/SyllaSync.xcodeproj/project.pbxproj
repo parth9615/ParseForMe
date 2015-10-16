@@ -34,7 +34,6 @@
 		EE0836281B6D5CC500F5CD9C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */; };
 		EE08362A1B6D5CCB00F5CD9C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */; };
 		EE08362C1B6D5CD100F5CD9C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362B1B6D5CD100F5CD9C /* Security.framework */; };
-		EE08362E1B6D5CD700F5CD9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362D1B6D5CD700F5CD9C /* StoreKit.framework */; };
 		EE0836301B6D5CDE00F5CD9C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */; };
 		EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */; };
 		EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836331B6D5DC400F5CD9C /* Social.framework */; };
@@ -63,6 +62,7 @@
 		EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
+		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
 		EE9FCE761B765E9200C052C7 /* BoosterNextFY-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */; };
 		EE9FCE771B765E9200C052C7 /* BoosterNextFY-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */; };
@@ -132,7 +132,6 @@
 		EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EE08362B1B6D5CD100F5CD9C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		EE08362D1B6D5CD700F5CD9C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EE0836331B6D5DC400F5CD9C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -162,6 +161,7 @@
 		EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Util.swift"; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
+		EE63BB941BD0A01E00354741 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE9BC0F81B79A75600D33818 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Black.otf"; sourceTree = "<group>"; };
 		EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Bold.otf"; sourceTree = "<group>"; };
@@ -195,7 +195,6 @@
 				EE0836321B6D5CE800F5CD9C /* libsqlite3.dylib in Frameworks */,
 				EEBDF4C21BC9660A00EA80A5 /* FBSDKCoreKit.framework in Frameworks */,
 				EE0836301B6D5CDE00F5CD9C /* SystemConfiguration.framework in Frameworks */,
-				EE08362E1B6D5CD700F5CD9C /* StoreKit.framework in Frameworks */,
 				EEBDF4C41BC9660A00EA80A5 /* FBSDKShareKit.framework in Frameworks */,
 				EE08362C1B6D5CD100F5CD9C /* Security.framework in Frameworks */,
 				EEBDF4C31BC9660A00EA80A5 /* FBSDKLoginKit.framework in Frameworks */,
@@ -299,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0835D71B6D37EC00F5CD9C /* Info.plist */,
+				EE63BB941BD0A01E00354741 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -381,7 +381,6 @@
 				EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */,
 				EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */,
 				EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */,
-				EE08362D1B6D5CD700F5CD9C /* StoreKit.framework */,
 				EE08362B1B6D5CD100F5CD9C /* Security.framework */,
 				EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */,
 				EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */,
@@ -520,6 +519,17 @@
 					EE0835B91B6D37EC00F5CD9C = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 23NT8R7X24;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					EE0835D11B6D37EC00F5CD9C = {
 						CreatedOnToolsVersion = 6.4;
@@ -574,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */,
+				EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

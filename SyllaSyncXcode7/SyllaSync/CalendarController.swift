@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -26,6 +26,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVDaysArray = [Int]()
     var CVYearsArray = [Int]()
     
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,16 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         getCVDatesFromDatesArray()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("\n\nError for location manager CLLocation... line 71 in events container controller\(error)\n\n")
     }
     
     func getCVDatesFromDatesArray() {
@@ -79,14 +90,30 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if eventService.eventsArray?.count == 0 {
-            let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
-                
-            }
-            alert.addAction(OKAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+//        if eventService.eventsArray?.count == 0 {
+//            let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
+//            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
+//                
+//            }
+//            alert.addAction(OKAction)
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        }
+        
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        let authstate = CLLocationManager.authorizationStatus()
+        if(authstate == CLAuthorizationStatus.NotDetermined){
+            print("Not Authorised")
+            locationManager.requestWhenInUseAuthorization()
         }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+
     }
     
     /*
