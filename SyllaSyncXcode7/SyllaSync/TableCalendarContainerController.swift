@@ -91,12 +91,14 @@ class TableCalendarContainerController: UIViewController {
 
     @IBAction func editPressed(sender: AnyObject) {
         
+        let addEventVC = self.storyboard?.instantiateViewControllerWithIdentifier("AddEventController") as! AddEventController
+        self.presentViewController(addEventVC, animated: true, completion: nil)
         
-        let alert = UIAlertController(title: "Oh No!", message: "This feature is currently unavailable", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
-            
-        }
-        alert.addAction(OKAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Oh No!", message: "This feature is currently unavailable", preferredStyle: .Alert)
+//        let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
+//            
+//        }
+//        alert.addAction(OKAction)
+//        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
