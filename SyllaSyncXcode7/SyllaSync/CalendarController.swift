@@ -17,6 +17,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var deleteEventButton: UIButton!
     
     var shouldShowDaysOut = true
     var animationFinished = true
@@ -25,6 +26,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVMonthsArray = [Int]()
     var CVDaysArray = [Int]()
     var CVYearsArray = [Int]()
+    var day:CVDate?
     
     let locationManager = CLLocationManager()
     
@@ -45,6 +47,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         titleLabel.text = ""
         timeLabel.text = ""
         weightLabel.text = ""
+        deleteEventButton.hidden = true
+        deleteEventButton.enabled = false
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
@@ -116,16 +120,53 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
 
     }
     
-    /*
-    // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    @IBAction func deleteEvent(sender: AnyObject) {
+        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this event?", preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "Yes", style: .Default) { _ in
+            let query:PFQuery = PFQuery(className: "Events")
+            query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error:NSError?) -> Void in
+                if (error == nil) {
+                    print("got a query for \(UserSettings.sharedInstance.Username)")
+                    if let object = objects as? [PFObject!] {
+                        for each in object {
+                            if let event:AnyObject = each {
+                                if let eventDetails:AnyObject = event["events"] {
+                                    
+                                    var title = ""
+                                    
+                                    if let eventTitle:AnyObject = eventDetails["Title"] {
+                                        title = "\(eventTitle)"
+                                    }
+                                    
+                                    if let eventDate:AnyObject = eventDetails["Date"] {
+                                        let dateFromString = eventDate.componentsSeparatedByString("/")
+                                        let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
+                                        
+                                        if newCVDate == self.day && title == self.titleLabel.text {
+                                            print("\(self.titleLabel.text) event was deleted succesfully")
+                                            each.deleteEventually()
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    print("Error getting query", error, error!.userInfo)
+                }
+            }
+        }
+        let CancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
+        }
+        alert.addAction(OKAction)
+        alert.addAction(CancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
-    */
-    
 }
 
 
@@ -142,6 +183,7 @@ extension CalendarController
     
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
+        day = dayView.date!
         if (dayView.isCurrentDay) {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
@@ -149,7 +191,8 @@ extension CalendarController
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
                     self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
-                    
+                    self.deleteEventButton.enabled = true
+                    self.deleteEventButton.hidden = false
                 }
             }
             return true

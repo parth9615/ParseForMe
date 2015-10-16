@@ -121,7 +121,7 @@
                                                 <action selector="hamburgerPressed:" destination="Zln-ye-ghh" id="ane-0p-h2G"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="c4o-Ic-g6n">
+                                        <barButtonItem key="rightBarButtonItem" title="+" id="c4o-Ic-g6n">
                                             <connections>
                                                 <action selector="editPressed:" destination="Zln-ye-ghh" id="47E-Vi-Mpq"/>
                                             </connections>
@@ -217,10 +217,13 @@
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="312" id="0rP-9X-4n2"/>
+                                    <constraint firstAttribute="height" constant="300" id="8QA-VB-1bK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="fc9-By-STL"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="0rP-9X-4n2"/>
+                                        <exclude reference="fc9-By-STL"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -237,6 +240,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYu-wZ-kyr">
+                                <rect key="frame" x="16" y="430" width="87" height="30"/>
+                                <state key="normal" title="Delete Event"/>
+                                <connections>
+                                    <action selector="deleteEvent:" destination="X0y-L3-JmP" eventType="touchUpInside" id="Uyl-fh-u3m"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -244,6 +254,7 @@
                             <constraint firstAttribute="centerX" secondItem="Mk7-cn-PaU" secondAttribute="centerX" id="0Zq-Cu-Brx"/>
                             <constraint firstItem="eQf-et-QVn" firstAttribute="top" secondItem="gTo-OV-m1B" secondAttribute="bottom" constant="8" id="0is-1P-tKK"/>
                             <constraint firstItem="Mk7-cn-PaU" firstAttribute="top" secondItem="9oS-hX-Lt2" secondAttribute="bottom" constant="10" id="1CQ-QE-8G2"/>
+                            <constraint firstAttribute="bottom" secondItem="gTo-OV-m1B" secondAttribute="bottom" priority="750" constant="171" id="2Kf-NG-fzd"/>
                             <constraint firstItem="gTo-OV-m1B" firstAttribute="top" secondItem="Mk7-cn-PaU" secondAttribute="bottom" id="44Z-Hs-ea7"/>
                             <constraint firstItem="tDj-gQ-4SW" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="4" id="4M0-A1-LSX"/>
                             <constraint firstItem="9oS-hX-Lt2" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="8" id="517-fo-Xaa"/>
@@ -251,6 +262,7 @@
                             <constraint firstItem="o0z-lz-Oge" firstAttribute="top" secondItem="gTo-OV-m1B" secondAttribute="bottom" constant="8" id="5fw-8z-kJ5"/>
                             <constraint firstItem="6Tr-GN-WlQ" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="4" id="5ki-0j-ygU"/>
                             <constraint firstAttribute="centerX" secondItem="gTo-OV-m1B" secondAttribute="centerX" id="AUz-y3-v89"/>
+                            <constraint firstItem="WYu-wZ-kyr" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="AjF-iP-3m4"/>
                             <constraint firstItem="d1I-tc-BJI" firstAttribute="trailing" secondItem="CGF-jI-ie1" secondAttribute="trailingMargin" id="ECW-HK-6sz"/>
                             <constraint firstItem="tDj-gQ-4SW" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="Fqa-kU-oac"/>
                             <constraint firstAttribute="centerX" secondItem="9oS-hX-Lt2" secondAttribute="centerX" constant="-0.5" id="IHo-ek-CN4"/>
@@ -258,7 +270,7 @@
                             <constraint firstItem="gTo-OV-m1B" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leading" id="UTW-Er-QED"/>
                             <constraint firstItem="6Tr-GN-WlQ" firstAttribute="centerY" secondItem="9oS-hX-Lt2" secondAttribute="centerY" id="W6w-K3-kuT"/>
                             <constraint firstItem="Mk7-cn-PaU" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="39" id="bzv-6D-9o8"/>
-                            <constraint firstItem="KVn-dD-Xo5" firstAttribute="top" secondItem="gTo-OV-m1B" secondAttribute="bottom" constant="171" id="l7G-Th-zYr"/>
+                            <constraint firstItem="WYu-wZ-kyr" firstAttribute="top" secondItem="o0z-lz-Oge" secondAttribute="bottom" constant="4" id="ndv-yx-ALN"/>
                             <constraint firstItem="o0z-lz-Oge" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="nmc-8j-8AQ"/>
                             <constraint firstItem="6Tr-GN-WlQ" firstAttribute="trailing" secondItem="CGF-jI-ie1" secondAttribute="trailingMargin" id="sep-XT-CG8"/>
                             <constraint firstItem="tDj-gQ-4SW" firstAttribute="centerY" secondItem="9oS-hX-Lt2" secondAttribute="centerY" id="wfB-6H-g3E"/>
@@ -266,6 +278,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="bzv-6D-9o8"/>
+                                <exclude reference="2Kf-NG-fzd"/>
                             </mask>
                         </variation>
                     </view>
@@ -273,6 +286,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="calendarView" destination="gTo-OV-m1B" id="giq-3k-bbG"/>
+                        <outlet property="deleteEventButton" destination="WYu-wZ-kyr" id="arX-vb-cYr"/>
                         <outlet property="menuView" destination="Mk7-cn-PaU" id="ZmB-0f-EdB"/>
                         <outlet property="monthLabel" destination="9oS-hX-Lt2" id="5kJ-gY-W7I"/>
                         <outlet property="timeLabel" destination="eQf-et-QVn" id="FVV-ko-GoM"/>
