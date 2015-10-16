@@ -234,7 +234,10 @@ public class EventService: NSObject {
     func finish(sender: AnyObject) {
         
         checkNoRepeatNotifications()
-        
+        if sender is CalendarController {
+            let mySender = sender as! CalendarController
+            mySender.finishLoading()
+        }
         if sender is EventsContainerController  {
             let mySender = sender as! EventsContainerController
             mySender.finishedLoading()

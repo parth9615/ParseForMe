@@ -148,8 +148,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                         if newCVDate.day == self.day?.day && newCVDate.month == self.day?.month && title == self.titleLabel.text {
                                             print("\(self.titleLabel.text) event was deleted succesfully")
                                             each.deleteEventually()
+                                            
                                             self.eventService.getJSON(self)
-                                            self.calendarView.reloadInputViews()
+                                            
                                         }
                                     }
                                 }
@@ -167,6 +168,12 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         alert.addAction(OKAction)
         alert.addAction(CancelAction)
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func finishLoading() {
+        //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
+     //   self.calendarView.reloadInputViews()
+        self.calendarView.removeAllSubviews()
     }
 }
 
