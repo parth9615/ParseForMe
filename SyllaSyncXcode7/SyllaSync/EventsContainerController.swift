@@ -50,11 +50,9 @@ class EventsContainerController: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
+//            locationManager.startUpdatingLocation()
             locationManager.requestLocation()
         }
-        
     }
     
     
@@ -65,11 +63,11 @@ class EventsContainerController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print(error)
+        print("\n\nError for location manager CLLocation... line 71 in events container controller\(error)\n\n")
     }
     
     func getUserEvents() {

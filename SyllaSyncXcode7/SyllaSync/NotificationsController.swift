@@ -42,21 +42,17 @@ class NotificationsController: UIViewController {
     
     func barStateChanged(switchState: UISwitch) {
         if switchState.on {
-            print("The Switch is On")
             UserSettings.sharedInstance.BarEvents = true
         } else {
             UserSettings.sharedInstance.BarEvents = false
-            print("The Switch is Off")
         }
     }
     
     func sportStateChanged(switchState: UISwitch) {
         if switchState.on {
-            print("The Switch is On")
             UserSettings.sharedInstance.SportEvents = true
         } else {
             UserSettings.sharedInstance.SportEvents = false
-            print("The Switch is Off")
         }
     }
     

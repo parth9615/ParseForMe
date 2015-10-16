@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>So that we can accurately provide you with your college events</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>So that we can accurately provide you with your college events</string>
+	<string>So that SyllaSync can accurately provide you with your local college events</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>

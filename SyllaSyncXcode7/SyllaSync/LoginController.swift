@@ -158,9 +158,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
             else
             {
                 self.userName = result.valueForKey("name") as? NSString
-//                println("User Name is: \(self.userName)")
                 self.userEmail = result.valueForKey("email") as? NSString
-//                println("User Email is: \(self.userEmail)")
                 
             
                 let query = PFQuery(className: "Users")

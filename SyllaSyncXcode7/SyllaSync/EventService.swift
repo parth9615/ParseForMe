@@ -51,7 +51,7 @@ public class EventService: NSObject {
                 }
             }
             else {
-                print("Error", error, error!.userInfo)
+                print("Error getting query", error, error!.userInfo)
             }
         }
     }
@@ -93,7 +93,6 @@ public class EventService: NSObject {
                 }
             }
         }
-        print(headerCount)
         createEventsArray(sender)
     }
     
