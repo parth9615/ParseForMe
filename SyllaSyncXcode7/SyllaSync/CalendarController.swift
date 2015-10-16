@@ -134,7 +134,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                         for each in object {
                             if let event:AnyObject = each {
                                 if let eventDetails:AnyObject = event["events"] {
-                                    
+                                    print(eventDetails)
                                     var title = ""
                                     
                                     if let eventTitle:AnyObject = eventDetails["Title"] {
@@ -145,11 +145,12 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                         let dateFromString = eventDate.componentsSeparatedByString("/")
                                         let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                                         
-                                        if newCVDate == self.day && title == self.titleLabel.text {
+                                        if newCVDate.day == self.day?.day && newCVDate.month == self.day?.month && title == self.titleLabel.text {
                                             print("\(self.titleLabel.text) event was deleted succesfully")
                                             each.deleteEventually()
+                                            self.eventService.getJSON(self)
+                                            self.calendarView.reloadInputViews()
                                         }
-
                                     }
                                 }
                             }
@@ -183,7 +184,6 @@ extension CalendarController
     
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
-        day = dayView.date!
         if (dayView.isCurrentDay) {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
@@ -191,8 +191,6 @@ extension CalendarController
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
                     self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
-                    self.deleteEventButton.enabled = true
-                    self.deleteEventButton.hidden = false
                 }
             }
             return true
@@ -240,7 +238,6 @@ extension CalendarController
     
     func supplementaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
-        
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
@@ -265,6 +262,7 @@ extension CalendarController
     
     func didSelectDayView(dayView: CVCalendarDayView) {
         var tappedFlag = false
+        day = dayView.date!
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
@@ -272,7 +270,9 @@ extension CalendarController
                     tappedFlag = true
                     self.titleLabel.text = eventService.eventsArrayTitles[i]
                     self.timeLabel.text = eventService.eventsArrayTimes[i]
-                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
+                    self.weightLabel.text = "Worth \(eventService.eventsArrayWeights[i])% of your grade"
+                    self.deleteEventButton.enabled = true
+                    self.deleteEventButton.hidden = false
                     
                 }
                 else {
@@ -281,6 +281,8 @@ extension CalendarController
                         self.titleLabel.text = ""
                         self.timeLabel.text = ""
                         self.weightLabel.text = ""
+                        self.deleteEventButton.enabled = false
+                        self.deleteEventButton.hidden = true
                     }
                 }
             }
