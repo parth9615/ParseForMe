@@ -39,7 +39,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     }
     
     func animateViewMoving (up:Bool, moveValue :CGFloat){
-        let movementDuration:NSTimeInterval = 0.3
+        let movementDuration:NSTimeInterval = 0.1
         let movement:CGFloat = ( up ? -moveValue : moveValue)
         UIView.beginAnimations( "animateView", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)

@@ -27,22 +27,12 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVDaysArray = [Int]()
     var CVYearsArray = [Int]()
     var day:CVDate?
+    var currentDayView:CVCalendarDayView?
     
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //Cloud code for push notifications. not working yet TODO
-        
-        print("\n\nNSDate for today \(NSDate())")
-        PFCloud.callFunctionInBackground("hello", withParameters: ["date":"Stuff"]) {
-            (response: AnyObject?, error: NSError?) -> Void in
-            let responseString = response as? String
-            print(responseString)
-            print(error)
-        }
         
         titleLabel.text = ""
         timeLabel.text = ""
@@ -173,7 +163,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     func finishLoading() {
         //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
      //   self.calendarView.reloadInputViews()
-        self.calendarView.removeAllSubviews()
+        getCVDatesFromDatesArray()
+        self.calendarView.commitCalendarViewUpdate()
     }
 }
 
@@ -270,6 +261,7 @@ extension CalendarController
     func didSelectDayView(dayView: CVCalendarDayView) {
         var tappedFlag = false
         day = dayView.date!
+        currentDayView = dayView
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
