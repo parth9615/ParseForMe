@@ -59,9 +59,25 @@ class AddEventController: UIViewController, UITextFieldDelegate {
 
     @IBAction func submitEvent(sender: AnyObject) {
         let newEvent = PFObject(className: "Events")
-        let eventString:AnyObject = ["Classname":"\(classNameTF.text)","Date":"\(dateTF.text)","Time":"\(timeTF.text)","Title":"\(titleTF.text)","Weight":"\(weightTF.text)"]
+        let eventString:AnyObject = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":weightTF.text!]
         newEvent["events"] = eventString
         newEvent["username"] = UserSettings.sharedInstance.Username
+        newEvent.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+            if (success) {
+                print("object was saved")
+            } else {
+                print(error)
+        }})
+        let alert = UIAlertController(title: "", message: "\(titleTF.text) succesfully added to event database!", preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+            self.dateTF.text = ""
+            self.titleTF.text = ""
+            self.classNameTF.text = ""
+            self.weightTF.text = ""
+            self.timeTF.text = ""
+        }
+        alert.addAction(OKAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
