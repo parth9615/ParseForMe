@@ -58,7 +58,10 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func submitEvent(sender: AnyObject) {
-        
+        let newEvent = PFObject(className: "Events")
+        let eventString:AnyObject = ["Classname":"\(classNameTF.text)","Date":"\(dateTF.text)","Time":"\(timeTF.text)","Title":"\(titleTF.text)","Weight":"\(weightTF.text)"]
+        newEvent["events"] = eventString
+        newEvent["username"] = UserSettings.sharedInstance.Username
     }
     /*
     // MARK: - Navigation
