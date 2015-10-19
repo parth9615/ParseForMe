@@ -54,7 +54,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("\n\nError for location manager CLLocation... line 71 in events container controller\(error)\n\n")
+        print("\n\nError for location manager CLLocation... line 71 in calendar controller\(error)\n\n")
     }
     
     func getCVDatesFromDatesArray() {
