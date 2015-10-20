@@ -195,14 +195,18 @@ public class EventService: NSObject {
         let oneWeekNotification = UILocalNotification()
         let dayBeforeNotification = UILocalNotification()
         let eventTitle:AnyObject? = eventDetails["Title"]
+        let eventSyllabus:AnyObject? = eventDetails["Syllabus"]
         if let eventFireDate:AnyObject = eventDetails["Date"] {
-            if UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)"] == nil {
+            if UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)\(eventSyllabus)"] == nil {
+                let notificationUUID = "\(eventTitle!)\(eventSyllabus)"
+                
                 let eventFireDateString = "\(eventFireDate)"
                 let dateFromString = eventFireDateString.componentsSeparatedByString("/")
                 let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                 let finalDate = newCVDate.convertedDate()?.addHours(5)
                 
                 //two week prior notification
+                twoWeekNotification.userInfo = ["UUID": notificationUUID]
                 twoWeekNotification.fireDate = finalDate!.addDays(-14)
                 twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
                 twoWeekNotification.alertBody = "Don't forget! You have \(eventTitle!) in just two weeks!"
@@ -210,6 +214,7 @@ public class EventService: NSObject {
                 UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
                 
                 //one week prior notification
+                oneWeekNotification.userInfo = ["UUID": notificationUUID]
                 oneWeekNotification.fireDate = finalDate!.addDays(-7)
                 oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
                 oneWeekNotification.alertBody = "Oh boy... Only one week until \(eventTitle!). You can do it!"
@@ -217,15 +222,16 @@ public class EventService: NSObject {
                 UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
                 
                 //one day prior notification
+                dayBeforeNotification.userInfo = ["UUID": notificationUUID]
                 dayBeforeNotification.fireDate = finalDate!.addDays(-1)
                 dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
                 dayBeforeNotification.alertBody = "Tomorrow is the day for \(eventTitle!). Don't forget and good luck!"
                 dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
                 
-                UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)"] = true
+                UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)\(eventSyllabus)"] = true
             }
-            notificationsScheduled["\(eventTitle)"] == true
+            notificationsScheduled["\(eventTitle)\(eventSyllabus)"] == true
             //TODO use user settings that were just implemented to set the notifications that were set so that we don't set them more than once
             print("notifications: \n\(UserSettings.sharedInstance.notificationsScheduled)", terminator: "")
         }
@@ -251,7 +257,20 @@ public class EventService: NSObject {
     func checkNoRepeatNotifications() {
         //TODO iterate through the local class level notifications list and the user settings notifications list and remove any repeats and remove any that are no longer there.
         print(UserSettings.sharedInstance.notificationsScheduled)
-        var previousNotification = UserSettings.sharedInstance.notificationsScheduled.first
+        print(UIApplication.sharedApplication().scheduledLocalNotifications)
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            var flag = false
+            for each in UserSettings.sharedInstance.notificationsScheduled {
+                if notification.userInfo!["UUID"] as! String == each.0 {
+                    flag = true
+                }
+                if !flag {
+                    UIApplication.sharedApplication().cancelLocalNotification(notification)
+                }
+            }
+        }
+        print(UserSettings.sharedInstance.notificationsScheduled)
+        print(UIApplication.sharedApplication().scheduledLocalNotifications)
 
         //TODO check if there are repeat notifications scheduled. there shouldn't be but could possibly be...
         
