@@ -197,8 +197,8 @@ public class EventService: NSObject {
         let eventTitle:AnyObject? = eventDetails["Title"]
         let eventSyllabus:AnyObject? = eventDetails["Syllabus"]
         if let eventFireDate:AnyObject = eventDetails["Date"] {
-            if UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)\(eventSyllabus)"] == nil {
-                let notificationUUID = "\(eventTitle!)\(eventSyllabus)"
+            if UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)\(eventSyllabus)\(eventFireDate)"] == nil {
+                let notificationUUID = "\(eventTitle!)\(eventSyllabus)\(eventFireDate)"
                 
                 let eventFireDateString = "\(eventFireDate)"
                 let dateFromString = eventFireDateString.componentsSeparatedByString("/")
@@ -229,9 +229,9 @@ public class EventService: NSObject {
                 dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
                 
-                UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)\(eventSyllabus)"] = true
+                UserSettings.sharedInstance.notificationsScheduled["\(eventTitle!)\(eventSyllabus)\(eventFireDate)"] = true
             }
-            notificationsScheduled["\(eventTitle)\(eventSyllabus)"] == true
+            notificationsScheduled["\(eventTitle)\(eventSyllabus)\(eventFireDate)"] == true
             //TODO use user settings that were just implemented to set the notifications that were set so that we don't set them more than once
             print("notifications: \n\(UserSettings.sharedInstance.notificationsScheduled)", terminator: "")
         }
