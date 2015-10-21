@@ -43,6 +43,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
         getCVDatesFromDatesArray()
+        askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
     }

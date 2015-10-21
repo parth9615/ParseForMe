@@ -9,7 +9,7 @@
 import UIKit
 
 class AddEventController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var dateTF: UITextField!
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var classNameTF: UITextField!
@@ -25,7 +25,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
         timeTF.delegate = self
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -56,37 +56,48 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     @IBAction func close(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func submitEvent(sender: AnyObject) {
-        let newEvent = PFObject(className: "Events")
-        let eventString:AnyObject = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":weightTF.text!]
-        newEvent["events"] = eventString
-        newEvent["username"] = UserSettings.sharedInstance.Username
-        newEvent.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-            if (success) {
-                print("object was saved")
-            } else {
-                print("Error line 69 add event controller\(error)")
-        }})
-        let alert = UIAlertController(title: "", message: "\(titleTF.text) succesfully added to event database!", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
-            self.dateTF.text = ""
-            self.titleTF.text = ""
-            self.classNameTF.text = ""
-            self.weightTF.text = ""
-            self.timeTF.text = ""
+        if classNameTF.text != nil && dateTF.text != nil && timeTF.text != nil && titleTF.text != nil && weightTF.text != nil {
+            let newEvent = PFObject(className: "Events")
+            let eventString:AnyObject = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":weightTF.text!]
+            newEvent["events"] = eventString
+            newEvent["username"] = UserSettings.sharedInstance.Username
+            newEvent.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    print("object was saved")
+                } else {
+                    print("Error line 69 add event controller\(error)")
+                }})
+            let alert = UIAlertController(title: "", message: "\(titleTF.text) succesfully added to event database!", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                self.dateTF.text = ""
+                self.titleTF.text = ""
+                self.classNameTF.text = ""
+                self.weightTF.text = ""
+                self.timeTF.text = ""
+                NSNotificationCenter.defaultCenter().postNotificationName(EventServiceConstants.EventAdded, object: nil)
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        alert.addAction(OKAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        else {
+            let alert = UIAlertController(title: "Error", message: "One or more fields was left blank, please fill them in to continue", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
