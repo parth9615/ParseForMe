@@ -20,15 +20,13 @@ public class EventService: NSObject {
     
     var eventsFromParse:NSMutableArray?
     var eventsArray = [Event]()
-    
     var uniqueClasses = [String]()
     var eventSectionCount = [Int]()
-    
-    //    var json:JSON?
     public class var sharedInstance : EventService {
         return EventServiceInstance
     }
     var notificationsScheduled = [String:Bool]()
+    
     
     func getJSON(sender: AnyObject) {
         UserSettings.sharedInstance.notificationsScheduled.removeAll()
@@ -62,7 +60,6 @@ public class EventService: NSObject {
             for each in eventsFromParse! {
                 if let eventDetails:AnyObject = each["events"] {
                     
-                    print(eventDetails)
                     let event = Event()
                     event.className = eventDetails["Classname"] as? String
                     event.date = eventDetails["Date"] as? String
@@ -131,7 +128,12 @@ public class EventService: NSObject {
             if UserSettings.sharedInstance.notificationsScheduled[each.UUID!] == nil {
                 
                 let eventFireDateString = each.date
-                let dateFromString = eventFireDateString!.componentsSeparatedByString("/")
+                var dateFromString = eventFireDateString!.componentsSeparatedByString("/")
+                if dateFromString[2].length == 2 {
+                    let twoThousandAndString = "20"
+                    dateFromString[2] = twoThousandAndString+dateFromString[2]
+                    each.date = "\(dateFromString[0])/\(dateFromString[1])/\(dateFromString[2])"
+                }
                 let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                 let finalDate = newCVDate.convertedDate()?.addHours(5)
                 
