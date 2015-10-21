@@ -60,7 +60,8 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     @IBAction func submitEvent(sender: AnyObject) {
         if classNameTF.text != "" && dateTF.text != "" && titleTF.text != ""  {
             let newEvent = PFObject(className: "Events")
-            let eventString:AnyObject = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":weightTF.text!, "Syllabus":classNameTF.text!]
+            let eventWeight:Int? = Int(weightTF.text!)
+            let eventString:[String:AnyObject] = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":eventWeight, "Syllabus":classNameTF.text!]
             newEvent["events"] = eventString
             newEvent["username"] = UserSettings.sharedInstance.Username
             newEvent["SyllabusFile"] = classNameTF.text!
@@ -70,7 +71,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
                 } else {
                     print("Error line 69 add event controller\(error)")
                 }})
-            let alert = UIAlertController(title: "", message: "\(titleTF.text) was succesfully added to event database!", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "", message: "\(titleTF.text!) was succesfully added to event database!", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
                 self.dateTF.text = ""
                 self.titleTF.text = ""
