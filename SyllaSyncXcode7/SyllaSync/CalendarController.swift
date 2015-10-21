@@ -27,22 +27,12 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVDaysArray = [Int]()
     var CVYearsArray = [Int]()
     var day:CVDate?
+    var currentDayView:CVCalendarDayView?
     
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //Cloud code for push notifications. not working yet TODO
-        
-        print("\n\nNSDate for today \(NSDate())")
-        PFCloud.callFunctionInBackground("hello", withParameters: ["date":"Stuff"]) {
-            (response: AnyObject?, error: NSError?) -> Void in
-            let responseString = response as? String
-            print(responseString)
-            print(error)
-        }
         
         titleLabel.text = ""
         timeLabel.text = ""
@@ -53,6 +43,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
         getCVDatesFromDatesArray()
+        askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
     }
@@ -64,7 +55,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("\n\nError for location manager CLLocation... line 71 in events container controller\(error)\n\n")
+        print("\n\nError for location manager CLLocation... line 71 in calendar controller\(error)\n\n")
     }
     
     func getCVDatesFromDatesArray() {
@@ -93,16 +84,11 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
         
-//        if eventService.eventsArray?.count == 0 {
-//            let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
-//            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
-//                
-//            }
-//            alert.addAction(OKAction)
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        }
         
+        
+        //GETS LOCATION
         
         locationManager.requestAlwaysAuthorization()
         
@@ -117,7 +103,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-
     }
     
     
@@ -136,9 +121,13 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                 if let eventDetails:AnyObject = event["events"] {
                                     print(eventDetails)
                                     var title = ""
+                                    var syllabus = ""
                                     
                                     if let eventTitle:AnyObject = eventDetails["Title"] {
                                         title = "\(eventTitle)"
+                                    }
+                                    if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
+                                        syllabus = "\(eventSyllabus)"
                                     }
                                     
                                     if let eventDate:AnyObject = eventDetails["Date"] {
@@ -149,8 +138,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                             print("\(self.titleLabel.text) event was deleted succesfully")
                                             each.deleteEventually()
                                             
-                                            self.eventService.getJSON(self)
-                                            
+                                            self.finishDeletion(title, syllabus: syllabus, date: "\(eventDate)")
                                         }
                                     }
                                 }
@@ -170,10 +158,40 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    func finishDeletion(title: String, syllabus: String, date: String) {
+        let deletionUUID = title+syllabus+date
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            if notification.userInfo!["UUID"] as! String == deletionUUID {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                break
+            }
+        }
+        for each in UserSettings.sharedInstance.notificationsScheduled {
+            if each.0 == deletionUUID {
+                UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
+            }
+        }
+        
+        finishLoading()
+    }
+    
     func finishLoading() {
         //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
      //   self.calendarView.reloadInputViews()
-        self.calendarView.removeAllSubviews()
+        getCVDatesFromDatesArray()
+        self.calendarView.commitCalendarViewUpdate()
+    }
+    
+    func askForNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "eventAdded",
+            name: EventServiceConstants.EventAdded,
+            object: nil
+        )
+    }
+    
+    func eventAdded() {
+        finishLoading()
     }
 }
 
@@ -270,6 +288,7 @@ extension CalendarController
     func didSelectDayView(dayView: CVCalendarDayView) {
         var tappedFlag = false
         day = dayView.date!
+        currentDayView = dayView
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
