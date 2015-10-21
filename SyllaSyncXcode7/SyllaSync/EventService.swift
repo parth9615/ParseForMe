@@ -31,6 +31,7 @@ public class EventService: NSObject {
     var notificationsScheduled = [String:Bool]()
     
     func getJSON(sender: AnyObject) {
+        UserSettings.sharedInstance.notificationsScheduled.removeAll()
         
         let query:PFQuery = PFQuery(className: "Events")
         query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
@@ -256,9 +257,9 @@ public class EventService: NSObject {
     
     func checkNoRepeatNotifications() {
         //TODO iterate through the local class level notifications list and the user settings notifications list and remove any repeats and remove any that are no longer there.
-        print(UserSettings.sharedInstance.notificationsScheduled)
-        print(UIApplication.sharedApplication().scheduledLocalNotifications)
+
         for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            print("hit")
             var flag = false
             for each in UserSettings.sharedInstance.notificationsScheduled {
                 if notification.userInfo!["UUID"] as! String == each.0 {
@@ -269,8 +270,8 @@ public class EventService: NSObject {
                 }
             }
         }
-        print(UserSettings.sharedInstance.notificationsScheduled)
-        print(UIApplication.sharedApplication().scheduledLocalNotifications)
+        print("\n\n\n User Settings\(UserSettings.sharedInstance.notificationsScheduled)\n\n")
+        print("UIApplication notifications \(UIApplication.sharedApplication().scheduledLocalNotifications)\n\n")
 
         //TODO check if there are repeat notifications scheduled. there shouldn't be but could possibly be...
         

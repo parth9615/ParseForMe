@@ -126,9 +126,13 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                 if let eventDetails:AnyObject = event["events"] {
                                     print(eventDetails)
                                     var title = ""
+                                    var syllabus = ""
                                     
                                     if let eventTitle:AnyObject = eventDetails["Title"] {
                                         title = "\(eventTitle)"
+                                    }
+                                    if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
+                                        syllabus = "\(eventSyllabus)"
                                     }
                                     
                                     if let eventDate:AnyObject = eventDetails["Date"] {
@@ -139,8 +143,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                             print("\(self.titleLabel.text) event was deleted succesfully")
                                             each.deleteEventually()
                                             
-                                            self.eventService.getJSON(self)
-                                            
+                                            self.finishDeletion(title, syllabus: syllabus, date: "\(eventDate)")
                                         }
                                     }
                                 }
@@ -158,6 +161,21 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         alert.addAction(OKAction)
         alert.addAction(CancelAction)
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func finishDeletion(title: String, syllabus: String, date: String) {
+        let deletionUUID = title+syllabus+date
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            if notification.userInfo!["UUID"] as! String == deletionUUID {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                break
+            }
+        }
+        for each in UserSettings.sharedInstance.notificationsScheduled {
+            if each.0 == deletionUUID {
+                UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
+            }
+        }
     }
     
     func finishLoading() {
