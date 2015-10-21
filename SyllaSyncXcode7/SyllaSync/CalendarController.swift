@@ -83,16 +83,11 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
         
-//        if eventService.eventsArray?.count == 0 {
-//            let alert = UIAlertController(title: "Oh No!", message: "Looks like you don't have any events in our database! Go to SyllaSync.com on a computer and upload some Syllabi for us to Sync!", preferredStyle: .Alert)
-//            let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
-//                
-//            }
-//            alert.addAction(OKAction)
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        }
         
+        
+        //GETS LOCATION
         
         locationManager.requestAlwaysAuthorization()
         
@@ -107,7 +102,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-
     }
     
     
@@ -176,6 +170,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                 UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
             }
         }
+        
+        finishLoading()
     }
     
     func finishLoading() {
@@ -183,6 +179,18 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
      //   self.calendarView.reloadInputViews()
         getCVDatesFromDatesArray()
         self.calendarView.commitCalendarViewUpdate()
+    }
+    
+    func askForNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "eventAdded",
+            name: EventServiceConstants.EventAdded,
+            object: nil
+        )
+    }
+    
+    func eventAdded() {
+        finishLoading()
     }
 }
 

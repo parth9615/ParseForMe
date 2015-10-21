@@ -11,8 +11,12 @@ import CVCalendar
 
 private let EventServiceInstance = EventService()
 
+public struct EventServiceConstants {
+    public static let EventAdded = "EventAdded"
+    public static let EventDeleted = "EventDeleted"
+}
+
 public class EventService: NSObject {
-    
     
     var eventsArray:NSMutableArray?
     
