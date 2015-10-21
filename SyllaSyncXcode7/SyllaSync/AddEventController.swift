@@ -58,7 +58,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitEvent(sender: AnyObject) {
-        if classNameTF.text != nil && dateTF.text != nil && timeTF.text != nil && titleTF.text != nil && weightTF.text != nil {
+        if classNameTF.text != "" && dateTF.text != "" && titleTF.text != ""  {
             let newEvent = PFObject(className: "Events")
             let eventString:AnyObject = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":weightTF.text!]
             newEvent["events"] = eventString
@@ -82,7 +82,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            let alert = UIAlertController(title: "Error", message: "One or more fields was left blank, please fill them in to continue", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Error", message: "One or more critical fields was left blank, please fill them in to continue", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
                 
             }
