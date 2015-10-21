@@ -68,20 +68,41 @@ class AddEventController: UIViewController, UITextFieldDelegate {
             newEvent.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
                 if (success) {
                     print("object was saved")
-                } else {
-                    print("Error line 69 add event controller\(error)")
+                    let alert = UIAlertController(title: "", message: "\(self.titleTF.text!) was succesfully added to event database!", preferredStyle: .Alert)
+                    let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                        let event = Event()
+                        event.className = self.classNameTF.text
+                        event.date = self.dateTF.text
+                        event.syllabus = self.classNameTF.text
+                        event.time = self.timeTF.text
+                        event.title = self.titleTF.text
+                        event.weight = Int(self.weightTF.text!)
+                        event.UUID = event.className!+event.date!+event.title!
+                        EventService.sharedInstance.eventsArray.append(event)
+                        
+                        self.dateTF.text = ""
+                        self.titleTF.text = ""
+                        self.classNameTF.text = ""
+                        self.weightTF.text = ""
+                        self.timeTF.text = ""
+                        NSNotificationCenter.defaultCenter().postNotificationName(EventServiceConstants.EventAdded, object: nil)
+                    }
+                    alert.addAction(OKAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                else {
+                    print("Error line 72 add event controller\(error)")
+                    let alert = UIAlertController(title: "", message: "Error saving event, please try again", preferredStyle: .Alert)
+                    let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                        self.dateTF.text = ""
+                        self.titleTF.text = ""
+                        self.classNameTF.text = ""
+                        self.weightTF.text = ""
+                        self.timeTF.text = ""
+                    }
+                    alert.addAction(OKAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }})
-            let alert = UIAlertController(title: "", message: "\(titleTF.text!) was succesfully added to event database!", preferredStyle: .Alert)
-            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
-                self.dateTF.text = ""
-                self.titleTF.text = ""
-                self.classNameTF.text = ""
-                self.weightTF.text = ""
-                self.timeTF.text = ""
-                NSNotificationCenter.defaultCenter().postNotificationName(EventServiceConstants.EventAdded, object: nil)
-            }
-            alert.addAction(OKAction)
-            self.presentViewController(alert, animated: true, completion: nil)
         }
         else {
             let alert = UIAlertController(title: "Error", message: "One or more critical fields was left blank, please fill them in to continue", preferredStyle: .Alert)

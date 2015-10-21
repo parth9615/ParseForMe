@@ -24,14 +24,13 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var refreshControl:UIRefreshControl!
     var eventService = EventService.sharedInstance
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
+        
 
-        //self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         
         //pull to refresh
         refreshControl = UIRefreshControl()
@@ -60,11 +59,12 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return eventService.headerCount
+        return eventService.uniqueClasses.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventService.eventsArrayCount[section]
+
+        return eventService.eventSectionCount[section]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -77,12 +77,12 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let indexPathSection = indexPath.section
         previousClasses = 0
         for var i = indexPathSection-1; i >= 0; i-- {
-            previousClasses += eventService.eventsArrayCount[i]
+            previousClasses += eventService.eventSectionCount[i]
         }
         //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
-        cell?.eventName.text = eventService.eventsArrayTitles[indexPath.row + previousClasses]
-        cell?.eventTime.text = eventService.eventsArrayTimes[indexPath.row + previousClasses]
-        cell?.eventPlace.text = eventService.eventsArrayDates[indexPath.row + previousClasses]
+        cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title
+        cell?.eventTime.text = eventService.eventsArray[indexPath.row + previousClasses].time
+        cell?.eventDate.text = eventService.eventsArray[indexPath.row + previousClasses].date
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
@@ -101,8 +101,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         label.font = UIFont(name: "BoosterNextFY-Black", size: 15)
         
-        var classNameArray = eventService.eventsArraySyllabus
-        label.text = classNameArray[section]
+        label.text = eventService.uniqueClasses[section]
         
         let view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, 30))
         view.backgroundColor = UIColor.whiteColor()
@@ -115,37 +114,10 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
-
-    
-    //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    //        // Return NO if you do not want the specified item to be editable.
-    //        return false
-    //    }
-    
-    
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-        //        if indexPath.row == HamburgerCells.Settings.rawValue {
-        //            //go to new page
-        //
-        //        }
-        //        else if indexPath.row == HamburgerCells.AboutUs.rawValue {
-        //            //go to new page
-        //
-        //        }
-        //        else if indexPath.row == HamburgerCells.Compare.rawValue {
-        //
-        //
-        //        }
-        //        else if indexPath.row == HamburgerCells.Invite.rawValue {
-        //
-        //
-        //        }
-        //        else {
-        //
-        //
-        //        }
+
     }
     
     
