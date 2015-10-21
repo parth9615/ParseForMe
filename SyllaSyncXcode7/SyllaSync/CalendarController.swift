@@ -119,7 +119,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                         for each in object {
                             if let event:AnyObject = each {
                                 if let eventDetails:AnyObject = event["events"] {
-                                    print(eventDetails)
                                     var title = ""
                                     var className = ""
                                     var date = ""
@@ -214,17 +213,6 @@ extension CalendarController
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
         if (dayView.isCurrentDay) {
-            for var i = 0; i < CVMonthsArray.count; i++ {
-                if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
-                    
-                    print(dayView.date.year)
-                    print(dayView.date.month)
-                    print(dayView.date.day)
-//                    self.titleLabel.text = eventService.eventsArrayTitles[i]
-//                    self.timeLabel.text = eventService.eventsArrayTimes[i]
-//                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
-                }
-            }
             return true
         }
         return false
@@ -302,12 +290,10 @@ extension CalendarController
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     tappedFlag = true
                     
-                    print(dayView.date.year)
-                    print(dayView.date.month)
-                    print(dayView.date.day)
-//                    self.titleLabel.text = eventService.eventsArrayTitles[i]
-//                    self.timeLabel.text = eventService.eventsArrayTimes[i]
-//                    self.weightLabel.text = "Worth \(eventService.eventsArrayWeights[i])% of your grade"
+                    
+                    self.titleLabel.text = eventService.eventsArray[i].title
+                    self.timeLabel.text = eventService.eventsArray[i].time
+                    self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
                     self.deleteEventButton.enabled = true
                     self.deleteEventButton.hidden = false
                     
