@@ -61,6 +61,8 @@ public class EventService: NSObject {
         }
     }
     
+    
+    //Gets the number of syllabi (or at least attempts to)
     func getHeaderCount(sender: AnyObject) {
         var prevSyllabus:AnyObject?
         
@@ -101,9 +103,11 @@ public class EventService: NSObject {
         createEventsArray(sender)
     }
     
+    
+    
     func createEventsArray(sender: AnyObject) {
         if headerCount != eventsArrayCount.count {
-            for var i = 1; i < headerCount; i++ {
+            for var i = 0; i < headerCount; i++ { // used to be i=1 start... trying to fix issue
                 eventsArrayCount.append(0)
             }
             getEventsPerHeader(sender)

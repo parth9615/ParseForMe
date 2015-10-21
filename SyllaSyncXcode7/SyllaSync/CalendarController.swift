@@ -179,8 +179,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
      //   self.calendarView.reloadInputViews()
         getCVDatesFromDatesArray()
-        self.calendarView.commitCalendarViewUpdate()
-        self.menuView.commitMenuViewUpdate()
+        calendarView = nil
+        calendarView = CVCalendarView()
+        calendarView.commitCalendarViewUpdate()
     }
     
     func askForNotifications() {

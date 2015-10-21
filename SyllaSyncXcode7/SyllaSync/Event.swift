@@ -10,65 +10,66 @@ import UIKit
 
 public class Event: NSObject {
     
-    public var type:String?
-    public var date:NSDate?
-    public var time:String?
-    public var title:String?
-    public var weight:Int?
-    public var syllabus:String?
-    
-    
-    public var eventType: String? {
+    public var type: String? {
         get {
-            return type
+            return self.type
         }
         set(newType) {
-            type = newType
+            self.type = newType
         }
     }
     
-    public var eventDate:NSDate? {
+    public var date:String? {
         get {
-            return date
+            return self.date
         }
         set (newDate) {
-            date = newDate
+            self.date = newDate
         }
     }
 
-    public var eventTime: String? {
+    public var time: String? {
         get {
-            return time
+            return self.time
         }
         set(newTime) {
-            time = newTime
+            self.time = newTime
         }
     }
     
-    public var eventTitle:String? {
+    public var title:String? {
         get {
-            return title
+            return self.title
         }
         set (newTitle) {
-            title = newTitle
+            self.title = newTitle
         }
     }
 
-    public var eventWeight: Int? {
+    public var weight: Int? {
         get {
-            return weight
+            return self.weight
         }
         set(newWeight) {
-            weight = newWeight
+            self.weight = newWeight
         }
     }
     
-    public var eventSyllabus:String? {
+    public var syllabus:String? {
         get {
-            return syllabus
+            return self.syllabus
         }
         set (newSyllabus) {
-            syllabus = newSyllabus
+            self.syllabus = newSyllabus
+        }
+    }
+    
+    public var className:String? {
+        get {
+            return self.className
+        }
+        set (newClassName) {
+            self.className = newClassName
         }
     }
 }
