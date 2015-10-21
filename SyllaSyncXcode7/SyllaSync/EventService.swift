@@ -21,7 +21,6 @@ public class EventService: NSObject {
     var eventsFromParse:NSMutableArray?
     var eventsArray = [Event]()
     
-    var uniqueClassCount = 0
     var uniqueClasses = [String]()
     
     //    var json:JSON?
@@ -62,6 +61,7 @@ public class EventService: NSObject {
             for each in eventsFromParse! {
                 if let eventDetails:AnyObject = each["events"] {
                     
+                    print(eventDetails)
                     let event = Event()
                     event.className = eventDetails["Classname"] as? String
                     event.date = eventDetails["Date"] as? String
@@ -167,7 +167,5 @@ public class EventService: NSObject {
                 UIApplication.sharedApplication().cancelLocalNotification(notification)
             }
         }
-        print("\n\n\n User Settings\(UserSettings.sharedInstance.notificationsScheduled)\n\n")
-        print("UIApplication notifications \(UIApplication.sharedApplication().scheduledLocalNotifications)\n\n")
     }
 }

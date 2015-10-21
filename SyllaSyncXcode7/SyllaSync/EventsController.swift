@@ -31,8 +31,10 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
-
-        //self.view.backgroundColor = UIColor(rgba: "#04a4ca")
+        
+        for var i = 0; i < eventService.uniqueClasses.count; i++ {
+            eventSectionCount.append(0)
+        }
         
         //pull to refresh
         refreshControl = UIRefreshControl()
@@ -66,11 +68,13 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
+        
         for each in eventService.eventsArray {
             if each.className == eventService.uniqueClasses[section] {
                 count++
             }
         }
+        print(section)
         eventSectionCount[section] = count
         return count
     }

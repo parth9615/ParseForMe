@@ -51,7 +51,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
+        //print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
