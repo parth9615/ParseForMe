@@ -192,7 +192,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func eventAdded() {
-        finishLoading()
+        EventService.sharedInstance.getJSON(self)
     }
 }
 
