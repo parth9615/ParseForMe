@@ -24,17 +24,13 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var refreshControl:UIRefreshControl!
     var eventService = EventService.sharedInstance
     
-    var eventSectionCount = [Int]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
-        for var i = 0; i < eventService.uniqueClasses.count; i++ {
-            eventSectionCount.append(0)
-        }
+
         
         //pull to refresh
         refreshControl = UIRefreshControl()
@@ -67,16 +63,8 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
-        
-        for each in eventService.eventsArray {
-            if each.className == eventService.uniqueClasses[section] {
-                count++
-            }
-        }
-        print(section)
-        eventSectionCount[section] = count
-        return count
+
+        return eventService.eventSectionCount[section]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -89,7 +77,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let indexPathSection = indexPath.section
         previousClasses = 0
         for var i = indexPathSection-1; i >= 0; i-- {
-            previousClasses += eventSectionCount[i]
+            previousClasses += eventService.eventSectionCount[i]
         }
         //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
         cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title

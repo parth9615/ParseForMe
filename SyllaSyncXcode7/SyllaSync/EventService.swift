@@ -22,6 +22,7 @@ public class EventService: NSObject {
     var eventsArray = [Event]()
     
     var uniqueClasses = [String]()
+    var eventSectionCount = [Int]()
     
     //    var json:JSON?
     public class var sharedInstance : EventService {
@@ -91,6 +92,34 @@ public class EventService: NSObject {
                 uniqueClasses.append(each.className!)
             }
         }
+        
+        for var i = 0; i < uniqueClasses.count; i++ {
+            var count = 0
+            eventSectionCount.append(0)
+            for each in eventsArray {
+                if each.className == uniqueClasses[i] {
+                    count++
+                }
+            }
+            eventSectionCount[i] = count
+        }
+        sortEventsArray(sender)
+    }
+    
+    func sortEventsArray(sender:AnyObject) {
+        var sortedEventsArray = [Event]()
+        var prevEvent:Event?
+        
+        for var i = 0; i < uniqueClasses.count; i++ {
+            for each in eventsArray {
+                if each.className! == uniqueClasses[i] && each.UUID != prevEvent?.UUID {
+                    sortedEventsArray.append(each)
+                    prevEvent = each
+                }
+            }
+        }
+
+        eventsArray = sortedEventsArray
         scheduleNotification(sender)
     }
     
