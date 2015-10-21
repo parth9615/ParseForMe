@@ -61,7 +61,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
         if classNameTF.text != "" && dateTF.text != "" && titleTF.text != ""  {
             let newEvent = PFObject(className: "Events")
             let eventWeight:Int? = Int(weightTF.text!)
-            let eventString:[String:AnyObject] = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":eventWeight, "Syllabus":classNameTF.text!]
+            let eventString:[String:AnyObject] = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":eventWeight!, "Syllabus":classNameTF.text!]
             newEvent["events"] = eventString
             newEvent["username"] = UserSettings.sharedInstance.Username
             newEvent["SyllabusFile"] = classNameTF.text!
