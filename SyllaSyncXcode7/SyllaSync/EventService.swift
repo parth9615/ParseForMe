@@ -263,7 +263,6 @@ public class EventService: NSObject {
         //TODO iterate through the local class level notifications list and the user settings notifications list and remove any repeats and remove any that are no longer there.
 
         for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
-            print("hit")
             var flag = false
             for each in UserSettings.sharedInstance.notificationsScheduled {
                 if notification.userInfo!["UUID"] as! String == each.0 {

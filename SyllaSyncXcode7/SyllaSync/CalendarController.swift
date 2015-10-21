@@ -180,6 +180,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
      //   self.calendarView.reloadInputViews()
         getCVDatesFromDatesArray()
         self.calendarView.commitCalendarViewUpdate()
+        self.menuView.commitMenuViewUpdate()
     }
     
     func askForNotifications() {

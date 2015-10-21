@@ -69,7 +69,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
                 if (success) {
                     print("object was saved")
                 } else {
-                    print("Error line 69 add event controller\(error)")
+                    print("Error line 72 add event controller\(error)")
                 }})
             let alert = UIAlertController(title: "", message: "\(titleTF.text!) was succesfully added to event database!", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
