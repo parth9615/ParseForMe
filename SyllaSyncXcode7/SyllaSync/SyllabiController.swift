@@ -40,17 +40,7 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func getSyllabiArray() {
-        let syllabusArray = eventService.eventsArraySyllabus
-        let syllabus = syllabusArray.first
-        syllabiArray.append(syllabus!)
-        for each in syllabusArray {
-            if each == syllabus {
-                continue
-            }
-            else {
-                syllabiArray.append(each)
-            }
-        }
+
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
@@ -83,7 +73,7 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventService.headerCount
+        return eventService.uniqueClassCount
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

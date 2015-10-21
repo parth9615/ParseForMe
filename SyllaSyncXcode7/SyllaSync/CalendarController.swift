@@ -59,8 +59,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func getCVDatesFromDatesArray() {
-        for each in eventService.eventsArrayDates {
-            let dateFromString = each.componentsSeparatedByString("/")
+        for each in eventService.eventsArray {
+            let dateFromString = each.date!.componentsSeparatedByString("/")
             let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
             CVDatesArray.append(newCVDate)
             CVMonthsArray.append(Int(dateFromString[0])!)
@@ -121,16 +121,18 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                 if let eventDetails:AnyObject = event["events"] {
                                     print(eventDetails)
                                     var title = ""
-                                    var syllabus = ""
+                                    var className = ""
+                                    var date = ""
                                     
                                     if let eventTitle:AnyObject = eventDetails["Title"] {
                                         title = "\(eventTitle)"
                                     }
-                                    if let eventSyllabus:AnyObject = eventDetails["Syllabus"] {
-                                        syllabus = "\(eventSyllabus)"
+                                    if let eventClassName:AnyObject = eventDetails["Classname"] {
+                                        className = "\(eventClassName)"
                                     }
                                     
                                     if let eventDate:AnyObject = eventDetails["Date"] {
+                                        date = eventDate as! String
                                         let dateFromString = eventDate.componentsSeparatedByString("/")
                                         let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                                         
@@ -138,7 +140,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                             print("\(self.titleLabel.text) event was deleted succesfully")
                                             each.deleteEventually()
                                             
-                                            self.finishDeletion(title, syllabus: syllabus, date: "\(eventDate)")
+                                            self.finishDeletion(className, date: date, title: title)
                                         }
                                     }
                                 }
@@ -158,8 +160,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func finishDeletion(title: String, syllabus: String, date: String) {
-        let deletionUUID = title+syllabus+date
+    func finishDeletion(className: String, date: String, title: String) {
+        let deletionUUID = className+date+title
         for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
             if notification.userInfo!["UUID"] as! String == deletionUUID {
                 UIApplication.sharedApplication().cancelLocalNotification(notification)
@@ -193,7 +195,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func eventAdded() {
-        EventService.sharedInstance.getJSON(self)
+        EventService.sharedInstance.countUniqueClasses(self)
     }
 }
 
@@ -215,9 +217,12 @@ extension CalendarController
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     
-                    self.titleLabel.text = eventService.eventsArrayTitles[i]
-                    self.timeLabel.text = eventService.eventsArrayTimes[i]
-                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
+                    print(dayView.date.year)
+                    print(dayView.date.month)
+                    print(dayView.date.day)
+//                    self.titleLabel.text = eventService.eventsArrayTitles[i]
+//                    self.timeLabel.text = eventService.eventsArrayTimes[i]
+//                    self.weightLabel.text = "\(eventService.eventsArrayWeights[i])%"
                 }
             }
             return true
@@ -296,9 +301,13 @@ extension CalendarController
             for var i = 0; i < CVMonthsArray.count; i++ {
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     tappedFlag = true
-                    self.titleLabel.text = eventService.eventsArrayTitles[i]
-                    self.timeLabel.text = eventService.eventsArrayTimes[i]
-                    self.weightLabel.text = "Worth \(eventService.eventsArrayWeights[i])% of your grade"
+                    
+                    print(dayView.date.year)
+                    print(dayView.date.month)
+                    print(dayView.date.day)
+//                    self.titleLabel.text = eventService.eventsArrayTitles[i]
+//                    self.timeLabel.text = eventService.eventsArrayTimes[i]
+//                    self.weightLabel.text = "Worth \(eventService.eventsArrayWeights[i])% of your grade"
                     self.deleteEventButton.enabled = true
                     self.deleteEventButton.hidden = false
                     
