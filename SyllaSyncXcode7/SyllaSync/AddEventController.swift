@@ -15,6 +15,7 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var classNameTF: UITextField!
     @IBOutlet weak var weightTF: UITextField!
     @IBOutlet weak var timeTF: UITextField!
+    var originalFrame : CGRect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +27,32 @@ class AddEventController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        originalFrame = self.view.frame
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        animateViewMoving(true, moveValue: 100)
+        animateViewMoving(true)
     }
     func textFieldDidEndEditing(textField: UITextField) {
-        animateViewMoving(false, moveValue: 100)
+        animateViewMoving(false)
     }
     
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
-        let movementDuration:NSTimeInterval = 0.1
-        let movement:CGFloat = ( up ? -moveValue : moveValue)
-        UIView.beginAnimations( "animateView", context: nil)
+    func animateViewMoving (up:Bool){
+        UIView.beginAnimations("anim", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.setAnimationDuration(0.2)
+        if up {
+            self.view.frame = CGRectOffset(self.view.frame, 0, -100)
+        }
+        else {
+            self.view.frame = originalFrame!
+        }
         UIView.commitAnimations()
     }
     
