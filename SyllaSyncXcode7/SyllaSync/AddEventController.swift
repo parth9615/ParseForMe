@@ -20,6 +20,8 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navBar.barTintColor = UIColor(rgba: "#04a4ca")
         dateTF.delegate = self
         titleTF.delegate = self
         classNameTF.delegate = self
@@ -53,7 +55,7 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
         UIView.setAnimationBeginsFromCurrentState(true)
         UIView.setAnimationDuration(0.2)
         if up {
-            self.view.frame = CGRectOffset(self.view.frame, 0, -100)
+            self.view.frame = CGRectOffset(self.view.frame, 0, -50)
         }
         else {
             self.view.frame = originalFrame!

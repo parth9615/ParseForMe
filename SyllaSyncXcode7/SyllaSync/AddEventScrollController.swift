@@ -17,6 +17,8 @@ class AddEventScrollController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
+        
         childVC = storyboard?.instantiateViewControllerWithIdentifier("AddEventController") as? AddEventController
         childVC!.view.translatesAutoresizingMaskIntoConstraints = false
         addEventScrollView.addSubview(childVC!.view)
