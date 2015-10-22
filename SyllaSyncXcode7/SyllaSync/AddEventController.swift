@@ -8,8 +8,9 @@
 
 import UIKit
 
-class AddEventController: UIViewController, UITextFieldDelegate {
+class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var dateTF: UITextField!
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var classNameTF: UITextField!
@@ -34,6 +35,10 @@ class AddEventController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.Top
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {

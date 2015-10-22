@@ -24,6 +24,15 @@ class AddEventScrollController: UIViewController {
         addChildViewController(childVC!)
         childVC!.didMoveToParentViewController(self)
         childVC!.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+        
+        let views = ["view": view, "childView": childVC!.view]
+        
+        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[childView(==view)]|", options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(verticalConstraints)
+        
+        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|[childView(==view)]|", options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(horizontalConstraints)
         // Do any additional setup after loading the view.
     }
 
