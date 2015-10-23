@@ -48,16 +48,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         // Do any additional setup after loading the view.
     }
     
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("\n\nError for location manager CLLocation... line 71 in calendar controller\(error)\n\n")
-    }
-    
     func getCVDatesFromDatesArray() {
         for each in eventService.eventsArray {
             let dateFromString = each.date!.componentsSeparatedByString("/")
@@ -86,7 +76,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         super.viewDidAppear(animated)
 
         
-        
+    
         
         //GETS LOCATION
         
@@ -103,6 +93,30 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        
+        let user = PFUser.currentUser()
+        user?.setObject(locValue.latitude, forKey: "Latitude")
+        user?.setObject(locValue.longitude, forKey: "Longitude")
+        user?.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+            if (success) {
+                print("succesfully uploaded long and lat to database for user")
+            }
+            else {
+                print("error with saving long and lat for user\(error)")
+            }
+        })
+        
+        //print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("\n\nError for location manager CLLocation... line 71 in calendar controller\(error)\n\n")
     }
     
     

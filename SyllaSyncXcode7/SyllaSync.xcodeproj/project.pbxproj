@@ -325,7 +325,6 @@
 				EEEB0CBA1B718C3700C54CC7 /* Events */,
 				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
-				EE0835C41B6D37EC00F5CD9C /* LoginController.swift */,
 				EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */,
 				EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */,
 			);
@@ -370,6 +369,7 @@
 		EE08361A1B6D5A2D00F5CD9C /* Logins */ = {
 			isa = PBXGroup;
 			children = (
+				EE0835C41B6D37EC00F5CD9C /* LoginController.swift */,
 				EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */,
 			);
 			name = Logins;
