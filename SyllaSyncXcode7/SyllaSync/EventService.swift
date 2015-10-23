@@ -117,10 +117,13 @@ public class EventService: NSObject {
         }
 
         eventsArray = sortedEventsArray
-        scheduleNotification(sender)
+        finish(sender)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            self.scheduleNotification()
+        }
     }
     
-    func scheduleNotification(sender: AnyObject) {
+    func scheduleNotification() {
         let twoWeekNotification = UILocalNotification()
         let oneWeekNotification = UILocalNotification()
         let dayBeforeNotification = UILocalNotification()
@@ -165,12 +168,11 @@ public class EventService: NSObject {
             }
             notificationsScheduled[each.UUID!] == true
         }
-        finish(sender)
+        checkNoRepeatNotifications()
     }
     
     func finish(sender: AnyObject) {
         
-        checkNoRepeatNotifications()
         if sender is CalendarController {
             let mySender = sender as! CalendarController
             mySender.finishLoading()

@@ -8,16 +8,20 @@
 
 import UIKit
 
-class AddEventController: UIViewController, UITextFieldDelegate {
+class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var dateTF: UITextField!
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var classNameTF: UITextField!
     @IBOutlet weak var weightTF: UITextField!
     @IBOutlet weak var timeTF: UITextField!
+    var originalFrame : CGRect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navBar.barTintColor = UIColor(rgba: "#04a4ca")
         dateTF.delegate = self
         titleTF.delegate = self
         classNameTF.delegate = self
@@ -26,25 +30,36 @@ class AddEventController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        originalFrame = self.view.frame
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        animateViewMoving(true, moveValue: 100)
-    }
-    func textFieldDidEndEditing(textField: UITextField) {
-        animateViewMoving(false, moveValue: 100)
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.Top
     }
     
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
-        let movementDuration:NSTimeInterval = 0.1
-        let movement:CGFloat = ( up ? -moveValue : moveValue)
-        UIView.beginAnimations( "animateView", context: nil)
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true)
+    }
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false)
+    }
+    
+    func animateViewMoving (up:Bool){
+        UIView.beginAnimations("anim", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.setAnimationDuration(0.2)
+        if up {
+            self.view.frame = CGRectOffset(self.view.frame, 0, -50)
+        }
+        else {
+            self.view.frame = originalFrame!
+        }
         UIView.commitAnimations()
     }
     

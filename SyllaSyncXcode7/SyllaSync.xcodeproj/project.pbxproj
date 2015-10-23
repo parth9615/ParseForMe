@@ -61,6 +61,7 @@
 		EE10F5BC1B84F82300931D4D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AE1B84F82300931D4D /* String.swift */; };
 		EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
+		EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */; settings = {ASSET_TAGS = (); }; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
 		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -161,6 +162,7 @@
 		EE10F5AE1B84F82300931D4D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Util.swift"; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
+		EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventScrollController.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE63BB941BD0A01E00354741 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE63BB961BD19F8100354741 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
@@ -323,7 +325,6 @@
 				EEEB0CBA1B718C3700C54CC7 /* Events */,
 				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
-				EE0835C41B6D37EC00F5CD9C /* LoginController.swift */,
 				EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */,
 				EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */,
 			);
@@ -368,6 +369,7 @@
 		EE08361A1B6D5A2D00F5CD9C /* Logins */ = {
 			isa = PBXGroup;
 			children = (
+				EE0835C41B6D37EC00F5CD9C /* LoginController.swift */,
 				EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */,
 			);
 			name = Logins;
@@ -460,6 +462,7 @@
 				EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */,
 				EE9FCE821B77F82800C052C7 /* CalendarController.swift */,
 				EE63BB961BD19F8100354741 /* AddEventController.swift */,
+				EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				EE9FCE851B7804E100C052C7 /* ToggleCell.swift in Sources */,
 				EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */,
 				EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */,
+				EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */,
 				EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */,
 				EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */,
 				EEA031431B7552C70091B05C /* Event.swift in Sources */,

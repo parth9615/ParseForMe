@@ -30,7 +30,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
-
+//        askForNotifications()
         
         //pull to refresh
         refreshControl = UIRefreshControl()
@@ -42,12 +42,23 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func refresh() {
         eventService.getJSON(self)
+        reloadTable()
+    }
+    
+    func reloadTable() {
         eventsTable.reloadData()
     }
     
     func finishedLoading() {
         self.refreshControl.endRefreshing()
     }
+    
+//    func askForNotifications() {
+//        NSNotificationCenter.defaultCenter().addObserver(self,
+//            selector: "reloadTable",
+//            name: EventServiceConstants.EventAdded,
+//            object: nil)
+//    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)

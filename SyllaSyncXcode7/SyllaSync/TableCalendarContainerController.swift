@@ -91,7 +91,7 @@ class TableCalendarContainerController: UIViewController {
 
     @IBAction func editPressed(sender: AnyObject) {
         
-        let addEventVC = self.storyboard?.instantiateViewControllerWithIdentifier("AddEventController") as! AddEventController
+        let addEventVC = self.storyboard?.instantiateViewControllerWithIdentifier("AddEventScrollController") as! AddEventScrollController
         self.presentViewController(addEventVC, animated: true, completion: nil)
         
 //        let alert = UIAlertController(title: "Oh No!", message: "This feature is currently unavailable", preferredStyle: .Alert)
