@@ -72,6 +72,7 @@ PFSignUpViewControllerDelegate {
         
         //TEST
         user.setObject(currentInstallation, forKey: "installation")
+        user.saveInBackground()
         
         UserSettings.sharedInstance.Username = user.username!
         print("just completed loggin in for user: \(UserSettings.sharedInstance.Username)")

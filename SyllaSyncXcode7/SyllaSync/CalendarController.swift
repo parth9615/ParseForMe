@@ -105,7 +105,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         user?.setObject(locValue.longitude, forKey: "Longitude")
         user?.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
             if (success) {
-                print("succesfully uploaded long and lat to database for user")
+                //print("succesfully uploaded long and lat to database for user")
             }
             else {
                 print("error with saving long and lat for user\(error)")

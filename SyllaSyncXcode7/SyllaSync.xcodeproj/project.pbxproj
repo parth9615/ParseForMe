@@ -61,10 +61,10 @@
 		EE10F5BC1B84F82300931D4D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AE1B84F82300931D4D /* String.swift */; };
 		EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
-		EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */; settings = {ASSET_TAGS = (); }; };
+		EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
-		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
-		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; settings = {ASSET_TAGS = (); }; };
+		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; };
+		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
 		EE9FCE761B765E9200C052C7 /* BoosterNextFY-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */; };
 		EE9FCE771B765E9200C052C7 /* BoosterNextFY-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */; };
@@ -78,9 +78,9 @@
 		EEA0313D1B752DB10091B05C /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EEA0313C1B752DB10091B05C /* Cartfile */; };
 		EEA031431B7552C70091B05C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
 		EEA031451B75589F0091B05C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
-		EEBDF4C21BC9660A00EA80A5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		EEBDF4C31BC9660A00EA80A5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		EEBDF4C41BC9660A00EA80A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
+		EEBDF4C21BC9660A00EA80A5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */; };
+		EEBDF4C31BC9660A00EA80A5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */; };
+		EEBDF4C41BC9660A00EA80A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */; };
 		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
 		EEEB0CB01B707A4E00C54CC7 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
@@ -519,6 +519,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = IVET;
 				TargetAttributes = {
