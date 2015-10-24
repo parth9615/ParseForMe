@@ -90,7 +90,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            locationManager.distanceFilter = 1000.0
             locationManager.startUpdatingLocation()
         }
     }
@@ -103,6 +104,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         let user = PFUser.currentUser()
         user?.setObject(locValue.latitude, forKey: "Latitude")
         user?.setObject(locValue.longitude, forKey: "Longitude")
+        user?.saveEventually()
+        print("saving location to db")
+        /*
         user?.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
             if (success) {
                 //print("succesfully uploaded long and lat to database for user")
@@ -111,6 +115,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                 print("error with saving long and lat for user\(error)")
             }
         })
+*/
         
         //print("\n\nlocations = \(locValue.latitude) \(locValue.longitude)\n\n")
     }

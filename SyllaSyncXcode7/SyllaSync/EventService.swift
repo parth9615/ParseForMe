@@ -117,10 +117,10 @@ public class EventService: NSObject {
         }
 
         eventsArray = sortedEventsArray
-        finish(sender)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             self.scheduleNotification()
         }
+        finish(sender)
     }
     
     func scheduleNotification() {
@@ -166,7 +166,7 @@ public class EventService: NSObject {
                 
                 UserSettings.sharedInstance.notificationsScheduled[each.UUID!] = true
             }
-            notificationsScheduled[each.UUID!] == true
+            notificationsScheduled[each.UUID!] = true
         }
         checkNoRepeatNotifications()
     }
