@@ -83,7 +83,7 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? SyllabiCell
         }
         
-        cell?.syllabusTitleLabel.text = syllabiArray[indexPath.row]
+        cell?.syllabusTitleLabel.text = eventService.eventsArray[indexPath.row].syllabus
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
