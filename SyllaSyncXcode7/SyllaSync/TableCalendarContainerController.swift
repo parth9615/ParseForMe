@@ -18,6 +18,7 @@ class TableCalendarContainerController: UIViewController {
     var calendarView = true
     var eventsView = false
     var eventViews:[String:UIView]?
+    var toggleCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,13 @@ class TableCalendarContainerController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
+        if toggleCount == 0{
         if calendarController == nil {
             calendarController = self.storyboard?.instantiateViewControllerWithIdentifier("Calendar") as? CalendarController
         }
         addChildViewController(calendarController!)
-        container.addSubview(calendarController!.view)       
+        container.addSubview(calendarController!.view)
+        }
         
         let imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
         let image = UIImage(named: "SyllaSyncWords")
@@ -47,6 +50,7 @@ class TableCalendarContainerController: UIViewController {
     
     
     func toggleViews() {
+        toggleCount++
         if eventsView == true {
             eventsView = false
             calendarView = true
