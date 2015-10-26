@@ -26,6 +26,7 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         syllabiLabel.titleView?.backgroundColor = UIColor(rgba: "#04a4ca")
         navigationBar.barTintColor = UIColor(rgba: "#04a4ca")
+        navigationBar.translucent = false
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as? [String : AnyObject]
         
@@ -53,10 +54,10 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func refresh() {
         eventService.getJSON(self)
-        syllabiTable.reloadData()
     }
     
     func finishedLoading() {
+        syllabiTable.reloadData()
         self.refreshControl.endRefreshing()
     }
     
@@ -83,7 +84,13 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? SyllabiCell
         }
         
-        cell?.syllabusTitleLabel.text = eventService.eventsArray[indexPath.row].syllabus
+        var previousClasses = 1
+        let indexPathSection = previousClasses
+        for var i = indexPathSection; i >= 0; i-- {
+            previousClasses += eventService.eventSectionCount[i]
+        }
+        print(indexPath.row+previousClasses)
+        cell?.syllabusTitleLabel.text = eventService.eventsArray[indexPath.row+previousClasses].syllabus
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
@@ -94,9 +101,9 @@ class SyllabiController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-        let syllabus = syllabiArray[indexPath.row]
+        let syllabus = eventService.eventsArray[indexPath.row].syllabus
         let syllabusViewerVC = self.storyboard?.instantiateViewControllerWithIdentifier("SyllabusViewer") as? SyllabusViewerController
-        syllabusViewerVC?.syllabusToDisplayString = syllabus
+        syllabusViewerVC?.syllabusToDisplayString = syllabus!
         self.presentViewController(syllabusViewerVC!, animated: true, completion: nil)
     }
     
