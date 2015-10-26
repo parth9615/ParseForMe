@@ -17,13 +17,14 @@ class SyllabusViewerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        
+        //self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         //TODO: HARD CODED IN CALC SYLLABUS NEED TO CHANGEBACK TO SYLLABUSTODISPLAYSTRING WHEN DONE TESTING
         
         let query:PFQuery = PFQuery(className: "Events")
