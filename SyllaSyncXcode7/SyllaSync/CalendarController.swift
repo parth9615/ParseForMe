@@ -188,9 +188,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
      //   self.calendarView.reloadInputViews()
         getCVDatesFromDatesArray()
-        calendarView = nil
-        calendarView = CVCalendarView()
-        calendarView.commitCalendarViewUpdate()
+     //   calendarView = nil
+      //  calendarView = CVCalendarView()
+      //  calendarView.commitCalendarViewUpdate()
     }
     
     func askForNotifications() {
@@ -221,6 +221,34 @@ extension CalendarController
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
         if (dayView.isCurrentDay) {
+            
+            var tappedFlag = false
+            if dayView.date != nil {
+                for var i = 0; i < CVMonthsArray.count; i++ {
+                    if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
+                        tappedFlag = true
+                        
+                        
+                        self.titleLabel.text = eventService.eventsArray[i].title
+                        self.timeLabel.text = eventService.eventsArray[i].time
+                        self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
+                        self.deleteEventButton.enabled = true
+                        self.deleteEventButton.hidden = false
+                        
+                    }
+                    else {
+                        if tappedFlag == false {
+                            tappedFlag = true
+                            self.titleLabel.text = ""
+                            self.timeLabel.text = ""
+                            self.weightLabel.text = ""
+                            self.deleteEventButton.enabled = false
+                            self.deleteEventButton.hidden = true
+                        }
+                    }
+                }
+            }
+
             return true
         }
         return false
