@@ -12,6 +12,7 @@ public enum HamburgerCells: Int {
     case Filler = 0
     case Calendar
     case Notifications
+    case CurrentEvents
     case ViewSyllabi
     case AboutUs
     case Logout
@@ -78,6 +79,12 @@ class HamburgerController: UITableViewController {
             return cell
 
         }
+        else if indexPath.row == HamburgerCells.CurrentEvents.rawValue {
+            let cellIdentifier = "CurrentEvents"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
+        }
         else if indexPath.row == HamburgerCells.ViewSyllabi.rawValue {
             let cellIdentifier = "ViewSyllabi"
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
@@ -110,7 +117,7 @@ class HamburgerController: UITableViewController {
         if indexPath.row == HamburgerCells.Filler.rawValue {
             return 175
         }
-        if indexPath.row == HamburgerCells.ViewSyllabi.rawValue || indexPath.row == HamburgerCells.Notifications.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue || indexPath.row == HamburgerCells.Calendar.rawValue {
+        if indexPath.row == HamburgerCells.ViewSyllabi.rawValue || indexPath.row == HamburgerCells.Notifications.rawValue || indexPath.row == HamburgerCells.CurrentEvents.rawValue || indexPath.row == HamburgerCells.AboutUs.rawValue || indexPath.row == HamburgerCells.Logout.rawValue || indexPath.row == HamburgerCells.Calendar.rawValue {
             return 45
         }
         else {
@@ -146,6 +153,10 @@ class HamburgerController: UITableViewController {
             
             let notificationsVC = self.storyboard?.instantiateViewControllerWithIdentifier("Notifications") as! NotificationsController
             self.presentViewController(notificationsVC, animated: true, completion: nil)
+        }
+        else if indexPath.row == HamburgerCells.CurrentEvents.rawValue {
+            let currentEventsVC = self.storyboard?.instantiateViewControllerWithIdentifier("CurrentEvents") as! CurrentEventsController
+            self.presentViewController(currentEventsVC, animated: true, completion: nil)
         }
         else if indexPath.row == HamburgerCells.ViewSyllabi.rawValue {
             

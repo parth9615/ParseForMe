@@ -21,7 +21,7 @@ import Foundation
 
 
 
-class SettingsController: UIViewController {
+class CurrentEventsController: UIViewController {
 
     @IBOutlet weak var closeButton: UIButton!
     override func viewDidLoad() {
@@ -33,12 +33,12 @@ class SettingsController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        let alert = UIAlertController(title: "We're Sorry", message: "There are no settings available at this time", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        alert.addAction(OKAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "We're Sorry", message: "There are no settings available at this time", preferredStyle: .Alert)
+//        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
+//        alert.addAction(OKAction)
+//        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

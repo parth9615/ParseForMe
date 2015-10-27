@@ -81,7 +81,7 @@
 		EEBDF4C21BC9660A00EA80A5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */; };
 		EEBDF4C31BC9660A00EA80A5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */; };
 		EEBDF4C41BC9660A00EA80A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */; };
-		EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */; };
+		EEEB0CAE1B7078A700C54CC7 /* CurrentEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* CurrentEventsController.swift */; };
 		EEEB0CB01B707A4E00C54CC7 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
 		EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */; };
@@ -182,7 +182,7 @@
 		EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		EEEB0CAD1B7078A700C54CC7 /* CurrentEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentEventsController.swift; sourceTree = "<group>"; };
 		EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 			children = (
 				EE10F5981B7E56FA00931D4D /* SyllabiViewer */,
 				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
-				EEEB0CAD1B7078A700C54CC7 /* SettingsController.swift */,
+				EEEB0CAD1B7078A700C54CC7 /* CurrentEventsController.swift */,
 				EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
@@ -732,7 +732,7 @@
 				EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */,
 				EEA031431B7552C70091B05C /* Event.swift in Sources */,
 				EE10F5B31B84F82300931D4D /* Double.swift in Sources */,
-				EEEB0CAE1B7078A700C54CC7 /* SettingsController.swift in Sources */,
+				EEEB0CAE1B7078A700C54CC7 /* CurrentEventsController.swift in Sources */,
 				EE10F5BA1B84F82300931D4D /* Range.swift in Sources */,
 				EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
