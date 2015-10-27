@@ -29,7 +29,7 @@ public class EventService: NSObject {
     
     
     func getJSON(sender: AnyObject) {
-        UserSettings.sharedInstance.notificationsScheduled.removeAll()
+        //UserSettings.sharedInstance.notificationsScheduled.removeAll()
         
         let query:PFQuery = PFQuery(className: "Events")
         query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
@@ -69,7 +69,15 @@ public class EventService: NSObject {
                     event.weight = (eventDetails["Weight"] as! NSNumber) as Int
                     event.UUID = event.className!+event.date!+event.title!
                     
-                    eventsArray.append(event)
+                    var flag = false
+                    for each in eventsArray {
+                        if each.UUID == event.UUID {
+                            flag = true
+                        }
+                    }
+                    if !flag {
+                        eventsArray.append(event)
+                    }
                 }
             }
         }
@@ -143,6 +151,7 @@ public class EventService: NSObject {
                 //two week prior notification
                 twoWeekNotification.userInfo = ["UUID": each.UUID!]
                 twoWeekNotification.fireDate = finalDate!.addDays(-14)
+                //print("two week notification fire date \(twoWeekNotification.fireDate)")
                 twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
                 twoWeekNotification.alertBody = "You have \(each.title!) in two weeks! Time to start studying!"
                 twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
@@ -152,6 +161,7 @@ public class EventService: NSObject {
                 oneWeekNotification.userInfo = ["UUID": each.UUID!]
                 oneWeekNotification.fireDate = finalDate!.addDays(-7)
                 oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
+                //print("one week notification fire date \(oneWeekNotification.fireDate)")
                 oneWeekNotification.alertBody = "Only one week until \(each.title!). Keep up the hard work!"
                 oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
@@ -160,6 +170,7 @@ public class EventService: NSObject {
                 dayBeforeNotification.userInfo = ["UUID": each.UUID!]
                 dayBeforeNotification.fireDate = finalDate!.addDays(-1)
                 dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
+                //print("day before notification fire date \(dayBeforeNotification.fireDate)")
                 dayBeforeNotification.alertBody = "You have \(each.title!) tomorrow. Good luck!"
                 dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
