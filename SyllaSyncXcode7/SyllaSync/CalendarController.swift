@@ -26,7 +26,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVMonthsArray = [Int]()
     var CVDaysArray = [Int]()
     var CVYearsArray = [Int]()
-    var day:CVDate?
+    var day:DayView?
     var currentDayView:CVCalendarDayView?
     
     let locationManager = CLLocationManager()
@@ -49,6 +49,11 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func getCVDatesFromDatesArray() {
+        CVDatesArray.removeAll()
+        CVMonthsArray.removeAll()
+        CVDaysArray.removeAll()
+        CVYearsArray.removeAll()
+        
         for each in eventService.eventsArray {
             let dateFromString = each.date!.componentsSeparatedByString("/")
             let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
@@ -56,6 +61,11 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             CVMonthsArray.append(Int(dateFromString[0])!)
             CVDaysArray.append(Int(dateFromString[1])!)
             CVYearsArray.append(Int(dateFromString[2])!)
+        }
+        if let dayV = day {
+            preliminaryView(shouldDisplayOnDayView: dayV)
+            supplementaryView(shouldDisplayOnDayView: dayV)
+            didSelectDayView(dayV)
         }
     }
     
@@ -143,11 +153,15 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                                         let dateFromString = eventDate.componentsSeparatedByString("/")
                                         let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                                         
-                                        if newCVDate.day == self.day?.day && newCVDate.month == self.day?.month && title == self.titleLabel.text {
-                                            print("\(self.titleLabel.text) event was deleted succesfully")
-                                            each.deleteEventually()
+                                        if newCVDate.day == self.day?.date.day && newCVDate.month == self.day?.date.month && title == self.titleLabel.text {
+                                            each.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                                if success {
+                                                    self.finishDeletion(className, date: date, title: title)
+                                                    print("\(self.titleLabel.text) event was deleted succesfully")
+                                                }
+                                            })
                                             
-                                            self.finishDeletion(className, date: date, title: title)
+                                            
                                         }
                                     }
                                 }
@@ -180,8 +194,15 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                 UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
             }
         }
-        
-        finishLoading()
+        var i = 0
+        for each in eventService.eventsArray {
+            if each.UUID == deletionUUID {
+                eventService.eventsArray.removeAtIndex(i)
+                finishLoading()
+                return
+            }
+            i++
+        }
     }
     
     func finishLoading() {
@@ -221,7 +242,7 @@ extension CalendarController
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
     {
         if (dayView.isCurrentDay) {
-            
+            day = dayView
             var tappedFlag = false
             if dayView.date != nil {
                 for var i = 0; i < CVMonthsArray.count; i++ {
@@ -318,7 +339,7 @@ extension CalendarController
     
     func didSelectDayView(dayView: CVCalendarDayView) {
         var tappedFlag = false
-        day = dayView.date!
+        day = dayView
         currentDayView = dayView
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
