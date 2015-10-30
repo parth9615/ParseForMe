@@ -23,6 +23,7 @@ import Foundation
 
 class CurrentEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var closeButton: UIButton!
     var eventService = EventService.sharedInstance
@@ -33,6 +34,8 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
+        navBar.barTintColor = UIColor(rgba: "#04a4ca")
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         // Do any additional setup after loading the view.
     }
     
@@ -51,7 +54,7 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -67,9 +70,10 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
 //            previousClasses += eventService.eventSectionCount[i]
 //        }
         //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
-        cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title
-        cell?.eventTime.text = eventService.eventsArray[indexPath.row + previousClasses].time
-        cell?.eventDate.text = eventService.eventsArray[indexPath.row + previousClasses].date
+        cell?.eventName.text = eventService.eventsTodayArray[indexPath.row].title
+        cell?.eventTime.text = eventService.eventsTodayArray[indexPath.row].time
+        cell?.eventLocation.text = "Where? \(eventService.eventsTodayArray[indexPath.row].location!)"
+        cell?.eventDate.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
