@@ -23,6 +23,7 @@ import Foundation
 
 class CurrentEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var closeButton: UIButton!
     var eventService = EventService.sharedInstance
@@ -33,7 +34,8 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         eventsTable.delegate = self
         eventsTable.dataSource = self
         
-        print(eventService.eventsTodayArray)
+        navBar.barTintColor = UIColor(rgba: "#04a4ca")
+        self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         // Do any additional setup after loading the view.
     }
     
