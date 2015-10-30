@@ -186,7 +186,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="269" id="N0C-D9-LVo"/>
                                 </constraints>
-                                <string key="text">Do you want to be notified when any local bars are having deals, also likely the place everyone will be at some given night? Would you like to know when your schools sports team is playing next? We can notify you a day in advance for either of these with no in app use necessary, we’ll just send you a friendly push notification reminding you it’s gonna be popping at a certain bar tonight! Toggle these on or off to start getting notifications now! </string>
+                                <string key="text">Do you want to be notified when any local bars are having deals, also likely the place everyone will be at some given night? Would you like to know when your schools sports team is playing next? We can notify you a day in advance for either of these with no in app use necessary, we’ll just send you a friendly push notification reminding you it’s gonna be popping at a certain bar tonight! Toggle these on or off to start or stop getting notifications now! </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

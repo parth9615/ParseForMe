@@ -110,7 +110,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
-        label.font = UIFont(name: "BoosterNextFY-Black", size: 15)
+        label.font = UIFont(name: "BoosterNextFY-Medium", size: 15)
         
         label.text = eventService.uniqueClasses[section]
         
