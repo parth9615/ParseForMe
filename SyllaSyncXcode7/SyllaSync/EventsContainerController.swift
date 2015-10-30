@@ -84,6 +84,10 @@ class EventsContainerController: UIViewController {
     func finishedLoading() {
         dimView?.removeFromSuperview()
         
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.eventService.getEventsToday()
+        })
+        
         if tableCalendarController == nil {
             tableCalendarController = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("containerController") as? TableCalendarContainerController
         }

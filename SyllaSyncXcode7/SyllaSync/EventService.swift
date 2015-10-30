@@ -217,7 +217,7 @@ public class EventService: NSObject {
     
     //Everything following is for pulling generic events for the events happening today
     
-    func getEventsToday(sender: AnyObject) {
+    func getEventsToday() {
         let query:PFQuery = PFQuery(className: "Events")
         query.whereKey("localEvent", equalTo: true)
         query.findObjectsInBackgroundWithBlock{
@@ -230,19 +230,19 @@ public class EventService: NSObject {
                     
                     self.eventsTodayFromParse!.addObjectsFromArray(objects)
                     
-                    self.createEventObjects(sender)
+                    self.createEventsFromEventsTodayArray()
                 }
                 else {
-                    self.finish(sender)
+                    
                 }
             }
             else {
-                print("Error getting query", error, error!.userInfo)
+                print("Error getting query for events today", error, error!.userInfo)
             }
         }
     }
     
-    func createEventsFromEventsTodayArray(sender:AnyObject) {
+    func createEventsFromEventsTodayArray() {
         if eventsTodayFromParse != nil {
             for each in eventsTodayFromParse! {
                 if let eventDetails:AnyObject = each["events"] {

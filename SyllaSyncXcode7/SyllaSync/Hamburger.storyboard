@@ -22,15 +22,36 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Sorry" rowHeight="60" id="D05-Ac-P8W">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="Event" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="60" id="jzb-6H-6SN" customClass="EventCell" customModule="SyllaSync" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D05-Ac-P8W" id="Q1m-Ho-HIM">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jzb-6H-6SN" id="W1l-ra-HHq">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFd-E5-Nne">
-                                                    <rect key="frame" x="8" y="19" width="43" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Mk-RY-GVc">
+                                                    <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMm-SH-ohg">
+                                                    <rect key="frame" x="270" y="8" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuk-FA-ldi">
+                                                    <rect key="frame" x="270" y="30" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXM-12-Fhj">
+                                                    <rect key="frame" x="8" y="30" width="42" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,8 +59,52 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="nuk-FA-ldi" firstAttribute="bottom" secondItem="W1l-ra-HHq" secondAttribute="bottomMargin" id="1Rh-cK-unS"/>
+                                                <constraint firstItem="6Mk-RY-GVc" firstAttribute="leading" secondItem="W1l-ra-HHq" secondAttribute="leadingMargin" id="5UN-lw-eEa"/>
+                                                <constraint firstItem="qXM-12-Fhj" firstAttribute="top" secondItem="6Mk-RY-GVc" secondAttribute="bottom" constant="1" id="A8l-Gi-zOc"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qXM-12-Fhj" secondAttribute="bottom" id="AiR-XP-EB4"/>
+                                                <constraint firstItem="bMm-SH-ohg" firstAttribute="trailing" secondItem="W1l-ra-HHq" secondAttribute="trailingMargin" id="Cw8-7T-KCx"/>
+                                                <constraint firstItem="bMm-SH-ohg" firstAttribute="top" secondItem="W1l-ra-HHq" secondAttribute="topMargin" id="H94-lE-w02"/>
+                                                <constraint firstItem="nuk-FA-ldi" firstAttribute="trailing" secondItem="W1l-ra-HHq" secondAttribute="trailingMargin" id="Hbc-N9-RsH"/>
+                                                <constraint firstItem="bMm-SH-ohg" firstAttribute="trailing" secondItem="W1l-ra-HHq" secondAttribute="trailingMargin" id="Ssh-Q3-Z05"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="qXM-12-Fhj" secondAttribute="leading" id="Wa9-IS-QWJ"/>
+                                                <constraint firstItem="6Mk-RY-GVc" firstAttribute="top" secondItem="W1l-ra-HHq" secondAttribute="topMargin" id="XLO-ay-u57"/>
+                                                <constraint firstItem="6Mk-RY-GVc" firstAttribute="top" secondItem="W1l-ra-HHq" secondAttribute="topMargin" id="aNQ-YX-9TI"/>
+                                                <constraint firstItem="nuk-FA-ldi" firstAttribute="trailing" secondItem="W1l-ra-HHq" secondAttribute="trailingMargin" id="biF-sb-8Yc"/>
+                                                <constraint firstItem="bMm-SH-ohg" firstAttribute="top" secondItem="W1l-ra-HHq" secondAttribute="topMargin" id="dfH-iv-8ow"/>
+                                                <constraint firstItem="nuk-FA-ldi" firstAttribute="top" secondItem="bMm-SH-ohg" secondAttribute="bottom" constant="1" id="fap-Ts-CPu"/>
+                                                <constraint firstItem="6Mk-RY-GVc" firstAttribute="leading" secondItem="W1l-ra-HHq" secondAttribute="leadingMargin" id="qry-XR-8eK"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="XLO-ay-u57"/>
+                                                    <exclude reference="qry-XR-8eK"/>
+                                                    <exclude reference="A8l-Gi-zOc"/>
+                                                    <exclude reference="H94-lE-w02"/>
+                                                    <exclude reference="Ssh-Q3-Z05"/>
+                                                    <exclude reference="Hbc-N9-RsH"/>
+                                                    <exclude reference="fap-Ts-CPu"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="XLO-ay-u57"/>
+                                                    <include reference="qry-XR-8eK"/>
+                                                    <include reference="H94-lE-w02"/>
+                                                    <include reference="Ssh-Q3-Z05"/>
+                                                    <include reference="Hbc-N9-RsH"/>
+                                                    <include reference="fap-Ts-CPu"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="eventDate" destination="nuk-FA-ldi" id="Wvj-pK-gP3"/>
+                                            <outlet property="eventLocation" destination="qXM-12-Fhj" id="KdL-zv-H0s"/>
+                                            <outlet property="eventName" destination="6Mk-RY-GVc" id="J1g-sV-lVi"/>
+                                            <outlet property="eventTime" destination="bMm-SH-ohg" id="rOV-4o-ckt"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
