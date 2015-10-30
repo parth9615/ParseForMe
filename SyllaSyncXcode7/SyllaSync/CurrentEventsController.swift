@@ -21,12 +21,17 @@ import Foundation
 
 
 
-class CurrentEventsController: UIViewController {
+class CurrentEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var closeButton: UIButton!
+    var eventService = EventService.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        eventsTable.delegate = self
+        eventsTable.dataSource = self
         
         // Do any additional setup after loading the view.
     }
@@ -40,6 +45,46 @@ class CurrentEventsController: UIViewController {
 //        alert.addAction(OKAction)
 //        self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return eventService.eventsTodayArray.count
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "Event"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? EventCell
+        if cell == nil {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
+        }
+        
+//        let indexPathSection = indexPath.section
+//        previousClasses = 0
+//        for var i = indexPathSection-1; i >= 0; i-- {
+//            previousClasses += eventService.eventSectionCount[i]
+//        }
+        //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
+        cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title
+        cell?.eventTime.text = eventService.eventsArray[indexPath.row + previousClasses].time
+        cell?.eventDate.text = eventService.eventsArray[indexPath.row + previousClasses].date
+        
+        cell?.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell!
+    }
+
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
+        
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
