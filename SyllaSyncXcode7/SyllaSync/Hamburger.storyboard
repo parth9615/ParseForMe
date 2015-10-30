@@ -328,7 +328,7 @@
                                     <outlet property="label" destination="hg9-nP-Orb" id="ZqF-eV-8sd"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" rowHeight="60" id="eA0-Uz-tyc">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" rowHeight="60" id="eA0-Uz-tyc" customClass="HamburgerCell" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="247" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eA0-Uz-tyc" id="tNR-Yu-3l9">
@@ -353,8 +353,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="label" destination="zJI-b3-ugF" id="JlD-o5-9TR"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrentEvents" rowHeight="60" id="ZdN-Yb-Vrp">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrentEvents" rowHeight="60" id="ZdN-Yb-Vrp" customClass="HamburgerCell" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="307" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZdN-Yb-Vrp" id="juy-ec-5aK">
@@ -376,8 +379,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="label" destination="XYp-eP-ILy" id="hsK-Oa-vVS"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewSyllabi" rowHeight="60" id="Vcm-Gf-Wy4">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewSyllabi" rowHeight="60" id="Vcm-Gf-Wy4" customClass="HamburgerCell" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="367" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vcm-Gf-Wy4" id="AEp-av-OSy">
@@ -399,8 +405,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="label" destination="SeY-dM-IMR" id="oJ9-R0-taM"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutUs" rowHeight="60" id="546-9m-Cfm">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutUs" rowHeight="60" id="546-9m-Cfm" customClass="HamburgerCell" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="427" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="546-9m-Cfm" id="qjC-gJ-zPp">
@@ -422,8 +431,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="label" destination="Qff-6E-t1U" id="Uql-bZ-gqJ"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" rowHeight="60" id="Lnb-9s-Wre">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" rowHeight="60" id="Lnb-9s-Wre" customClass="HamburgerCell" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="487" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lnb-9s-Wre" id="nQw-j6-5qV">
@@ -445,6 +457,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="label" destination="XmK-8k-UAa" id="glt-C4-qRJ"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Fluff" rowHeight="270" id="JT2-Wf-rDd">
                                 <rect key="frame" x="0.0" y="547" width="320" height="270"/>

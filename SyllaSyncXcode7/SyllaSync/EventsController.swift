@@ -94,6 +94,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title
         cell?.eventTime.text = eventService.eventsArray[indexPath.row + previousClasses].time
         cell?.eventDate.text = eventService.eventsArray[indexPath.row + previousClasses].date
+        cell?.eventLocation.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
