@@ -18,6 +18,7 @@ public class Event: NSObject {
     public var weight:Int?
     public var syllabus:String?
     public var className:String?
+    public var location:String?
     
 }
 

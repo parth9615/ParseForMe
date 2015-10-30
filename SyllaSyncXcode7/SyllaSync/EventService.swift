@@ -18,8 +18,10 @@ public struct EventServiceConstants {
 
 public class EventService: NSObject {
     
-    var eventsFromParse:NSMutableArray?
+    var userEventsFromParse:NSMutableArray?
+    var eventsTodayFromParse:NSMutableArray?
     var eventsArray = [Event]()
+    var eventsTodayArray = [Event]()
     var uniqueClasses = [String]()
     var eventSectionCount = [Int]()
     public class var sharedInstance : EventService {
@@ -36,12 +38,11 @@ public class EventService: NSObject {
         query.findObjectsInBackgroundWithBlock{
             (objects: [AnyObject]?, error:NSError?) -> Void in
             if (error == nil) {
-                print("got a query for \(UserSettings.sharedInstance.Username)")
                 if let objects = objects as? [PFObject!] {
                     
-                    self.eventsFromParse = NSMutableArray()
+                    self.userEventsFromParse = NSMutableArray()
                     
-                    self.eventsFromParse!.addObjectsFromArray(objects)
+                    self.userEventsFromParse!.addObjectsFromArray(objects)
                     
                     self.createEventObjects(sender)
                 }
@@ -56,8 +57,8 @@ public class EventService: NSObject {
     }
     
     func createEventObjects(sender: AnyObject) {
-        if eventsFromParse != nil {
-            for each in eventsFromParse! {
+        if userEventsFromParse != nil {
+            for each in userEventsFromParse! {
                 if let eventDetails:AnyObject = each["events"] {
                     
                     let event = Event()
@@ -123,7 +124,7 @@ public class EventService: NSObject {
                 }
             }
         }
-
+        
         eventsArray = sortedEventsArray
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             self.scheduleNotification()
@@ -209,6 +210,58 @@ public class EventService: NSObject {
             }
             if !flag {
                 UIApplication.sharedApplication().cancelLocalNotification(notification)
+            }
+        }
+    }
+    
+    
+    //Everything following is for pulling generic events for the events happening today
+    
+    func getEventsToday(sender: AnyObject) {
+        let query:PFQuery = PFQuery(className: "Events")
+        query.whereKey("localEvent", equalTo: true)
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error:NSError?) -> Void in
+            if (error == nil) {
+                
+                if let objects = objects as? [PFObject!] {
+                    
+                    self.eventsTodayFromParse = NSMutableArray()
+                    
+                    self.eventsTodayFromParse!.addObjectsFromArray(objects)
+                    
+                    self.createEventObjects(sender)
+                }
+                else {
+                    self.finish(sender)
+                }
+            }
+            else {
+                print("Error getting query", error, error!.userInfo)
+            }
+        }
+    }
+    
+    func createEventsFromEventsTodayArray(sender:AnyObject) {
+        if eventsTodayFromParse != nil {
+            for each in eventsTodayFromParse! {
+                if let eventDetails:AnyObject = each["events"] {
+                    let event = Event()
+                    event.time = eventDetails["Time"] as? String
+                    event.location = eventDetails["Location"] as? String
+                    event.title = eventDetails["Title"] as? String
+                    event.UUID = event.title! + event.time! + event.location!
+                    
+                    var flag = false
+                    for each in eventsTodayArray {
+                        if each.UUID == event.UUID {
+                            flag = true
+                        }
+                    }
+                    if !flag {
+                        eventsTodayArray.append(event)
+                    }
+                }
             }
         }
     }
