@@ -196,45 +196,35 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         for each in eventService.eventsArray {
             if each.UUID == deletionUUID {
                 eventService.eventsArray.removeAtIndex(i)
-                finishLoading()
+                finishLoading("deletion")
                 return
             }
             i++
         }
     }
     
-    func finishLoading() {
-        //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
-        //   self.calendarView.reloadInputViews()
+    func finishLoading(sender: String) {
+        
+        
         getCVDatesFromDatesArray() {
             (result: String) in
-            if let dayV = self.day {
-                self.preliminaryView(shouldDisplayOnDayView: dayV)
-                dayV.supplementarySetup()
-                
-                var i = 0
-                for each in dayV.subviews {
-                    print(i)
-                    i++
-                    print(each)
-                    if i == 2 {
-                    each.removeFromSuperview()
+            if sender == "deletion" {
+                if let dayV = self.day {
+                    self.preliminaryView(shouldDisplayOnDayView: dayV)
+                    dayV.supplementarySetup()
+                    
+                    var i = 0
+                    for each in dayV.subviews {
+                        print(i)
+                        i++
+                        print(each)
+                        if i == 2 {
+                            each.removeFromSuperview()
+                        }
                     }
                 }
-//                self.preliminaryView(viewOnDayView: dayV)
-//                self.preliminaryView(shouldDisplayOnDayView: dayV)
-//                self.supplementaryView(viewOnDayView: dayV)
-//                self.supplementaryView(shouldDisplayOnDayView: dayV)
-//                self.didSelectDayView(dayV)
             }
-            
         }
-        
-        //day?.willRemoveSubview(day?.circleView?.)
-        
-        //   calendarView = nil
-        //  calendarView = CVCalendarView()
-        //  calendarView.commitCalendarViewUpdate()
     }
     
     func askForNotifications() {
@@ -251,7 +241,17 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
 }
 
 
-// MARK: - CVCalendarViewDelegate
+
+
+
+
+/*************************************************************************************************************************************************
+ ********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+ 
+ 
+ 
+ 
+ // MARK: - CVCalendarViewDelegate
 
 extension CalendarController
 {
