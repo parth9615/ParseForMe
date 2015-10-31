@@ -42,13 +42,15 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
-        getCVDatesFromDatesArray()
+        getCVDatesFromDatesArray() {
+            (result: String) in
+        }
         askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
     }
     
-    func getCVDatesFromDatesArray() {
+    func getCVDatesFromDatesArray(completion:(result: String) -> Void) {
         CVDatesArray.removeAll()
         CVMonthsArray.removeAll()
         CVDaysArray.removeAll()
@@ -62,11 +64,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             CVDaysArray.append(Int(dateFromString[1])!)
             CVYearsArray.append(Int(dateFromString[2])!)
         }
-        if let dayV = day {
-            preliminaryView(shouldDisplayOnDayView: dayV)
-            supplementaryView(shouldDisplayOnDayView: dayV)
-            didSelectDayView(dayV)
-        }
+        completion(result: "finished")
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,9 +82,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
         
-    
+        
+        
         
         //GETS LOCATION
         
@@ -116,7 +114,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         user?.setObject(locValue.longitude, forKey: "Longitude")
         user?.saveEventually()
         print("saving location to db")
-
+        
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -207,11 +205,36 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     func finishLoading() {
         //THIS ISN'T RELOADING VIEWS LIKE YOU WANT IT TO. EVERYHTING IS DELETING LIKE IT'S SUPPOSED TO THOUGH
-     //   self.calendarView.reloadInputViews()
-        getCVDatesFromDatesArray()
-     //   calendarView = nil
-      //  calendarView = CVCalendarView()
-      //  calendarView.commitCalendarViewUpdate()
+        //   self.calendarView.reloadInputViews()
+        getCVDatesFromDatesArray() {
+            (result: String) in
+            if let dayV = self.day {
+                self.preliminaryView(shouldDisplayOnDayView: dayV)
+                dayV.supplementarySetup()
+                
+                var i = 0
+                for each in dayV.subviews {
+                    print(i)
+                    i++
+                    print(each)
+                    if i == 2 {
+                    each.removeFromSuperview()
+                    }
+                }
+//                self.preliminaryView(viewOnDayView: dayV)
+//                self.preliminaryView(shouldDisplayOnDayView: dayV)
+//                self.supplementaryView(viewOnDayView: dayV)
+//                self.supplementaryView(shouldDisplayOnDayView: dayV)
+//                self.didSelectDayView(dayV)
+            }
+            
+        }
+        
+        //day?.willRemoveSubview(day?.circleView?.)
+        
+        //   calendarView = nil
+        //  calendarView = CVCalendarView()
+        //  calendarView.commitCalendarViewUpdate()
     }
     
     func askForNotifications() {
@@ -269,7 +292,7 @@ extension CalendarController
                     }
                 }
             }
-
+            
             return true
         }
         return false
@@ -324,7 +347,7 @@ extension CalendarController
         }
         return false
     }
-
+    
     func presentationMode() -> CalendarMode {
         return .MonthView
     }
