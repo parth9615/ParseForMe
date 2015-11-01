@@ -18,6 +18,8 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
     @IBOutlet weak var timeTF: UITextField!
     var originalFrame : CGRect?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,6 +100,7 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
                         event.title = self.titleTF.text
                         event.weight = Int(self.weightTF.text!)
                         event.UUID = event.className!+event.date!+event.title!
+                        event.newEvent = true
                         EventService.sharedInstance.eventsArray.append(event)
                         
                         self.dateTF.text = ""

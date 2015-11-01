@@ -28,6 +28,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVYearsArray = [Int]()
     var day:DayView?
     var currentDayView:CVCalendarDayView?
+    var newEvents = [DayView]()
     
     let locationManager = CLLocationManager()
     
@@ -59,6 +60,10 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         for each in eventService.eventsArray {
             let dateFromString = each.date!.componentsSeparatedByString("/")
             let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
+            if each.newEvent == true {
+                each.newEvent = false
+                
+            }
             CVDatesArray.append(newCVDate)
             CVMonthsArray.append(Int(dateFromString[0])!)
             CVDaysArray.append(Int(dateFromString[1])!)
@@ -210,7 +215,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             (result: String) in
             if sender == "deletion" {
                 if let dayV = self.day {
-                    self.preliminaryView(shouldDisplayOnDayView: dayV)
+                    self.didSelectDayView(dayV)
                     dayV.supplementarySetup()
                     
                     var i = 0
@@ -223,6 +228,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                         }
                     }
                 }
+            }
+            else if sender == "addition" {
+                
             }
         }
     }
