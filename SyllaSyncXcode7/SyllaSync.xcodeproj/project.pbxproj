@@ -65,6 +65,7 @@
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; };
 		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; };
+		EE85380C1BE3F9C3007E1B5D /* HamburgerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
 		EE9FCE761B765E9200C052C7 /* BoosterNextFY-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */; };
 		EE9FCE771B765E9200C052C7 /* BoosterNextFY-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */; };
@@ -166,6 +167,7 @@
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE63BB941BD0A01E00354741 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE63BB961BD19F8100354741 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
+		EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerCell.swift; sourceTree = "<group>"; };
 		EE9BC0F81B79A75600D33818 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Black.otf"; sourceTree = "<group>"; };
 		EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Bold.otf"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		EE0835E31B6D3BD900F5CD9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EE85380A1BE3F998007E1B5D /* Cells */,
 				EEEB0CBA1B718C3700C54CC7 /* Events */,
 				EE08361A1B6D5A2D00F5CD9C /* Logins */,
 				EE0835EA1B6D3E0500F5CD9C /* Hamburger */,
@@ -349,7 +352,6 @@
 				EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
-				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
 			);
 			name = Hamburger;
 			sourceTree = "<group>";
@@ -433,6 +435,16 @@
 			path = ExSwift;
 			sourceTree = "<group>";
 		};
+		EE85380A1BE3F998007E1B5D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */,
+				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
+				EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		EE9FCE6F1B765E7100C052C7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,7 +471,6 @@
 			isa = PBXGroup;
 			children = (
 				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
-				EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */,
 				EE9FCE821B77F82800C052C7 /* CalendarController.swift */,
 				EE63BB961BD19F8100354741 /* AddEventController.swift */,
 				EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */,
@@ -720,6 +731,7 @@
 				EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */,
 				EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */,
 				EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */,
+				EE85380C1BE3F9C3007E1B5D /* HamburgerCell.swift in Sources */,
 				EE10F5B71B84F82300931D4D /* Int.swift in Sources */,
 				EE10F5AF1B84F82300931D4D /* Array.swift in Sources */,
 				EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */,

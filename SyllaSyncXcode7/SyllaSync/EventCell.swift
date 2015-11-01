@@ -18,6 +18,11 @@ class EventCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let fontSize = self.eventName.font.pointSize
+        eventName.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        eventTime.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        eventDate.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        eventLocation.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

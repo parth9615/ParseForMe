@@ -187,7 +187,7 @@ public class EventService: NSObject {
         
         if sender is CalendarController {
             let mySender = sender as! CalendarController
-            mySender.finishLoading()
+            mySender.finishLoading("addition")
         }
         if sender is EventsContainerController  {
             let mySender = sender as! EventsContainerController
@@ -215,7 +215,13 @@ public class EventService: NSObject {
     }
     
     
+    
+    
+    
     //Everything following is for pulling generic events for the events happening today
+    
+    
+    
     
     func getEventsToday() {
         let query:PFQuery = PFQuery(className: "Events")

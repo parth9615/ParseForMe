@@ -23,6 +23,7 @@ class HamburgerController: UITableViewController {
     
     var parent:EventsContainerController?
     var toggleCell:ToggleCell?
+    var fontSize:CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,23 +68,35 @@ class HamburgerController: UITableViewController {
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? ToggleCell
             if cell == nil {
                 cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? ToggleCell
+                
             }
             toggleCell = cell
+            fontSize = toggleCell!.label.font.pointSize
+            cell?.label.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize!)
             cell?.selectionStyle = UITableViewCellSelectionStyle.None
             return cell!
         }
         else if indexPath.row == HamburgerCells.Notifications.rawValue {
             let cellIdentifier = "Notifications"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? HamburgerCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? HamburgerCell
+            }
+            cell?.label.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize!)
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
 
         }
         else if indexPath.row == HamburgerCells.CurrentEvents.rawValue {
             let cellIdentifier = "CurrentEvents"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? HamburgerCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? HamburgerCell
+                
+            }
+            cell?.label.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize!)
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
         }
 //        else if indexPath.row == HamburgerCells.ViewSyllabi.rawValue {
 //            let cellIdentifier = "ViewSyllabi"
@@ -94,15 +107,25 @@ class HamburgerController: UITableViewController {
 //        }
         else if indexPath.row == HamburgerCells.AboutUs.rawValue {
             let cellIdentifier = "AboutUs"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? HamburgerCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? HamburgerCell
+                
+            }
+            cell?.label.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize!)
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
         }
         else if indexPath.row == HamburgerCells.Logout.rawValue {
             let cellIdentifier = "Logout"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            return cell
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as? HamburgerCell
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? HamburgerCell
+                
+            }
+            cell?.label.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize!)
+            cell?.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell!
         }
         else {
             let cellIdentifier = "Fluff"

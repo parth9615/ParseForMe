@@ -94,6 +94,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title
         cell?.eventTime.text = eventService.eventsArray[indexPath.row + previousClasses].time
         cell?.eventDate.text = eventService.eventsArray[indexPath.row + previousClasses].date
+        cell?.eventLocation.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
@@ -110,7 +111,7 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         label.textColor = UIColor.blackColor()
         label.textAlignment = NSTextAlignment.Center
         
-        label.font = UIFont(name: "BoosterNextFY-Black", size: 15)
+        label.font = UIFont(name: "BoosterNextFY-Medium", size: 15)
         
         label.text = eventService.uniqueClasses[section]
         
