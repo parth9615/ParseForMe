@@ -46,10 +46,10 @@
         <form name="manualForm" ng-submit="submit(manualEvent)" ng-controller="uploadEventController">
           <input type="text" ng-model="manualEvent.title" placeholder="Event title" /><br />
           <input type="text" ng-model="manualEvent.classname" placeholder="Class name" /><br />
-          <input type="text" ng-model="manualEvent.date" placeholder="Date" /><br />
-          <input type="text" ng-model="manualEvent.time" placeholder="Time" /><br />
-          <input type="text" ng-model="manualEvent.type" placeholder="Type" /><br />
-          <input type="text" ng-model="manualEvent.weight" placeholder="% of Grade" /><br />
+          <input type="text" ng-model="manualEvent.date" placeholder="Date (dd/mm/yyyy)" /><br />
+          <input type="text" ng-model="manualEvent.time" placeholder="Time (xx:xx pm)" /><br />
+          <input type="text" ng-model="manualEvent.type" placeholder="Type (Exam, Hw, etc.)" /><br />
+          <input type="number" ng-model="manualEvent.weight" placeholder="Weight of Grade (20)" /><br />
 
           <button type="submit">Upload</button>
         </form>
