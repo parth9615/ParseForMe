@@ -29,7 +29,11 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
         super.viewDidLoad()
         
         self.navBar.barTintColor = UIColor(rgba: "#04a4ca")
-//        self.navBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "BoosterNextFY-Black", size: 20)!]
+        let attributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "BoosterNextFY-Medium", size: 18)!
+        ]
+        self.navBar.titleTextAttributes = attributes
 
         dateTF.delegate = self
         titleTF.delegate = self
