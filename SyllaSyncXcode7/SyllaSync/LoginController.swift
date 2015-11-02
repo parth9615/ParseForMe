@@ -15,6 +15,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     @IBOutlet weak var logoImageView: UIImageView!
     var window: UIWindow?
     var req:FBSDKGraphRequest?
+    @IBOutlet weak var signInButton: UIButton!
     
     var userName:NSString?
     var userEmail:NSString?
@@ -25,7 +26,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         
         logoImageView.image = UIImage(named: "LogoandPic")
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
-        
+
         //UNCOMMENT IF YOU WANT TO ALLOW FACEBOOK LOGIN
         
 //        if (FBSDKAccessToken.currentAccessToken() != nil)

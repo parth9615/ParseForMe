@@ -66,6 +66,7 @@
 		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; };
 		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; };
 		EE85380C1BE3F9C3007E1B5D /* HamburgerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */; };
+		EE8538101BE7BB5D007E1B5D /* shadowedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85380F1BE7BB5D007E1B5D /* shadowedButton.swift */; };
 		EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
 		EE9FCE761B765E9200C052C7 /* BoosterNextFY-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */; };
 		EE9FCE771B765E9200C052C7 /* BoosterNextFY-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */; };
@@ -168,6 +169,7 @@
 		EE63BB941BD0A01E00354741 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE63BB961BD19F8100354741 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerCell.swift; sourceTree = "<group>"; };
+		EE85380F1BE7BB5D007E1B5D /* shadowedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shadowedButton.swift; sourceTree = "<group>"; };
 		EE9BC0F81B79A75600D33818 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Black.otf"; sourceTree = "<group>"; };
 		EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BoosterNextFY-Bold.otf"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */,
 				EE1887591B6FFC80003FA7A9 /* DimView.swift */,
 				EE9BC0F81B79A75600D33818 /* Reachability.swift */,
+				EE85380F1BE7BB5D007E1B5D /* shadowedButton.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				EEEB0CAE1B7078A700C54CC7 /* CurrentEventsController.swift in Sources */,
 				EE10F5BA1B84F82300931D4D /* Range.swift in Sources */,
 				EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */,
+				EE8538101BE7BB5D007E1B5D /* shadowedButton.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
 				EE10F5B11B84F82300931D4D /* Character.swift in Sources */,

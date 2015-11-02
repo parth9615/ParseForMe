@@ -496,16 +496,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRg-z5-zre">
-                                <rect key="frame" x="137" y="202" width="48" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logout:" destination="ldb-bM-tJZ" eventType="touchUpInside" id="BmG-f4-P8R"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaR-vK-BQo">
                                 <rect key="frame" x="280" y="20" width="24" height="24"/>
                                 <animations/>
@@ -515,6 +505,19 @@
                                 <connections>
                                     <action selector="close:" destination="ldb-bM-tJZ" eventType="touchUpInside" id="u72-Ol-0Qq"/>
                                     <action selector="dismiss:" destination="HEa-Rm-AGJ" eventType="touchUpInside" id="FNm-1x-CDx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRg-z5-zre" customClass="shadowedButton" customModule="SyllaSync" customModuleProvider="target">
+                                <rect key="frame" x="110" y="202" width="100" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="g8O-7b-Pdn"/>
+                                </constraints>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="ldb-bM-tJZ" eventType="touchUpInside" id="BmG-f4-P8R"/>
                                 </connections>
                             </button>
                         </subviews>
