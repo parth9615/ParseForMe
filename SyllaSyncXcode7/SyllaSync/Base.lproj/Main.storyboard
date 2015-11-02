@@ -309,11 +309,16 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="classNameLabel" destination="aVL-bV-L1w" id="W3N-nA-ShQ"/>
                         <outlet property="classNameTF" destination="mn0-TT-t49" id="qU6-pR-9Uq"/>
+                        <outlet property="dateLabel" destination="5KW-SP-s71" id="biE-lF-DRO"/>
                         <outlet property="dateTF" destination="6pc-2M-B9z" id="a9o-eH-o6D"/>
                         <outlet property="navBar" destination="5aq-p5-fXL" id="fge-GF-SBd"/>
+                        <outlet property="timeLabel" destination="ZI6-kd-6or" id="V0b-d5-f94"/>
                         <outlet property="timeTF" destination="QeS-yu-SR3" id="RJV-kf-xcC"/>
+                        <outlet property="titleLabel" destination="Zbd-qE-2lv" id="hAA-cB-ZJU"/>
                         <outlet property="titleTF" destination="pga-qp-B1t" id="8my-vj-o0f"/>
+                        <outlet property="weightLabel" destination="Udl-R4-dab" id="6ka-rA-9YV"/>
                         <outlet property="weightTF" destination="ebZ-UV-McW" id="apN-8I-aY1"/>
                     </connections>
                 </viewController>
