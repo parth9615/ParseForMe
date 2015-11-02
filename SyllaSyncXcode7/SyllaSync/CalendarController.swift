@@ -29,6 +29,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var day:DayView?
     var currentDayView:CVCalendarDayView?
     var newEvents = [DayView]()
+    var eventsAdded = false
     
     let locationManager = CLLocationManager()
     
@@ -49,6 +50,25 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
+        
+        
+        
+        //GETS LOCATION
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        let authstate = CLLocationManager.authorizationStatus()
+        if(authstate == CLAuthorizationStatus.NotDetermined){
+            print("Not Authorised")
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            locationManager.distanceFilter = 1000.0
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func getCVDatesFromDatesArray(completion:(result: String) -> Void) {
@@ -89,23 +109,13 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         super.viewDidAppear(animated)
         
         
-        
-        
-        //GETS LOCATION
-        
-        locationManager.requestAlwaysAuthorization()
-        
-        let authstate = CLLocationManager.authorizationStatus()
-        if(authstate == CLAuthorizationStatus.NotDetermined){
-            print("Not Authorised")
-            locationManager.requestWhenInUseAuthorization()
-        }
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-            locationManager.distanceFilter = 1000.0
-            locationManager.startUpdatingLocation()
+        if self.eventsAdded {
+            self.eventsAdded = false
+            let alert = UIAlertController(title: "Events Added", message: "Your new events have been added to our database and your reminders have been scheduled, they will show up on your calendar once the app is closed and re-opened!", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -229,9 +239,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                     }
                 }
             }
-            else if sender == "addition" {
-                
-            }
         }
     }
     
@@ -245,6 +252,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     func eventAdded() {
         EventService.sharedInstance.countUniqueClasses(self)
+        eventsAdded = true
     }
 }
 
