@@ -17,6 +17,10 @@ class NotificationsController: UIViewController {
     
     @IBOutlet weak var barEventsToggle: UISwitch!
     @IBOutlet weak var sportEventsToggle: UISwitch!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var barDealLabel: UILabel!
+    @IBOutlet weak var sportEventLabel: UILabel!
 
     //
     //  HamburgerController.swift
@@ -31,13 +35,18 @@ class NotificationsController: UIViewController {
 
         barEventsToggle.addTarget(self, action: Selector("barStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         sportEventsToggle.addTarget(self, action: Selector("sportStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        //self.tableView.scrollEnabled = false //comment to enable scrolling
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let fontSize = self.descriptionLabel.font.pointSize
+        descriptionLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        titleLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        barDealLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        sportEventLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func barStateChanged(switchState: UISwitch) {
@@ -60,12 +69,6 @@ class NotificationsController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    //    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    //        // Return NO if you do not want the specified item to be editable.
-    //        return false
-    //    }
     
     
     @IBAction func dismiss(sender: AnyObject) {

@@ -268,8 +268,12 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="barDealLabel" destination="6Md-5q-icT" id="PZs-mu-cb6"/>
                         <outlet property="barEventsToggle" destination="sa2-fr-0HI" id="H9o-8B-jOg"/>
+                        <outlet property="descriptionLabel" destination="P7m-hq-ZVX" id="nNM-gW-kZq"/>
+                        <outlet property="sportEventLabel" destination="OCd-I1-yGf" id="eqW-ej-BfO"/>
                         <outlet property="sportEventsToggle" destination="zFZ-8G-fng" id="ATI-nb-bpt"/>
+                        <outlet property="titleLabel" destination="75B-jg-Ill" id="Cdt-Kx-6Yc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pl-ny-EGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,6 +536,9 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="kRg-z5-zre" id="kDS-9D-80D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubs-dU-SFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -590,7 +597,9 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="aboutUsLabel" destination="fly-Jh-ZGI" id="QSq-VM-H9w"/>
                         <outlet property="closeButton" destination="dpc-rH-Grx" id="A3D-0Z-EDK"/>
+                        <outlet property="goHeelsLabel" destination="Ewr-lp-Hax" id="QuY-Hy-Mmv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8F-h3-27b" userLabel="First Responder" sceneMemberID="firstResponder"/>

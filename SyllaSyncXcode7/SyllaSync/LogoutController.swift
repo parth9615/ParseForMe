@@ -11,10 +11,20 @@ import Parse
 
 class LogoutController: UIViewController {
 
+    @IBOutlet weak var logoutButton: shadowedButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let fontSize = logoutButton.titleLabel!.font.pointSize
+        logoutButton.titleLabel?.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
     }
 
     override func didReceiveMemoryWarning() {

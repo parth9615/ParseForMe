@@ -41,12 +41,7 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-//        let alert = UIAlertController(title: "We're Sorry", message: "There are no settings available at this time", preferredStyle: .Alert)
-//        let OKAction = UIAlertAction(title: "OK", style: .Default) { [unowned self] (action) in
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        }
-//        alert.addAction(OKAction)
-//        self.presentViewController(alert, animated: true, completion: nil)
+
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,16 +58,16 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
         }
-        
-//        let indexPathSection = indexPath.section
-//        previousClasses = 0
-//        for var i = indexPathSection-1; i >= 0; i-- {
-//            previousClasses += eventService.eventSectionCount[i]
-//        }
-        //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
+        let fontSize = cell!.eventName.font.pointSize
         cell?.eventName.text = eventService.eventsTodayArray[indexPath.row].title
+        cell?.eventName.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        
         cell?.eventTime.text = eventService.eventsTodayArray[indexPath.row].time
+        cell?.eventTime.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        
         cell?.eventLocation.text = "Where? \(eventService.eventsTodayArray[indexPath.row].location!)"
+        cell?.eventLocation.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        
         cell?.eventDate.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
