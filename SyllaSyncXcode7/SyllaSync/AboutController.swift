@@ -20,6 +20,7 @@ class AboutController: UIViewController {
         let fontSize = self.aboutUsLabel.font.pointSize
         aboutUsLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
         goHeelsLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        goHeelsLabel.text = "Dream, Ideate, Develop\n Go Heels"
         // Do any additional setup after loading the view.
     }
     
