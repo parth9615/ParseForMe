@@ -28,6 +28,8 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var closeButton: UIButton!
     var eventService = EventService.sharedInstance
     
+    var refreshControl:UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,11 +39,30 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         navBar.barTintColor = UIColor(rgba: "#04a4ca")
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         // Do any additional setup after loading the view.
+        
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Events")
+        self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        eventsTable.addSubview(refreshControl)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
 
+    }
+    
+    func refresh() {
+        eventService.getEventsToday(self)
+        reloadTable()
+    }
+    
+    func reloadTable() {
+        eventsTable.reloadData()
+    }
+    
+    func finishedLoading() {
+        self.refreshControl.endRefreshing()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

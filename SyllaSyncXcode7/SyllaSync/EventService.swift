@@ -223,7 +223,8 @@ public class EventService: NSObject {
     
     
     
-    func getEventsToday() {
+    func getEventsToday(sender: AnyObject) {
+        
         let query:PFQuery = PFQuery(className: "Events")
         query.whereKey("localEvent", equalTo: true)
         query.findObjectsInBackgroundWithBlock{
@@ -236,7 +237,7 @@ public class EventService: NSObject {
                     
                     self.eventsTodayFromParse!.addObjectsFromArray(objects)
                     
-                    self.createEventsFromEventsTodayArray()
+                    self.createEventsFromEventsTodayArray(sender)
                 }
                 else {
                     
@@ -248,7 +249,7 @@ public class EventService: NSObject {
         }
     }
     
-    func createEventsFromEventsTodayArray() {
+    func createEventsFromEventsTodayArray(sender: AnyObject) {
         if eventsTodayFromParse != nil {
             for each in eventsTodayFromParse! {
                 if let eventDetails:AnyObject = each["events"] {
@@ -269,6 +270,14 @@ public class EventService: NSObject {
                     }
                 }
             }
+        }
+        finishCurrentEvents(sender)
+    }
+    
+    func finishCurrentEvents(sender: AnyObject) {
+        if sender is CurrentEventsController {
+            let mySender = sender as! CurrentEventsController
+            mySender.finishedLoading()
         }
     }
 }
