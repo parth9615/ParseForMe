@@ -45,11 +45,11 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return eventService.eventsTodayArray.count
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return eventService.eventsTodayArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -58,6 +58,8 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
         }
+        print(indexPath.row)
+        print(indexPath.section)
         let fontSize = cell!.eventName.font.pointSize
         cell?.eventName.text = eventService.eventsTodayArray[indexPath.row].title
         cell?.eventName.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
