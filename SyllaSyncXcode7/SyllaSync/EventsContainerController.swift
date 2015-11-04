@@ -85,7 +85,7 @@ class EventsContainerController: UIViewController {
         dimView?.removeFromSuperview()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.eventService.getEventsToday()
+            self.eventService.getEventsToday(self)
         })
         
         if tableCalendarController == nil {

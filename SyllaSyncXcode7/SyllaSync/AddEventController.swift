@@ -17,16 +17,37 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
     @IBOutlet weak var weightTF: UITextField!
     @IBOutlet weak var timeTF: UITextField!
     var originalFrame : CGRect?
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var classNameLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navBar.barTintColor = UIColor(rgba: "#04a4ca")
+        let attributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "BoosterNextFY-Medium", size: 18)!
+        ]
+        self.navBar.titleTextAttributes = attributes
+
         dateTF.delegate = self
         titleTF.delegate = self
         classNameTF.delegate = self
         weightTF.delegate = self
         timeTF.delegate = self
+        
+        let fontSize = self.titleLabel.font.pointSize
+        dateLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        titleLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        classNameLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        weightLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        timeLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -98,6 +119,7 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
                         event.title = self.titleTF.text
                         event.weight = Int(self.weightTF.text!)
                         event.UUID = event.className!+event.date!+event.title!
+                        event.newEvent = true
                         EventService.sharedInstance.eventsArray.append(event)
                         
                         self.dateTF.text = ""

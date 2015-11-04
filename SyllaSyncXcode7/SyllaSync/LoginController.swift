@@ -15,6 +15,7 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     @IBOutlet weak var logoImageView: UIImageView!
     var window: UIWindow?
     var req:FBSDKGraphRequest?
+    @IBOutlet weak var signInButton: UIButton!
     
     var userName:NSString?
     var userEmail:NSString?
@@ -25,21 +26,23 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
         
         logoImageView.image = UIImage(named: "LogoandPic")
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
+
+        //UNCOMMENT IF YOU WANT TO ALLOW FACEBOOK LOGIN
         
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-           self.returnUserData()
-        }
-        else {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            
-            loginView.frame = CGRectMake(self.view.frame.width/2, 200, 210, 40)
-            loginView.center = CGPointMake((self.view.frame.width/2), 340)
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
-            FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
-        }
+//        if (FBSDKAccessToken.currentAccessToken() != nil)
+//        {
+//           self.returnUserData()
+//        }
+//        else {
+//            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+//            self.view.addSubview(loginView)
+//            
+//            loginView.frame = CGRectMake(self.view.frame.width/2, 200, 210, 40)
+//            loginView.center = CGPointMake((self.view.frame.width/2), 340)
+//            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+//            loginView.delegate = self
+//            FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
+//        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     

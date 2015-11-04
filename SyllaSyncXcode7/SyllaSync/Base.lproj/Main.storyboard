@@ -31,7 +31,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52d-tf-MQi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52d-tf-MQi" customClass="shadowedButton" customModule="SyllaSync" customModuleProvider="target">
                                 <rect key="frame" x="55" y="260" width="210" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="width" secondItem="52d-tf-MQi" secondAttribute="height" multiplier="11:3" constant="41.333333333333343" id="p9p-CE-syD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Sign in with SyllaSync Account">
+                                <state key="normal" title="Sign In">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -76,6 +76,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="logoImageView" destination="7I9-nd-41h" id="DL8-Kh-waY"/>
+                        <outlet property="signInButton" destination="52d-tf-MQi" id="b4Z-t5-iYA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -238,14 +239,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hK1-WA-dLm">
-                                <rect key="frame" x="136" y="431" width="49" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="submitEvent:" destination="2pZ-ac-5cd" eventType="touchUpInside" id="7nN-Ta-SmG"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aq-p5-fXL">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <animations/>
@@ -264,6 +257,20 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hK1-WA-dLm" customClass="shadowedButton" customModule="SyllaSync" customModuleProvider="target">
+                                <rect key="frame" x="110" y="431" width="100" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="stU-CX-Uh8"/>
+                                </constraints>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitEvent:" destination="2pZ-ac-5cd" eventType="touchUpInside" id="7nN-Ta-SmG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -302,11 +309,16 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="classNameLabel" destination="aVL-bV-L1w" id="W3N-nA-ShQ"/>
                         <outlet property="classNameTF" destination="mn0-TT-t49" id="qU6-pR-9Uq"/>
+                        <outlet property="dateLabel" destination="5KW-SP-s71" id="biE-lF-DRO"/>
                         <outlet property="dateTF" destination="6pc-2M-B9z" id="a9o-eH-o6D"/>
                         <outlet property="navBar" destination="5aq-p5-fXL" id="fge-GF-SBd"/>
+                        <outlet property="timeLabel" destination="ZI6-kd-6or" id="V0b-d5-f94"/>
                         <outlet property="timeTF" destination="QeS-yu-SR3" id="RJV-kf-xcC"/>
+                        <outlet property="titleLabel" destination="Zbd-qE-2lv" id="hAA-cB-ZJU"/>
                         <outlet property="titleTF" destination="pga-qp-B1t" id="8my-vj-o0f"/>
+                        <outlet property="weightLabel" destination="Udl-R4-dab" id="6ka-rA-9YV"/>
                         <outlet property="weightTF" destination="ebZ-UV-McW" id="apN-8I-aY1"/>
                     </connections>
                 </viewController>
@@ -444,8 +456,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYu-wZ-kyr">
-                                <rect key="frame" x="16" y="430" width="87" height="30"/>
+                                <rect key="frame" x="12" y="430" width="100" height="30"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="oGm-Ma-Z4h"/>
+                                </constraints>
                                 <state key="normal" title="Delete Event"/>
                                 <connections>
                                     <action selector="deleteEvent:" destination="X0y-L3-JmP" eventType="touchUpInside" id="Uyl-fh-u3m"/>
@@ -467,7 +482,7 @@
                             <constraint firstItem="o0z-lz-Oge" firstAttribute="top" secondItem="gTo-OV-m1B" secondAttribute="bottom" constant="8" id="5fw-8z-kJ5"/>
                             <constraint firstItem="6Tr-GN-WlQ" firstAttribute="top" secondItem="jwK-tQ-mgN" secondAttribute="bottom" constant="4" id="5ki-0j-ygU"/>
                             <constraint firstAttribute="centerX" secondItem="gTo-OV-m1B" secondAttribute="centerX" id="AUz-y3-v89"/>
-                            <constraint firstItem="WYu-wZ-kyr" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="AjF-iP-3m4"/>
+                            <constraint firstItem="WYu-wZ-kyr" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" constant="-4" id="AjF-iP-3m4"/>
                             <constraint firstItem="d1I-tc-BJI" firstAttribute="trailing" secondItem="CGF-jI-ie1" secondAttribute="trailingMargin" id="ECW-HK-6sz"/>
                             <constraint firstItem="tDj-gQ-4SW" firstAttribute="leading" secondItem="CGF-jI-ie1" secondAttribute="leadingMargin" id="Fqa-kU-oac"/>
                             <constraint firstAttribute="centerX" secondItem="9oS-hX-Lt2" secondAttribute="centerX" constant="-0.5" id="IHo-ek-CN4"/>

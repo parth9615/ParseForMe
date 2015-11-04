@@ -19,6 +19,7 @@ public class Event: NSObject {
     public var syllabus:String?
     public var className:String?
     public var location:String?
+    public var newEvent:Bool?
     
 }
 

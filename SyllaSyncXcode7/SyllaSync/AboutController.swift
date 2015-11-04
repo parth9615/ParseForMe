@@ -11,11 +11,22 @@ import Foundation
 class AboutController: UIViewController {
 
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var aboutUsLabel: UILabel!
+    @IBOutlet weak var goHeelsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let fontSize = self.aboutUsLabel.font.pointSize
+        aboutUsLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        goHeelsLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        goHeelsLabel.text = "Dream, Ideate, Develop\n Go Heels"
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -28,6 +28,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var CVYearsArray = [Int]()
     var day:DayView?
     var currentDayView:CVCalendarDayView?
+    var eventsAdded = false
     
     let locationManager = CLLocationManager()
     
@@ -48,6 +49,25 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
+        
+        
+        
+        //GETS LOCATION
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        let authstate = CLLocationManager.authorizationStatus()
+        if(authstate == CLAuthorizationStatus.NotDetermined){
+            print("Not Authorised")
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            locationManager.distanceFilter = 1000.0
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func getCVDatesFromDatesArray(completion:(result: String) -> Void) {
@@ -59,6 +79,9 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         for each in eventService.eventsArray {
             let dateFromString = each.date!.componentsSeparatedByString("/")
             let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
+            if each.newEvent == true {
+                each.newEvent = false
+            }
             CVDatesArray.append(newCVDate)
             CVMonthsArray.append(Int(dateFromString[0])!)
             CVDaysArray.append(Int(dateFromString[1])!)
@@ -84,23 +107,14 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         super.viewDidAppear(animated)
         
         
-        
-        
-        //GETS LOCATION
-        
-        locationManager.requestAlwaysAuthorization()
-        
-        let authstate = CLLocationManager.authorizationStatus()
-        if(authstate == CLAuthorizationStatus.NotDetermined){
-            print("Not Authorised")
-            locationManager.requestWhenInUseAuthorization()
-        }
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-            locationManager.distanceFilter = 1000.0
-            locationManager.startUpdatingLocation()
+        if self.eventsAdded {
+            self.eventsAdded = false
+            let alert = UIAlertController(title: "Events Added", message: "Your new events have been added to our database and your reminders have been scheduled, please give us a moment to draw circles on your calendar", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                self.eventService.countUniqueClasses(self)
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -205,21 +219,38 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     func finishLoading(sender: String) {
         
-        
         getCVDatesFromDatesArray() {
             (result: String) in
             if sender == "deletion" {
                 if let dayV = self.day {
-                    self.preliminaryView(shouldDisplayOnDayView: dayV)
+                    self.didSelectDayView(dayV)
                     dayV.supplementarySetup()
-                    
-                    var i = 0
+
                     for each in dayV.subviews {
-                        print(i)
-                        i++
                         print(each)
-                        if i == 2 {
+                        if each is UILabel {
+                            continue
+                        }
+                        else if each is CVAuxiliaryView {
+                            continue
+                        }
+                        else {
                             each.removeFromSuperview()
+                        }
+                    }
+                }
+            }
+            if sender == "addition" {
+                //print("hit addition")
+               // print("CVDates array \(self.CVDatesArray)")
+                for each in self.calendarView.contentController.presentedMonthView.weekViews {
+                    for dayView in each.dayViews {
+                        //print("hit dayView \(dayView)")
+                        for eachDate in self.CVDatesArray {
+                            if dayView.date.day == eachDate.day && dayView.date.month == eachDate.month && dayView.date.year == eachDate.year {
+                                dayView.preliminarySetup()
+                                dayView.supplementarySetup()
+                            }
                         }
                     }
                 }
@@ -236,7 +267,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func eventAdded() {
-        EventService.sharedInstance.countUniqueClasses(self)
+       // EventService.sharedInstance.countUniqueClasses(self)
+        eventsAdded = true
     }
 }
 
