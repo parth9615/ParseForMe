@@ -242,10 +242,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             }
             if sender == "addition" {
                 //print("hit addition")
-               // print("CVDates array \(self.CVDatesArray)")
                 for each in self.calendarView.contentController.presentedMonthView.weekViews {
                     for dayView in each.dayViews {
-                        //print("hit dayView \(dayView)")
                         for eachDate in self.CVDatesArray {
                             if dayView.date.day == eachDate.day && dayView.date.month == eachDate.month && dayView.date.year == eachDate.year {
                                 dayView.preliminarySetup()
