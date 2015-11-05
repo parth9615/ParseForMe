@@ -79,8 +79,6 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
         }
-        print(indexPath.row)
-        print(indexPath.section)
         let fontSize = cell!.eventName.font.pointSize
         cell?.eventName.text = eventService.eventsTodayArray[indexPath.row].title
         cell?.eventName.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
