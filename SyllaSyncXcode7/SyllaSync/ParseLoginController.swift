@@ -15,26 +15,28 @@ PFSignUpViewControllerDelegate {
     
     var window: UIWindow?
     var user:PFUser?
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         user = PFUser.currentUser()
         if user != nil {
             //move to new view controller
+            print("user logged in")
             
-            UserSettings.sharedInstance.Username = user!.username
-            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            UserSettings.sharedInstance.Username = self.user!.username
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             let containerViewController = EventsContainerController()
             
-            window!.rootViewController = containerViewController
-            window!.makeKeyAndVisible()
+            self.window!.rootViewController = containerViewController
+            self.window!.makeKeyAndVisible()
+            
         }
         else {
             print("No Logged in user")
@@ -64,18 +66,23 @@ PFSignUpViewControllerDelegate {
     }
     
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+        
+        UserSettings.sharedInstance.Username = user.username!
+        print("just completed loggin in for user: \(UserSettings.sharedInstance.Username)")
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         
+        setInstallations(user)
+    }
+    
+    func setInstallations(user: PFUser) {
         let currentInstallation:PFInstallation = PFInstallation.currentInstallation()
         currentInstallation.setObject(user.username!, forKey: "Username")
         currentInstallation.saveEventually()
         
         //TEST
-        user.setObject(currentInstallation, forKey: "installation")
-        user.saveEventually()
-        
-        UserSettings.sharedInstance.Username = user.username!
-        print("just completed loggin in for user: \(UserSettings.sharedInstance.Username)")
+//        user.setObject(currentInstallation, forKey: "installation")
+//        user.saveEventually()
     }
     
     func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?) {
@@ -107,5 +114,5 @@ PFSignUpViewControllerDelegate {
     }
     
     
-
+    
 }

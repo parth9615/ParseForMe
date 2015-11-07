@@ -302,13 +302,17 @@ extension CalendarController
                     if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                         tappedFlag = true
                         
-                        
-                        self.titleLabel.text = eventService.eventsArray[i].title
-                        self.timeLabel.text = eventService.eventsArray[i].time
-                        self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
-                        self.deleteEventButton.enabled = true
-                        self.deleteEventButton.hidden = false
-                        
+                        //TODO WORK ON DISPLAYING MORE THAN ONE EVENT FOR A GIVEN DAY AS WELL AS DISPLAYING DOTS IF MORE THAN ONE EVENT THERE
+                        if self.titleLabel.text == "" {
+                            self.titleLabel.text = eventService.eventsArray[i].title
+                            self.timeLabel.text = eventService.eventsArray[i].time
+                            self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
+                            self.deleteEventButton.enabled = true
+                            self.deleteEventButton.hidden = false
+                        }
+                        else {
+                            
+                        }
                     }
                     else {
                         if tappedFlag == false {
