@@ -310,6 +310,9 @@ extension CalendarController
                             self.deleteEventButton.enabled = true
                             self.deleteEventButton.hidden = false
                         }
+                        else {
+                            
+                        }
                     }
                     else {
                         if tappedFlag == false {
