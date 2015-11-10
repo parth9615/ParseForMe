@@ -49,6 +49,7 @@ PFSignUpViewControllerDelegate {
             signupViewController.emailAsUsername = true
             signupViewController.delegate = self
             
+            loginViewController.signUpController = signupViewController
             self.presentViewController(loginViewController, animated: true, completion: nil)
         }
     }

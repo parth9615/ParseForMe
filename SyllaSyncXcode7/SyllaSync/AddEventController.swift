@@ -96,11 +96,14 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
     @IBAction func submitEvent(sender: AnyObject) {
         if classNameTF.text != "" && dateTF.text != "" && titleTF.text != ""  {
             let newEvent = PFObject(className: "Events")
-            let eventWeight:Int? = Int(weightTF.text!)
             
             if dateTF.text?.length == 2 {
                 dateTF.text = "20"+dateTF.text!
             }
+            if weightTF.text == "" {
+                weightTF.text = "0"
+            }
+            let eventWeight:Int? = Int(weightTF.text!)
             
             let eventString:[String:AnyObject] = ["Classname":classNameTF.text!,"Date":dateTF.text!,"Time":timeTF.text!,"Title":titleTF.text!,"Weight":eventWeight!, "Syllabus":classNameTF.text!]
             newEvent["events"] = eventString
@@ -147,7 +150,17 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
                 }})
         }
         else {
-            let alert = UIAlertController(title: "Error", message: "One or more critical fields was left blank, please fill them in to continue", preferredStyle: .Alert)
+            var missingString = ""
+            if classNameTF.text == "" {
+                missingString += "The Classname"
+            }
+            if titleTF.text == "" {
+                missingString += " and Title"
+            }
+            if dateTF.text == "" {
+                missingString += " and Date"
+            }
+            let alert = UIAlertController(title: "Error", message: "\(missingString) field(s) was/were left blank, please fill them in to continue.", preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
                 
             }
