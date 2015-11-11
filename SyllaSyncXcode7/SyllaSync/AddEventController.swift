@@ -136,7 +136,7 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
                 else {
-                    print("Error line 72 add event controller\(error)")
+                    print("Error line 139 add event controller\(error)")
                     let alert = UIAlertController(title: "", message: "Error saving event, please try again", preferredStyle: .Alert)
                     let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
                         self.dateTF.text = ""

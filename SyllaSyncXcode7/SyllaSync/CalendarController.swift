@@ -183,6 +183,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                 }
                 else {
                     print("Error getting query", error, error!.userInfo)
+                    self.deletionError()
                 }
             }
         }
@@ -191,6 +192,14 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         alert.addAction(OKAction)
         alert.addAction(CancelAction)
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func deletionError() {
+        let innerAlert = UIAlertController(title: "", message: "Error deleting event (could be your internet), please try again", preferredStyle: .Alert)
+        let OKAction2 = UIAlertAction(title: "Ok", style: .Default) { _ in
+        }
+        innerAlert.addAction(OKAction2)
+        self.presentViewController(innerAlert, animated: true, completion: nil)
     }
     
     func finishDeletion(className: String, date: String, title: String) {
