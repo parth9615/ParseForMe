@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+
+
+  <script src="/javascripts/manualEventController.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/dragDrop.css"/>
+
+</head>
+<body ng-app="EntryApp">
+
+    <img class="logo" src="/images/LogoandPic.png" />
+    <div>
+      <form ng-show="scenario == 'uploadEvent'">
+        <input type="text" ng-model="user.title" placeholder="Title" /><br />
+        <input type="text" ng-model="user.date" placeholder="Date" /><br />
+        <input type="text" ng-model="user.description" placeholder="Description" /><br />
+        <button ng-click="uploadEvent(user)">Upload</button>
+      </form>
+    </div>
+
+
+</body>
+</html>
