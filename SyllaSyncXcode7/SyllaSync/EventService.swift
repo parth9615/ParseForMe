@@ -146,39 +146,50 @@ public class EventService: NSObject {
                     dateFromString[2] = twoThousandAndString+dateFromString[2]
                     each.date = "\(dateFromString[0])/\(dateFromString[1])/\(dateFromString[2])"
                 }
+                
                 let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                 let finalDate = newCVDate.convertedDate()?.addHours(5)
                 
+                //check to make sure date isn't passed if it is don't schedule notifications
+                let currentDate = NSDate()
+                let todayCVDate = CVDate(date: currentDate)
+                
                 if each.weight >= 20 {
-                    //two week prior notification
-                    twoWeekNotification.userInfo = ["UUID": each.UUID!]
-                    twoWeekNotification.fireDate = finalDate!.addDays(-14)
-                    //print("two week notification fire date \(twoWeekNotification.fireDate)")
-                    twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
-                    twoWeekNotification.alertBody = "You have \(each.title!) in two weeks! Time to start preparing!"
-                    twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
-                    UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
+                    if todayCVDate.convertedDate()?.timeIntervalSince1970 < finalDate!.addDays(-14).timeIntervalSince1970 {
+                        //two week prior notification
+                        twoWeekNotification.userInfo = ["UUID": each.UUID!]
+                        twoWeekNotification.fireDate = finalDate!.addDays(-14)
+                        //print("two week notification fire date \(twoWeekNotification.fireDate)")
+                        twoWeekNotification.timeZone = NSTimeZone.localTimeZone()
+                        twoWeekNotification.alertBody = "You have \(each.title!) in two weeks! Time to start preparing!"
+                        twoWeekNotification.soundName = UILocalNotificationDefaultSoundName
+                        UIApplication.sharedApplication().scheduleLocalNotification(twoWeekNotification)
+                    }
                 }
                 
                 if each.weight >= 5 {
-                    //one week prior notification
-                    oneWeekNotification.userInfo = ["UUID": each.UUID!]
-                    oneWeekNotification.fireDate = finalDate!.addDays(-7)
-                    oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
-                    //print("one week notification fire date \(oneWeekNotification.fireDate)")
-                    oneWeekNotification.alertBody = "Only one week until \(each.title!)!"
-                    oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
-                    UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
+                    if todayCVDate.convertedDate()?.timeIntervalSince1970 < finalDate!.addDays(-7).timeIntervalSince1970 {
+                        //one week prior notification
+                        oneWeekNotification.userInfo = ["UUID": each.UUID!]
+                        oneWeekNotification.fireDate = finalDate!.addDays(-7)
+                        oneWeekNotification.timeZone = NSTimeZone.localTimeZone()
+                        //print("one week notification fire date \(oneWeekNotification.fireDate)")
+                        oneWeekNotification.alertBody = "Only one week until \(each.title!)!"
+                        oneWeekNotification.soundName = UILocalNotificationDefaultSoundName
+                        UIApplication.sharedApplication().scheduleLocalNotification(oneWeekNotification)
+                    }
                 }
                 
                 //one day prior notification
-                dayBeforeNotification.userInfo = ["UUID": each.UUID!]
-                dayBeforeNotification.fireDate = finalDate!.addDays(-1)
-                dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
-                //print("day before notification fire date \(dayBeforeNotification.fireDate)")
-                dayBeforeNotification.alertBody = "You have \(each.title!) tomorrow."
-                dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
-                UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
+                if todayCVDate.convertedDate()?.timeIntervalSince1970 < finalDate!.addDays(-1).timeIntervalSince1970 {
+                    dayBeforeNotification.userInfo = ["UUID": each.UUID!]
+                    dayBeforeNotification.fireDate = finalDate!.addDays(-1)
+                    dayBeforeNotification.timeZone = NSTimeZone.localTimeZone()
+                    //print("day before notification fire date \(dayBeforeNotification.fireDate)")
+                    dayBeforeNotification.alertBody = "You have \(each.title!) tomorrow."
+                    dayBeforeNotification.soundName = UILocalNotificationDefaultSoundName
+                    UIApplication.sharedApplication().scheduleLocalNotification(dayBeforeNotification)
+                }
                 
                 UserSettings.sharedInstance.notificationsScheduled[each.UUID!] = true
             }
