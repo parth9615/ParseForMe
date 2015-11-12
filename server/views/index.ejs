@@ -33,6 +33,7 @@
     </div>
 
     <div ng-show="currentUser">
+      <div id="uploadContainer"></div> 
       <div ng-controller="dragDropController">
         <div ngf-drop ng-model="files" class="dropzone"
           ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -47,7 +48,7 @@
           <input type="text" ng-model="manualEvent.title" placeholder="Event title" required /><br />
           <input type="text" ng-model="manualEvent.classname" placeholder="Class name" required /><br />
           <input type="text" pattern="(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/](19|20)\d\d"
-                             ng-model="manualEvent.date" placeholder="Date (dd/mm/yyyy)" required/><br />
+                             ng-model="manualEvent.date" placeholder="Date (mm/dd/yyyy)" required/><br />
           <input type="text" pattern= "(1[0-2]|0[1-9]):[0-5][0-9]\040(AM|am|PM|pm)"
                              ng-model="manualEvent.time" placeholder="Time (xx:xx pm)" required /><br />
           <input type="text" ng-model="manualEvent.type" placeholder="Type (Exam, Hw, etc.)" /><br />

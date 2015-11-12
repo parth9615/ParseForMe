@@ -25,7 +25,7 @@ var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
   };
 
   $scope.logIn = function(form) {
-    Parse.User.logIn(form.username, form.password, {
+    Parse.User.logIn(form.username.toLowerCase(), form.password, {
       success: function(user) {
         $scope.currentUser = user;
         $scope.$apply();
