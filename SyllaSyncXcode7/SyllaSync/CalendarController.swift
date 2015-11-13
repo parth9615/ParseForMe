@@ -11,6 +11,9 @@ import CVCalendar
 
 class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    var childVC:DayEventsController?
+    
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,12 +37,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        titleLabel.text = ""
-        timeLabel.text = ""
-        weightLabel.text = ""
-        deleteEventButton.hidden = true
-        deleteEventButton.enabled = false
+
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
@@ -49,8 +47,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
-        
-        
+
         
         //GETS LOCATION
         
@@ -107,6 +104,18 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         super.viewDidAppear(animated)
         
         
+        //scroll view
+        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
+        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.addSubview(childVC!.view)
+        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+        
+        addChildViewController(childVC!)
+        childVC!.didMoveToParentViewController(self as CalendarController)
+        
+        
+        
         if self.eventsAdded {
             self.eventsAdded = false
             let alert = UIAlertController(title: "Events Added", message: "Your new events have been added to our database and your reminders have been scheduled, please give us a moment to draw circles on your calendar", preferredStyle: .Alert)
@@ -134,97 +143,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("\n\nError for location manager CLLocation... line 71 in calendar controller\(error)\n\n")
     }
-    
-    
-    @IBAction func deleteEvent(sender: AnyObject) {
-        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this event?", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "Yes", style: .Default) { _ in
-            let query:PFQuery = PFQuery(className: "Events")
-            query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error:NSError?) -> Void in
-                if (error == nil) {
-                    print("got a query for \(UserSettings.sharedInstance.Username)")
-                    if let object = objects as? [PFObject!] {
-                        for each in object {
-                            if let event:AnyObject = each {
-                                if let eventDetails:AnyObject = event["events"] {
-                                    var title = ""
-                                    var className = ""
-                                    var date = ""
-                                    
-                                    if let eventTitle:AnyObject = eventDetails["Title"] {
-                                        title = "\(eventTitle)"
-                                    }
-                                    if let eventClassName:AnyObject = eventDetails["Classname"] {
-                                        className = "\(eventClassName)"
-                                    }
-                                    
-                                    if let eventDate:AnyObject = eventDetails["Date"] {
-                                        date = eventDate as! String
-                                        let dateFromString = eventDate.componentsSeparatedByString("/")
-                                        let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
-                                        
-                                        if newCVDate.day == self.day?.date.day && newCVDate.month == self.day?.date.month && title == self.titleLabel.text {
-                                            each.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                                if success {
-                                                    self.finishDeletion(className, date: date, title: title)
-                                                    print("\(self.titleLabel.text) event was deleted succesfully")
-                                                }
-                                            })
-                                            
-                                            
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else {
-                    print("Error getting query", error, error!.userInfo)
-                    self.deletionError()
-                }
-            }
-        }
-        let CancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
-        }
-        alert.addAction(OKAction)
-        alert.addAction(CancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func deletionError() {
-        let innerAlert = UIAlertController(title: "", message: "Error deleting event (could be your internet), please try again", preferredStyle: .Alert)
-        let OKAction2 = UIAlertAction(title: "Ok", style: .Default) { _ in
-        }
-        innerAlert.addAction(OKAction2)
-        self.presentViewController(innerAlert, animated: true, completion: nil)
-    }
-    
-    func finishDeletion(className: String, date: String, title: String) {
-        let deletionUUID = className+date+title
-        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
-            if notification.userInfo!["UUID"] as! String == deletionUUID {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
-                break
-            }
-        }
-        for each in UserSettings.sharedInstance.notificationsScheduled {
-            if each.0 == deletionUUID {
-                UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
-            }
-        }
-        var i = 0
-        for each in eventService.eventsArray {
-            if each.UUID == deletionUUID {
-                eventService.eventsArray.removeAtIndex(i)
-                finishLoading("deletion")
-                return
-            }
-            i++
-        }
-    }
+
     
     func finishLoading(sender: String) {
         
@@ -311,26 +230,24 @@ extension CalendarController
                     if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                         tappedFlag = true
                         
-                        //TODO WORK ON DISPLAYING MORE THAN ONE EVENT FOR A GIVEN DAY AS WELL AS DISPLAYING DOTS IF MORE THAN ONE EVENT THERE
-                        if self.titleLabel.text == "" {
-                            self.titleLabel.text = eventService.eventsArray[i].title
-                            self.timeLabel.text = eventService.eventsArray[i].time
-                            self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
-                            self.deleteEventButton.enabled = true
-                            self.deleteEventButton.hidden = false
-                        }
-                        else {
-                            
-                        }
+                        self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
+                        self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
+                        self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
+                
+                        self.childVC?.reloadTable()
+                        
                     }
                     else {
                         if tappedFlag == false {
+                            
+                            self.childVC?.eventTitles.removeAll()
+                            self.childVC?.eventTimes.removeAll()
+                            self.childVC?.eventWeights.removeAll()
+                            
+                            self.childVC?.reloadTable()
+                            
                             tappedFlag = true
-                            self.titleLabel.text = ""
-                            self.timeLabel.text = ""
-                            self.weightLabel.text = ""
-                            self.deleteEventButton.enabled = false
-                            self.deleteEventButton.hidden = true
+
                         }
                     }
                 }
@@ -413,22 +330,26 @@ extension CalendarController
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     tappedFlag = true
                     
+                    self.childVC?.numberOfEventsOnDay++
+                    self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
+                    self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
+                    self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
                     
-                    self.titleLabel.text = eventService.eventsArray[i].title
-                    self.timeLabel.text = eventService.eventsArray[i].time
-                    self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
-                    self.deleteEventButton.enabled = true
-                    self.deleteEventButton.hidden = false
-                    
+                    self.childVC?.reloadTable()
+           
                 }
                 else {
                     if tappedFlag == false {
+                        
                         tappedFlag = true
-                        self.titleLabel.text = ""
-                        self.timeLabel.text = ""
-                        self.weightLabel.text = ""
-                        self.deleteEventButton.enabled = false
-                        self.deleteEventButton.hidden = true
+                        
+                        self.childVC?.numberOfEventsOnDay = 0
+                        self.childVC?.eventTitles.removeAll()
+                        self.childVC?.eventTimes.removeAll()
+                        self.childVC?.eventWeights.removeAll()
+                        
+                        self.childVC?.reloadTable()
+                        
                     }
                 }
             }
@@ -570,7 +491,7 @@ extension CalendarController {
 extension CalendarController {
     func toggleMonthViewWithMonthOffset(offset: Int) {
         let calendar = NSCalendar.currentCalendar()
-        let calendarManager = calendarView.manager
+        _ = calendarView.manager
         let components = Manager.componentsForDate(NSDate()) // from today
         
         components.month += offset

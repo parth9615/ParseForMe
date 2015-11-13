@@ -62,6 +62,7 @@
 		EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */; };
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 		EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */; };
+		EE41CF0D1BF6365A008B456F /* DayEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41CF0C1BF6365A008B456F /* DayEventsController.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; };
 		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; };
@@ -165,6 +166,7 @@
 		EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Util.swift"; sourceTree = "<group>"; };
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventScrollController.swift; sourceTree = "<group>"; };
+		EE41CF0C1BF6365A008B456F /* DayEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEventsController.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE63BB941BD0A01E00354741 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE63BB961BD19F8100354741 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 			children = (
 				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
 				EE9FCE821B77F82800C052C7 /* CalendarController.swift */,
+				EE41CF0C1BF6365A008B456F /* DayEventsController.swift */,
 				EE63BB961BD19F8100354741 /* AddEventController.swift */,
 				EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */,
 			);
@@ -742,6 +745,7 @@
 				EE9FCE851B7804E100C052C7 /* ToggleCell.swift in Sources */,
 				EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */,
 				EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */,
+				EE41CF0D1BF6365A008B456F /* DayEventsController.swift in Sources */,
 				EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */,
 				EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */,
 				EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */,
@@ -908,7 +912,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SyllaSync/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -932,7 +936,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SyllaSync/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
