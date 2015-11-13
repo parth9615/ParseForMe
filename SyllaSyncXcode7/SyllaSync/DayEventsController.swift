@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CVCalendar
 
 class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,12 +18,18 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     var eventLocations = [String]()
     var eventWeights = [String]()
     
+    var titleString = ""
+    var weightString = ""
+    var timeString = ""
+    
+    var eventService = EventService.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        eventsTable.delegate = self
-        eventsTable.dataSource = self
-
+        eventsTableView.delegate = self
+        eventsTableView.dataSource = self
+        
         // Do any additional setup after loading the view.
     }
 
@@ -40,7 +47,6 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return numberOfEventsOnDay
     }
     
@@ -51,41 +57,13 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
         }
         
-        let indexPathSection = indexPath.section
-        previousClasses = 0
-        for var i = indexPathSection-1; i >= 0; i-- {
-            previousClasses += eventService.eventSectionCount[i]
-        }
-        //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
-        cell?.eventName.text = eventService.eventsArray[indexPath.row + previousClasses].title
-        cell?.eventTime.text = eventService.eventsArray[indexPath.row + previousClasses].time
-        cell?.eventDate.text = eventService.eventsArray[indexPath.row + previousClasses].date
+        cell?.eventName.text = eventTitles[indexPath.row]
+        cell?.eventTime.text = eventTimes[indexPath.row]
+        cell?.eventDate.text = eventWeights[indexPath.row]
         cell?.eventLocation.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
-    }
-    
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width/1.5, 20))
-        label.font = UIFont(name: "Helvetica", size: 13)
-        label.center = CGPoint(x: self.view.bounds.size.width/2, y:11)
-        label.layer.borderColor = UIColor.lightGrayColor().CGColor
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 5
-        label.textColor = UIColor.blackColor()
-        label.textAlignment = NSTextAlignment.Center
-        
-        label.font = UIFont(name: "BoosterNextFY-Medium", size: 15)
-        
-        label.text = eventService.uniqueClasses[section]
-        
-        let view = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width, 30))
-        view.backgroundColor = UIColor.whiteColor()
-        
-        view.addSubview(label)
-        return view
     }
     
     
@@ -99,7 +77,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
+
     
     
     func deleteEvent(sender: AnyObject) {
@@ -131,11 +109,13 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                                         let dateFromString = eventDate.componentsSeparatedByString("/")
                                         let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
                                         
-                                        if newCVDate.day == self.day?.date.day && newCVDate.month == self.day?.date.month && title == self.titleLabel.text {
+                                        let parentVC = self.parentViewController as! CalendarController
+                                        
+                                        if newCVDate.day == parentVC.day?.date.day && newCVDate.month == parentVC.day?.date.month && title == self.titleString {
                                             each.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
                                                 if success {
                                                     self.finishDeletion(className, date: date, title: title)
-                                                    print("\(self.titleLabel.text) event was deleted succesfully")
+                                                    //print("\(self.titleLabel.text) event was deleted succesfully")
                                                 }
                                             })
                                             
@@ -186,7 +166,8 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         for each in eventService.eventsArray {
             if each.UUID == deletionUUID {
                 eventService.eventsArray.removeAtIndex(i)
-                finishLoading("deletion")
+                let parentVC = self.parentViewController as! CalendarController
+                parentVC.finishLoading("deletion")
                 return
             }
             i++

@@ -37,22 +37,14 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        titleLabel.text = ""
-        timeLabel.text = ""
-        weightLabel.text = ""
-        deleteEventButton.hidden = true
-        deleteEventButton.enabled = false
-        
+
         //scroll view
         childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
         childVC!.view.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(childVC!.view)
         
         addChildViewController(childVC!)
-        childVC!.didMoveToParentViewController(self)
+        childVC!.didMoveToParentViewController(self as CalendarController)
         childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
         
         let views = ["view": view, "childView": childVC!.view]
@@ -73,8 +65,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         askForNotifications()
         monthLabel.text = CVDate(date: NSDate()).globalDescription
         // Do any additional setup after loading the view.
-        
-        
+
         
         //GETS LOCATION
         
@@ -245,39 +236,24 @@ extension CalendarController
                     if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                         tappedFlag = true
                         
-                        //TODO WORK ON DISPLAYING MORE THAN ONE EVENT FOR A GIVEN DAY AS WELL AS DISPLAYING DOTS IF MORE THAN ONE EVENT THERE
-                        
-                        
-                        
-                        
-                        if self.titleLabel.text == "" {
-                            self.titleLabel.text = eventService.eventsArray[i].title
-                            self.timeLabel.text = eventService.eventsArray[i].time
-                            self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
-                            self.deleteEventButton.enabled = true
-                            self.deleteEventButton.hidden = false
-                        }
-                        else {
-                            
-                        }
-                        
-                        
+                        self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
+                        self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
+                        self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
+                
+                        self.childVC?.reloadTable()
                         
                     }
                     else {
                         if tappedFlag == false {
                             
+                            self.childVC?.eventTitles.removeAll()
+                            self.childVC?.eventTimes.removeAll()
+                            self.childVC?.eventWeights.removeAll()
                             
+                            self.childVC?.reloadTable()
                             
                             tappedFlag = true
-                            self.titleLabel.text = ""
-                            self.timeLabel.text = ""
-                            self.weightLabel.text = ""
-                            self.deleteEventButton.enabled = false
-                            self.deleteEventButton.hidden = true
-                            
-                            
-                            
+
                         }
                     }
                 }
@@ -360,32 +336,25 @@ extension CalendarController
                 if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                     tappedFlag = true
                     
+                    self.childVC?.numberOfEventsOnDay++
+                    self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
+                    self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
+                    self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
                     
-                    
-                    self.titleLabel.text = eventService.eventsArray[i].title
-                    self.timeLabel.text = eventService.eventsArray[i].time
-                    self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
-                    self.deleteEventButton.enabled = true
-                    self.deleteEventButton.hidden = false
-                    
-                    
-                    
-                    
+                    self.childVC?.reloadTable()
+           
                 }
                 else {
                     if tappedFlag == false {
                         
-                        
-                        
                         tappedFlag = true
-                        self.titleLabel.text = ""
-                        self.timeLabel.text = ""
-                        self.weightLabel.text = ""
-                        self.deleteEventButton.enabled = false
-                        self.deleteEventButton.hidden = true
                         
+                        self.childVC?.numberOfEventsOnDay = 0
+                        self.childVC?.eventTitles.removeAll()
+                        self.childVC?.eventTimes.removeAll()
+                        self.childVC?.eventWeights.removeAll()
                         
-                        
+                        self.childVC?.reloadTable()
                         
                     }
                 }
