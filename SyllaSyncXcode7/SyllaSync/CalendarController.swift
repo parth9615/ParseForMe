@@ -11,6 +11,9 @@ import CVCalendar
 
 class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    var childVC:DayEventsController?
+    
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -35,11 +38,32 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         titleLabel.text = ""
         timeLabel.text = ""
         weightLabel.text = ""
         deleteEventButton.hidden = true
         deleteEventButton.enabled = false
+        
+        //scroll view
+        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
+        childVC!.view.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(childVC!.view)
+        
+        addChildViewController(childVC!)
+        childVC!.didMoveToParentViewController(self)
+        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+        
+        let views = ["view": view, "childView": childVC!.view]
+        
+        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[childView(==view)]|", options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(verticalConstraints)
+        
+        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|[childView(==view)]|", options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activateConstraints(horizontalConstraints)
+        //end scroll view
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
