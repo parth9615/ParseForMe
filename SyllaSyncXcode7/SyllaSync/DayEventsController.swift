@@ -81,14 +81,25 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            // handle delete (by removing the data from your array and updating the tableview
-            deleteEvent(self.parentViewController as! CalendarController)
-            titleString = eventTitles[indexPath.row]
-            weightString = eventWeights[indexPath.row]
-            timeString = eventTimes[indexPath.row]
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (UITableViewRowAction, indexPath) -> Void in
+            //edit
         }
+        editAction.backgroundColor = UIColor.blueColor()
+        
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") { (UITableViewRowAction, indexPath) -> Void in
+            // handle delete (by removing the data from your array and updating the tableview
+            self.deleteEvent(self.parentViewController as! CalendarController)
+            self.titleString = self.eventTitles[indexPath.row]
+            self.weightString = self.eventWeights[indexPath.row]
+            self.timeString = self.eventTimes[indexPath.row]
+        }
+
+        return [editAction, deleteAction]
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
     

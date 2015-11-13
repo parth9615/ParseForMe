@@ -5,7 +5,6 @@ use_frameworks!
 target 'SyllaSync' do
 
 pod 'CVCalendar', :git => 'https://github.com/Mozharovsky/CVCalendar', :branch => 'master'
-pod 'SWTableViewCell', '~> 0.3.7'
 #pod 'CVCalendar', '~> 1.2.7'
 end
 
