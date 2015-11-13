@@ -438,6 +438,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3S-aS-4d8">
                                 <rect key="frame" x="0.0" y="405" width="320" height="163"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                         </subviews>
                         <animations/>
@@ -493,13 +494,16 @@
                         <viewControllerLayoutGuide type="bottom" id="CJc-Zn-NpN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8hQ-Fn-naW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vN0-ZE-oO9">
-                                <rect key="frame" x="0.0" y="20" width="320" height="260"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="244"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="244" id="piF-Q3-EgS"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="Event" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event" rowHeight="60" id="4Vu-hF-euq" customClass="EventCell" customModule="SyllaSync" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
@@ -584,18 +588,24 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="piF-Q3-EgS"/>
+                                    </mask>
+                                </variation>
                             </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vN0-ZE-oO9" secondAttribute="trailing" id="Acu-tE-gki"/>
-                            <constraint firstItem="CJc-Zn-NpN" firstAttribute="top" secondItem="vN0-ZE-oO9" secondAttribute="bottom" constant="288" id="GuQ-9d-T15"/>
+                            <constraint firstItem="CJc-Zn-NpN" firstAttribute="top" secondItem="vN0-ZE-oO9" secondAttribute="bottom" id="Ksd-vg-JVV"/>
                             <constraint firstItem="vN0-ZE-oO9" firstAttribute="top" secondItem="f5o-5D-nHA" secondAttribute="bottom" id="RPE-jx-M8u"/>
                             <constraint firstAttribute="leading" secondItem="vN0-ZE-oO9" secondAttribute="leading" id="TZi-AI-tKJ"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="264"/>
                     <connections>
                         <outlet property="eventsTableView" destination="vN0-ZE-oO9" id="Awb-7J-m7A"/>
                     </connections>

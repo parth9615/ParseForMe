@@ -38,24 +38,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //scroll view
-        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
-        childVC!.view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(childVC!.view)
-        
-        addChildViewController(childVC!)
-        childVC!.didMoveToParentViewController(self as CalendarController)
-        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
-        
-        let views = ["view": view, "childView": childVC!.view]
-        
-        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[childView(==view)]|", options: [], metrics: nil, views: views)
-        NSLayoutConstraint.activateConstraints(verticalConstraints)
-        
-        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[childView(==view)]|", options: [], metrics: nil, views: views)
-        NSLayoutConstraint.activateConstraints(horizontalConstraints)
-        //end scroll view
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
@@ -120,6 +102,18 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
+        //scroll view
+        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
+        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.addSubview(childVC!.view)
+        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+        
+        addChildViewController(childVC!)
+        childVC!.didMoveToParentViewController(self as CalendarController)
+        
         
         
         if self.eventsAdded {
@@ -497,7 +491,7 @@ extension CalendarController {
 extension CalendarController {
     func toggleMonthViewWithMonthOffset(offset: Int) {
         let calendar = NSCalendar.currentCalendar()
-        let calendarManager = calendarView.manager
+        _ = calendarView.manager
         let components = Manager.componentsForDate(NSDate()) // from today
         
         components.month += offset
