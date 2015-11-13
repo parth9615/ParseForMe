@@ -152,8 +152,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             if sender == "deletion" {
                 if let dayV = self.day {
                     self.didSelectDayView(dayV)
-                    dayV.supplementarySetup()
-
+            
                     for each in dayV.subviews {
                         print(each)
                         if each is UILabel {
@@ -164,6 +163,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                         }
                         else {
                             each.removeFromSuperview()
+                            break
                         }
                     }
                 }

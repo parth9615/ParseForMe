@@ -77,12 +77,26 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview
+            deleteEvent(self.parentViewController as! CalendarController)
+            titleString = eventTitles[indexPath.row]
+            weightString = eventWeights[indexPath.row]
+            timeString = eventTimes[indexPath.row]
+        }
+    }
     
     
     func deleteEvent(sender: AnyObject) {
         let alert = UIAlertController(title: "", message: "Are you sure you want to delete this event?", preferredStyle: .Alert)
         let OKAction = UIAlertAction(title: "Yes", style: .Default) { _ in
+            self.numberOfEventsOnDay--
+            
             let query:PFQuery = PFQuery(className: "Events")
             query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
             query.findObjectsInBackgroundWithBlock{
@@ -115,7 +129,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                                             each.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
                                                 if success {
                                                     self.finishDeletion(className, date: date, title: title)
-                                                    //print("\(self.titleLabel.text) event was deleted succesfully")
+                                                    print("event was deleted succesfully")
                                                 }
                                             })
                                             
