@@ -158,97 +158,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("\n\nError for location manager CLLocation... line 71 in calendar controller\(error)\n\n")
     }
-    
-    
-    @IBAction func deleteEvent(sender: AnyObject) {
-        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this event?", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "Yes", style: .Default) { _ in
-            let query:PFQuery = PFQuery(className: "Events")
-            query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error:NSError?) -> Void in
-                if (error == nil) {
-                    print("got a query for \(UserSettings.sharedInstance.Username)")
-                    if let object = objects as? [PFObject!] {
-                        for each in object {
-                            if let event:AnyObject = each {
-                                if let eventDetails:AnyObject = event["events"] {
-                                    var title = ""
-                                    var className = ""
-                                    var date = ""
-                                    
-                                    if let eventTitle:AnyObject = eventDetails["Title"] {
-                                        title = "\(eventTitle)"
-                                    }
-                                    if let eventClassName:AnyObject = eventDetails["Classname"] {
-                                        className = "\(eventClassName)"
-                                    }
-                                    
-                                    if let eventDate:AnyObject = eventDetails["Date"] {
-                                        date = eventDate as! String
-                                        let dateFromString = eventDate.componentsSeparatedByString("/")
-                                        let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
-                                        
-                                        if newCVDate.day == self.day?.date.day && newCVDate.month == self.day?.date.month && title == self.titleLabel.text {
-                                            each.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                                if success {
-                                                    self.finishDeletion(className, date: date, title: title)
-                                                    print("\(self.titleLabel.text) event was deleted succesfully")
-                                                }
-                                            })
-                                            
-                                            
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else {
-                    print("Error getting query", error, error!.userInfo)
-                    self.deletionError()
-                }
-            }
-        }
-        let CancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
-        }
-        alert.addAction(OKAction)
-        alert.addAction(CancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func deletionError() {
-        let innerAlert = UIAlertController(title: "", message: "Error deleting event (could be your internet), please try again", preferredStyle: .Alert)
-        let OKAction2 = UIAlertAction(title: "Ok", style: .Default) { _ in
-        }
-        innerAlert.addAction(OKAction2)
-        self.presentViewController(innerAlert, animated: true, completion: nil)
-    }
-    
-    func finishDeletion(className: String, date: String, title: String) {
-        let deletionUUID = className+date+title
-        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
-            if notification.userInfo!["UUID"] as! String == deletionUUID {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
-                break
-            }
-        }
-        for each in UserSettings.sharedInstance.notificationsScheduled {
-            if each.0 == deletionUUID {
-                UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
-            }
-        }
-        var i = 0
-        for each in eventService.eventsArray {
-            if each.UUID == deletionUUID {
-                eventService.eventsArray.removeAtIndex(i)
-                finishLoading("deletion")
-                return
-            }
-            i++
-        }
-    }
+
     
     func finishLoading(sender: String) {
         
@@ -336,6 +246,10 @@ extension CalendarController
                         tappedFlag = true
                         
                         //TODO WORK ON DISPLAYING MORE THAN ONE EVENT FOR A GIVEN DAY AS WELL AS DISPLAYING DOTS IF MORE THAN ONE EVENT THERE
+                        
+                        
+                        
+                        
                         if self.titleLabel.text == "" {
                             self.titleLabel.text = eventService.eventsArray[i].title
                             self.timeLabel.text = eventService.eventsArray[i].time
@@ -346,15 +260,24 @@ extension CalendarController
                         else {
                             
                         }
+                        
+                        
+                        
                     }
                     else {
                         if tappedFlag == false {
+                            
+                            
+                            
                             tappedFlag = true
                             self.titleLabel.text = ""
                             self.timeLabel.text = ""
                             self.weightLabel.text = ""
                             self.deleteEventButton.enabled = false
                             self.deleteEventButton.hidden = true
+                            
+                            
+                            
                         }
                     }
                 }
@@ -438,21 +361,32 @@ extension CalendarController
                     tappedFlag = true
                     
                     
+                    
                     self.titleLabel.text = eventService.eventsArray[i].title
                     self.timeLabel.text = eventService.eventsArray[i].time
                     self.weightLabel.text = "Worth \(eventService.eventsArray[i].weight!)% of your grade"
                     self.deleteEventButton.enabled = true
                     self.deleteEventButton.hidden = false
                     
+                    
+                    
+                    
                 }
                 else {
                     if tappedFlag == false {
+                        
+                        
+                        
                         tappedFlag = true
                         self.titleLabel.text = ""
                         self.timeLabel.text = ""
                         self.weightLabel.text = ""
                         self.deleteEventButton.enabled = false
                         self.deleteEventButton.hidden = true
+                        
+                        
+                        
+                        
                     }
                 }
             }

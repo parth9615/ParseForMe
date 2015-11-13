@@ -477,9 +477,9 @@
 			children = (
 				EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */,
 				EE9FCE821B77F82800C052C7 /* CalendarController.swift */,
+				EE41CF0C1BF6365A008B456F /* DayEventsController.swift */,
 				EE63BB961BD19F8100354741 /* AddEventController.swift */,
 				EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */,
-				EE41CF0C1BF6365A008B456F /* DayEventsController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
