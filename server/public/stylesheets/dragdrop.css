@@ -43,5 +43,19 @@ body {
     font: 20pt bold;
     font-family: syllasyncRegular;
     color: white;
-    margin-bottom: 20px;
+    margin: 0 auto;
+    width: 50%;
+
+}
+
+#uploadContainer {
+  background-color: red;
+  float: left;
+}
+
+#logoutButton {
+  position:absolute;
+  top:0;
+  right:0;
+  margin: 10px;
 }
