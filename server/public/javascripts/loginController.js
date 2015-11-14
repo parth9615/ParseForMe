@@ -34,8 +34,24 @@ var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
         alert("Unable to log in: " + error.code + " " + error.message);
       }
     });
-  };
 
+    var params = encodeURI({ "where": JSON.stringify({"username": "flerp@flerp.com"}) })
+    console.log(params);
+    var existingSyllabi = $.ajax({
+        type: 'GET',
+        url: "https://api.parse.com/1/classes/Events?"+"where=%7B%22username%22%3A+%22flerp%40flerp.com%22%7D",
+
+        headers: {
+             'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',
+             'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF'
+        },
+        success: function(data){
+          console.log(data);
+        }
+
+      } );
+
+  }
   $scope.logOut = function(form) {
     Parse.User.logOut();
     $scope.currentUser = null;
