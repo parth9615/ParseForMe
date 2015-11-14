@@ -84,18 +84,49 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (UITableViewRowAction, indexPath) -> Void in
             //edit
+            var alert = UIAlertController(title: "Edit Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addTextFieldWithConfigurationHandler({(textField1: UITextField!) in
+                textField1.placeholder = "Event Title"
+                textField1.secureTextEntry = true
+                textField1.textAlignment = NSTextAlignment.Center
+            })
+            alert.addTextFieldWithConfigurationHandler({(textField2: UITextField!) in
+                textField2.placeholder = "Event Date"
+                textField2.secureTextEntry = true
+                textField2.textAlignment = NSTextAlignment.Center
+            })
+            alert.addTextFieldWithConfigurationHandler({(textField3: UITextField!) in
+                textField3.placeholder = "Event Time"
+                textField3.secureTextEntry = true
+                textField3.textAlignment = NSTextAlignment.Center
+            })
+            alert.addTextFieldWithConfigurationHandler({(textField4: UITextField!) in
+                textField4.placeholder = "Event Location"
+                textField4.secureTextEntry = true
+                textField4.textAlignment = NSTextAlignment.Center
+            })
+            let OKAction = UIAlertAction(title: "Finish Editing", style: .Default) { _ in
+                checkEditInput(alert.textFields)
+            }
+            alert.addAction(OKAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         editAction.backgroundColor = UIColor.blueColor()
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") { (UITableViewRowAction, indexPath) -> Void in
             // handle delete (by removing the data from your array and updating the tableview
-            self.deleteEvent(self.parentViewController as! CalendarController)
             self.titleString = self.eventTitles[indexPath.row]
             self.weightString = self.eventWeights[indexPath.row]
             self.timeString = self.eventTimes[indexPath.row]
+            self.deleteEvent(self.parentViewController as! CalendarController)
         }
 
         return [editAction, deleteAction]
+    }
+    
+    func checkEditInput(textField: [UITextFields]) {
+        
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
