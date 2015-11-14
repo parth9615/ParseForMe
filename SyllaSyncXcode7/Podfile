@@ -4,8 +4,8 @@ use_frameworks!
 
 target 'SyllaSync' do
 
-pod 'CVCalendar', :git => 'https://github.com/Mozharovsky/CVCalendar', :branch => 'master'
-#pod 'CVCalendar', '~> 1.2.7'
+#pod 'CVCalendar', :git => 'https://github.com/Mozharovsky/CVCalendar', :branch => 'master'
+pod 'CVCalendar', '~> 1.2.7'
 end
 
 target 'SyllaSyncTests' do

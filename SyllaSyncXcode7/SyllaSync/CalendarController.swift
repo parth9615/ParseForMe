@@ -170,7 +170,36 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             }
             if sender == "addition" {
                 //print("hit addition")
-                self.calendarView.contentController
+                for each in self.calendarView.contentController.presentedMonthView.weekViews {
+                    for dayView in each.dayViews {
+                        for eachDate in self.CVDatesArray {
+                            if dayView.date.day == eachDate.day && dayView.date.month == eachDate.month && dayView.date.year == eachDate.year {
+                                dayView.preliminarySetup()
+                                dayView.supplementarySetup()
+                            }
+                        }
+                    }
+                }
+            }
+            if sender == "deletionAddition" {
+                if let dayV = self.day {
+                    self.didSelectDayView(dayV)
+                    
+                    for each in dayV.subviews {
+                        print(each)
+                        if each is UILabel {
+                            continue
+                        }
+                        else if each is CVAuxiliaryView {
+                            continue
+                        }
+                        else {
+                            each.removeFromSuperview()
+                            break
+                        }
+                    }
+                }
+                
                 for each in self.calendarView.contentController.presentedMonthView.weekViews {
                     for dayView in each.dayViews {
                         for eachDate in self.CVDatesArray {

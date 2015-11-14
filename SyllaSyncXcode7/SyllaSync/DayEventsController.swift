@@ -304,7 +304,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             if each.UUID == deletionUUID {
                 eventService.eventsArray.removeAtIndex(i)
                 let parentVC = self.parentViewController as! CalendarController
-                parentVC.finishLoading("addition")
+                parentVC.finishLoading("deletionAddition")
                 return
             }
             i++
