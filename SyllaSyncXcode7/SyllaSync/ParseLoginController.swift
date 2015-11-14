@@ -30,6 +30,11 @@ PFSignUpViewControllerDelegate {
             //move to new view controller
             print("user logged in")
             
+            
+            
+            //let currentInstallation = PFInstallation.currentInstallation()
+        
+            
             UserSettings.sharedInstance.Username = self.user!.username
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             let containerViewController = EventsContainerController()

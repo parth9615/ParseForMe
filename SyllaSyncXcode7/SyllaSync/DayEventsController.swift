@@ -90,6 +90,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                 textField1.text = self.eventTitles[indexPath.row]
                 textField1.placeholder = "Event Title"
                 textField1.textAlignment = NSTextAlignment.Center
+                textField1.addTarget(self, action: "editingTextField1:", forControlEvents: UIControlEvents.EditingChanged)
             })
             alert.addTextFieldWithConfigurationHandler({(textField2: UITextField!) in
                 textField2.text = self.eventDates[indexPath.row]
@@ -114,7 +115,11 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.checkEditInput(alert.textFields!)
                 
             }
+            let CancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
+                
+            }
             alert.addAction(OKAction)
+            alert.addAction(CancelAction)
             
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -129,6 +134,10 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
         return [editAction, deleteAction]
+    }
+    
+    func editingTextField1(sender: UITextField) {
+        self.titleString = sender.text!
     }
     
     func editingTextField2(sender: UITextField) {
@@ -163,19 +172,143 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func checkEditInput(textFields: [UITextField]) {
         
-  
+        //TODO DO SOMETHING IF THE TEXT FIELD ARE BLANK
         for each in textFields {
             if each.text != "" {
                 continue
             }
             else {
                 //one of the input fields was blank
+                
             }
         }
+        
+        let query:PFQuery = PFQuery(className: "Events")
+        query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error:NSError?) -> Void in
+            if (error == nil) {
+                print("got a query for \(UserSettings.sharedInstance.Username)")
+                if let object = objects as? [PFObject!] {
+                    for each in object {
+                        
+                        var hitflag = false
+                        
+                        if let event:AnyObject = each {
+                            if let eventDetails:AnyObject = event["events"] {
+                                var title = ""
+                                
+                                if let eventTitle:AnyObject = eventDetails["Title"] {
+                                    title = "\(eventTitle)"
+                                }
+                                
+                                if let eventDate:AnyObject = eventDetails["Date"] {
+                        
+                                    let dateFromString = eventDate.componentsSeparatedByString("/")
+                                    let newCVDate = CVDate(day: Int(dateFromString[1])!, month: Int(dateFromString[0])!, week: ((Int(dateFromString[1])!)/7)+1, year: Int(dateFromString[2])!)
+                                    
+                                    let parentVC = self.parentViewController as! CalendarController
+                                    
+                                    if newCVDate.day == parentVC.day?.date.day && newCVDate.month == parentVC.day?.date.month && title == self.titleString {
+                                        
+                                        hitflag = true
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if hitflag {
+                            hitflag = false
+                            var eventClassName = ""
+                            var eventDate = ""
+                            var eventSyllabus = ""
+                            var eventTime = ""
+                            var eventTitle = ""
+                            var eventWeight = 0
+                            var eventType = ""
+                            var eventDescription = ""
+                            
+                            if let eventDetails:AnyObject = each["events"] {
+                                if let classname = eventDetails["Classname"] {
+                                    eventClassName = classname as! String
+                                }
+                                if let date = eventDetails["Date"] {
+                                    eventDate = date as! String
+                                }
+                                if let syllabus = eventDetails["Syllabus"] {
+                                    eventSyllabus = syllabus as! String
+                                }
+                                if let time = eventDetails["Time"] {
+                                    eventTime = time as! String
+                                }
+                                if let title = eventDetails["Title"] {
+                                    eventTitle = title as! String
+                                }
+                                if let weight = eventDetails["Weight"] {
+                                    eventWeight = weight as! Int
+                                }
+                                if let type = eventDetails["Type"] {
+                                    eventType = type as! String
+                                }
+                                if let description = eventDetails["Description"] {
+                                    eventDescription = description as! String
+                                }
+                            }
+                            
+                            var newTitle = textFields[0].text!
+                            var newDate = textFields[1].text!
+                            eventTime = textFields[2].text!
+                            eventWeight = Int(textFields[3].text!)!
+                            
+                            let eventObject:[String:AnyObject] = ["Classname":eventClassName, "Date":newDate, "Syllabus":eventSyllabus, "Time":eventTime, "Title":newTitle, "Type":eventType, "Description":eventDescription, "Weight":eventWeight]
+                            
+                            each.setObject(eventObject, forKey: "events")
+                            each.saveInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                if (success) {
+                                    print("object was edited succesfully")
+                                    self.finishAddition(eventClassName, prevDate: eventDate, prevTitle: eventTitle)
+                                }
+                                else {
+                                   
+                                }})
+                        }
+                    }
+                }
+            }
+            else {
+                print("Error getting query", error, error!.userInfo)
+                self.deletionError()
+            }
+        }
+
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
+    }
+    
+    func finishAddition(className: String, prevDate: String, prevTitle: String) {
+        let deletionUUID = className+prevDate+prevTitle
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            if notification.userInfo!["UUID"] as! String == deletionUUID {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+            }
+        }
+        for each in UserSettings.sharedInstance.notificationsScheduled {
+            if each.0 == deletionUUID {
+                UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
+            }
+        }
+        var i = 0
+        for each in eventService.eventsArray {
+            if each.UUID == deletionUUID {
+                eventService.eventsArray.removeAtIndex(i)
+                let parentVC = self.parentViewController as! CalendarController
+                parentVC.finishLoading("addition")
+                return
+            }
+            i++
+        }
     }
     
     
@@ -255,7 +388,6 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
             if notification.userInfo!["UUID"] as! String == deletionUUID {
                 UIApplication.sharedApplication().cancelLocalNotification(notification)
-                break
             }
         }
         for each in UserSettings.sharedInstance.notificationsScheduled {

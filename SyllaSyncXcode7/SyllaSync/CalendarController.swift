@@ -170,6 +170,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             }
             if sender == "addition" {
                 //print("hit addition")
+                self.calendarView.contentController
                 for each in self.calendarView.contentController.presentedMonthView.weekViews {
                     for dayView in each.dayViews {
                         for eachDate in self.CVDatesArray {
