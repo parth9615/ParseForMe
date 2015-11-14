@@ -230,9 +230,11 @@ extension CalendarController
                     if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                         tappedFlag = true
                         
+                        self.childVC?.numberOfEventsOnDay++
+                        self.childVC?.eventDates.append("\(CVMonthsArray[i])/\(CVDaysArray[i])/\(CVYearsArray[i])")
                         self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
                         self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
-                        self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
+                        self.childVC?.eventWeights.append(eventService.eventsArray[i].weight!)
                 
                         self.childVC?.reloadTable()
                         
@@ -240,6 +242,8 @@ extension CalendarController
                     else {
                         if tappedFlag == false {
                             
+                            self.childVC?.numberOfEventsOnDay = 0
+                            self.childVC?.eventDates.removeAll()
                             self.childVC?.eventTitles.removeAll()
                             self.childVC?.eventTimes.removeAll()
                             self.childVC?.eventWeights.removeAll()
@@ -331,9 +335,10 @@ extension CalendarController
                     tappedFlag = true
                     
                     self.childVC?.numberOfEventsOnDay++
+                    self.childVC?.eventDates.append("\(CVMonthsArray[i])/\(CVDaysArray[i])/\(CVYearsArray[i])")
                     self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
                     self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
-                    self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
+                    self.childVC?.eventWeights.append(eventService.eventsArray[i].weight!)
                     
                     self.childVC?.reloadTable()
            
@@ -344,6 +349,7 @@ extension CalendarController
                         tappedFlag = true
                         
                         self.childVC?.numberOfEventsOnDay = 0
+                        self.childVC?.eventDates.removeAll()    
                         self.childVC?.eventTitles.removeAll()
                         self.childVC?.eventTimes.removeAll()
                         self.childVC?.eventWeights.removeAll()

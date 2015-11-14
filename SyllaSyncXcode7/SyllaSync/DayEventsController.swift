@@ -14,12 +14,13 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var eventsTableView: UITableView!
     var numberOfEventsOnDay = 0
     var eventTitles = [String]()
+    var eventDates = [String]()
     var eventTimes = [String]()
     var eventLocations = [String]()
-    var eventWeights = [String]()
+    var eventWeights = [Int]()
     
     var titleString = ""
-    var weightString = ""
+    var weightInt = 0
     var timeString = ""
     
     var eventService = EventService.sharedInstance
@@ -59,7 +60,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell?.eventName.text = eventTitles[indexPath.row]
         cell?.eventTime.text = eventTimes[indexPath.row]
-        cell?.eventDate.text = eventWeights[indexPath.row]
+        cell?.eventDate.text = "Worth \(eventWeights[indexPath.row])% of your grade"
         cell?.eventLocation.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
@@ -84,26 +85,30 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (UITableViewRowAction, indexPath) -> Void in
             //edit
-            var alert = UIAlertController(title: "Edit Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Edit Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addTextFieldWithConfigurationHandler({(textField1: UITextField!) in
+                textField1.text = self.eventTitles[indexPath.row]
                 textField1.placeholder = "Event Title"
-                textField1.secureTextEntry = true
                 textField1.textAlignment = NSTextAlignment.Center
             })
             alert.addTextFieldWithConfigurationHandler({(textField2: UITextField!) in
+                textField2.text = self.eventDates[indexPath.row]
                 textField2.placeholder = "Event Date"
-                textField2.secureTextEntry = true
                 textField2.textAlignment = NSTextAlignment.Center
+                textField2.addTarget(self, action: "editingTextField2:", forControlEvents: UIControlEvents.EditingChanged)
+                
             })
             alert.addTextFieldWithConfigurationHandler({(textField3: UITextField!) in
+                textField3.text = self.eventTimes[indexPath.row]
                 textField3.placeholder = "Event Time"
-                textField3.secureTextEntry = true
                 textField3.textAlignment = NSTextAlignment.Center
             })
             alert.addTextFieldWithConfigurationHandler({(textField4: UITextField!) in
-                textField4.placeholder = "Event Location"
-                textField4.secureTextEntry = true
+                textField4.text = "\(self.eventWeights[indexPath.row])"
+                textField4.placeholder = "Event Weight"
                 textField4.textAlignment = NSTextAlignment.Center
+                textField4.addTarget(self, action: "editingTextField4:", forControlEvents: UIControlEvents.EditingChanged)
+                
             })
             let OKAction = UIAlertAction(title: "Finish Editing", style: .Default) { _ in
                 self.checkEditInput(alert.textFields!)
@@ -118,7 +123,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") { (UITableViewRowAction, indexPath) -> Void in
             // handle delete (by removing the data from your array and updating the tableview
             self.titleString = self.eventTitles[indexPath.row]
-            self.weightString = self.eventWeights[indexPath.row]
+            self.weightInt = self.eventWeights[indexPath.row]
             self.timeString = self.eventTimes[indexPath.row]
             self.deleteEvent(self.parentViewController as! CalendarController)
         }
@@ -126,12 +131,39 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         return [editAction, deleteAction]
     }
     
-    func checkEditInput(textFields: [UITextField]) {
+    func editingTextField2(sender: UITextField) {
         let regexPatterns = ["^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/](19|20)\\d\\d$"]
-        let regexes = regexPatterns.map {
-            NSRegularExpression(pattern: $0, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
-        }
         
+        let regexes = try! NSRegularExpression(pattern: regexPatterns[0], options: [])
+        
+        let text = sender.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let range = NSMakeRange(0, text.length)
+        
+        let matchRange = regexes.rangeOfFirstMatchInString(text, options: .ReportProgress, range: range)
+        
+        let valid = matchRange.location != NSNotFound
+        
+        sender.textColor = (valid) ? UIColor.blackColor() : UIColor.redColor()
+    }
+    
+    func editingTextField4(sender: UITextField) {
+        let regexPatterns = ["^\\d\\d"]
+        
+        let regexes = try! NSRegularExpression(pattern: regexPatterns[0], options: [])
+        
+        let text = sender.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let range = NSMakeRange(0, text.length)
+        
+        let matchRange = regexes.rangeOfFirstMatchInString(text, options: .ReportProgress, range: range)
+        
+        let valid = matchRange.location != NSNotFound
+        
+        sender.textColor = (valid) ? UIColor.blackColor() : UIColor.redColor()
+    }
+    
+    func checkEditInput(textFields: [UITextField]) {
+        
+  
         for each in textFields {
             if each.text != "" {
                 continue
@@ -140,14 +172,6 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                 //one of the input fields was blank
             }
         }
-        let text = textFields[1].text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let range = NSMakeRange(0, text.length)
-        
-        let matchRange = regexes.rangeOfFirstMatchInString(text, options: .ReportProgress, range: range)
-        
-        let valid = matchRange.location != NSNotFound
-        
-        textFields[1].textColor = (valid) ? UIColor.trueColor() : UIColor.falseColor()
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
