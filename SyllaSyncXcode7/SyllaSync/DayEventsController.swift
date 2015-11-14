@@ -106,7 +106,8 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                 textField4.textAlignment = NSTextAlignment.Center
             })
             let OKAction = UIAlertAction(title: "Finish Editing", style: .Default) { _ in
-                checkEditInput(alert.textFields)
+                self.checkEditInput(alert.textFields!)
+                
             }
             alert.addAction(OKAction)
             
@@ -125,8 +126,28 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         return [editAction, deleteAction]
     }
     
-    func checkEditInput(textField: [UITextFields]) {
+    func checkEditInput(textFields: [UITextField]) {
+        let regexPatterns = ["^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/](19|20)\\d\\d$"]
+        let regexes = regexPatterns.map {
+            NSRegularExpression(pattern: $0, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+        }
         
+        for each in textFields {
+            if each.text != "" {
+                continue
+            }
+            else {
+                //one of the input fields was blank
+            }
+        }
+        let text = textFields[1].text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let range = NSMakeRange(0, text.length)
+        
+        let matchRange = regexes.rangeOfFirstMatchInString(text, options: .ReportProgress, range: range)
+        
+        let valid = matchRange.location != NSNotFound
+        
+        textFields[1].textColor = (valid) ? UIColor.trueColor() : UIColor.falseColor()
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
