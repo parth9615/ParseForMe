@@ -38,6 +38,17 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //scroll view
+        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
+        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.addSubview(childVC!.view)
+        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+        
+        addChildViewController(childVC!)
+        childVC!.didMoveToParentViewController(self as CalendarController)
+        
+
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
@@ -104,18 +115,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         super.viewDidAppear(animated)
         
         
-        //scroll view
-        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
-        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
-        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
-        scrollView.addSubview(childVC!.view)
-        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
-        
-        addChildViewController(childVC!)
-        childVC!.didMoveToParentViewController(self as CalendarController)
-        
-        
-        
         if self.eventsAdded {
             self.eventsAdded = false
             let alert = UIAlertController(title: "Events Added", message: "Your new events have been added to our database and your reminders have been scheduled, please give us a moment to draw circles on your calendar", preferredStyle: .Alert)
@@ -152,8 +151,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
             if sender == "deletion" {
                 if let dayV = self.day {
                     self.didSelectDayView(dayV)
-                    dayV.supplementarySetup()
-
+            
                     for each in dayV.subviews {
                         print(each)
                         if each is UILabel {
@@ -164,12 +162,43 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                         }
                         else {
                             each.removeFromSuperview()
+                            break
                         }
                     }
                 }
             }
             if sender == "addition" {
                 //print("hit addition")
+                for each in self.calendarView.contentController.presentedMonthView.weekViews {
+                    for dayView in each.dayViews {
+                        for eachDate in self.CVDatesArray {
+                            if dayView.date.day == eachDate.day && dayView.date.month == eachDate.month && dayView.date.year == eachDate.year {
+                                dayView.preliminarySetup()
+                                dayView.supplementarySetup()
+                            }
+                        }
+                    }
+                }
+            }
+            if sender == "deletionAddition" {
+                if let dayV = self.day {
+                    self.didSelectDayView(dayV)
+                    
+                    for each in dayV.subviews {
+                        print(each)
+                        if each is UILabel {
+                            continue
+                        }
+                        else if each is CVAuxiliaryView {
+                            continue
+                        }
+                        else {
+                            each.removeFromSuperview()
+                            break
+                        }
+                    }
+                }
+                
                 for each in self.calendarView.contentController.presentedMonthView.weekViews {
                     for dayView in each.dayViews {
                         for eachDate in self.CVDatesArray {
@@ -230,9 +259,11 @@ extension CalendarController
                     if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
                         tappedFlag = true
                         
+                        self.childVC?.numberOfEventsOnDay++
+                        self.childVC?.eventDates.append("\(CVMonthsArray[i])/\(CVDaysArray[i])/\(CVYearsArray[i])")
                         self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
                         self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
-                        self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
+                        self.childVC?.eventWeights.append(eventService.eventsArray[i].weight!)
                 
                         self.childVC?.reloadTable()
                         
@@ -240,6 +271,8 @@ extension CalendarController
                     else {
                         if tappedFlag == false {
                             
+                            self.childVC?.numberOfEventsOnDay = 0
+                            self.childVC?.eventDates.removeAll()
                             self.childVC?.eventTitles.removeAll()
                             self.childVC?.eventTimes.removeAll()
                             self.childVC?.eventWeights.removeAll()
@@ -331,9 +364,10 @@ extension CalendarController
                     tappedFlag = true
                     
                     self.childVC?.numberOfEventsOnDay++
+                    self.childVC?.eventDates.append("\(CVMonthsArray[i])/\(CVDaysArray[i])/\(CVYearsArray[i])")
                     self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
                     self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
-                    self.childVC?.eventWeights.append("Worth \(eventService.eventsArray[i].weight!)% of your grade")
+                    self.childVC?.eventWeights.append(eventService.eventsArray[i].weight!)
                     
                     self.childVC?.reloadTable()
            
@@ -344,6 +378,7 @@ extension CalendarController
                         tappedFlag = true
                         
                         self.childVC?.numberOfEventsOnDay = 0
+                        self.childVC?.eventDates.removeAll()    
                         self.childVC?.eventTitles.removeAll()
                         self.childVC?.eventTimes.removeAll()
                         self.childVC?.eventWeights.removeAll()
