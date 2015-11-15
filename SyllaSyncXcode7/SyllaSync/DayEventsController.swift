@@ -156,7 +156,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func editingTextField4(sender: UITextField) {
-        let regexPatterns = ["^\\d\\d"]
+        let regexPatterns = ["^(?:100|\\d{1,2})"]
         
         let regexes = try! NSRegularExpression(pattern: regexPatterns[0], options: [])
         
@@ -255,8 +255,8 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                                 }
                             }
                             
-                            var newTitle = textFields[0].text!
-                            var newDate = textFields[1].text!
+                            let newTitle = textFields[0].text!
+                            let newDate = textFields[1].text!
                             eventTime = textFields[2].text!
                             eventWeight = Int(textFields[3].text!)!
                             
