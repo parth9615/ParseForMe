@@ -38,6 +38,17 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //scroll view
+        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
+        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.addSubview(childVC!.view)
+        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+        
+        addChildViewController(childVC!)
+        childVC!.didMoveToParentViewController(self as CalendarController)
+        
+
         
         menuView.backgroundColor = UIColor.whiteColor()
         calendarView.backgroundColor = UIColor.whiteColor()
@@ -102,18 +113,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
-        //scroll view
-        childVC = storyboard?.instantiateViewControllerWithIdentifier("DayEvents") as? DayEventsController
-        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
-        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
-        scrollView.addSubview(childVC!.view)
-        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
-        
-        addChildViewController(childVC!)
-        childVC!.didMoveToParentViewController(self as CalendarController)
-        
         
         
         if self.eventsAdded {
