@@ -85,7 +85,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (UITableViewRowAction, indexPath) -> Void in
             //edit
-            let alert = UIAlertController(title: "Edit Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Edit Event", message: "Enter Title, Date, Time, and Weight in correct format", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addTextFieldWithConfigurationHandler({(textField1: UITextField!) in
                 textField1.text = self.eventTitles[indexPath.row]
                 textField1.placeholder = "Event Title"
