@@ -41,7 +41,7 @@ def convertToJsonFormat (dictionary, weightDictionary):
 
         jsonList.append(SingleEventDict)
     jsonDict = {"events" : jsonList}
-    return jsonDict
+    return jsonDict 
 
 
 def findWeightInDict(eventType, weight):
