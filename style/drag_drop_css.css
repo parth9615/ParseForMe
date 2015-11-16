@@ -69,3 +69,8 @@ body{
 #fileBox{
     display:none;
 }
+
+#uploadContainer {
+  background-color: red;
+  float: right;
+}

@@ -103,6 +103,8 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
                       }
                     })
                   }
+                }).then(function(){
+                  alert("Syllabus successfully uploaded");
                 })
                  }
               }
@@ -117,8 +119,8 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
 
 loginApp.controller('uploadEventController', ['$scope', '$http', function ($scope, $http) {
   $scope.submit = function(form){
-    var manualEvent = {"date": form.date, "time": form.time, "title": form.title,
-                        "type": form.type, "weight": form.weight, "classname": form.classname}
+    var manualEvent = {"Date": form.date, "Time": form.time, "Title": form.title,
+                        "Type": form.type, "Weight": form.weight, "Classname": form.classname}
 
 
     $http.post("https://api.parse.com/1/classes/Events", {
@@ -133,6 +135,8 @@ loginApp.controller('uploadEventController', ['$scope', '$http', function ($scop
           'X-Parse-REST-API-Key': 'exvs87UNQZa5IVOCiJMnOuk28KzSJf47OGOwr7xF',
           'Content-Type': 'application/json'
       }
+    }).then(function(){
+      alert("Event successfully uploaded.")
     })
 
     $scope.manualEvent = {};
