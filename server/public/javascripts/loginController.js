@@ -35,11 +35,13 @@ var loginApp = angular.module('AuthApp', ['ngFileUpload', 'ng'])
       }
     });
 
-    var params = encodeURI({ "where": JSON.stringify({"username": "flerp@flerp.com"}) })
-    console.log(params);
+    var qs = encodeURIComponent("where\={\"username\":\""+form.username.toLowerCase()+"\"}");
+    console.log(qs);
+
+    //"where=%7B%22username%22%3A+%22flerp%40flerp.com%22%7D"
     var existingSyllabi = $.ajax({
         type: 'GET',
-        url: "https://api.parse.com/1/classes/Events?"+"where=%7B%22username%22%3A+%22flerp%40flerp.com%22%7D",
+        url: "https://api.parse.com/1/classes/Events?"+qs,
 
         headers: {
              'X-Parse-Application-Id': 'D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT',

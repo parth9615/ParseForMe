@@ -6,10 +6,6 @@ from flask.ext.cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
 
-# @app.route("/")
-# def hello():
-#     return 'Hello World!'
-
 @app.route("/dates", methods=['POST'])
 def parse_syllabus():
     syllabusText = request.data
