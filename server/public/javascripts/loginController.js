@@ -86,7 +86,8 @@ loginApp.controller('dragDropController', ['$scope', 'Upload', '$http', function
             }
 
             var success = function(flaskResponse){
-              var eventsArray = flaskResponse.data.Events;
+              console.log(flaskResponse);
+              var eventsArray = flaskResponse.data.events;
               $http.post("https://api.parse.com/1/files/"+file.name, file, {
 
                      headers: {
