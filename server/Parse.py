@@ -27,6 +27,7 @@ def getRawData(filename):
         rawListOfData = readFromDOC(filename)
 
     elif '.pdf' in filename:
+        time.sleep(.200)
         rawListOfData = readFromPdf(filename)
     elif '.txt' in filename:                # if .txt file
         rawListOfData = readFromTXT( filename)
