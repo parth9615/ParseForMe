@@ -9,6 +9,10 @@ h3 {
   left: 43%;
 }
 
+.modal-body h3 {
+  color: #424242;
+}
+
 form {
   position: relative;
   left: 43%;
@@ -16,7 +20,37 @@ form {
 
 body {
   background-color: #04a4ca;
-  font-family: syllasyncRegular
+  font-family: syllasyncRegular;
+}
+
+.main_menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.main_menu li {
+    float: right;
+}
+
+.main_menu li a {
+    display: block;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.main_menu li a:hover {
+    background-color: #414142;
+}
+
+.main_menu {
+  height: 100px;
+  width: 100%;
 }
 
 .logo {
@@ -53,9 +87,32 @@ body {
   float: left;
 }
 
-#logoutButton {
-  position:absolute;
+.topHeader {
+  position: relative;
   top:0;
-  right:0;
-  margin: 10px;
+  border: thin solid black;
+  height: 20px;
+  width: 100%;
+}
+
+#headerButton {
+  position: relative;
+  float: right;
+  margin: 5px;
+}
+
+.descriptionArea {
+  resize: none;
+  width: 100%;
+}
+
+.reviewInput {
+  width: 100%;
+}
+
+.modal-body hr {
+  border-width: 6px;
+  background-color: #424242;
+  border-color: #424242;
+  border-radius: 5px;
 }

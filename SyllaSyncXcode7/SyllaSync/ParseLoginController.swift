@@ -45,12 +45,24 @@ PFSignUpViewControllerDelegate {
         }
         else {
             print("No Logged in user")
+            
+            let logInLogoTitle = UILabel()
+            logInLogoTitle.text = "SyllaSync"
+            logInLogoTitle.font = UIFont(name: "BoosterNextFY-Bold", size:28)
+            
+            
             let loginViewController = PFLogInViewController()
+            loginViewController.logInView?.logo = logInLogoTitle
             loginViewController.fields = [PFLogInFields.UsernameAndPassword, PFLogInFields.LogInButton, PFLogInFields.SignUpButton]
             loginViewController.emailAsUsername = true
             loginViewController.delegate = self
             
+            let signUpLogoTitle = UILabel()
+            signUpLogoTitle.text = "SyllaSync"
+            signUpLogoTitle.font = UIFont(name: "BoosterNextFY-Bold", size:28)
+            
             let signupViewController = PFSignUpViewController()
+            signupViewController.signUpView?.logo = signUpLogoTitle
             signupViewController.emailAsUsername = true
             signupViewController.delegate = self
             

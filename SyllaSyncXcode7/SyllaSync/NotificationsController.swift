@@ -8,61 +8,38 @@
 
 import UIKit
 
-public enum NotificationCells: Int {
-    case BarEvents = 0
-    case SportEvents
-}
-
 class NotificationsController: UIViewController {
     
-    @IBOutlet weak var barEventsToggle: UISwitch!
-    @IBOutlet weak var sportEventsToggle: UISwitch!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var barDealLabel: UILabel!
-    @IBOutlet weak var sportEventLabel: UILabel!
 
-    //
-    //  HamburgerController.swift
-    //  SyllaSync
-    //
-    //  Created by Joel Wasserman on 8/1/15.
-    //  Copyright (c) 2015 IVET. All rights reserved.
-    //
+    @IBOutlet weak var scrollView: UIScrollView!
+    var childVC:NotificationSettingsVC?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        barEventsToggle.addTarget(self, action: Selector("barStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        sportEventsToggle.addTarget(self, action: Selector("sportStateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        //scroll view
+        childVC = storyboard?.instantiateViewControllerWithIdentifier("NotificationSettingsVC") as? NotificationSettingsVC
+        childVC!.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)
+        childVC!.view.translatesAutoresizingMaskIntoConstraints = true
+        scrollView.addSubview(childVC!.view)
+        scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+        
+        addChildViewController(childVC!)
+        childVC!.didMoveToParentViewController(self as NotificationsController)
+        //end scroll view
         
         let fontSize = self.descriptionLabel.font.pointSize
         descriptionLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
         titleLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
-        barDealLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
-        sportEventLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
 
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
-    }
-    
-    func barStateChanged(switchState: UISwitch) {
-        if switchState.on {
-            UserSettings.sharedInstance.BarEvents = true
-        } else {
-            UserSettings.sharedInstance.BarEvents = false
-        }
-    }
-    
-    func sportStateChanged(switchState: UISwitch) {
-        if switchState.on {
-            UserSettings.sharedInstance.SportEvents = true
-        } else {
-            UserSettings.sharedInstance.SportEvents = false
-        }
     }
     
     override func didReceiveMemoryWarning() {

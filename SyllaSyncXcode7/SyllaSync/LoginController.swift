@@ -9,8 +9,9 @@
 import UIKit
 import Parse
 import ParseUI
+import iAd
 
-class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
+class LoginController: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate  {
     
     @IBOutlet weak var logoImageView: UIImageView!
     var window: UIWindow?
@@ -20,6 +21,8 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     var userName:NSString?
     var userEmail:NSString?
     var dimView:DimView?
+    
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +52,62 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         checkInternetConnection()
+        
+        getLocation()
     }
+    
+    func getLocation() {
+        
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            
+            print("error can't do geofencing on this device in app delegate")
+            return
+        }
+
+        let center = CLLocationCoordinate2DMake(35.90787, -79.043413)
+        let chapelHillRegion = CLCircularRegion(center: center, radius: 5000.0, identifier: "ChapelHill")
+        
+        chapelHillRegion.notifyOnEntry = true
+        chapelHillRegion.notifyOnExit = true
+    
+        if let location = self.locationManager.location?.coordinate {
+            if chapelHillRegion.containsCoordinate(location) {
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.setObject("Chapel Hill", forKey: "region")
+                UserSettings.sharedInstance.locationRegion = "Chapel Hill"
+                currentInstallation.saveInBackground()
+            }
+            else {
+                let currentInstallation = PFInstallation.currentInstallation()
+                currentInstallation.setObject("undefined", forKey: "region")
+                UserSettings.sharedInstance.locationRegion = "undefined"
+                currentInstallation.saveInBackground()
+            }
+        }
+        
+        self.locationManager.startMonitoringForRegion(chapelHillRegion)
+
+    }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("entered chapel hill region")
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation["region"] = "Chapel Hill"
+        currentInstallation.saveInBackground()
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("exited chapel hill region")
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation["region"] = "undefined"
+        currentInstallation.saveInBackground()
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("location manager geofencing failed with error in app delegate\(error)")
+    }
+    //END GEOFENCING AND LOCATION CODE
+
     
     func checkInternetConnection() -> Bool {
         if Reachability.isConnectedToNetwork() == true {
@@ -194,9 +252,21 @@ class LoginController: UIViewController, FBSDKLoginButtonDelegate  {
 
     @IBAction func start(sender: AnyObject) {
         if checkInternetConnection() {
-            let parseVC = self.storyboard?.instantiateViewControllerWithIdentifier("ParseLoginController") as! ParseLoginController
-            self.presentViewController(parseVC, animated: true, completion: nil)
+            #if FREE
+                self.performSegueWithIdentifier("login", sender: self)
+            #else
+                let parseVC = self.storyboard?.instantiateViewControllerWithIdentifier("ParseLoginController") as! ParseLoginController
+                self.presentViewController(parseVC, animated: true, completion: nil)
+            #endif
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue,
+        sender: AnyObject?) {
+            
+//            let destination = segue.destinationViewController
+//            destination.interstitialPresentationPolicy =
+//                ADInterstitialPresentationPolicy.Automatic
     }
     
     override func didReceiveMemoryWarning() {

@@ -11,6 +11,7 @@ import CoreData
 import Parse
 import Bolts
 import CoreLocation
+import iAd
 
 
 //THIS WAS MONEY IN THE FUCKING BANK FOR TESTING INTERNET CONNECTION http://www.brianjcoleman.com/tutorial-check-for-internet-connection-in-swift/
@@ -30,12 +31,18 @@ import CoreLocation
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
 
-    var window: UIWindow?
     let locationManager = CLLocationManager()
+    var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        #if FREE
+            UIViewController.prepareInterstitialAds()
+        #endif
+        
+        setUpLocationServices()
         
         Parse.enableLocalDatastore()
         Parse.setApplicationId("D66UUzuPDgCQ4Fxea73VbPxahF9xGZntWZ8mVlKT",
@@ -47,13 +54,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
 
-        locationManager.requestAlwaysAuthorization()
         
         // Override point for customization after application launch.
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
-
+    func setUpLocationServices() {
+        //GETS LOCATION and sets up geofence
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        
+        let authstate = CLLocationManager.authorizationStatus()
+        if(authstate == CLAuthorizationStatus.NotDetermined){
+            print("Not Authorised")
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                print("location services allowed for significant changes")
+                locationManager.startMonitoringSignificantLocationChanges()
+            }
+        }
+    }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -170,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
     }
-    
+
     
     
     //for push notifications

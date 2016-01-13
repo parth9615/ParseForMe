@@ -12,9 +12,7 @@
 		EE0835C01B6D37EC00F5CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */; };
 		EE0835C31B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C11B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld */; };
 		EE0835C51B6D37EC00F5CD9C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C41B6D37EC00F5CD9C /* LoginController.swift */; };
-		EE0835C81B6D37EC00F5CD9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C61B6D37EC00F5CD9C /* Main.storyboard */; };
 		EE0835CA1B6D37EC00F5CD9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C91B6D37EC00F5CD9C /* Images.xcassets */; };
-		EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0835CB1B6D37EC00F5CD9C /* LaunchScreen.xib */; };
 		EE0835D91B6D37EC00F5CD9C /* SyllaSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835D81B6D37EC00F5CD9C /* SyllaSyncTests.swift */; };
 		EE0835E71B6D3C1E00F5CD9C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */; };
 		EE0835E91B6D3CDF00F5CD9C /* Hamburger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */; };
@@ -25,7 +23,6 @@
 		EE0836151B6D583D00F5CD9C /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360F1B6D583D00F5CD9C /* ParseCrashReporting.framework */; };
 		EE0836171B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836111B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework */; };
 		EE0836181B6D583D00F5CD9C /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836121B6D583D00F5CD9C /* ParseUI.framework */; };
-		EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */; };
 		EE08361E1B6D5CAA00F5CD9C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08361D1B6D5CAA00F5CD9C /* AudioToolbox.framework */; };
 		EE0836201B6D5CB000F5CD9C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08361F1B6D5CB000F5CD9C /* CFNetwork.framework */; };
 		EE0836221B6D5CB500F5CD9C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836211B6D5CB500F5CD9C /* CoreGraphics.framework */; };
@@ -42,6 +39,8 @@
 		EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */; };
 		EE0838851B6DAF4600F5CD9C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
 		EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
+		EE0FE7CC1BFBC3CE0027F81E /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FE7CB1BFBC3CE0027F81E /* NotificationSettingsVC.swift */; };
+		EE0FE7CE1BFBEA670027F81E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FE7CD1BFBEA670027F81E /* ChannelCell.swift */; };
 		EE10F5971B7E511700931D4D /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5961B7E511700931D4D /* SyllabiController.swift */; };
 		EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5991B7E571F00931D4D /* SyllabiCell.swift */; };
 		EE10F59C1B7E5A4900931D4D /* SyllabusViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */; };
@@ -63,6 +62,8 @@
 		EE18875A1B6FFC80003FA7A9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
 		EE34B5BB1BD922D200D6224B /* AddEventScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */; };
 		EE41CF0D1BF6365A008B456F /* DayEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41CF0C1BF6365A008B456F /* DayEventsController.swift */; };
+		EE42087B1C3EF5E600A7082C /* EventTodayDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE42087A1C3EF5E600A7082C /* EventTodayDescriptionController.swift */; };
+		EE42087C1C3F057500A7082C /* EventTodayDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE42087A1C3EF5E600A7082C /* EventTodayDescriptionController.swift */; };
 		EE43B5111B75C3BC0015DAC5 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
 		EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE63BB941BD0A01E00354741 /* InfoPlist.strings */; };
 		EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; };
@@ -88,6 +89,89 @@
 		EEEB0CB01B707A4E00C54CC7 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */; };
 		EEEB0CB41B707C9C00C54CC7 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
 		EEEB0CBD1B718E9300C54CC7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */; };
+		EEF9C5381C348F69004DF096 /* SyllabiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5961B7E511700931D4D /* SyllabiController.swift */; };
+		EEF9C5391C348F69004DF096 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AE1B84F82300931D4D /* String.swift */; };
+		EEF9C53A1C348F69004DF096 /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A61B84F82300931D4D /* ExSwift.swift */; };
+		EEF9C53B1C348F69004DF096 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C41B6D37EC00F5CD9C /* LoginController.swift */; };
+		EEF9C53C1C348F69004DF096 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE821B77F82800C052C7 /* CalendarController.swift */; };
+		EEF9C53D1C348F69004DF096 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031441B75589F0091B05C /* EventService.swift */; };
+		EEF9C53E1C348F69004DF096 /* TableCalendarContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE801B77F5B900C052C7 /* TableCalendarContainerController.swift */; };
+		EEF9C53F1C348F69004DF096 /* SyllabusViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */; };
+		EEF9C5401C348F69004DF096 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835E61B6D3C1E00F5CD9C /* UserSettings.swift */; };
+		EEF9C5411C348F69004DF096 /* SyllaSync.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE0835C11B6D37EC00F5CD9C /* SyllaSync.xcdatamodeld */; };
+		EEF9C5421C348F69004DF096 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */; };
+		EEF9C5431C348F69004DF096 /* HamburgerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */; };
+		EEF9C5441C348F69004DF096 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A91B84F82300931D4D /* Int.swift */; };
+		EEF9C5451C348F69004DF096 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A01B84F82300931D4D /* Array.swift */; };
+		EEF9C5461C348F69004DF096 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */; };
+		EEF9C5471C348F69004DF096 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */; };
+		EEF9C5481C348F69004DF096 /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FCE841B7804E100C052C7 /* ToggleCell.swift */; };
+		EEF9C5491C348F69004DF096 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */; };
+		EEF9C54A1C348F69004DF096 /* LogoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */; };
+		EEF9C54B1C348F69004DF096 /* DayEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41CF0C1BF6365A008B456F /* DayEventsController.swift */; };
+		EEF9C54C1C348F69004DF096 /* AddEventScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */; };
+		EEF9C54D1C348F69004DF096 /* SyllabiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5991B7E571F00931D4D /* SyllabiCell.swift */; };
+		EEF9C54E1C348F69004DF096 /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5BD1B84F83A00931D4D /* NSDate+Util.swift */; };
+		EEF9C54F1C348F69004DF096 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA031421B7552C70091B05C /* Event.swift */; };
+		EEF9C5501C348F69004DF096 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A41B84F82300931D4D /* Double.swift */; };
+		EEF9C5511C348F69004DF096 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FE7CD1BFBEA670027F81E /* ChannelCell.swift */; };
+		EEF9C5521C348F69004DF096 /* CurrentEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB0CAD1B7078A700C54CC7 /* CurrentEventsController.swift */; };
+		EEF9C5531C348F69004DF096 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AC1B84F82300931D4D /* Range.swift */; };
+		EEF9C5541C348F69004DF096 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63BB961BD19F8100354741 /* AddEventController.swift */; };
+		EEF9C5551C348F69004DF096 /* shadowedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85380F1BE7BB5D007E1B5D /* shadowedButton.swift */; };
+		EEF9C5561C348F69004DF096 /* HamburgerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */; };
+		EEF9C5571C348F69004DF096 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EB1B6D3F9300F5CD9C /* EventsController.swift */; };
+		EEF9C5581C348F69004DF096 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A21B84F82300931D4D /* Character.swift */; };
+		EEF9C5591C348F69004DF096 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AD1B84F82300931D4D /* Sequence.swift */; };
+		EEF9C55A1C348F69004DF096 /* ParseLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */; };
+		EEF9C55B1C348F69004DF096 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A31B84F82300931D4D /* Dictionary.swift */; };
+		EEF9C55C1C348F69004DF096 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9BC0F81B79A75600D33818 /* Reachability.swift */; };
+		EEF9C55D1C348F69004DF096 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A11B84F82300931D4D /* Bool.swift */; };
+		EEF9C55E1C348F69004DF096 /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0FE7CB1BFBC3CE0027F81E /* NotificationSettingsVC.swift */; };
+		EEF9C55F1C348F69004DF096 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5A71B84F82300931D4D /* Float.swift */; };
+		EEF9C5601C348F69004DF096 /* EventsContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0835EF1B6D40B300F5CD9C /* EventsContainerController.swift */; };
+		EEF9C5611C348F69004DF096 /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AA1B84F82300931D4D /* NSArray.swift */; };
+		EEF9C5621C348F69004DF096 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10F5AB1B84F82300931D4D /* NSDate.swift */; };
+		EEF9C5631C348F69004DF096 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1887591B6FFC80003FA7A9 /* DimView.swift */; };
+		EEF9C5651C348F69004DF096 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */; };
+		EEF9C5661C348F69004DF096 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836351B6D5DC900F5CD9C /* Accounts.framework */; };
+		EEF9C5671C348F69004DF096 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836331B6D5DC400F5CD9C /* Social.framework */; };
+		EEF9C5681C348F69004DF096 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836311B6D5CE800F5CD9C /* libsqlite3.dylib */; };
+		EEF9C5691C348F69004DF096 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */; };
+		EEF9C56A1C348F69004DF096 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362F1B6D5CDE00F5CD9C /* SystemConfiguration.framework */; };
+		EEF9C56B1C348F69004DF096 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */; };
+		EEF9C56C1C348F69004DF096 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08362B1B6D5CD100F5CD9C /* Security.framework */; };
+		EEF9C56D1C348F69004DF096 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */; };
+		EEF9C56E1C348F69004DF096 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836291B6D5CCB00F5CD9C /* QuartzCore.framework */; };
+		EEF9C56F1C348F69004DF096 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836271B6D5CC500F5CD9C /* MobileCoreServices.framework */; };
+		EEF9C5701C348F69004DF096 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836251B6D5CBF00F5CD9C /* libz.dylib */; };
+		EEF9C5711C348F69004DF096 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836231B6D5CB900F5CD9C /* CoreLocation.framework */; };
+		EEF9C5721C348F69004DF096 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0838841B6DAF4600F5CD9C /* Bolts.framework */; };
+		EEF9C5731C348F69004DF096 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836211B6D5CB500F5CD9C /* CoreGraphics.framework */; };
+		EEF9C5741C348F69004DF096 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08361F1B6D5CB000F5CD9C /* CFNetwork.framework */; };
+		EEF9C5751C348F69004DF096 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08361D1B6D5CAA00F5CD9C /* AudioToolbox.framework */; };
+		EEF9C5761C348F69004DF096 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360F1B6D583D00F5CD9C /* ParseCrashReporting.framework */; };
+		EEF9C5771C348F69004DF096 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE08360E1B6D583D00F5CD9C /* Parse.framework */; };
+		EEF9C5781C348F69004DF096 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836121B6D583D00F5CD9C /* ParseUI.framework */; };
+		EEF9C5791C348F69004DF096 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0836111B6D583D00F5CD9C /* ParseFacebookUtilsV4.framework */; };
+		EEF9C57A1C348F69004DF096 /* Pods_SyllaSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF18E2AECA5BAF0A5907A99 /* Pods_SyllaSync.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EEF9C57C1C348F69004DF096 /* BoosterNextFY-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE701B765E8100C052C7 /* BoosterNextFY-Black.otf */; };
+		EEF9C57D1C348F69004DF096 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EEA0313C1B752DB10091B05C /* Cartfile */; };
+		EEF9C57E1C348F69004DF096 /* Hamburger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */; };
+		EEF9C57F1C348F69004DF096 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C61B6D37EC00F5CD9C /* Main.storyboard */; };
+		EEF9C5801C348F69004DF096 /* BoosterNextFY-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE721B765E8200C052C7 /* BoosterNextFY-Light.otf */; };
+		EEF9C5811C348F69004DF096 /* BoosterNextFY-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE751B765E8200C052C7 /* BoosterNextFY-Thin.otf */; };
+		EEF9C5821C348F69004DF096 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0835CB1B6D37EC00F5CD9C /* LaunchScreen.xib */; };
+		EEF9C5831C348F69004DF096 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0835C91B6D37EC00F5CD9C /* Images.xcassets */; };
+		EEF9C5841C348F69004DF096 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */; };
+		EEF9C5851C348F69004DF096 /* BoosterNextFY-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE741B765E8200C052C7 /* BoosterNextFY-Regular.otf */; };
+		EEF9C5861C348F69004DF096 /* BoosterNextFY-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE711B765E8100C052C7 /* BoosterNextFY-Bold.otf */; };
+		EEF9C5871C348F69004DF096 /* BoosterNextFY-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE9FCE731B765E8200C052C7 /* BoosterNextFY-Medium.otf */; };
+		EEF9C5881C348F69004DF096 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE10F5A81B84F82300931D4D /* Info.plist */; };
+		EEF9C5961C349D4C004DF096 /* LaunchScreenFree.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF9C5951C349D4C004DF096 /* LaunchScreenFree.storyboard */; };
+		EEF9C59E1C34EF4F004DF096 /* MainFree.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF9C5981C34EC20004DF096 /* MainFree.storyboard */; };
+		EEF9C5A01C34F5DD004DF096 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF9C59F1C34F5DD004DF096 /* iAd.framework */; };
+		EEF9C5A41C35E678004DF096 /* ParseLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08361B1B6D5A5500F5CD9C /* ParseLoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +191,8 @@
 		7F20076DB3308C39A14D1ED5 /* Pods_SyllaSyncTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyllaSyncTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD04F7650DDBD24E84D8CA8F /* Pods-SyllaSyncTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSyncTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSyncTests/Pods-SyllaSyncTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D579BD6B9864D59F2C534E7B /* Pods-SyllaSync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyllaSync.release.xcconfig"; path = "Pods/Target Support Files/Pods-SyllaSync/Pods-SyllaSync.release.xcconfig"; sourceTree = "<group>"; };
-		EE0835BA1B6D37EC00F5CD9C /* SyllaSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyllaSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE0835BE1B6D37EC00F5CD9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE0835BA1B6D37EC00F5CD9C /* SyllaSyncFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyllaSyncFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE0835BE1B6D37EC00F5CD9C /* FreeInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FreeInfo.plist; sourceTree = "<group>"; };
 		EE0835BF1B6D37EC00F5CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE0835C21B6D37EC00F5CD9C /* SyllaSync.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SyllaSync.xcdatamodel; sourceTree = "<group>"; };
 		EE0835C41B6D37EC00F5CD9C /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -145,6 +229,8 @@
 		EE08387F1B6DADE200F5CD9C /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		EE0838811B6DAE2E00F5CD9C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		EE0838841B6DAF4600F5CD9C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		EE0FE7CB1BFBC3CE0027F81E /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
+		EE0FE7CD1BFBEA670027F81E /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		EE10F5961B7E511700931D4D /* SyllabiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiController.swift; sourceTree = "<group>"; };
 		EE10F5991B7E571F00931D4D /* SyllabiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabiCell.swift; sourceTree = "<group>"; };
 		EE10F59B1B7E5A4900931D4D /* SyllabusViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusViewerController.swift; sourceTree = "<group>"; };
@@ -167,6 +253,7 @@
 		EE1887591B6FFC80003FA7A9 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		EE34B5BA1BD922D200D6224B /* AddEventScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventScrollController.swift; sourceTree = "<group>"; };
 		EE41CF0C1BF6365A008B456F /* DayEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEventsController.swift; sourceTree = "<group>"; };
+		EE42087A1C3EF5E600A7082C /* EventTodayDescriptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTodayDescriptionController.swift; sourceTree = "<group>"; };
 		EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutController.swift; sourceTree = "<group>"; };
 		EE63BB941BD0A01E00354741 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE63BB961BD19F8100354741 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
@@ -192,6 +279,11 @@
 		EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		EEF9C58F1C348F69004DF096 /* SyllaSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyllaSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEF9C5901C348F69004DF096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/joelwasserman/SyllaSync/SyllaSync/SyllaSyncXcode7/Info.plist; sourceTree = "<absolute>"; };
+		EEF9C5951C349D4C004DF096 /* LaunchScreenFree.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreenFree.storyboard; sourceTree = "<group>"; };
+		EEF9C5991C34EC20004DF096 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainFree.storyboard; sourceTree = "<group>"; };
+		EEF9C59F1C34F5DD004DF096 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEF9C5A01C34F5DD004DF096 /* iAd.framework in Frameworks */,
 				EE0838831B6DAE3F00F5CD9C /* libstdc++.6.dylib in Frameworks */,
 				EE0836361B6D5DC900F5CD9C /* Accounts.framework in Frameworks */,
 				EE0836341B6D5DC400F5CD9C /* Social.framework in Frameworks */,
@@ -229,6 +322,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BA8039581A37C56CC3738B /* Pods_SyllaSyncTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF9C5641C348F69004DF096 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF9C5651C348F69004DF096 /* libstdc++.6.dylib in Frameworks */,
+				EEF9C5661C348F69004DF096 /* Accounts.framework in Frameworks */,
+				EEF9C5671C348F69004DF096 /* Social.framework in Frameworks */,
+				EEF9C5681C348F69004DF096 /* libsqlite3.dylib in Frameworks */,
+				EEF9C5691C348F69004DF096 /* FBSDKCoreKit.framework in Frameworks */,
+				EEF9C56A1C348F69004DF096 /* SystemConfiguration.framework in Frameworks */,
+				EEF9C56B1C348F69004DF096 /* FBSDKShareKit.framework in Frameworks */,
+				EEF9C56C1C348F69004DF096 /* Security.framework in Frameworks */,
+				EEF9C56D1C348F69004DF096 /* FBSDKLoginKit.framework in Frameworks */,
+				EEF9C56E1C348F69004DF096 /* QuartzCore.framework in Frameworks */,
+				EEF9C56F1C348F69004DF096 /* MobileCoreServices.framework in Frameworks */,
+				EEF9C5701C348F69004DF096 /* libz.dylib in Frameworks */,
+				EEF9C5711C348F69004DF096 /* CoreLocation.framework in Frameworks */,
+				EEF9C5721C348F69004DF096 /* Bolts.framework in Frameworks */,
+				EEF9C5731C348F69004DF096 /* CoreGraphics.framework in Frameworks */,
+				EEF9C5741C348F69004DF096 /* CFNetwork.framework in Frameworks */,
+				EEF9C5751C348F69004DF096 /* AudioToolbox.framework in Frameworks */,
+				EEF9C5761C348F69004DF096 /* ParseCrashReporting.framework in Frameworks */,
+				EEF9C5771C348F69004DF096 /* Parse.framework in Frameworks */,
+				EEF9C5781C348F69004DF096 /* ParseUI.framework in Frameworks */,
+				EEF9C5791C348F69004DF096 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				EEF9C57A1C348F69004DF096 /* Pods_SyllaSync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,8 +385,9 @@
 		EE0835BB1B6D37EC00F5CD9C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EE0835BA1B6D37EC00F5CD9C /* SyllaSync.app */,
+				EE0835BA1B6D37EC00F5CD9C /* SyllaSyncFree.app */,
 				EE0835D21B6D37EC00F5CD9C /* SyllaSyncTests.xctest */,
+				EEF9C58F1C348F69004DF096 /* SyllaSync.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,7 +413,9 @@
 				EE0835CB1B6D37EC00F5CD9C /* LaunchScreen.xib */,
 				EE0835C91B6D37EC00F5CD9C /* Images.xcassets */,
 				EE08387D1B6DA9E700F5CD9C /* GoogleService-Info.plist */,
-				EE0835BE1B6D37EC00F5CD9C /* Info.plist */,
+				EE0835BE1B6D37EC00F5CD9C /* FreeInfo.plist */,
+				EEF9C5901C348F69004DF096 /* Info.plist */,
+				EEF9C5951C349D4C004DF096 /* LaunchScreenFree.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -342,6 +467,7 @@
 		EE0835E41B6D3BDF00F5CD9C /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
+				EEF9C5981C34EC20004DF096 /* MainFree.storyboard */,
 				EE0835C61B6D37EC00F5CD9C /* Main.storyboard */,
 				EE0835E81B6D3CDF00F5CD9C /* Hamburger.storyboard */,
 			);
@@ -355,8 +481,10 @@
 				EE0835F11B6D40F600F5CD9C /* HamburgerController.swift */,
 				EEEB0CAD1B7078A700C54CC7 /* CurrentEventsController.swift */,
 				EEEB0CAF1B707A4E00C54CC7 /* NotificationsController.swift */,
+				EE0FE7CB1BFBC3CE0027F81E /* NotificationSettingsVC.swift */,
 				EEEB0CB31B707C9C00C54CC7 /* AboutController.swift */,
 				EE43B5101B75C3BC0015DAC5 /* LogoutController.swift */,
+				EE42087A1C3EF5E600A7082C /* EventTodayDescriptionController.swift */,
 			);
 			name = Hamburger;
 			sourceTree = "<group>";
@@ -385,6 +513,7 @@
 		EE08387C1B6D660A00F5CD9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EEF9C59F1C34F5DD004DF096 /* iAd.framework */,
 				EEBDF4BF1BC9660A00EA80A5 /* FBSDKCoreKit.framework */,
 				EEBDF4C01BC9660A00EA80A5 /* FBSDKLoginKit.framework */,
 				EEBDF4C11BC9660A00EA80A5 /* FBSDKShareKit.framework */,
@@ -446,6 +575,7 @@
 				EEEB0CBC1B718E9300C54CC7 /* EventCell.swift */,
 				EE9FCE841B7804E100C052C7 /* ToggleCell.swift */,
 				EE85380B1BE3F9C3007E1B5D /* HamburgerCell.swift */,
+				EE0FE7CD1BFBEA670027F81E /* ChannelCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -487,9 +617,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EE0835B91B6D37EC00F5CD9C /* SyllaSync */ = {
+		EE0835B91B6D37EC00F5CD9C /* SyllaSyncFree */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE0835DC1B6D37EC00F5CD9C /* Build configuration list for PBXNativeTarget "SyllaSync" */;
+			buildConfigurationList = EE0835DC1B6D37EC00F5CD9C /* Build configuration list for PBXNativeTarget "SyllaSyncFree" */;
 			buildPhases = (
 				AE91DE5DD8F2472D39F030DB /* Check Pods Manifest.lock */,
 				EE0835B61B6D37EC00F5CD9C /* Sources */,
@@ -503,9 +633,9 @@
 			);
 			dependencies = (
 			);
-			name = SyllaSync;
+			name = SyllaSyncFree;
 			productName = SyllaSync;
-			productReference = EE0835BA1B6D37EC00F5CD9C /* SyllaSync.app */;
+			productReference = EE0835BA1B6D37EC00F5CD9C /* SyllaSyncFree.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EE0835D11B6D37EC00F5CD9C /* SyllaSyncTests */ = {
@@ -528,6 +658,27 @@
 			productName = SyllaSyncTests;
 			productReference = EE0835D21B6D37EC00F5CD9C /* SyllaSyncTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EEF9C5351C348F69004DF096 /* SyllaSync */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEF9C58C1C348F69004DF096 /* Build configuration list for PBXNativeTarget "SyllaSync" */;
+			buildPhases = (
+				EEF9C5361C348F69004DF096 /* Check Pods Manifest.lock */,
+				EEF9C5371C348F69004DF096 /* Sources */,
+				EEF9C5641C348F69004DF096 /* Frameworks */,
+				EEF9C57B1C348F69004DF096 /* Resources */,
+				EEF9C5891C348F69004DF096 /* Copy Pods Resources */,
+				EEF9C58A1C348F69004DF096 /* ShellScript */,
+				EEF9C58B1C348F69004DF096 /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SyllaSync;
+			productName = SyllaSync;
+			productReference = EEF9C58F1C348F69004DF096 /* SyllaSync.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -560,6 +711,9 @@
 						DevelopmentTeam = 23NT8R7X24;
 						TestTargetID = EE0835B91B6D37EC00F5CD9C;
 					};
+					EEF9C5351C348F69004DF096 = {
+						DevelopmentTeam = 23NT8R7X24;
+					};
 				};
 			};
 			buildConfigurationList = EE0835B51B6D37EC00F5CD9C /* Build configuration list for PBXProject "SyllaSync" */;
@@ -576,8 +730,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EE0835B91B6D37EC00F5CD9C /* SyllaSync */,
+				EE0835B91B6D37EC00F5CD9C /* SyllaSyncFree */,
 				EE0835D11B6D37EC00F5CD9C /* SyllaSyncTests */,
+				EEF9C5351C348F69004DF096 /* SyllaSync */,
 			);
 		};
 /* End PBXProject section */
@@ -590,16 +745,16 @@
 				EE9FCE761B765E9200C052C7 /* BoosterNextFY-Black.otf in Resources */,
 				EEA0313D1B752DB10091B05C /* Cartfile in Resources */,
 				EE0835E91B6D3CDF00F5CD9C /* Hamburger.storyboard in Resources */,
-				EE0835C81B6D37EC00F5CD9C /* Main.storyboard in Resources */,
 				EE9FCE781B765E9200C052C7 /* BoosterNextFY-Light.otf in Resources */,
 				EE9FCE7B1B765E9200C052C7 /* BoosterNextFY-Thin.otf in Resources */,
-				EE0835CD1B6D37EC00F5CD9C /* LaunchScreen.xib in Resources */,
 				EE0835CA1B6D37EC00F5CD9C /* Images.xcassets in Resources */,
 				EE08387E1B6DA9E700F5CD9C /* GoogleService-Info.plist in Resources */,
 				EE9FCE7A1B765E9200C052C7 /* BoosterNextFY-Regular.otf in Resources */,
 				EE9FCE771B765E9200C052C7 /* BoosterNextFY-Bold.otf in Resources */,
 				EE9FCE791B765E9200C052C7 /* BoosterNextFY-Medium.otf in Resources */,
+				EEF9C59E1C34EF4F004DF096 /* MainFree.storyboard in Resources */,
 				EE10F5B61B84F82300931D4D /* Info.plist in Resources */,
+				EEF9C5961C349D4C004DF096 /* LaunchScreenFree.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +764,26 @@
 			files = (
 				EE0838861B6DB06600F5CD9C /* GoogleService-Info.plist in Resources */,
 				EE63BB951BD0A01E00354741 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEF9C57B1C348F69004DF096 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF9C57C1C348F69004DF096 /* BoosterNextFY-Black.otf in Resources */,
+				EEF9C57D1C348F69004DF096 /* Cartfile in Resources */,
+				EEF9C57E1C348F69004DF096 /* Hamburger.storyboard in Resources */,
+				EEF9C57F1C348F69004DF096 /* Main.storyboard in Resources */,
+				EEF9C5801C348F69004DF096 /* BoosterNextFY-Light.otf in Resources */,
+				EEF9C5811C348F69004DF096 /* BoosterNextFY-Thin.otf in Resources */,
+				EEF9C5821C348F69004DF096 /* LaunchScreen.xib in Resources */,
+				EEF9C5831C348F69004DF096 /* Images.xcassets in Resources */,
+				EEF9C5841C348F69004DF096 /* GoogleService-Info.plist in Resources */,
+				EEF9C5851C348F69004DF096 /* BoosterNextFY-Regular.otf in Resources */,
+				EEF9C5861C348F69004DF096 /* BoosterNextFY-Bold.otf in Resources */,
+				EEF9C5871C348F69004DF096 /* BoosterNextFY-Medium.otf in Resources */,
+				EEF9C5881C348F69004DF096 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,13 +886,70 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/local/bin/carthage copy-frameworks";
 			shellScript = "";
+		};
+		EEF9C5361C348F69004DF096 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EEF9C5891C348F69004DF096 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SyllaSync/Pods-SyllaSync-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEF9C58A1C348F69004DF096 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "";
+		};
+		EEF9C58B1C348F69004DF096 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SyllaSync/Pods-SyllaSync-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -750,19 +982,22 @@
 				EE10F59A1B7E571F00931D4D /* SyllabiCell.swift in Sources */,
 				EE10F5BE1B84F83A00931D4D /* NSDate+Util.swift in Sources */,
 				EEA031431B7552C70091B05C /* Event.swift in Sources */,
+				EEF9C5A41C35E678004DF096 /* ParseLoginController.swift in Sources */,
 				EE10F5B31B84F82300931D4D /* Double.swift in Sources */,
+				EE0FE7CE1BFBEA670027F81E /* ChannelCell.swift in Sources */,
 				EEEB0CAE1B7078A700C54CC7 /* CurrentEventsController.swift in Sources */,
 				EE10F5BA1B84F82300931D4D /* Range.swift in Sources */,
+				EE42087C1C3F057500A7082C /* EventTodayDescriptionController.swift in Sources */,
 				EE63BB971BD19F8100354741 /* AddEventController.swift in Sources */,
 				EE8538101BE7BB5D007E1B5D /* shadowedButton.swift in Sources */,
 				EE0835F21B6D40F600F5CD9C /* HamburgerController.swift in Sources */,
 				EE0835EC1B6D3F9300F5CD9C /* EventsController.swift in Sources */,
 				EE10F5B11B84F82300931D4D /* Character.swift in Sources */,
 				EE10F5BB1B84F82300931D4D /* Sequence.swift in Sources */,
-				EE08361C1B6D5A5500F5CD9C /* ParseLoginController.swift in Sources */,
 				EE10F5B21B84F82300931D4D /* Dictionary.swift in Sources */,
 				EE9BC0F91B79A75600D33818 /* Reachability.swift in Sources */,
 				EE10F5B01B84F82300931D4D /* Bool.swift in Sources */,
+				EE0FE7CC1BFBC3CE0027F81E /* NotificationSettingsVC.swift in Sources */,
 				EE10F5B51B84F82300931D4D /* Float.swift in Sources */,
 				EE0835F01B6D40B300F5CD9C /* EventsContainerController.swift in Sources */,
 				EE10F5B81B84F82300931D4D /* NSArray.swift in Sources */,
@@ -779,12 +1014,64 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEF9C5371C348F69004DF096 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF9C5381C348F69004DF096 /* SyllabiController.swift in Sources */,
+				EEF9C5391C348F69004DF096 /* String.swift in Sources */,
+				EEF9C53A1C348F69004DF096 /* ExSwift.swift in Sources */,
+				EEF9C53B1C348F69004DF096 /* LoginController.swift in Sources */,
+				EEF9C53C1C348F69004DF096 /* CalendarController.swift in Sources */,
+				EEF9C53D1C348F69004DF096 /* EventService.swift in Sources */,
+				EEF9C53E1C348F69004DF096 /* TableCalendarContainerController.swift in Sources */,
+				EEF9C53F1C348F69004DF096 /* SyllabusViewerController.swift in Sources */,
+				EEF9C5401C348F69004DF096 /* UserSettings.swift in Sources */,
+				EEF9C5411C348F69004DF096 /* SyllaSync.xcdatamodeld in Sources */,
+				EEF9C5421C348F69004DF096 /* AppDelegate.swift in Sources */,
+				EEF9C5431C348F69004DF096 /* HamburgerCell.swift in Sources */,
+				EEF9C5441C348F69004DF096 /* Int.swift in Sources */,
+				EEF9C5451C348F69004DF096 /* Array.swift in Sources */,
+				EEF9C5461C348F69004DF096 /* AboutController.swift in Sources */,
+				EEF9C5471C348F69004DF096 /* NotificationsController.swift in Sources */,
+				EEF9C5481C348F69004DF096 /* ToggleCell.swift in Sources */,
+				EEF9C5491C348F69004DF096 /* EventCell.swift in Sources */,
+				EEF9C54A1C348F69004DF096 /* LogoutController.swift in Sources */,
+				EEF9C54B1C348F69004DF096 /* DayEventsController.swift in Sources */,
+				EEF9C54C1C348F69004DF096 /* AddEventScrollController.swift in Sources */,
+				EEF9C54D1C348F69004DF096 /* SyllabiCell.swift in Sources */,
+				EEF9C54E1C348F69004DF096 /* NSDate+Util.swift in Sources */,
+				EEF9C54F1C348F69004DF096 /* Event.swift in Sources */,
+				EEF9C5501C348F69004DF096 /* Double.swift in Sources */,
+				EEF9C5511C348F69004DF096 /* ChannelCell.swift in Sources */,
+				EEF9C5521C348F69004DF096 /* CurrentEventsController.swift in Sources */,
+				EEF9C5531C348F69004DF096 /* Range.swift in Sources */,
+				EEF9C5541C348F69004DF096 /* AddEventController.swift in Sources */,
+				EE42087B1C3EF5E600A7082C /* EventTodayDescriptionController.swift in Sources */,
+				EEF9C5551C348F69004DF096 /* shadowedButton.swift in Sources */,
+				EEF9C5561C348F69004DF096 /* HamburgerController.swift in Sources */,
+				EEF9C5571C348F69004DF096 /* EventsController.swift in Sources */,
+				EEF9C5581C348F69004DF096 /* Character.swift in Sources */,
+				EEF9C5591C348F69004DF096 /* Sequence.swift in Sources */,
+				EEF9C55A1C348F69004DF096 /* ParseLoginController.swift in Sources */,
+				EEF9C55B1C348F69004DF096 /* Dictionary.swift in Sources */,
+				EEF9C55C1C348F69004DF096 /* Reachability.swift in Sources */,
+				EEF9C55D1C348F69004DF096 /* Bool.swift in Sources */,
+				EEF9C55E1C348F69004DF096 /* NotificationSettingsVC.swift in Sources */,
+				EEF9C55F1C348F69004DF096 /* Float.swift in Sources */,
+				EEF9C5601C348F69004DF096 /* EventsContainerController.swift in Sources */,
+				EEF9C5611C348F69004DF096 /* NSArray.swift in Sources */,
+				EEF9C5621C348F69004DF096 /* NSDate.swift in Sources */,
+				EEF9C5631C348F69004DF096 /* DimView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		EE0835D41B6D37EC00F5CD9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE0835B91B6D37EC00F5CD9C /* SyllaSync */;
+			target = EE0835B91B6D37EC00F5CD9C /* SyllaSyncFree */;
 			targetProxy = EE0835D31B6D37EC00F5CD9C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -804,6 +1091,14 @@
 				EE0835CC1B6D37EC00F5CD9C /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		EEF9C5981C34EC20004DF096 /* MainFree.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEF9C5991C34EC20004DF096 /* Base */,
+			);
+			name = MainFree.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -826,7 +1121,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.ivetechnologies.SyllaSync";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.ivetechnologies.SyllaSync";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -911,13 +1206,20 @@
 					"$(PROJECT_DIR)/FacebookSDK",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SyllaSync/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"FREE=1",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SyllaSync/FreeInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DFREE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "84fb786a-6a68-4df7-8c1c-b890c0762c21";
 				SWIFT_OBJC_BRIDGING_HEADER = "SyllaSync-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -935,13 +1237,19 @@
 					"$(PROJECT_DIR)/FacebookSDK",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SyllaSync/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"FREE=1",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SyllaSync/FreeInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DFREE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "84fb786a-6a68-4df7-8c1c-b890c0762c21";
 				SWIFT_OBJC_BRIDGING_HEADER = "SyllaSync-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -965,7 +1273,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyllaSync.app/SyllaSync";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyllaSyncFree.app/SyllaSyncFree";
 			};
 			name = Debug;
 		};
@@ -985,7 +1293,59 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyllaSync.app/SyllaSync";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyllaSyncFree.app/SyllaSyncFree";
+			};
+			name = Release;
+		};
+		EEF9C58D1C348F69004DF096 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FE884AB48DC263A4558CE34 /* Pods-SyllaSync.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/parse-library-1",
+					"$(PROJECT_DIR)/FacebookSDK",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SyllaSync-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		EEF9C58E1C348F69004DF096 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D579BD6B9864D59F2C534E7B /* Pods-SyllaSync.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/parse-library-1",
+					"$(PROJECT_DIR)/FacebookSDK",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ivetechnologies.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SyllaSync-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -1001,7 +1361,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE0835DC1B6D37EC00F5CD9C /* Build configuration list for PBXNativeTarget "SyllaSync" */ = {
+		EE0835DC1B6D37EC00F5CD9C /* Build configuration list for PBXNativeTarget "SyllaSyncFree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE0835DD1B6D37EC00F5CD9C /* Debug */,
@@ -1015,6 +1375,15 @@
 			buildConfigurations = (
 				EE0835E01B6D37EC00F5CD9C /* Debug */,
 				EE0835E11B6D37EC00F5CD9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEF9C58C1C348F69004DF096 /* Build configuration list for PBXNativeTarget "SyllaSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEF9C58D1C348F69004DF096 /* Debug */,
+				EEF9C58E1C348F69004DF096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -15,22 +15,25 @@ public protocol EventsContainerControllerDelegate {
 }
 
 class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
 
+    var titleString = ""
+    var dateString = ""
+    var timeString = ""
+    
     @IBOutlet weak var eventsTable: UITableView!
     var itemIndex: Int = 1
+    var calendarController:CalendarController?
 
     var previousClasses:Int = 0
     var refreshControl:UIRefreshControl!
     var eventService = EventService.sharedInstance
+    var eventAddedTable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        
-//        askForNotifications()
         
         //pull to refresh
         refreshControl = UIRefreshControl()
@@ -42,31 +45,38 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func refresh() {
         eventService.getJSON(self)
-        reloadTable()
-    }
-    
-    func reloadTable() {
-        eventsTable.reloadData()
     }
     
     func finishedLoading() {
+        eventsTable.reloadData()
         self.refreshControl.endRefreshing()
     }
     
-//    func askForNotifications() {
-//        NSNotificationCenter.defaultCenter().addObserver(self,
-//            selector: "reloadTable",
-//            name: EventServiceConstants.EventAdded,
-//            object: nil)
-//    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if eventAddedTable {
+            eventAddedTable = false
+            
+            calendarController!.getCVDatesFromDatesArray() {
+                (result: String) in
+                for each in self.calendarController!.calendarView.contentController.presentedMonthView.weekViews {
+                    for dayView in each.dayViews {
+                        for eachDate in self.calendarController!.CVDatesArray {
+                            if dayView.date.day == eachDate.day && dayView.date.month == eachDate.month && dayView.date.year == eachDate.year {
+                                dayView.preliminarySetup()
+                                dayView.supplementarySetup()
+                            }
+                        }
+                    }
+                }
+            }
+            
+            refresh()
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,7 +84,6 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return eventService.eventSectionCount[section]
     }
     
@@ -129,7 +138,164 @@ class EventsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-
+        let HamburgerStoryBoard = UIStoryboard(name: "Hamburger", bundle: nil)
+        let descriptionController = HamburgerStoryBoard.instantiateViewControllerWithIdentifier("EventTodayDescriptionController") as? EventTodayDescriptionController
+        
+        let indexPathSection = indexPath.section
+        previousClasses = 0
+        for var i = indexPathSection-1; i >= 0; i-- {
+            previousClasses += eventService.eventSectionCount[i]
+        }
+        if let eclass = self.eventService.eventsArray[indexPath.row + previousClasses].className {
+            descriptionController!.eventClass = "Class: \(eclass)"
+        }
+        else {
+            descriptionController!.eventClass = "Class:"
+        }
+        if let title = self.eventService.eventsArray[indexPath.row + previousClasses].title {
+            descriptionController!.eventTitle = "Title: \(title)"
+        }
+        else {
+            descriptionController!.eventTitle = "Title:"
+        }
+        if let location = self.eventService.eventsArray[indexPath.row + previousClasses].location {
+            descriptionController!.location = "Location: \(location)"
+        }
+        else {
+            descriptionController!.locationHidden = true
+        }
+        if let time = self.eventService.eventsArray[indexPath.row + previousClasses].time {
+            descriptionController!.time = "Time: \(time)"
+        }
+        else {
+            descriptionController!.time = "Time:"
+        }
+        if let price = self.eventService.eventsArray[indexPath.row + previousClasses].price {
+            descriptionController!.price = "Price: \(price)"
+        }
+        else {
+            descriptionController!.priceHidden = true
+        }
+        if let group = self.eventService.eventsArray[indexPath.row + previousClasses].group {
+            descriptionController!.group = "Group: \(group)"
+        }
+        else {
+            descriptionController!.groupHidden = true
+        }
+        if let description = self.eventService.eventsArray[indexPath.row + previousClasses].eventDescription {
+            descriptionController!.eventDescription = "Description: \(description)"
+        }
+        else {
+            descriptionController!.eventDescription = "Description:"
+        }
+        self.view.window?.rootViewController?.presentViewController(descriptionController!, animated: true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") { (UITableViewRowAction, indexPath) -> Void in
+            // handle delete (by removing the data from your array and updating the tableview
+            let indexPathSection = indexPath.section
+            var previousClasses2 = 0
+            for var i = indexPathSection-1; i >= 0; i-- {
+                previousClasses2 += self.eventService.eventSectionCount[i]
+            }
+            //cell?.backgroundColor = UIColor(rgba: "#04a4ca")//.colorWithAlphaComponent(0.2)
+            self.titleString = self.eventService.eventsArray[indexPath.row + previousClasses2].title!
+            self.timeString = self.eventService.eventsArray[indexPath.row + previousClasses2].time!
+            self.dateString = self.eventService.eventsArray[indexPath.row + previousClasses2].date!
+            self.deleteEvent()
+        }
+        
+        return [deleteAction]
+        //return [editAction, deleteAction] if want to have edit and delete as options
+    }
+    
+    func deleteEvent() {
+        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this event?", preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "Yes", style: .Default) { _ in
+            
+            let query:PFQuery = PFQuery(className: "Events")
+            query.whereKey("username", equalTo: UserSettings.sharedInstance.Username!)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error:NSError?) -> Void in
+                if (error == nil) {
+                    print("got a query for \(UserSettings.sharedInstance.Username)")
+                    if let object = objects as? [PFObject!] {
+                        for each in object {
+                            if let event:AnyObject = each {
+                                if let eventDetails:AnyObject = event["events"] {
+                                    var title = ""
+                                    var className = ""
+                                    var date = ""
+                                    
+                                    if let eventTitle:AnyObject = eventDetails["Title"] {
+                                        title = "\(eventTitle)"
+                                    }
+                                    if let eventClassName:AnyObject = eventDetails["Classname"] {
+                                        className = "\(eventClassName)"
+                                    }
+                                    
+                                    if let eventDate:AnyObject = eventDetails["Date"] {
+                                        date = eventDate as! String
+                                        
+                                        if date == self.dateString && title == self.titleString {
+                                            each.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                                if success {
+                                                    self.finishDeletion(className, date: date, title: title)
+                                                    print("event was deleted succesfully")
+                                                }
+                                            })
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    print("Error getting query", error, error!.userInfo)
+                    self.deletionError()
+                }
+            }
+        }
+        let CancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
+        }
+        alert.addAction(OKAction)
+        alert.addAction(CancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    func deletionError() {
+        let innerAlert = UIAlertController(title: "", message: "Error deleting event (could be your internet), please try again", preferredStyle: .Alert)
+        let OKAction2 = UIAlertAction(title: "Ok", style: .Default) { _ in
+        }
+        innerAlert.addAction(OKAction2)
+        self.presentViewController(innerAlert, animated: true, completion: nil)
+    }
+    
+    func finishDeletion(className: String, date: String, title: String) {
+        let deletionUUID = className+date+title
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            if notification.userInfo!["UUID"] as! String == deletionUUID {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+            }
+        }
+        for each in UserSettings.sharedInstance.notificationsScheduled {
+            if each.0 == deletionUUID {
+                UserSettings.sharedInstance.notificationsScheduled.removeValueForKey(each.0)
+            }
+        }
+        var i = 0
+        for each in eventService.eventsArray {
+            if each.UUID == deletionUUID {
+                eventService.eventsArray.removeAtIndex(i)
+                self.refresh()
+                return
+            }
+            i++
+        }
     }
     
     

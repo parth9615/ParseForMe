@@ -41,6 +41,12 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
         weightTF.delegate = self
         timeTF.delegate = self
         
+        classNameTF.autocorrectionType = UITextAutocorrectionType.No
+        titleTF.autocorrectionType = UITextAutocorrectionType.No
+        
+        dateTF.addTarget(self, action: "editingDateTF:", forControlEvents: UIControlEvents.EditingDidEnd)
+        weightTF.addTarget(self, action: "editingWeightTF:", forControlEvents: UIControlEvents.EditingDidEnd)
+        
         let fontSize = self.titleLabel.font.pointSize
         dateLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
         titleLabel.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
@@ -62,6 +68,54 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.Top
+    }
+    
+    func editingWeightTF(sender: UITextField) {
+        let regexPatterns = ["^[0-9][0-9]?$|^100$"]
+        
+        if sender.text?.characters.last == "%" {
+            sender.text = sender.text?.stringByReplacingOccurrencesOfString("%", withString: "")
+        }
+        
+        let regexes = try! NSRegularExpression(pattern: regexPatterns[0], options: [])
+        
+        let text = sender.text!
+        let range = NSMakeRange(0, text.length)
+        
+        let matchRange = regexes.rangeOfFirstMatchInString(text, options: .ReportProgress, range: range)
+        
+        let valid = matchRange.location != NSNotFound
+        
+        if !valid {
+            let alert = UIAlertController(title: "Invalid Weight Format", message: "The Weight must be between 0-100%", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                self.weightTF.text = ""
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func editingDateTF(sender: UITextField) {
+        let regexPatterns = ["^(0[1-9]|[1-9]|1[012])[-/.](0[1-9]|[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$"]
+        
+        let regexes = try! NSRegularExpression(pattern: regexPatterns[0], options: [])
+        
+        let text = sender.text!
+        let range = NSMakeRange(0, text.length)
+        
+        let matchRange = regexes.rangeOfFirstMatchInString(text, options: .ReportProgress, range: range)
+        
+        let valid = matchRange.location != NSNotFound
+        
+        if !valid {
+            let alert = UIAlertController(title: "Invalid Date Format", message: "The Date TextField must have a valid date of format ##/##/####", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "Ok", style: .Default) { _ in
+                self.dateTF.text = ""
+            }
+            alert.addAction(OKAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -94,6 +148,7 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
     }
     
     @IBAction func submitEvent(sender: AnyObject) {
+        
         if classNameTF.text != "" && dateTF.text != "" && titleTF.text != ""  {
             let newEvent = PFObject(className: "Events")
             
@@ -102,6 +157,9 @@ class AddEventController: UIViewController, UITextFieldDelegate, UINavigationBar
             }
             if weightTF.text == "" {
                 weightTF.text = "0"
+            }
+            if weightTF.text?.characters.last! == "%" {
+                weightTF.text = weightTF.text?.stringByReplacingOccurrencesOfString("%", withString: "")
             }
             let eventWeight:Int? = Int(weightTF.text!)
             

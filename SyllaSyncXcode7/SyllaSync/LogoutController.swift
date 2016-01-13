@@ -34,23 +34,21 @@ class LogoutController: UIViewController {
     
     @IBAction func logout(sender: AnyObject) {
         PFUser.logOut()
+        EventService.sharedInstance.clearAll()
         
-        let loginStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = loginStoryBoard.instantiateViewControllerWithIdentifier("Login") as! LoginController
-        self.presentViewController(loginVC, animated: true, completion: nil)
+        #if FREE
+            let loginStoryBoard = UIStoryboard(name: "MainFree", bundle: nil)
+            let loginVC = loginStoryBoard.instantiateViewControllerWithIdentifier("Login") as! LoginController
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        #else
+            let loginStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = loginStoryBoard.instantiateViewControllerWithIdentifier("Login") as! LoginController
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        #endif
+        
     }
     
     @IBAction func close(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import iAd
 
-class TableCalendarContainerController: UIViewController {
+class TableCalendarContainerController: UIViewController, ADBannerViewDelegate {
     
     @IBOutlet weak var container: UIView!
     var delegate: EventsContainerControllerDelegate?
@@ -23,6 +24,11 @@ class TableCalendarContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if FREE
+            self.interstitialPresentationPolicy = ADInterstitialPresentationPolicy.Automatic
+            self.canDisplayBannerAds = true
+        #endif
+        
         navigationBar.barTintColor = UIColor(rgba: "#04a4ca")
         self.view.backgroundColor = UIColor(rgba: "#04a4ca")
         
@@ -33,11 +39,11 @@ class TableCalendarContainerController: UIViewController {
         super.viewDidAppear(true)
         
         if toggleCount == 0{
-        if calendarController == nil {
-            calendarController = self.storyboard?.instantiateViewControllerWithIdentifier("Calendar") as? CalendarController
-        }
-        addChildViewController(calendarController!)
-        container.addSubview(calendarController!.view)
+            if calendarController == nil {
+                calendarController = self.storyboard?.instantiateViewControllerWithIdentifier("Calendar") as? CalendarController
+            }
+            addChildViewController(calendarController!)
+            container.addSubview(calendarController!.view)
         }
         
         let imageView = UIImageView(frame: CGRectMake(self.navigationBar.frame.minX, self.navigationBar.frame.minY, self.navigationBar.frame.width/1.5, self.navigationBar.frame.height/1.5));
@@ -67,7 +73,9 @@ class TableCalendarContainerController: UIViewController {
             
             if eventsController == nil {
                 eventsController = self.storyboard?.instantiateViewControllerWithIdentifier("Table") as? EventsController
+                eventsController!.calendarController = calendarController
             }
+            eventsController!.refresh()
             
             container.addSubview(eventsController!.view)
         }
@@ -95,14 +103,42 @@ class TableCalendarContainerController: UIViewController {
 
     @IBAction func editPressed(sender: AnyObject) {
         
+        if eventsView {
+            eventsController!.eventAddedTable = true
+        }
+        else if calendarView {
+            calendarController!.eventAddedCalendar = true
+        }
+        
         let addEventVC = self.storyboard?.instantiateViewControllerWithIdentifier("AddEventScrollController") as! AddEventScrollController
         self.presentViewController(addEventVC, animated: true, completion: nil)
-        
-//        let alert = UIAlertController(title: "Oh No!", message: "This feature is currently unavailable", preferredStyle: .Alert)
-//        let OKAction = UIAlertAction(title: "OK", style: .Default) { _ in
-//            
-//        }
-//        alert.addAction(OKAction)
-//        self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    
+    //ADD BANNER VIEW DELEGATE METHODS
+    #if FREE
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        print("banner view will load ad")
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        print("banner view did load the ad")
+//        self.adBannerView.hidden = false
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        print("error failed to load banner ad \n \(error)")
+    }
+    
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        print("banner view action finished")
+    }
+    
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        print("banner action going to leave app, handle")
+        
+        return true
+    }
+    #endif
+    
 }

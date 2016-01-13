@@ -1,0 +1,116 @@
+.picture {
+	position:relative;
+	width:200px;
+	height:200px;
+	overflow:hidden;
+	margin:10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 100px;
+}
+
+.person1 {
+  width:49%;
+	height: 510px;
+  float:left;
+	background: #E5F6FA;
+	border-radius: 25px;
+	padding-bottom: 10px;
+	padding-left:5px;
+
+}
+/*.person1:hover {
+	box-shadow: -5px 5px 15px #00121a;
+	background: white;
+}*/
+
+/*.person2:hover {
+	box-shadow: -5px 5px 15px #00121a;
+	background: white;
+}*/
+
+.person2 {
+  width:49%;
+	height: 510px;
+  float:right;
+	background: #E5F6FA;
+	border-radius: 25px;
+	padding-bottom: 10px;
+}
+
+.firstRow {
+  width: 80%;
+  height: auto;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.secondRow {
+  width: 80%;
+  height: auto;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.person1Text {
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+	position: relative;
+
+}
+
+.person2Text {
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pic1{
+  background: url("../images/joel.jpg");background-size:cover;
+}
+
+.pic2{
+  background: url("../images/logan.jpg");background-size:cover;
+}
+
+.pic3{
+  background: url("../images/daena.jpg");background-size:cover;
+}
+
+.pic4{
+  background: url("../images/parth.jpg");background-size:cover;
+}
+
+td {
+  width:auto;
+	text-align: center;
+}
+
+table {
+  width: 50%;
+  table-layout: fixed;
+	margin-right: auto;
+	margin-left: auto;
+	border-collapse: collapse;
+}
+
+table, td, th {
+	border: 1px solid black;
+	height: 50px;
+}
+
+th {
+  text-align: center;
+		font-family: syllasyncBold;
+}

@@ -13,6 +13,8 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var eventsTableView: UITableView!
     var numberOfEventsOnDay = 0
+    var eventClasses = [String]()
+    var eventDescriptions = [String]()
     var eventTitles = [String]()
     var eventDates = [String]()
     var eventTimes = [String]()
@@ -58,7 +60,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) as? EventCell
         }
         
-        cell?.eventName.text = eventTitles[indexPath.row]
+        cell?.eventName.text = "\(eventClasses[indexPath.row]): \(eventTitles[indexPath.row])"
         cell?.eventTime.text = eventTimes[indexPath.row]
         cell?.eventDate.text = "Worth \(eventWeights[indexPath.row])% of your grade"
         cell?.eventLocation.text = ""
@@ -74,7 +76,18 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
+        let HamburgerStoryBoard = UIStoryboard(name: "Hamburger", bundle: nil)
+        let descriptionController = HamburgerStoryBoard.instantiateViewControllerWithIdentifier("EventTodayDescriptionController") as? EventTodayDescriptionController
         
+        descriptionController!.eventClass = "Class: \(eventClasses[indexPath.row])"
+        descriptionController!.eventTitle = "Title: \(eventTitles[indexPath.row])"
+        descriptionController!.location = "Weight: Worth \(eventWeights[indexPath.row])% of your grade"
+        descriptionController!.time = "Time: \(eventTimes[indexPath.row])"
+        descriptionController!.priceHidden = true
+        descriptionController!.groupHidden = true
+        descriptionController!.eventDescription = "Description: \(eventDescriptions[indexPath.row])"
+
+        self.parentViewController!.view.window?.rootViewController?.presentViewController(descriptionController!, animated: true, completion: nil)
     }
     
     
@@ -133,7 +146,8 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             self.deleteEvent(self.parentViewController as! CalendarController)
         }
 
-        return [editAction, deleteAction]
+        return [deleteAction]
+        //return [editAction, deleteAction] if want to have edit and delete as options
     }
     
     func editingTextField1(sender: UITextField) {
@@ -280,7 +294,7 @@ class DayEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.deletionError()
             }
         }
-
+        
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

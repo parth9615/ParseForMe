@@ -15,8 +15,7 @@ enum SlideOutState {
     case LeftPanelExpanded
 }
 
-class EventsContainerController: UIViewController {
-    
+class EventsContainerController: UIViewController, UIGestureRecognizerDelegate {
     
     var eventService = EventService.sharedInstance
     var dimView:DimView?
@@ -27,6 +26,8 @@ class EventsContainerController: UIViewController {
             showShadowForCenterViewController(shouldShowShadow)
         }
     }
+    var tap:UIGestureRecognizer?
+    var tapView:UIView?
     var index = 0
     var hamburgerController: HamburgerController?
     let centerPanelExpandedOffset: CGFloat = 60
@@ -34,16 +35,26 @@ class EventsContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tap = UITapGestureRecognizer(target: self, action: "handleTap:")
+        tap!.delegate = self
+        
         getUserEvents()
         let currentInstallation:PFInstallation = PFInstallation.currentInstallation()
         currentInstallation["userID"] = PFUser.currentUser()
         
+        currentInstallation.addUniqueObject("RelayForLife", forKey: "channels")
+        currentInstallation.addUniqueObject("ACappella", forKey: "channels")
+        currentInstallation.addUniqueObject("MemorialHall", forKey: "channels")
+        currentInstallation.addUniqueObject("BlackStudentMovement", forKey: "channels")
+        currentInstallation.addUniqueObject("CUAB", forKey: "channels")
+        currentInstallation.addUniqueObject("FreeFood", forKey: "channels")
+        currentInstallation.addUniqueObject("CampusY", forKey: "channels")
+        currentInstallation.addUniqueObject("ClubSports", forKey: "channels")
         currentInstallation.addUniqueObject("BarEvents", forKey: "channels")
-        currentInstallation.addUniqueObject("SportEvents", forKey: "channels")
+        currentInstallation.addUniqueObject("CAA", forKey: "channels")
         currentInstallation.saveInBackground()
         
     }
-    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -97,6 +108,9 @@ class EventsContainerController: UIViewController {
         tableCalendarController!.delegate = self
     }
     
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        self.toggleLeftPanel((tableCalendarController?.calendarController)!)
+    }
     
     //Hamburger code
 }
@@ -106,8 +120,23 @@ extension EventsContainerController: EventsContainerControllerDelegate {
     func toggleLeftPanel(sender :AnyObject) {
         let notAlreadyExpanded = (currentState != .LeftPanelExpanded)
         
+        tapView = UIView(frame: (tableCalendarController?.view.frame)!)
+        tapView!.tag = 100
+        
+        if !notAlreadyExpanded {
+            if let t = tap {
+                tapView!.removeGestureRecognizer(t)
+                for views in tableCalendarController!.view.subviews {
+                    if views.tag == 100 {
+                        views.removeFromSuperview() 
+                    }
+                }
+            }
+        }
     
         if notAlreadyExpanded {
+            tapView!.addGestureRecognizer(tap!)
+            tableCalendarController!.view.addSubview(tapView!)
             addLeftPanelViewController()
         }
         animateLeftPanel(shouldExpand: notAlreadyExpanded, sender: sender)
@@ -159,7 +188,11 @@ extension EventsContainerController: EventsContainerControllerDelegate {
 }
 
 private extension UIStoryboard {
-    class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()) }
+    #if FREE
+        class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "MainFree", bundle: NSBundle.mainBundle()) }
+    #else
+        class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()) }
+    #endif
     
     class func hamburgerController() -> HamburgerController? {
         let HamburgerStoryBoard = UIStoryboard(name: "Hamburger", bundle: nil)
