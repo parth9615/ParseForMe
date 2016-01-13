@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+  <script src="/javascripts/ng-file-upload-shim.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script type="text/javascript" src="/javascripts/ng-file-upload.js"></script>
+  <script src="/javascripts/loginController.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
+
+</head>
+<body ng-app="AuthApp" ng-controller="loginUserController">
+
+    <a href="/"><img class="logo" ng-src="/images/LogoandPic.png"/></a>
+    <div class="main_menu">
+      <ul>
+        <li><a ng-click="logOut(user)" ng-show="currentUser">Log Out</a></li>
+        <li><a href="/" ng-hide="currentUser">Log In</a></li>
+        <li><a href="/Syllabi" ng-show="currentUser">My Syllabi</a></li>
+        <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
+        <li><a href="/About">About</a></li>
+        <li><a href="/Events" ng-show="currentUser">My Events</a></li>
+      </ul>
+    </div>
+
+    <div class="privacyPolicy">
+      <h1>
+        End User Agreement And Privacy Policy
+      </h1>
+    </div>
+
+    <div class="privacyPolicyBody">
+        IMPORTANT-READ CAREFULLY: This end-user license Agreement ("EULA") is a legally binding license agreement between the entity or organization you represent, or if you do not designate an entity or an organization in connection with a license purchase, you in your individual capacity on behalf of yourself  (“you or “your) and SyllaSync, for the SyllaSync Software identified above and as further defined in this EULA. </br></br>
+        BY INSTALLING, DOWNLOADING, OR OTHERWISE USING THE SOFTWARE, SUCH ACTS INDICATE YOUR ACCEPTANCE OF THIS EULA AND YOUR AGREEMENT TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS EULA. IF YOU DO NOT DESIRE TO ACCEPT THIS EULA OR AGREE TO THE TERMS OF THIS EULA, DO NO INSTALL OR DOWNLOAD THE SOFTWARE TO THE PLACE FROM WHICH YOU OBTAINED IT.
+        </br></br>THE SOFTWARE IS PROTECTED BY U.S. COPYRIGHT LAWS AND INTERNATIONAL COPYRIGHT TREATIES, AS WELL AS OTHER INTELLECTUAL PROPERTY LAWS AND TREATIES. SYLLASYNC IS AND SHALL REMAIN THE OWNER OF ALL INTELLECTUAL PROPERTY RIGHTS IN THE SOFTWARE. THE SOFTWARE IS LICENSED TO YOU ON A NON-EXCLUSIVE, NON-ASSIGNABLE, NON-TRANSFERABLE, LIMITED, PERSONAL BASIS, NOT SOLD.
+        </br></br>SYLLASYNC STRIVES TO PROTECT THE SECURITY AND PRIVACY OF THE USERS OF ITS PRODUCTS.
+        </br></br>AS INDICATED ABOVE, IF YOU DO NOT DESIRE TO ACCEPT THIS EULA OR AGREE TO THE TERMS OF THIS EULA, PLEASE DO NOT DOWNLOAD.
+        </br></br>YOU ACKNOWLEDGE AND AGREE:  (A) THAT YOU ARE NOT AN OWNER OF THE SOFTWARE OR ANY COPIES OF THE SOFTWARE; (B)  THAT YOU ARE A MERE LICENSEE OF THE SOFTWARE AND ANY COPIES OF THE SOFTWARE WITHOUT ANY RIGHT TO FURTHER TRANSFER OR DISTRIBUTE THE SOFTWARE OR ANY COPIES OF THE SOFTWARE OR PROVIDE ACCESS TO THE SOFTWARE IN ANY MANNER WITHOUT SYLLASYNC’S PRIOR WRITTEN CONSENT; (C) NOT TO CHALLENGE THE ENFORCEABILITY OR VALIDITY OF THIS EULA; AND (D) NOT TO INITIATE ANY PROCEEDINGS INCONSISTENT WITH THE TERMS AND CONDITIONS OF THIS EULA.
+
+    </div>
+
+
+</body>
+</html>

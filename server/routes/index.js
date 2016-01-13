@@ -7,6 +7,22 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'ejs' });
 });
 
+router.get('/Syllabi', function(req, res, next) {
+ res.render('mySyllabi', {title: 'ejs'});
+});
+
+router.get('/PrivacyPolicy', function(req, res, next) {
+ res.render('privacyPolicy', {title: 'ejs'});
+});
+
+router.get('/About', function(req, res, next) {
+ res.render('aboutUs', {title: 'ejs'});
+});
+
+router.get('/Events', function(req, res, next) {
+ res.render('calendarView', {title: 'ejs'});
+});
+
 router.get('/manualevent', function(req, res, next) {
   res.render('manualevent', { title: 'ejs' });
 });

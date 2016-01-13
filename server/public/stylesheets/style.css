@@ -1,8 +1,159 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
 a {
   color: #00B7FF;
+}
+
+@font-face {
+  font-family: syllasyncRegular;
+  src: url(../fonts/BoosterNextFY-Regular.otf);
+}
+
+@font-face {
+  font-family: syllasyncBold;
+  src: url(../fonts/BoosterNextFY-Bold.otf);
+}
+h1 {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: solid;
+  border-color: #F299C2;
+  padding-bottom: 5px;
+}
+h3 {
+  color: white;
+  position: relative;
+  left: 43%;
+}
+
+form {
+  position: relative;
+  left: 43%;
+}
+
+body {
+  background-color: #04a4ca;
+  font-family: syllasyncRegular;
+}
+
+.main_menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.main_menu li {
+    float: right;
+}
+
+.main_menu li a {
+    display: block;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.main_menu li a:hover {
+    background-color: #414142;
+}
+
+.main_menu {
+  height: 100px;
+  width: 100%;
+}
+
+.privacyPolicy {
+  position: relative;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.privacyPolicyBody {
+  text-align: left;
+  position: relative;
+  margin-left: auto;
+  margin-top: 50px;
+  margin-bottom: 5%;
+  margin-right: auto;
+  max-width: 70%;
+  background: white;
+  border-radius: 25px;
+  padding: 45px;
+  opacity: 0.9;
+  box-shadow: -5px 5px 15px  #00121a;
+}
+
+.logo {
+  display: block;
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 200px;
+  max-height: 100px;
+}
+
+.loginGroup {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropzone {
+    border: 2px dashed white;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold;
+    font-family: syllasyncRegular;
+    color: white;
+    margin: 0 auto;
+    width: 50%;
+
+}
+
+#uploadContainer {
+  background-color: red;
+  float: left;
+}
+
+.topHeader {
+  position: relative;
+  top:0;
+  border: thin solid black;
+  height: 20px;
+  width: 100%;
+}
+
+#headerButton {
+  position: relative;
+  float: right;
+  margin: 5px;
+}
+
+#syllabiTable {
+  border:none;
+  background: #E5F6FA;
+  border-radius: 25px;
+  width: 60%;
+  box-shadow: -5px 5px 15px  #00121a;
+}
+
+#syllabiTable td {
+  border-top-color: #dddddd;
+  border-right:none;
+  border-left:none;
+  border-bottom:none;
+}
+
+#syllabiTable th{
+  border-top:none;
+  border-right:none;
+  border-left:none;
+  border-bottom-color: #cccccc;
+  border-bottom-width: medium;
 }

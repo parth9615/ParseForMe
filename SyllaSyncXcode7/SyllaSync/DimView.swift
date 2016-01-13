@@ -13,7 +13,7 @@ class DimView: UIView {
     var loadingIndicator:UIActivityIndicatorView?
     
     deinit {
-        print("deinit")
+        //print("deinit")
     }
     
     override init(frame: CGRect) {

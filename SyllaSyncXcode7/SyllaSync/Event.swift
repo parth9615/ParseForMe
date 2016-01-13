@@ -11,6 +11,7 @@ import UIKit
 public class Event: NSObject {
     
     public var UUID:String?
+    public var eventDescription:String?
     public var type:String?
     public var date:String?
     public var time:String?
@@ -20,6 +21,8 @@ public class Event: NSObject {
     public var className:String?
     public var location:String?
     public var newEvent:Bool?
+    public var group:String?
+    public var price:String?
     
 }
 

@@ -6,6 +6,8 @@ target 'SyllaSync' do
 
 #pod 'CVCalendar', :git => 'https://github.com/Mozharovsky/CVCalendar', :branch => 'master'
 pod 'CVCalendar', '~> 1.2.7'
+pod 'SwiftyJSON', '~> 2.3.0'
+
 end
 
 target 'SyllaSyncTests' do

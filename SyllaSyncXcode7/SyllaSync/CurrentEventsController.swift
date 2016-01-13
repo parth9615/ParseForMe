@@ -27,11 +27,14 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var closeButton: UIButton!
     var eventService = EventService.sharedInstance
+    var descriptionController:EventTodayDescriptionController?
     
     var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        descriptionController = self.storyboard?.instantiateViewControllerWithIdentifier("EventTodayDescriptionController") as? EventTodayDescriptionController
         
         eventsTable.delegate = self
         eventsTable.dataSource = self
@@ -83,13 +86,13 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
         cell?.eventName.text = eventService.eventsTodayArray[indexPath.row].title
         cell?.eventName.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
         
-        cell?.eventTime.text = eventService.eventsTodayArray[indexPath.row].time
-        cell?.eventTime.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
+        cell?.eventDate.text = eventService.eventsTodayArray[indexPath.row].time
+        cell?.eventDate.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
         
         cell?.eventLocation.text = "Where? \(eventService.eventsTodayArray[indexPath.row].location!)"
         cell?.eventLocation.font = UIFont(name: "BoosterNextFY-Medium", size: fontSize)
         
-        cell?.eventDate.text = ""
+        cell?.eventTime.text = ""
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
@@ -102,7 +105,44 @@ class CurrentEventsController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)  {
-        
+        self.descriptionController!.classHidden = true
+        if let title = self.eventService.eventsTodayArray[indexPath.row].title {
+            self.descriptionController!.eventTitle = "Title: \(title)"
+        }
+        else {
+            self.descriptionController!.eventTitle = "Title:"
+        }
+        if let location = self.eventService.eventsTodayArray[indexPath.row].location {
+            self.descriptionController!.location = "Location: \(location)"
+        }
+        else {
+            self.descriptionController!.location = "Location:"
+        }
+        if let time = self.eventService.eventsTodayArray[indexPath.row].time {
+            self.descriptionController!.time = "Time: \(time)"
+        }
+        else {
+            self.descriptionController!.time = "Time:"
+        }
+        if let price = self.eventService.eventsTodayArray[indexPath.row].price {
+            self.descriptionController!.price = "Price: \(price)"
+        }
+        else {
+            self.descriptionController!.price = "Price:"
+        }
+        if let group = self.eventService.eventsTodayArray[indexPath.row].group {
+            self.descriptionController!.group = "Group: \(group)"
+        }
+        else {
+            self.descriptionController!.group = "Group:"
+        }
+        if let description = self.eventService.eventsTodayArray[indexPath.row].eventDescription {
+            self.descriptionController!.eventDescription = "Description: \(description)"
+        }
+        else {
+            self.descriptionController!.eventDescription = "Description:"
+        }
+        self.presentViewController(self.descriptionController!, animated: true, completion: nil)
     }
 
 

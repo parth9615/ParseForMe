@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate, CLLocationManagerDelegate {
+class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var childVC:DayEventsController?
@@ -32,8 +32,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     var day:DayView?
     var currentDayView:CVCalendarDayView?
     var eventsAdded = false
-    
-    let locationManager = CLLocationManager()
+    var eventAddedCalendar = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,22 +59,8 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
         // Do any additional setup after loading the view.
 
         
-        //GETS LOCATION
-        
-        locationManager.requestAlwaysAuthorization()
-        
-        let authstate = CLLocationManager.authorizationStatus()
-        if(authstate == CLAuthorizationStatus.NotDetermined){
-            print("Not Authorised")
-            locationManager.requestWhenInUseAuthorization()
-        }
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-            locationManager.distanceFilter = 1000.0
-            locationManager.startUpdatingLocation()
-        }
+
+    
     }
     
     func getCVDatesFromDatesArray(completion:(result: String) -> Void) {
@@ -113,6 +98,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         
         
         if self.eventsAdded {
@@ -153,7 +139,7 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                     self.didSelectDayView(dayV)
             
                     for each in dayV.subviews {
-                        print(each)
+                        
                         if each is UILabel {
                             continue
                         }
@@ -185,7 +171,6 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
                     self.didSelectDayView(dayV)
                     
                     for each in dayV.subviews {
-                        print(each)
                         if each is UILabel {
                             continue
                         }
@@ -222,8 +207,10 @@ class CalendarController: UIViewController, CVCalendarViewDelegate, CVCalendarMe
     }
     
     func eventAdded() {
-       // EventService.sharedInstance.countUniqueClasses(self)
-        eventsAdded = true
+        if self.eventAddedCalendar {
+            eventAddedCalendar = false
+            eventsAdded = true
+        }
     }
 }
 
@@ -254,6 +241,17 @@ extension CalendarController
         if (dayView.isCurrentDay) {
             day = dayView
             var tappedFlag = false
+            
+            self.childVC?.numberOfEventsOnDay = 0
+            self.childVC?.eventDates.removeAll()
+            self.childVC?.eventTitles.removeAll()
+            self.childVC?.eventTimes.removeAll()
+            self.childVC?.eventWeights.removeAll()
+            self.childVC?.eventLocations.removeAll()
+            self.childVC?.eventClasses.removeAll()
+            self.childVC?.eventDescriptions.removeAll()
+            self.childVC?.reloadTable()
+            
             if dayView.date != nil {
                 for var i = 0; i < CVMonthsArray.count; i++ {
                     if CVYearsArray[i] == dayView.date.year && CVMonthsArray[i] == dayView.date.month && CVDaysArray[i] == dayView.date.day {
@@ -264,23 +262,20 @@ extension CalendarController
                         self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
                         self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
                         self.childVC?.eventWeights.append(eventService.eventsArray[i].weight!)
-                
+                        self.childVC?.eventClasses.append(eventService.eventsArray[i].className!)
+                        if let desc = eventService.eventsArray[i].eventDescription {
+                            self.childVC?.eventDescriptions.append(desc)
+                        }
+                        else {
+                            self.childVC?.eventDescriptions.append("")
+                        }
+                        
                         self.childVC?.reloadTable()
                         
                     }
                     else {
                         if tappedFlag == false {
-                            
-                            self.childVC?.numberOfEventsOnDay = 0
-                            self.childVC?.eventDates.removeAll()
-                            self.childVC?.eventTitles.removeAll()
-                            self.childVC?.eventTimes.removeAll()
-                            self.childVC?.eventWeights.removeAll()
-                            
-                            self.childVC?.reloadTable()
-                            
                             tappedFlag = true
-
                         }
                     }
                 }
@@ -357,6 +352,17 @@ extension CalendarController
         var tappedFlag = false
         day = dayView
         currentDayView = dayView
+        
+        self.childVC?.numberOfEventsOnDay = 0
+        self.childVC?.eventDates.removeAll()
+        self.childVC?.eventTitles.removeAll()
+        self.childVC?.eventTimes.removeAll()
+        self.childVC?.eventWeights.removeAll()
+        self.childVC?.eventLocations.removeAll()
+        self.childVC?.eventClasses.removeAll()
+        self.childVC?.eventDescriptions.removeAll()
+        self.childVC?.reloadTable()
+        
         print("\(calendarView.presentedDate.commonDescription) is selected!")
         if dayView.date != nil {
             for var i = 0; i < CVMonthsArray.count; i++ {
@@ -368,23 +374,20 @@ extension CalendarController
                     self.childVC?.eventTitles.append(eventService.eventsArray[i].title!)
                     self.childVC?.eventTimes.append(eventService.eventsArray[i].time!)
                     self.childVC?.eventWeights.append(eventService.eventsArray[i].weight!)
+                    self.childVC?.eventClasses.append(eventService.eventsArray[i].className!)
+                    if let desc = eventService.eventsArray[i].eventDescription {
+                        self.childVC?.eventDescriptions.append(desc)
+                    }
+                    else {
+                        self.childVC?.eventDescriptions.append("")
+                    }
                     
                     self.childVC?.reloadTable()
            
                 }
                 else {
                     if tappedFlag == false {
-                        
                         tappedFlag = true
-                        
-                        self.childVC?.numberOfEventsOnDay = 0
-                        self.childVC?.eventDates.removeAll()    
-                        self.childVC?.eventTitles.removeAll()
-                        self.childVC?.eventTimes.removeAll()
-                        self.childVC?.eventWeights.removeAll()
-                        
-                        self.childVC?.reloadTable()
-                        
                     }
                 }
             }
@@ -514,7 +517,6 @@ extension CalendarController {
     @IBAction func loadPrevious(sender: AnyObject) {
         calendarView.loadPreviousView()
     }
-    
     
     @IBAction func loadNext(sender: AnyObject) {
         calendarView.loadNextView()
