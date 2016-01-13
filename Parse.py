@@ -5,6 +5,7 @@ from docx import Document
 from docx.shared import Inches
 import commands
 import json
+import datetime
 
 def getRawData(filename):
 
@@ -32,13 +33,18 @@ def convertToJsonFormat (dictionary, weightDictionary):
     jsonList = []
     for key in dictionary.keys():
         weight = findWeightInDict(dictionary[key][0] , weightDictionary)
-        if weight:
-            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2], 'Weight' : weightDictionary[weight] }
+        if dictionary[key][1]:
+            time = dictionary[key][1]
         else:
-            SingleEventDict = {'Type' : dictionary[key][0] , 'Date' : key , 'Time' : dictionary[key][1] , 'Title' : dictionary[key][2] , 'Weight' : None }
+            time = ""
+
+        if weight:
+            SingleEventDict = {'Title' : dictionary[key][0] , 'Date' : key , 'Time' : time , 'Description' : dictionary[key][2], 'Weight' : weight  , 'Type': dictionary[key][0]}
+        else:
+            SingleEventDict = {'Title' : dictionary[key][0] , 'Date' : key , 'Time' : time , 'Description' : dictionary[key][2] , 'Weight' : int(0) , 'Type': dictionary[key][0]}
 
         jsonList.append(SingleEventDict)
-    jsonDict = {"Events" : jsonList}
+    jsonDict = {"events" : jsonList}
     print(jsonDict)
 
 
@@ -47,7 +53,9 @@ def findWeightInDict(eventType, weight):
         for key in weight.keys():
             index = key.lower().find(eventType.lower())
             if index > -1:
-                return key
+                a = (re.findall(r'\d+.*?',key))
+
+                return int(a[0])
     return None
 
 def readFromDOCX(filename):
@@ -104,32 +112,58 @@ todo : update this numeric list as more patterns are added:
 def extractDays(dictOfDatesAndInfo, relevantDates , rawListOfData, dayAndMonthList, removeTableLineFromDocTable, weightDictionary):
     optimizationBoolean = False
     for individualLine in rawListOfData:  # iterate through each line
+        ##print(individualLine)
+        individualLine = individualLine.lower()
         if removeTableLineFromDocTable:
             individualLine = individualLine.replace("|" , "") # remove table lines
         for days in dayAndMonthList:              # iterate through each day combination
-            # regex pattern to find the entire line that contains a day in the dayList
-            dayOfTheWeekPattern = ('.+')+(days)+('?\s.+')
-            # regex flag to ingnorecase and make the dot include whitespace
-            dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
-            # call findInString to check if such a pattern exists
-            result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
-            if result:
+            # # regex pattern to find the entire line that contains a day in the dayList
+            # dayOfTheWeekPattern = ('.+')+(days)+('?\s.+')
+            # # regex flag to ingnorecase and make the dot include whitespace
+            # dayOfTheWeekFlags =   re.IGNORECASE | re.DOTALL
+            # # call findInString to check if such a pattern exists
+            # result = findInString(dayOfTheWeekPattern , individualLine , dayOfTheWeekFlags, relevantDates)
+            # if result:
+             if days.lower() in individualLine:
+                # print(individualLine , "HELP")
                 makeEventFromMonth(individualLine, dictOfDatesAndInfo)
                 break
 
         extractWeight(individualLine , weightDictionary)
         #pattern to find the pattern ##/## which is commonly used to denote dates
-        dateTimePattern = ('\d\d?.\d\d?')
+        dateTimePattern = ('\d\d?[\./-]\d\d?')
         dateTimeFlags   = re.DOTALL
         result = findInString(dateTimePattern , individualLine , dateTimeFlags , relevantDates)
         if result:
-             makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
+            getDateSeperatingIndex = getDateSeperatingChar(result , ['.' , '/' , '-'])
 
+            if getDateSeperatingIndex:
+                month = result[0:getDateSeperatingIndex]
+                day = result[getDateSeperatingIndex+1:]
+
+                result =  month + '/' +day
+                result += getValidYear(result)
+            #checkDateValidity(result)
+            if (checkIfDateIsValid(result)):
+                makeEventFromDate(result , individualLine , dictOfDatesAndInfo)
+
+# def checkDateValidity(date_text):
+#     try:
+#         datetime.datetime.strptime(date_text, '%m/%d')
+#         print 'VALID DATE ))))))))))))' , date_text
+#     except ValueError:
+#         print ValueError("Incorrect data format, should be YYYY-MM-DD was " , date_text)
+
+
+def getDateSeperatingChar(searchString, Charlist):
+    for char in Charlist:
+        index = searchString.find(char)
+        if index > -1:
+            return index
 
 def extractWeight(lineToSearch, weightDictionary):
     findPercentIndex = lineToSearch.find('%')  # if percent sign is present
     if findPercentIndex > -1:                  # valid index found
-
         findNumericalWeight = re.search('\d?\d?\.?\d?\d' , lineToSearch)  # find any possible numerical percent
         if findNumericalWeight:
             weightDictionary[lineToSearch] = findNumericalWeight.group()
@@ -139,30 +173,36 @@ def makeEventFromDate(date, stringToSearch, dictionary):
 
     #get the proper event and time and then add to dictionary
     eventType = getEventType(stringToSearch)
-    time =      getValidTime(stringToSearch) # time returned in (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
-    if time:                                    # if time found send the formatted version
-        dictionary[date] = (eventType) , (time) , (getInfo(eventType, time , date, stringToSearch))
-    else:
-        dictionary[date] = (eventType) , (time) , (getInfo(eventType, time , date, stringToSearch))
+    if eventType:
+
+        time =      getValidTime(stringToSearch) # time returned in (firstTimeFound) , (secondTimeFound) ,(firstTimeFound , 'to' , secondTimeFound)
+        dictionary[date] = (eventType) , (time) , (stringToSearch)
+
 
 def getInfo(event,  time, date, stringToSearch):
-    removedEvent = removeSubstring(stringToSearch , event) # return string with removed event
-    if time:                                               # if valid time was there
-        rmTime0 = removeSubstring(removedEvent , time) #rm both times
-        removedDate = removeSubstring(rmTime0, date)
-    else :
-        removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
-        return removedDate
+
+    removeStuffList = [event, time, date]
+    # removedEvent = removeSubstring(stringToSearch , event) # return string with removed event
+    # if time:                                               # if valid time was there
+    #     rmTime0 = removeSubstring(removedEvent , time) #rm both times
+    #     removedDate = removeSubstring(rmTime0, date)
+    # else :
+    #     removedDate = removeSubstring(removedEvent, date) #  return string with removed event, time, date
+    #     return removedDate
+
+    return " ".join( (removeSubstring(stringToSearch , removeStuffList)).split())
 
 
 
-def removeSubstring(stringToSearch, findingObject):
-    if isinstance(findingObject , str):                 # if findingObject is of type string
-        return stringToSearch.replace(findingObject , '') # return the removed version
-    else:
-        return stringToSearch                             # else return the original string
+def removeSubstring(stringToSearch, listToFind):
+    for individualItems in listToFind:
+        if isinstance(individualItems , str):                 # if findingObject is of type string
+            stringToSearch = stringToSearch.replace(individualItems , '') # return the removed version
+
+    return stringToSearch                             # else return the original string
 
 def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
+
     monthFound = ''
     dateFound = ''
     informationArroundDate = ''
@@ -171,26 +211,56 @@ def makeEventFromMonth(stringToSearch, dictOfDatesAndInfo):
     'Feb':2 , 'Mar':3, 'Apr':4 , 'May':5 , 'Jun':6 , 'Jul':7 , 'Aug':8 , 'Sep':9 , 'Oct':10 ,
      'Nov':11 , 'Dec':12}
     for month in monthToNumDict.keys():
-        monthFound = re.search ('\s' + month , stringToSearch, re.IGNORECASE) # try to find a month
+        # monthFound = re.search ('\s' + month , stringToSearch, re.IGNORECASE) # try to find a month
+        monthFound = month.lower() in  stringToSearch
         if monthFound:
 
             monthIndex = stringToSearch.lower().find(month.lower()) # find the index of where the month is
-            # try to find a date with a range of +- 10 chars from where the monthIndex was
-            dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
+            # print(stringToSearch , month)
+            # print('stringLenght =' , len(stringToSearch) , 'monthIndex' , monthIndex , 'monthIndex + 10' , monthIndex+10 , 'monthIndex-10' , monthIndex-10)
+            if ((monthIndex+30 >= len(stringToSearch)) or (monthIndex-30 <= 0)):
+                dateFound = re.search( '\d\d?' , stringToSearch)
+
+            else:
+                # try to find a date with a range of +- 10 chars from where the monthIndex was
+                dateFound = re.search( '\d\d?' , stringToSearch[monthIndex - 10: monthIndex+10])
+
+
             #print 'the month = =====' , month , stringToSearch
             if dateFound:
+
                 # make date in proper format of month/day
                 dateFoundFormatted = str(monthToNumDict[month]) + '/' + dateFound.group()
-
-                # now add to the dictionary with date found
-                makeEventFromDate(dateFoundFormatted , stringToSearch , dictOfDatesAndInfo)
+                dateFoundFormatted += getValidYear(dateFoundFormatted)
+                if checkIfDateIsValid(dateFoundFormatted):
+                    # now add to the dictionary with date found
+                    makeEventFromDate(dateFoundFormatted , stringToSearch , dictOfDatesAndInfo)
                 break
 
 
+def getValidYear(stringWithoutYear):
+    dateNow = datetime.datetime.now()
+    year = ''
+    if dateNow.month in range(1,6):
+        year += '/' + str(+ dateNow.year)
+    elif ((dateNow.month + 6) % 12) > 6:
+        year += '/' + str(dateNow.year + 1)
+    else:
+        year += '/' + str(+ dateNow.year)
+    return year
+
+def checkIfDateIsValid(dateString):
+    dateSplit = re.findall(r'\d+',dateString)
+
+    try:
+        datetime.date(year = int(dateSplit[2]), month = int(dateSplit[0]), day = int(dateSplit[1]) )
+    except ValueError:
+        return False
+    return True
 
 def getEventType(stringToSearch):
-    events = ['final exam' , 'test' , 'quiz' , 'office-hours' , 'office hours' , 'assignment'
-    , 'assignments' , 'exam' , 'homework' , 'webassign']
+    events = [ 'midterm' , 'final exam' ,'final' , 'test' , 'quiz' ,  'assignment'
+    , 'assignments' , 'exam' , 'homework'  , 'paper' , 'essay' , 'project' ]
     for event in events:
         eventIndex = stringToSearch.lower().find(event) # find index of event
         if eventIndex > -1:                             # if event exists
@@ -212,7 +282,6 @@ def getValidTime(stringToSearch):
         # time in above format not found try searching for am/pm
         am = stringToSearch.lower().find('am')
         if am > -1:
-            print stringToSearch , '\n'                                 # found a time at a valid am
             time = re.search('\d\d?:?\d?\d?' , stringToSearch)
             if time:
                 return time.group()
