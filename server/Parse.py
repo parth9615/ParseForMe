@@ -35,6 +35,7 @@ def getRawData(filename):
 
     extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable , weightDictionary)
     convertToJsonFormat(dictOfDatesAndInfo , weightDictionary)
+    return convertToJsonFormat(dictOfDatesAndInfo, weightDictionary)
 
 #converts the dictionary to the  Json DIct formatting
 def convertToJsonFormat (dictionary, weightDictionary):
@@ -54,6 +55,7 @@ def convertToJsonFormat (dictionary, weightDictionary):
         jsonList.append(SingleEventDict)
     jsonDict = {"events" : jsonList}
     print(jsonDict)
+    return jsonDict
 
 
 def findWeightInDict(eventType, weight):
