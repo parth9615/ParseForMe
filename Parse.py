@@ -6,6 +6,11 @@ from docx.shared import Inches
 import commands
 import json
 import datetime
+from pdfminer.pdfinterp import PDFResourceManager, process_pdf
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from cStringIO import StringIO
+import os
 
 def getRawData(filename):
 
@@ -21,6 +26,8 @@ def getRawData(filename):
         removeTableLineFromDocTable = True
         rawListOfData = readFromDOC(filename)
 
+    elif '.pdf' in filename:
+        rawListOfData = readFromPdf(filename)
     elif '.txt' in filename:                # if .txt file
         rawListOfData = readFromTXT( filename)
 
@@ -83,10 +90,40 @@ def readFromDOC(filename):
     else:
         return readFromTXT(newFileName)                                # else now readfromthetxt file
 
+def readFromPdf(filename):
+    print 'hello'
+    rsrcmgr = PDFResourceManager()
+    retstr = StringIO()
+    codec = 'utf-8'
+    laparams = LAParams()
+    device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
+
+    fp = file(filename, 'rb')
+    process_pdf(rsrcmgr, device, fp)
+    fp.close()
+    device.close()
+
+    str = retstr.getvalue()
+    retstr.close()
+    print 'here'
+    with open('out.txt', 'w') as f:
+        f.write(str)
+    return readFromTXT('out.txt')
+
+
 def readFromTXT( filename):
     f = open(filename, 'rU')              # Open and read the file. for read only
     rawListOfData = f.readlines()         # get each line as a list
+    removeFileIfExists('out.txt')
     return rawListOfData
+
+"""
+    This method removes the file specifed from the computer
+"""
+def removeFileIfExists(name):
+    path = os.getcwd() + "/" + name
+    if os.path.exists(path):
+        os.remove(path)
 
 def extractDates(dictOfDatesAndInfo, rawListOfData, removeTableLineFromDocTable, weightDictionary):
   dayAndMonthList = ['Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday', 'Saturday' , 'Sunday'
